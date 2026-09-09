@@ -1,0 +1,72 @@
+name: Refresh predictions
+
+# 11:00 UTC = 7am ET, which lands after the previous day's injury reports and before
+# any kickoff. GitHub's scheduler is best-effort and often runs late under load — a
+# delay of 10-30 minutes is normal and not a failure.
+on:
+  schedule:
+    - cron: "0 11 * * *"
+  workflow_dispatch: {}      # adds a "Run workflow" button for manual refreshes
+
+# the job pushes the regenerated page back to the branch, so it needs write access
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Rebuild predictions
+        run: python run_pipeline.py --outdir . --datadir data
+
+      - name: Sanity-check the payload before touching the page
+        run: |
+          python - <<'PY'
+          import json, sys
+          p = json.load(open("payload.json"))
+          games = p.get("games", [])
+          if not games:
+              sys.exit("payload has no games — refusing to publish")
+          print(f"{p['season']} week {p['week']}: {len(games)} games, "
+                f"{len(p.get('players', []))} players")
+          PY
+
+      - name: Splice the new data into the page
+        run: python merge_payload.py index.html payload.json
+
+      - name: Verify the page survived the merge
+        run: |
+          test -s index.html
+          size=$(stat -c%s index.html)
+          [ "$size" -ge 100000 ] || { echo "index.html only $size bytes"; exit 1; }
+          grep -q "PAYLOAD_START" index.html
+          grep -q "renderCharts" index.html
+          echo "index.html ok ($size bytes)"
+
+      - name: Commit and push if anything changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html payload.json
+          if git diff --staged --quiet; then
+            echo "No change — nothing to publish."
+          else
+            git commit -m "Refresh predictions ($(date -u +'%Y-%m-%d'))"
+            git push
+          fi
