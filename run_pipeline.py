@@ -19,6 +19,9 @@ from datetime import datetime, timezone
 import numpy as np
 import pandas as pd
 
+import explain
+from scheme_features import SCHEME, SCHEME_FEATS, add_scheme_cols, team_scheme
+
 REL = "https://github.com/nflverse/nflverse-data/releases/download"
 SCHEDULES = "https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv"
 FIRST_SEASON = 2016
@@ -29,15 +32,20 @@ METRICS = ["g_off_epa_pp", "g_def_epa_pp_allowed", "g_off_pass_epa_pp", "g_off_r
 BASE_FEATS = ["off_epa_diff", "def_epa_diff", "net_epa_edge_home", "pass_epa_edge_home",
               "rush_epa_edge_home", "points_diff_rating", "div_game", "rest_diff"]
 CTX_FEATS = ["qb_epa_diff", "qb_rush_diff", "qb_change_diff", "inj_off_diff", "inj_def_diff"]
-FEATS = BASE_FEATS + CTX_FEATS
+# Scheme features earn their place on calibration, not on picks: Brier 0.2316 -> 0.2303 and
+# margin MAE 10.54 -> 10.48 across the 2019-25 walk-forward, while the straight-up pick rate
+# moves only 61.2% -> 61.8% (McNemar p = 0.55, i.e. indistinguishable from noise).
+# Weather was tested the same way and left OUT: it changed the pick rate by exactly 0.00%
+# and made Brier worse (0.2316 -> 0.2333). It is displayed as context, never fed to the model.
+FEATS = BASE_FEATS + CTX_FEATS + SCHEME_FEATS
 
 # Walk-forward backtest results, 2019-2025. These describe the model design, not today's
 # data, so they are constants; regenerate them if the feature set or hyperparameters change.
 BACKTEST = {
-    "n_games": 1855, "model_su": 0.6124, "market_su": 0.6663, "blend_su": 0.6544,
-    "always_home": 0.5288, "margin_mae": 10.54, "market_margin_mae": 9.81,
-    "ats": 0.5039, "brier_model": 0.2316, "brier_market": 0.2104,
-    "note": "base + QB + injury feature set",
+    "n_games": 1855, "model_su": 0.6183, "market_su": 0.6663, "blend_su": 0.6642,
+    "always_home": 0.5288, "margin_mae": 10.48, "market_margin_mae": 9.81,
+    "ats": 0.5248, "brier_model": 0.2303, "brier_market": 0.2104,
+    "note": "base + QB + injury + scheme feature set",
 }
 
 
@@ -285,6 +293,9 @@ def context_features(sched, pw, inj, snap, rost, depth, cur):
     g[["home_chg", "away_chg"]] = g[["home_chg", "away_chg"]].fillna(0)
 
     g["is_indoor"] = g.roof.isin(["dome", "closed"]).astype(int)
+    # The model needs a number, so missing values are median-filled. The SITE must not show
+    # a filled value as a forecast, hence the flags: a game with no posted forecast says so.
+    g["wx_known"] = (g.wind.notna() & g.temp.notna()).astype(int)
     g["wind_f"] = np.where(g.is_indoor == 1, 0.0, g.wind.fillna(g.wind.median()))
     g["temp_f"] = np.where(g.is_indoor == 1, 70.0, g.temp.fillna(g.temp.median()))
 
@@ -332,9 +343,16 @@ def context_features(sched, pw, inj, snap, rost, depth, cur):
     for side in ["home", "away"]:
         g[f"{side}_qb_disp"] = g[f"{side}_qb_name"].fillna(g[f"{side}_qb_id"].map(names))
 
-    return g[["game_id"] + CTX_FEATS + ["wind_f", "temp_f", "is_indoor",
+    # the raw sides of every diff come through too — the explanations quote them, and a
+    # factor the reader can't check against a number is just an assertion
+    return g[["game_id"] + CTX_FEATS + ["wind_f", "temp_f", "is_indoor", "wx_known",
                                          "home_qb_disp", "away_qb_disp",
-                                         "home_n_out", "away_n_out"]]
+                                         "home_n_out", "away_n_out",
+                                         "home_qb_epa", "away_qb_epa",
+                                         "home_qb_rush", "away_qb_rush",
+                                         "home_chg", "away_chg",
+                                         "home_out_off", "away_out_off",
+                                         "home_out_def", "away_out_def"]]
 
 
 # --------------------------------------------------------------------------- assemble + model
@@ -391,6 +409,11 @@ def fit_predict(df, cur, target_week):
     up["predicted_away_score"] = (tot - up.margin_pred) / 2
     up["predicted_winner"] = np.where(up.p_blend > 0.5, up.home_team, up.away_team)
 
+    # Exact tree SHAP: each column is one feature's signed contribution to this game's
+    # log-odds, last column the bias. This is the model's own arithmetic, so the "why"
+    # text cannot drift away from what the model actually did.
+    contribs = clf.get_booster().predict(xgb.DMatrix(up[FEATS]), pred_contribs=True)
+
     imp = pd.Series(clf.feature_importances_, index=FEATS).sort_values(ascending=False)
 
     # live out-of-sample scoring: a model that saw only prior seasons, graded on this one
@@ -421,7 +444,7 @@ def fit_predict(df, cur, target_week):
                           done.game_id, done.away_team, done.home_team, p, mg,
                           done.home_margin.values, correct)],
         }
-    return up, imp, live
+    return up, imp, live, contribs
 
 
 # --------------------------------------------------------------------------- player projections
@@ -459,7 +482,7 @@ def player_projections(pw, ratings, sched, rost, depth, cur, target_week):
         d = depth[depth.dt == depth.dt.max()]
         starters = set(d[d.pos_rank == 1].gsis_id.dropna())
 
-    rows = []
+    rows, why = [], {}
     for out_col, cfg in PTARGETS.items():
         oc = OPPCOL[cfg["opp"]]
         pc = f"proj_{cfg['stat']}"
@@ -480,11 +503,21 @@ def player_projections(pw, ratings, sched, rost, depth, cur, target_week):
         cand[oc] = cand.opponent_team.map(lambda t: wk_def[oc].get(t, np.nan))
         cand = cand.dropna(subset=f)
         cand["val"] = model.predict(cand[f])
+
+        # rank 1 = the defense that has allowed the least in this phase, so a low rank
+        # is a hard matchup regardless of which stat is being projected
+        drank = wk_def[oc].rank(method="min").astype(int).to_dict()
+        n_teams = int(wk_def[oc].notna().sum())
+        fmean, omean = float(sub[pc].mean()), float(sub[oc].mean())
+
         for _, r in cand.iterrows():
             rows.append({"player_id": r.player_id, "player_display_name": r.player_display_name,
                           "position": r.position, "team": r.team, "opponent_team": r.opponent_team,
                           "is_home": int(r.is_home), "stat": out_col, "v": float(r.val),
                           "headshot": r.headshot_url if isinstance(r.headshot_url, str) else None})
+            why[(r.player_id, out_col)] = explain.player_reason(
+                float(r.val), model.coef_, model.intercept_, float(r[pc]), float(r[oc]), int(r.is_home),
+                fmean, omean, drank.get(r.opponent_team, n_teams // 2), n_teams)
     if not rows:
         return []
     rdf = pd.DataFrame(rows)
@@ -498,7 +531,42 @@ def player_projections(pw, ratings, sched, rost, depth, cur, target_week):
         if c not in keys:
             pdf[c] = pdf[c].round(1)
     pdf["headshot"] = pdf.player_id.map(heads)
-    return pdf.replace({np.nan: None}).drop(columns=["player_id"]).to_dict(orient="records")
+    recs = pdf.replace({np.nan: None}).to_dict(orient="records")
+    for rec in recs:
+        pid = rec.pop("player_id")
+        rec["why"] = {s: w for (p, s), w in why.items() if p == pid}
+    return recs
+
+
+# --------------------------------------------------------------------------- coaches
+def coach_tenure(sched, cur):
+    """(team, coach) -> seasons in the current unbroken run with that team."""
+    h = sched[sched.game_type == "REG"][["season", "home_team", "home_coach"]].rename(
+        columns={"home_team": "team", "home_coach": "coach"})
+    a = sched[sched.game_type == "REG"][["season", "away_team", "away_coach"]].rename(
+        columns={"away_team": "team", "away_coach": "coach"})
+    x = pd.concat([h, a]).dropna(subset=["coach"]).drop_duplicates(["season", "team", "coach"])
+    out = {}
+    for (t, c), grp in x.groupby(["team", "coach"]):
+        yrs = sorted(grp.season.unique())
+        run, prev = 0, None
+        for y in yrs:                       # length of the streak that reaches the current season
+            run = run + 1 if prev is not None and y == prev + 1 else 1
+            prev = y
+        out[(t, c)] = run if prev == cur else 0
+    return out
+
+
+def team_records(sched, cur):
+    """W-L-T through completed regular-season games of the current season."""
+    d = sched[(sched.season == cur) & (sched.game_type == "REG") & sched.home_score.notna()]
+    rec = {}
+    for _, r in d.iterrows():
+        for t, own, opp in [(r.home_team, r.home_score, r.away_score),
+                            (r.away_team, r.away_score, r.home_score)]:
+            w, l, ti = rec.get(t, (0, 0, 0))
+            rec[t] = (w + (own > opp), l + (own < opp), ti + (own == opp))
+    return {t: (f"{w}-{l}" + (f"-{ti}" if ti else "")) for t, (w, l, ti) in rec.items()}
 
 
 # --------------------------------------------------------------------------- main
@@ -524,17 +592,37 @@ def main():
     pw = player_form(plyr, sched, ratings)
     ctx = context_features(sched, pw, inj, snap, rost, depth, cur)
     df = build_games(sched, ratings, ctx)
-    up, imp, live = fit_predict(df, cur, target_week)
+    scheme, sch_lg = team_scheme(team, sched, cur, target_week)
+    df = add_scheme_cols(df, scheme)
+    up, imp, live, contribs = fit_predict(df, cur, target_week)
     players = player_projections(pw, ratings, sched, rost, depth, cur, target_week)
 
     up = up.copy()
     up["gameday_s"] = pd.to_datetime(up.gameday).dt.strftime("%a %b ") + \
                       pd.to_datetime(up.gameday).dt.day.astype(str)
+    reasons = explain.game_reasons(up, contribs, FEATS)
+    ten = coach_tenure(sched, cur)
+    recs = team_records(sched, cur)
+
+    def side_scheme(r, side):
+        """Everything the site needs to draw one team's identity panel."""
+        d = {x: float(r.get(f"{side}_sch_{x}", np.nan)) for x in SCHEME}
+        d.update({f"pk_{x}": float(r.get(f"{side}_pk_{x}", 0.5)) for x in SCHEME})
+        d["label"] = explain.scheme_label(d["pk_pass_rate"], d["pk_adot"], d["pk_pace"])
+        return d
+
     games_out = []
-    for _, r in up.iterrows():
+    for i, (_, r) in enumerate(up.iterrows()):
+        hs, as_ = side_scheme(r, "home"), side_scheme(r, "away")
+        hc, ac = r.get("home_coach"), r.get("away_coach")
+        indoor = int(r.get("is_indoor", 0))
+        known = indoor or int(r.get("wx_known", 0) or 0)
+        wind = float(r.get("wind_f")) if known and not pd.isna(r.get("wind_f")) else None
+        temp = float(r.get("temp_f")) if known and not pd.isna(r.get("temp_f")) else None
         games_out.append({
             "game_id": r.game_id, "gameday": r.gameday_s,
             "home_team": r.home_team, "away_team": r.away_team,
+            "home_record": recs.get(r.home_team, "0-0"), "away_record": recs.get(r.away_team, "0-0"),
             "spread_line": None if pd.isna(r.spread_line) else float(r.spread_line),
             "total_line": None if pd.isna(r.total_line) else float(r.total_line),
             "p_model": float(r.p_model), "p_market": None if pd.isna(r.p_market) else float(r.p_market),
@@ -543,10 +631,22 @@ def main():
             "predicted_home_score": float(r.predicted_home_score),
             "predicted_away_score": float(r.predicted_away_score),
             "home_qb": r.get("home_qb_disp"), "away_qb": r.get("away_qb_disp"),
-            "wind": None if pd.isna(r.get("wind_f")) else float(r.get("wind_f")),
-            "temp": None if pd.isna(r.get("temp_f")) else float(r.get("temp_f")),
-            "indoor": int(r.get("is_indoor", 0)),
+            "wind": wind, "temp": temp, "indoor": indoor,
+            "roof": None if pd.isna(r.get("roof")) else str(r.get("roof")),
+            "surface": None if pd.isna(r.get("surface")) else str(r.get("surface")),
+            "stadium": None if pd.isna(r.get("stadium")) else str(r.get("stadium")),
             "home_out": int(r.get("home_n_out", 0)), "away_out": int(r.get("away_n_out", 0)),
+            "why": reasons[i],
+            "weather_note": explain.weather_note(indoor, temp, wind, r.get("roof"),
+                                                 r.get("surface"), hs["pk_pass_rate"],
+                                                 as_["pk_pass_rate"]),
+            "coaching": {
+                "home": {"name": None if pd.isna(hc) else str(hc),
+                         "years": ten.get((r.home_team, hc), 0), "scheme": hs},
+                "away": {"name": None if pd.isna(ac) else str(ac),
+                         "years": ten.get((r.away_team, ac), 0), "scheme": as_},
+                "clash": explain.style_clash(r.home_team, r.away_team, hs, as_),
+            },
         })
 
     payload = {
@@ -554,12 +654,25 @@ def main():
         "season": cur, "week": target_week,
         "games": games_out,
         "players": players,
-        "feature_importance": [{"feature": k, "importance": float(v)} for k, v in imp.items()],
+        "feature_importance": [{"feature": k, "importance": float(v),
+                                "label": explain.FEATURE_INFO.get(k, k)} for k, v in imp.items()],
         "backtest": BACKTEST,
         "live": live,
+        "scheme_league": {x: float(sch_lg[x]) for x in SCHEME},
     }
+    # Full float repr costs ~40% of the payload for digits nothing renders. Four places is
+    # more than any display uses and still exact enough for the charts.
+    def trim(o):
+        if isinstance(o, float):
+            return None if (np.isnan(o) or np.isinf(o)) else round(o, 4)
+        if isinstance(o, dict):
+            return {k: trim(v) for k, v in o.items()}
+        if isinstance(o, list):
+            return [trim(v) for v in o]
+        return o
+
     out = os.path.join(a.outdir, "payload.json")
-    json.dump(payload, open(out, "w"), indent=1, default=str)
+    json.dump(trim(payload), open(out, "w"), separators=(",", ":"), default=str)
     log(f"wrote {out}: {len(games_out)} games, {len(players)} players"
         + (f", live {live['n']} scored" if live else ""))
 

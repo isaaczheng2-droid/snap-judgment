@@ -36,6 +36,16 @@ That's it. It now runs itself at 11:00 UTC (7am ET) daily.
 Settings → Pages → Custom domain. Add a `CNAME` record at your registrar pointing to
 `YOUR-USERNAME.github.io`, then tick *Enforce HTTPS* once the certificate provisions.
 
+## The files
+
+| File | What it is |
+|---|---|
+| `index.html` | the whole site — markup, styles, script and data in one file |
+| `run_pipeline.py` | the daily job: download, rebuild, retrain, predict, write `payload.json` |
+| `scheme_features.py` | point-in-time coaching-scheme ratings (pass rate, air yards, tempo, pass rush, protection, takeaways) |
+| `explain.py` | turns the model's own SHAP contributions into the "why it leans this way" text |
+| `merge_payload.py` | splices fresh predictions into `index.html` without touching the design or the audit |
+
 ## What the daily job does
 
 `.github/workflows/refresh.yml` runs `run_pipeline.py`, which re-downloads nflverse data
@@ -81,11 +91,27 @@ build anything time-critical on it.
 
 ## About the model
 
-It does not beat the betting market: 61.2% picking winners against the market's 66.6%, and
-50.4% against the spread, which is a coin flip. The Accuracy tab shows the full working —
-calibration, per-season results, head-to-head against the closing line, and predicted vs.
-actual team records across 1,855 games from 2019–2025, every one of them scored
-walk-forward on a model that had only seen earlier seasons.
+It does not beat the betting market: 61.8% picking winners against the market's 66.6%.
+Against the spread it runs 52.5%, which sounds better than it is — break-even on standard
+juice is 52.4%, the 95% interval is 50.2–54.8%, and season by season it swings from 46.3%
+to 57.0%. That is a coin flip wearing a nice hat.
+
+The Accuracy tab shows the full working — calibration, per-season results, head-to-head
+against the closing line, and predicted vs. actual team records across 1,855 games from
+2019–2025, every one of them scored walk-forward on a model that had only seen earlier
+seasons.
+
+Two feature experiments are worth knowing about, both published on that tab:
+
+- **Weather is deliberately not a model input.** Adding wind, temperature and dome status
+  changed the straight-up pick rate by exactly 0.00% and made the probabilities *worse*
+  (Brier 0.2316 → 0.2333). Both teams play in the same wind, so it largely cancels. The
+  site collects and displays it because a reader wants to see it; the model never sees it.
+- **Coaching scheme is an input, but only just.** Six identity measures per team improved
+  calibration (Brier 0.2316 → 0.2303, margin error 10.54 → 10.48) while moving picks from
+  61.2% to 61.8% — McNemar p = 0.55, indistinguishable from noise. It is in the model
+  because better-calibrated probabilities are worth having on their own, not because it
+  picks winners better. It doesn't.
 
 Keep that page up if you publish this. A prediction site that hides its own scorecard is
 the thing this one is deliberately not.

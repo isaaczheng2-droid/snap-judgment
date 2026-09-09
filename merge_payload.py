@@ -13,7 +13,7 @@ carried over from whatever is already in the page, so a refresh can never wipe i
 import json, re, sys, argparse
 
 FRESH_KEYS = ["generated", "season", "week", "games", "players", "feature_importance",
-              "backtest", "live"]
+               "backtest", "live", "scheme_league"]
 START, END = "/*PAYLOAD_START*/", "/*PAYLOAD_END*/"
 
 
