@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-09 04:53 UTC",
+ "generated": "2026-09-09 05:02 UTC",
  "season": 2026,
  "week": 1,
  "games": [
@@ -10,13 +10,13 @@
    "away_team": "NE",
    "spread_line": 3.0,
    "total_line": 44.5,
-   "p_model": 0.35394272208213806,
+   "p_model": 0.35476958751678467,
    "p_market": 0.6037569709421778,
-   "p_blend": 0.5038312773586264,
-   "margin_pred": -1.2226256132125854,
+   "p_blend": 0.5041620235324851,
+   "margin_pred": -0.499559223651886,
    "predicted_winner": "SEA",
-   "predicted_home_score": 21.638687193393707,
-   "predicted_away_score": 22.861312806606293,
+   "predicted_home_score": 22.000220388174057,
+   "predicted_away_score": 22.499779611825943,
    "home_qb": "Sam Darnold",
    "away_qb": "Drake Maye",
    "wind": 7.0,
@@ -32,13 +32,13 @@
    "away_team": "SF",
    "spread_line": 3.5,
    "total_line": 48.5,
-   "p_model": 0.5539080500602722,
+   "p_model": 0.5547128319740295,
    "p_market": 0.644729178800233,
-   "p_blend": 0.6084007273042487,
-   "margin_pred": 3.3075318336486816,
+   "p_blend": 0.6087226370895193,
+   "margin_pred": 4.240724563598633,
    "predicted_winner": "LA",
-   "predicted_home_score": 25.90376591682434,
-   "predicted_away_score": 22.59623408317566,
+   "predicted_home_score": 26.370362281799316,
+   "predicted_away_score": 22.129637718200684,
    "home_qb": "Matthew Stafford",
    "away_qb": "Brock Purdy",
    "wind": 0.0,
@@ -54,13 +54,13 @@
    "away_team": "CHI",
    "spread_line": -3.0,
    "total_line": 46.5,
-   "p_model": 0.5096104145050049,
+   "p_model": 0.47608715295791626,
    "p_market": 0.4003612281757977,
-   "p_blend": 0.4440609116481773,
-   "margin_pred": -0.8365901112556458,
+   "p_blend": 0.4306515951084129,
+   "margin_pred": -1.8445059061050415,
    "predicted_winner": "CHI",
-   "predicted_home_score": 22.831704944372177,
-   "predicted_away_score": 23.668295055627823,
+   "predicted_home_score": 22.32774704694748,
+   "predicted_away_score": 24.17225295305252,
    "home_qb": "Bryce Young",
    "away_qb": "Caleb Williams",
    "wind": 7.0,
@@ -76,13 +76,13 @@
    "away_team": "TB",
    "spread_line": 3.5,
    "total_line": 50.5,
-   "p_model": 0.4304172396659851,
+   "p_model": 0.42563575506210327,
    "p_market": 0.644729178800233,
-   "p_blend": 0.559004406126766,
-   "margin_pred": -0.5295384526252747,
+   "p_blend": 0.5570918122852133,
+   "margin_pred": -0.8836108446121216,
    "predicted_winner": "CIN",
-   "predicted_home_score": 24.985230773687363,
-   "predicted_away_score": 25.514769226312637,
+   "predicted_home_score": 24.80819457769394,
+   "predicted_away_score": 25.69180542230606,
    "home_qb": "Joe Burrow",
    "away_qb": "Baker Mayfield",
    "wind": 7.0,
@@ -98,13 +98,13 @@
    "away_team": "NO",
    "spread_line": 7.0,
    "total_line": 49.5,
-   "p_model": 0.6033551692962646,
+   "p_model": 0.6344082951545715,
    "p_market": 0.725752508361204,
-   "p_blend": 0.6767935727352282,
-   "margin_pred": 3.308727264404297,
+   "p_blend": 0.689214823078551,
+   "margin_pred": 3.3022851943969727,
    "predicted_winner": "DET",
-   "predicted_home_score": 26.40436363220215,
-   "predicted_away_score": 23.09563636779785,
+   "predicted_home_score": 26.401142597198486,
+   "predicted_away_score": 23.098857402801514,
    "home_qb": "Jared Goff",
    "away_qb": "Tyler Shough",
    "wind": 0.0,
@@ -120,13 +120,13 @@
    "away_team": "BUF",
    "spread_line": -1.5,
    "total_line": 44.5,
-   "p_model": 0.4901806712150574,
+   "p_model": 0.4740511476993561,
    "p_market": 0.4826358742837298,
-   "p_blend": 0.48565379007602855,
-   "margin_pred": -0.6872697472572327,
+   "p_blend": 0.47920198961044475,
+   "margin_pred": -0.736367404460907,
    "predicted_winner": "BUF",
-   "predicted_home_score": 21.906365126371384,
-   "predicted_away_score": 22.593634873628616,
+   "predicted_home_score": 21.881816297769547,
+   "predicted_away_score": 22.618183702230453,
    "home_qb": "C.J. Stroud",
    "away_qb": "Josh Allen",
    "wind": 7.0,
@@ -142,13 +142,13 @@
    "away_team": "BAL",
    "spread_line": -3.5,
    "total_line": 47.5,
-   "p_model": 0.5543387532234192,
+   "p_model": 0.5211088061332703,
    "p_market": 0.39076376554174075,
-   "p_blend": 0.4561937665748766,
-   "margin_pred": 0.6214624643325806,
+   "p_blend": 0.44290178177835254,
+   "margin_pred": 0.7232081294059753,
    "predicted_winner": "BAL",
-   "predicted_home_score": 24.06073123216629,
-   "predicted_away_score": 23.43926876783371,
+   "predicted_home_score": 24.111604064702988,
+   "predicted_away_score": 23.388395935297012,
    "home_qb": "Daniel Jones",
    "away_qb": "Lamar Jackson",
    "wind": 7.0,
@@ -164,13 +164,13 @@
    "away_team": "CLE",
    "spread_line": 8.5,
    "total_line": 40.5,
-   "p_model": 0.8323683142662048,
+   "p_model": 0.8398903608322144,
    "p_market": 0.7913616398243045,
-   "p_blend": 0.8077643274824581,
-   "margin_pred": 9.015926361083984,
+   "p_blend": 0.8107731401483974,
+   "margin_pred": 8.465055465698242,
    "predicted_winner": "JAX",
-   "predicted_home_score": 24.757963180541992,
-   "predicted_away_score": 15.742036819458008,
+   "predicted_home_score": 24.48252773284912,
+   "predicted_away_score": 16.01747226715088,
    "home_qb": "Trevor Lawrence",
    "away_qb": "Deshaun Watson",
    "wind": 7.0,
@@ -186,13 +186,13 @@
    "away_team": "ATL",
    "spread_line": 3.5,
    "total_line": 42.5,
-   "p_model": 0.5353738069534302,
+   "p_model": 0.5247287154197693,
    "p_market": 0.6224665518611737,
-   "p_blend": 0.5876294509178441,
-   "margin_pred": 2.5120937824249268,
+   "p_blend": 0.5833714143043798,
+   "margin_pred": 2.0767743587493896,
    "predicted_winner": "PIT",
-   "predicted_home_score": 22.506046891212463,
-   "predicted_away_score": 19.993953108787537,
+   "predicted_home_score": 22.288387179374695,
+   "predicted_away_score": 20.211612820625305,
    "home_qb": "Aaron Rodgers",
    "away_qb": "Tua Tagovailoa",
    "wind": 7.0,
@@ -208,13 +208,13 @@
    "away_team": "NYJ",
    "spread_line": 1.5,
    "total_line": 39.5,
-   "p_model": 0.5278809070587158,
+   "p_model": 0.5242787003517151,
    "p_market": 0.5260865852617197,
-   "p_blend": 0.5268043110002859,
-   "margin_pred": 1.2398244142532349,
+   "p_blend": 0.5253634283174856,
+   "margin_pred": 1.511784553527832,
    "predicted_winner": "TEN",
-   "predicted_home_score": 20.369912207126617,
-   "predicted_away_score": 19.130087792873383,
+   "predicted_home_score": 20.505892276763916,
+   "predicted_away_score": 18.994107723236084,
    "home_qb": "Cam Ward",
    "away_qb": "Geno Smith",
    "wind": 7.0,
@@ -230,13 +230,13 @@
    "away_team": "ARI",
    "spread_line": 9.5,
    "total_line": 47.5,
-   "p_model": 0.6170601844787598,
+   "p_model": 0.6044989228248596,
    "p_market": 0.8042929292929294,
-   "p_blend": 0.7293998283870293,
-   "margin_pred": 4.806218147277832,
+   "p_blend": 0.7243753356463982,
+   "margin_pred": 4.253306865692139,
    "predicted_winner": "LAC",
-   "predicted_home_score": 26.153109073638916,
-   "predicted_away_score": 21.346890926361084,
+   "predicted_home_score": 25.87665343284607,
+   "predicted_away_score": 21.62334656715393,
    "home_qb": "Justin Herbert",
    "away_qb": "Jacoby Brissett",
    "wind": 0.0,
@@ -252,13 +252,13 @@
    "away_team": "MIA",
    "spread_line": 3.5,
    "total_line": 40.5,
-   "p_model": 0.33456897735595703,
+   "p_model": 0.32440200448036194,
    "p_market": 0.6224665518611737,
-   "p_blend": 0.5073075280195516,
-   "margin_pred": -5.558844089508057,
+   "p_blend": 0.5032407329088491,
+   "margin_pred": -5.060118675231934,
    "predicted_winner": "LV",
-   "predicted_home_score": 17.47057795524597,
-   "predicted_away_score": 23.02942204475403,
+   "predicted_home_score": 17.719940662384033,
+   "predicted_away_score": 22.780059337615967,
    "home_qb": "Kirk Cousins",
    "away_qb": "Malik Willis",
    "wind": 0.0,
@@ -274,13 +274,13 @@
    "away_team": "GB",
    "spread_line": 1.5,
    "total_line": 46.5,
-   "p_model": 0.5129183530807495,
+   "p_model": 0.5197033882141113,
    "p_market": 0.5260865852617197,
-   "p_blend": 0.5208192894090994,
-   "margin_pred": -0.040501225739717484,
+   "p_blend": 0.5235333124031408,
+   "margin_pred": -0.3729701042175293,
    "predicted_winner": "MIN",
-   "predicted_home_score": 23.22974938713014,
-   "predicted_away_score": 23.27025061286986,
+   "predicted_home_score": 23.063514947891235,
+   "predicted_away_score": 23.436485052108765,
    "home_qb": "Kyler Murray",
    "away_qb": "Jordan Love",
    "wind": 0.0,
@@ -296,13 +296,13 @@
    "away_team": "WAS",
    "spread_line": 5.5,
    "total_line": 44.5,
-   "p_model": 0.5262023210525513,
+   "p_model": 0.5384100675582886,
    "p_market": 0.6574752261956054,
-   "p_blend": 0.6049660641383837,
-   "margin_pred": 1.718626856803894,
+   "p_blend": 0.6098491597604464,
+   "margin_pred": 1.9706157445907593,
    "predicted_winner": "PHI",
-   "predicted_home_score": 23.109313428401947,
-   "predicted_away_score": 21.390686571598053,
+   "predicted_home_score": 23.23530787229538,
+   "predicted_away_score": 21.26469212770462,
    "home_qb": "Jalen Hurts",
    "away_qb": "Jayden Daniels",
    "wind": 7.0,
@@ -318,13 +318,13 @@
    "away_team": "DAL",
    "spread_line": -3.0,
    "total_line": 48.5,
-   "p_model": 0.5045668482780457,
+   "p_model": 0.49548426270484924,
    "p_market": 0.4066302458405761,
-   "p_blend": 0.4458048838353317,
-   "margin_pred": 0.21353445947170258,
+   "p_blend": 0.44217186152698207,
+   "margin_pred": 0.79392009973526,
    "predicted_winner": "DAL",
-   "predicted_home_score": 24.35676722973585,
-   "predicted_away_score": 24.14323277026415,
+   "predicted_home_score": 24.64696004986763,
+   "predicted_away_score": 23.85303995013237,
    "home_qb": "Jaxson Dart",
    "away_qb": "Dak Prescott",
    "wind": 7.0,
@@ -340,13 +340,13 @@
    "away_team": "DEN",
    "spread_line": 2.5,
    "total_line": 43.5,
-   "p_model": 0.5236624479293823,
+   "p_model": 0.5101871490478516,
    "p_market": 0.5829926410466066,
-   "p_blend": 0.5592605667799491,
-   "margin_pred": 0.6277134418487549,
+   "p_blend": 0.5538704442471045,
+   "margin_pred": 0.692493200302124,
    "predicted_winner": "KC",
-   "predicted_home_score": 22.063856720924377,
-   "predicted_away_score": 21.436143279075623,
+   "predicted_home_score": 22.096246600151062,
+   "predicted_away_score": 21.403753399848938,
    "home_qb": "Patrick Mahomes",
    "away_qb": "Bo Nix",
    "wind": 7.0,
@@ -371,7 +371,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dypvakakxhccxs67tb0y"
   },
   {
    "player_display_name": "Matthew Stafford",
@@ -387,7 +388,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jwpkjfrkzufdyh8u1mg7"
   },
   {
    "player_display_name": "Kirk Cousins",
@@ -403,7 +405,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/za7cynvpwlsro1tsaijk"
   },
   {
    "player_display_name": "Travis Kelce",
@@ -419,7 +422,8 @@
    "receiving_yards": 37.7,
    "receptions": 4.2,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dpxovcfku6ud2aohgf6a"
   },
   {
    "player_display_name": "Geno Smith",
@@ -435,7 +439,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zppfqqcyjfma14jjif3a"
   },
   {
    "player_display_name": "Mike Evans",
@@ -451,7 +456,8 @@
    "receiving_yards": 47.3,
    "receptions": 3.9,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zc4ujpmndyxrbiyyjomz"
   },
   {
    "player_display_name": "Derrick Henry",
@@ -467,7 +473,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 1.1,
-   "rushing_yards": 129.3
+   "rushing_yards": 129.3,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tm79x0iknqg6hms3ypyt"
   },
   {
    "player_display_name": "Dak Prescott",
@@ -483,7 +490,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yvscmqq1qki8zfsemmcd"
   },
   {
    "player_display_name": "Hunter Henry",
@@ -499,7 +507,8 @@
    "receiving_yards": 42.7,
    "receptions": 3.6,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cvlunbqgztudbhjrug7l"
   },
   {
    "player_display_name": "Jared Goff",
@@ -515,7 +524,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/kaicbot8qhzrvddilbtp"
   },
   {
    "player_display_name": "Jacoby Brissett",
@@ -531,7 +541,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qjswiunczrn5xmdiqhlz"
   },
   {
    "player_display_name": "Christian McCaffrey",
@@ -547,7 +558,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.5,
-   "rushing_yards": 93.9
+   "rushing_yards": 93.9,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/st82s2ytyzanatcmkqck"
   },
   {
    "player_display_name": "George Kittle",
@@ -563,7 +575,8 @@
    "receiving_yards": 73.6,
    "receptions": 5.8,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vkicdglglkyukgyxtmpx"
   },
   {
    "player_display_name": "Aaron Jones",
@@ -579,7 +592,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.2,
-   "rushing_yards": 56.6
+   "rushing_yards": 56.6,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bktkfvgfwujkdbzkcfim"
   },
   {
    "player_display_name": "Samaje Perine",
@@ -595,7 +609,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.4,
-   "rushing_yards": 22.7
+   "rushing_yards": 22.7,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fllwhcdovol5i7xxahf6"
   },
   {
    "player_display_name": "Deshaun Watson",
@@ -611,7 +626,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/private/f_auto,q_auto/league/otfs2docj6eahaebo5xn"
   },
   {
    "player_display_name": "Patrick Mahomes",
@@ -627,7 +643,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wdckwtob1lybvkmxnf7p"
   },
   {
    "player_display_name": "Evan Engram",
@@ -643,7 +660,8 @@
    "receiving_yards": 27.1,
    "receptions": 3.0,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/nucl2dxmpvhlywhyro8o"
   },
   {
    "player_display_name": "Dallas Goedert",
@@ -659,7 +677,8 @@
    "receiving_yards": 45.5,
    "receptions": 4.2,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bafepstxu7vvxb9v5vua"
   },
   {
    "player_display_name": "Dalton Schultz",
@@ -675,7 +694,8 @@
    "receiving_yards": 36.1,
    "receptions": 4.4,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ym8sbkev8l4scnrc0vd8"
   },
   {
    "player_display_name": "Mark Andrews",
@@ -691,7 +711,8 @@
    "receiving_yards": 24.8,
    "receptions": 2.7,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/u4xzz7tclch0tpzm9hhz"
   },
   {
    "player_display_name": "Lamar Jackson",
@@ -707,7 +728,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/eno6s5qzl9grbfbfwhoa"
   },
   {
    "player_display_name": "DJ Moore",
@@ -723,7 +745,8 @@
    "receiving_yards": 40.0,
    "receptions": 2.9,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/lsavpxtqoqu25emwcnvy"
   },
   {
    "player_display_name": "Mike Gesicki",
@@ -739,7 +762,8 @@
    "receiving_yards": 36.7,
    "receptions": 2.7,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dykckg6we3cnw9yhpggi"
   },
   {
    "player_display_name": "Saquon Barkley",
@@ -755,7 +779,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.6,
-   "rushing_yards": 97.4
+   "rushing_yards": 97.4,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qcayrzjpura2zydszonh"
   },
   {
    "player_display_name": "Baker Mayfield",
@@ -771,7 +796,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gjb8e69jtt1ffqf1afue"
   },
   {
    "player_display_name": "Josh Allen",
@@ -787,7 +813,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mjwbioajzldkq1vzoz2d"
   },
   {
    "player_display_name": "Sam Darnold",
@@ -803,7 +830,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fyay8vruj0cqmhopufzk"
   },
   {
    "player_display_name": "Kyler Murray",
@@ -819,7 +847,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/btfruyf33adgnjzpcuen"
   },
   {
    "player_display_name": "T.J. Hockenson",
@@ -835,7 +864,8 @@
    "receiving_yards": 38.9,
    "receptions": 3.6,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/rs8o65x0u0n9xzde0fd6"
   },
   {
    "player_display_name": "Tony Pollard",
@@ -851,7 +881,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.4,
-   "rushing_yards": 87.3
+   "rushing_yards": 87.3,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mb2xdrqiys6ktlcuah2n"
   },
   {
    "player_display_name": "DK Metcalf",
@@ -867,7 +898,8 @@
    "receiving_yards": 61.7,
    "receptions": 4.2,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/kxql4sjfelubhxawu2zh"
   },
   {
    "player_display_name": "Terry McLaurin",
@@ -883,7 +915,8 @@
    "receiving_yards": 56.1,
    "receptions": 3.9,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tmfl2zruajmkrtcg4zxp"
   },
   {
    "player_display_name": "A.J. Brown",
@@ -899,7 +932,8 @@
    "receiving_yards": 75.5,
    "receptions": 6.1,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qfhvjyssf0lwsh0kienp"
   },
   {
    "player_display_name": "David Montgomery",
@@ -915,7 +949,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.4,
-   "rushing_yards": 34.0
+   "rushing_yards": 34.0,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/csz0c9roa4pqsccothxg"
   },
   {
    "player_display_name": "Daniel Jones",
@@ -931,7 +966,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ohvvctuykzwrpqer7xgl"
   },
   {
    "player_display_name": "Deebo Samuel Sr.",
@@ -947,7 +983,8 @@
    "receiving_yards": 46.6,
    "receptions": 3.3,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ntgyhqg6hq7fanhhsqiw"
   },
   {
    "player_display_name": "Juwan Johnson",
@@ -963,7 +1000,8 @@
    "receiving_yards": 59.5,
    "receptions": 4.7,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ahzqkvhjot6lygwr4ccb"
   },
   {
    "player_display_name": "J.K. Dobbins",
@@ -979,7 +1017,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.3,
-   "rushing_yards": 72.7
+   "rushing_yards": 72.7,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cevotvl3ho5h1mioruyg"
   },
   {
    "player_display_name": "Tua Tagovailoa",
@@ -995,7 +1034,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tmm4ohds7qci0vqoobhm"
   },
   {
    "player_display_name": "Jonathan Taylor",
@@ -1011,7 +1051,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.6,
-   "rushing_yards": 79.3
+   "rushing_yards": 79.3,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yw46ky6akdm7h7siofu8"
   },
   {
    "player_display_name": "Colby Parkinson",
@@ -1027,7 +1068,8 @@
    "receiving_yards": 38.2,
    "receptions": 3.7,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qsyrgtfjj06wryahnxc9"
   },
   {
    "player_display_name": "Jordan Love",
@@ -1043,7 +1085,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/thz8stjkbjwddxqnozi5"
   },
   {
    "player_display_name": "D'Andre Swift",
@@ -1059,7 +1102,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.6,
-   "rushing_yards": 66.6
+   "rushing_yards": 66.6,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/owpmwzoilitcodc6cmxo"
   },
   {
    "player_display_name": "Justin Jefferson",
@@ -1075,7 +1119,8 @@
    "receiving_yards": 45.3,
    "receptions": 4.1,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/htjevkugzk6ietrjysny"
   },
   {
    "player_display_name": "Justin Herbert",
@@ -1091,7 +1136,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jnkspnntgebegzp4ghve"
   },
   {
    "player_display_name": "CeeDee Lamb",
@@ -1107,7 +1153,8 @@
    "receiving_yards": 70.3,
    "receptions": 5.6,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mbblzwtynxr15ovzkevi"
   },
   {
    "player_display_name": "Jalen Hurts",
@@ -1123,7 +1170,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xow5yvxjeqa6witmofmp"
   },
   {
    "player_display_name": "Jerry Jeudy",
@@ -1139,7 +1187,8 @@
    "receiving_yards": 38.7,
    "receptions": 3.4,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/szca1v9butuqkjs7ekpm"
   },
   {
    "player_display_name": "Joe Burrow",
@@ -1155,7 +1204,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gnnvcgui1cijybukk2w7"
   },
   {
    "player_display_name": "Nico Collins",
@@ -1171,7 +1221,8 @@
    "receiving_yards": 76.5,
    "receptions": 4.3,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fguybjrn1kwflxm5szwq"
   },
   {
    "player_display_name": "Chuba Hubbard",
@@ -1187,7 +1238,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.2,
-   "rushing_yards": 33.8
+   "rushing_yards": 33.8,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/rzsvnt0pxsaize2ndhxm"
   },
   {
    "player_display_name": "Jaylen Waddle",
@@ -1203,7 +1255,8 @@
    "receiving_yards": 51.9,
    "receptions": 3.9,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gkh7m1jedon9mwn5jlf1"
   },
   {
    "player_display_name": "Rhamondre Stevenson",
@@ -1219,7 +1272,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.4,
-   "rushing_yards": 41.7
+   "rushing_yards": 41.7,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zmpuirvuw4r04inxth5i"
   },
   {
    "player_display_name": "Pat Freiermuth",
@@ -1235,7 +1289,8 @@
    "receiving_yards": 35.9,
    "receptions": 3.0,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pyrdsypgggjshiaygkr7"
   },
   {
    "player_display_name": "Ja'Marr Chase",
@@ -1251,7 +1306,8 @@
    "receiving_yards": 82.7,
    "receptions": 7.6,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qya3dtjb5kgofcuj2tuw"
   },
   {
    "player_display_name": "DeVonta Smith",
@@ -1267,7 +1323,8 @@
    "receiving_yards": 45.7,
    "receptions": 3.9,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/k724kq3hyv7jc0y9s03x"
   },
   {
    "player_display_name": "Kenny Gainwell",
@@ -1283,7 +1340,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.2,
-   "rushing_yards": 38.0
+   "rushing_yards": 38.0,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/eo62l8ec8e3lzt86ihth"
   },
   {
    "player_display_name": "Amon-Ra St. Brown",
@@ -1299,7 +1357,8 @@
    "receiving_yards": 75.4,
    "receptions": 6.7,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fd8nwhm6pvxfyzphzl6i"
   },
   {
    "player_display_name": "Kyle Pitts",
@@ -1315,7 +1374,8 @@
    "receiving_yards": 55.9,
    "receptions": 5.0,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xczipzxvytnmvgznhhb4"
   },
   {
    "player_display_name": "Trevor Lawrence",
@@ -1331,7 +1391,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/k9uzdernqkx7oquy7dkg"
   },
   {
    "player_display_name": "Travis Etienne",
@@ -1347,7 +1408,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.3,
-   "rushing_yards": 57.0
+   "rushing_yards": 57.0,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pwko5dybmjie8qqo4qz2"
   },
   {
    "player_display_name": "Javonte Williams",
@@ -1363,7 +1425,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.4,
-   "rushing_yards": 63.8
+   "rushing_yards": 63.8,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xvwroirev2kie6oiphtz"
   },
   {
    "player_display_name": "Jaylen Warren",
@@ -1379,7 +1442,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.5,
-   "rushing_yards": 66.1
+   "rushing_yards": 66.1,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dkiteytgnxar1mpaxcxv"
   },
   {
    "player_display_name": "Drake London",
@@ -1395,7 +1459,8 @@
    "receiving_yards": 56.7,
    "receptions": 4.4,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mcllowcfrmmdeo4zy3g1"
   },
   {
    "player_display_name": "Chris Olave",
@@ -1411,7 +1476,8 @@
    "receiving_yards": 78.9,
    "receptions": 6.2,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/onmxufsprtvglhejg94o"
   },
   {
    "player_display_name": "James Cook",
@@ -1427,7 +1493,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.6,
-   "rushing_yards": 93.1
+   "rushing_yards": 93.1,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/anjbznqb9i21wzcgrtbs"
   },
   {
    "player_display_name": "Greg Dulcich",
@@ -1443,7 +1510,8 @@
    "receiving_yards": 36.9,
    "receptions": 2.8,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/kw4cwgjl4kywh6le4sfh"
   },
   {
    "player_display_name": "Khalil Shakir",
@@ -1459,7 +1527,8 @@
    "receiving_yards": 40.2,
    "receptions": 3.9,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/syvp3hficobwcsim3i9v"
   },
   {
    "player_display_name": "Rashid Shaheed",
@@ -1475,7 +1544,8 @@
    "receiving_yards": 29.5,
    "receptions": 2.1,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ku2naisfbxmzgagxojnm"
   },
   {
    "player_display_name": "Alec Pierce",
@@ -1491,7 +1561,8 @@
    "receiving_yards": 46.2,
    "receptions": 2.4,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qcg9t51wgp3hicavmkmy"
   },
   {
    "player_display_name": "Garrett Wilson",
@@ -1507,7 +1578,8 @@
    "receiving_yards": 53.0,
    "receptions": 5.2,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/upxwxmhdd8xluztgqwhe"
   },
   {
    "player_display_name": "Trey McBride",
@@ -1523,7 +1595,8 @@
    "receiving_yards": 68.6,
    "receptions": 7.8,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/psasp10nn5pcvkli9kil"
   },
   {
    "player_display_name": "Brian Robinson",
@@ -1539,7 +1612,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.2,
-   "rushing_yards": 26.4
+   "rushing_yards": 26.4,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/n1xhex1ytisxcbcggqu7"
   },
   {
    "player_display_name": "Chig Okonkwo",
@@ -1555,7 +1629,8 @@
    "receiving_yards": 37.4,
    "receptions": 3.5,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pzcez6pi9tpdqkmjjnzk"
   },
   {
    "player_display_name": "Brock Purdy",
@@ -1571,7 +1646,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xs2fyj1sqdgwvt9ihbri"
   },
   {
    "player_display_name": "Isaiah Likely",
@@ -1587,7 +1663,8 @@
    "receiving_yards": 28.4,
    "receptions": 2.5,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/b1pahldt9ixp9lssxi2d"
   },
   {
    "player_display_name": "Kyren Williams",
@@ -1603,7 +1680,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.5,
-   "rushing_yards": 80.3
+   "rushing_yards": 80.3,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xti3pek6rmojqchakxpy"
   },
   {
    "player_display_name": "Jake Ferguson",
@@ -1619,7 +1697,8 @@
    "receiving_yards": 24.8,
    "receptions": 3.0,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xpykb0tbosfwsn6dqstb"
   },
   {
    "player_display_name": "Breece Hall",
@@ -1635,7 +1714,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.2,
-   "rushing_yards": 50.2
+   "rushing_yards": 50.2,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/i01xtqbfajfq68lb6orh"
   },
   {
    "player_display_name": "Christian Watson",
@@ -1651,7 +1731,8 @@
    "receiving_yards": 42.4,
    "receptions": 2.9,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tumeg4d32sirkab2xzu5"
   },
   {
    "player_display_name": "Malik Willis",
@@ -1667,7 +1748,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/txvgdbwbryzyyqq6gfet"
   },
   {
    "player_display_name": "Cade Otton",
@@ -1683,7 +1765,8 @@
    "receiving_yards": 28.5,
    "receptions": 3.4,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yanr6h9aplae3jyzimf7"
   },
   {
    "player_display_name": "Kenneth Walker III",
@@ -1699,7 +1782,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.3,
-   "rushing_yards": 56.7
+   "rushing_yards": 56.7,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vk6nruaqdewdglofcwwg"
   },
   {
    "player_display_name": "Bijan Robinson",
@@ -1715,7 +1799,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.5,
-   "rushing_yards": 114.9
+   "rushing_yards": 114.9,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/esii5yb8yn9edboi4mlq"
   },
   {
    "player_display_name": "Jaxon Smith-Njigba",
@@ -1731,7 +1816,8 @@
    "receiving_yards": 83.7,
    "receptions": 7.3,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yx1xjrupbqdknnjaq4a6"
   },
   {
    "player_display_name": "Tre Tucker",
@@ -1747,7 +1833,8 @@
    "receiving_yards": 35.2,
    "receptions": 3.3,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hazzk3hrcequzosdgzgv"
   },
   {
    "player_display_name": "Chase Brown",
@@ -1763,7 +1850,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.6,
-   "rushing_yards": 71.8
+   "rushing_yards": 71.8,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tch3y6jlj7khvyi9jg0c"
   },
   {
    "player_display_name": "Parker Washington",
@@ -1779,7 +1867,8 @@
    "receiving_yards": 74.8,
    "receptions": 4.7,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yn0hc5xrz5nqeccg8two"
   },
   {
    "player_display_name": "Dalton Kincaid",
@@ -1795,7 +1884,8 @@
    "receiving_yards": 31.4,
    "receptions": 2.4,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/z7k857flehljboaixj8m"
   },
   {
    "player_display_name": "Brenton Strange",
@@ -1811,7 +1901,8 @@
    "receiving_yards": 39.6,
    "receptions": 3.1,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/devxzxwf1sfficgncggm"
   },
   {
    "player_display_name": "Marvin Mims Jr.",
@@ -1827,7 +1918,8 @@
    "receiving_yards": 20.2,
    "receptions": 2.6,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zbdjtph5xplbf4yocz0l"
   },
   {
    "player_display_name": "Tucker Kraft",
@@ -1843,7 +1935,8 @@
    "receiving_yards": 64.8,
    "receptions": 4.2,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/n6vu44jbq31rydoaadaq"
   },
   {
    "player_display_name": "De'Von Achane",
@@ -1859,7 +1952,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.5,
-   "rushing_yards": 85.1
+   "rushing_yards": 85.1,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xk1xwio0bryfxo1ylweu"
   },
   {
    "player_display_name": "Zay Flowers",
@@ -1875,7 +1969,8 @@
    "receiving_yards": 58.1,
    "receptions": 4.7,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xzhto2dejy2pflkfx40c"
   },
   {
    "player_display_name": "Sam LaPorta",
@@ -1891,7 +1986,8 @@
    "receiving_yards": 53.0,
    "receptions": 4.2,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wxlk7ysg2nfq6h6ntdcu"
   },
   {
    "player_display_name": "Rashee Rice",
@@ -1907,7 +2003,8 @@
    "receiving_yards": 65.3,
    "receptions": 5.8,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qhkbqrydjeur8zvrrmfl"
   },
   {
    "player_display_name": "Puka Nacua",
@@ -1923,7 +2020,8 @@
    "receiving_yards": 112.1,
    "receptions": 7.5,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ipy6qw7hdygdfc8k86ba"
   },
   {
    "player_display_name": "Jahmyr Gibbs",
@@ -1939,7 +2037,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.5,
-   "rushing_yards": 51.4
+   "rushing_yards": 51.4,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cursejnmmp1i9hnxihkj"
   },
   {
    "player_display_name": "Bryce Young",
@@ -1955,7 +2054,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vcvhmxvxw2a3armle0af"
   },
   {
    "player_display_name": "C.J. Stroud",
@@ -1971,7 +2071,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tt4zrtxlhifaljhj0rn7"
   },
   {
    "player_display_name": "Malik Nabers",
@@ -1987,7 +2088,8 @@
    "receiving_yards": 67.0,
    "receptions": 5.1,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/w3edoyyuomqlovvp9ixc"
   },
   {
    "player_display_name": "Brock Bowers",
@@ -2003,7 +2105,8 @@
    "receiving_yards": 49.2,
    "receptions": 5.2,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/waorceny0ggpaeckaol8"
   },
   {
    "player_display_name": "Bucky Irving",
@@ -2019,7 +2122,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.2,
-   "rushing_yards": 51.5
+   "rushing_yards": 51.5,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vkc00rvnix3f2b96vkwo"
   },
   {
    "player_display_name": "Isaiah Williams",
@@ -2035,7 +2139,8 @@
    "receiving_yards": 24.6,
    "receptions": 2.9,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/rj2etltwzmlxyz1cfkeo"
   },
   {
    "player_display_name": "Bo Nix",
@@ -2051,7 +2156,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zvo9xatffmqn9lnukpgk"
   },
   {
    "player_display_name": "AJ Barner",
@@ -2067,7 +2173,8 @@
    "receiving_yards": 35.1,
    "receptions": 3.2,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/i0esiguve9if4ts5mm1q"
   },
   {
    "player_display_name": "MarShawn Lloyd",
@@ -2083,7 +2190,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.2,
-   "rushing_yards": 31.5
+   "rushing_yards": 31.5,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xp8sd4enimuk4zd0aqgu"
   },
   {
    "player_display_name": "Marvin Harrison Jr.",
@@ -2099,7 +2207,8 @@
    "receiving_yards": 45.4,
    "receptions": 3.4,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hwpoo1icpnh8emjvqaii"
   },
   {
    "player_display_name": "Drake Maye",
@@ -2115,7 +2224,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/s1nmoon2xnrc3bnyulv4"
   },
   {
    "player_display_name": "Brian Thomas Jr.",
@@ -2131,7 +2241,8 @@
    "receiving_yards": 47.1,
    "receptions": 3.4,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/plnekkriys4cm11rnxwl"
   },
   {
    "player_display_name": "Jayden Daniels",
@@ -2147,7 +2258,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gfz8k5onuqjrche9ogqc"
   },
   {
    "player_display_name": "Ladd McConkey",
@@ -2163,7 +2275,8 @@
    "receiving_yards": 41.1,
    "receptions": 3.4,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/q2sk7yforrkiusvruo1o"
   },
   {
    "player_display_name": "Caleb Williams",
@@ -2179,7 +2292,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/h4qs11kutwiw7whekmyt"
   },
   {
    "player_display_name": "Rome Odunze",
@@ -2195,7 +2309,8 @@
    "receiving_yards": 50.3,
    "receptions": 3.2,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/niewdl2p2325kpohbw9v"
   },
   {
    "player_display_name": "Ashton Jeanty",
@@ -2211,7 +2326,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.3,
-   "rushing_yards": 60.6
+   "rushing_yards": 60.6,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/syspis1mntov9kgspb7r"
   },
   {
    "player_display_name": "Tetairoa McMillan",
@@ -2227,7 +2343,8 @@
    "receiving_yards": 41.0,
    "receptions": 3.0,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gilgvjemumd6kpc9eiku"
   },
   {
    "player_display_name": "Colston Loveland",
@@ -2243,7 +2360,8 @@
    "receiving_yards": 50.6,
    "receptions": 3.9,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cnxiyi76jeahgx94nh6d"
   },
   {
    "player_display_name": "Tyler Warren",
@@ -2259,7 +2377,8 @@
    "receiving_yards": 34.3,
    "receptions": 3.7,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/f1mfwwrr3qvnxuiackgq"
   },
   {
    "player_display_name": "Emeka Egbuka",
@@ -2275,7 +2394,8 @@
    "receiving_yards": 38.0,
    "receptions": 2.9,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/z224kbzs62rjuykc0vha"
   },
   {
    "player_display_name": "Jacory Croskey-Merritt",
@@ -2291,7 +2411,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.6,
-   "rushing_yards": 57.2
+   "rushing_yards": 57.2,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qew4qhlj4yuf50voko61"
   },
   {
    "player_display_name": "Gunnar Helm",
@@ -2307,7 +2428,8 @@
    "receiving_yards": 26.4,
    "receptions": 3.0,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hewm6ztgka7xkbl6ybvb"
   },
   {
    "player_display_name": "Harold Fannin Jr.",
@@ -2323,7 +2445,8 @@
    "receiving_yards": 45.1,
    "receptions": 4.6,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fxublmpnxx9uggsddwik"
   },
   {
    "player_display_name": "Omarion Hampton",
@@ -2339,7 +2462,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.4,
-   "rushing_yards": 62.7
+   "rushing_yards": 62.7,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/lf2jxvxnbexlinoydbej"
   },
   {
    "player_display_name": "Cam Ward",
@@ -2355,7 +2479,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/l7switu6stlwd2irm8yo"
   },
   {
    "player_display_name": "Jaxson Dart",
@@ -2371,7 +2496,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/n6uymxssgiicjmxkzxoc"
   },
   {
    "player_display_name": "Chimere Dike",
@@ -2387,7 +2513,8 @@
    "receiving_yards": 37.2,
    "receptions": 3.5,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cbcpv4931dqmgsu3anvo"
   },
   {
    "player_display_name": "Cam Skattebo",
@@ -2403,7 +2530,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.5,
-   "rushing_yards": 60.9
+   "rushing_yards": 60.9,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hlggiqdfvj1f4kntkafr"
   },
   {
    "player_display_name": "Travis Hunter",
@@ -2419,7 +2547,8 @@
    "receiving_yards": 22.9,
    "receptions": 2.1,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/absw1gfqoiztajjagmf6"
   },
   {
    "player_display_name": "Bhayshul Tuten",
@@ -2435,7 +2564,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.3,
-   "rushing_yards": 17.8
+   "rushing_yards": 17.8,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ryjnphuyjbedmgpx5qqj"
   },
   {
    "player_display_name": "Mason Taylor",
@@ -2451,7 +2581,8 @@
    "receiving_yards": 24.2,
    "receptions": 2.8,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xittx9gih104lw1atfiv"
   },
   {
    "player_display_name": "Tyler Shough",
@@ -2467,7 +2598,8 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": null,
-   "rushing_yards": null
+   "rushing_yards": null,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/toiafc7qighw86geo7jf"
   },
   {
    "player_display_name": "Quinshon Judkins",
@@ -2483,61 +2615,62 @@
    "receiving_yards": null,
    "receptions": null,
    "rushing_tds": 0.3,
-   "rushing_yards": 42.9
+   "rushing_yards": 42.9,
+   "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ojtce2im0wp2ltyel0vc"
   }
  ],
  "feature_importance": [
   {
    "feature": "points_diff_rating",
-   "importance": 0.24549375474452972
+   "importance": 0.22913435101509094
   },
   {
    "feature": "off_epa_diff",
-   "importance": 0.14330793917179108
+   "importance": 0.12729497253894806
   },
   {
    "feature": "qb_epa_diff",
-   "importance": 0.09120454639196396
+   "importance": 0.07514701038599014
   },
   {
    "feature": "qb_change_diff",
-   "importance": 0.07882115989923477
+   "importance": 0.06709766387939453
   },
   {
    "feature": "def_epa_diff",
-   "importance": 0.07593776285648346
-  },
-  {
-   "feature": "qb_rush_diff",
-   "importance": 0.06738460063934326
-  },
-  {
-   "feature": "rest_diff",
-   "importance": 0.06479472666978836
-  },
-  {
-   "feature": "net_epa_edge_home",
-   "importance": 0.06475351750850677
+   "importance": 0.06487715989351273
   },
   {
    "feature": "rush_epa_edge_home",
-   "importance": 0.06370006501674652
-  },
-  {
-   "feature": "pass_epa_edge_home",
-   "importance": 0.06006398797035217
-  },
-  {
-   "feature": "div_game",
-   "importance": 0.044537950307130814
+   "importance": 0.05829690769314766
   },
   {
    "feature": "inj_off_diff",
-   "importance": 0.0
+   "importance": 0.057547427713871
+  },
+  {
+   "feature": "qb_rush_diff",
+   "importance": 0.057050615549087524
   },
   {
    "feature": "inj_def_diff",
-   "importance": 0.0
+   "importance": 0.054348450154066086
+  },
+  {
+   "feature": "pass_epa_edge_home",
+   "importance": 0.05271534249186516
+  },
+  {
+   "feature": "net_epa_edge_home",
+   "importance": 0.05229152366518974
+  },
+  {
+   "feature": "rest_diff",
+   "importance": 0.052233122289180756
+  },
+  {
+   "feature": "div_game",
+   "importance": 0.051965534687042236
   }
  ],
  "backtest": {

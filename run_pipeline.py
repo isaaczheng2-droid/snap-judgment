@@ -452,7 +452,7 @@ def player_projections(pw, ratings, sched, rost, depth, cur, target_week):
 
     latest = pw.sort_values(["player_id", "gameday"]).groupby("player_id").tail(1)
     active = rost[(rost.season == cur) & (rost.status == "ACT")][
-        ["team", "gsis_id", "position", "full_name"]].rename(
+        ["team", "gsis_id", "position", "full_name", "headshot_url"]].rename(
         columns={"gsis_id": "player_id", "full_name": "player_display_name"})
     starters = set()
     if len(depth):
@@ -483,16 +483,21 @@ def player_projections(pw, ratings, sched, rost, depth, cur, target_week):
         for _, r in cand.iterrows():
             rows.append({"player_id": r.player_id, "player_display_name": r.player_display_name,
                           "position": r.position, "team": r.team, "opponent_team": r.opponent_team,
-                          "is_home": int(r.is_home), "stat": out_col, "v": float(r.val)})
+                          "is_home": int(r.is_home), "stat": out_col, "v": float(r.val),
+                          "headshot": r.headshot_url if isinstance(r.headshot_url, str) else None})
     if not rows:
         return []
-    pdf = pd.DataFrame(rows).pivot_table(
+    rdf = pd.DataFrame(rows)
+    heads = rdf.dropna(subset=["headshot"]).drop_duplicates("player_id").set_index("player_id")["headshot"]
+    pdf = rdf.pivot_table(
         index=["player_id", "player_display_name", "position", "team", "opponent_team", "is_home"],
         columns="stat", values="v").reset_index()
     pdf = pdf[pdf.player_id.isin(starters)] if starters else pdf
+    keys = ("player_id", "player_display_name", "position", "team", "opponent_team", "is_home")
     for c in pdf.columns:
-        if c not in ("player_id", "player_display_name", "position", "team", "opponent_team", "is_home"):
+        if c not in keys:
             pdf[c] = pdf[c].round(1)
+    pdf["headshot"] = pdf.player_id.map(heads)
     return pdf.replace({np.nan: None}).drop(columns=["player_id"]).to_dict(orient="records")
 
 
