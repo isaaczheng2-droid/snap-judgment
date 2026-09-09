@@ -45,6 +45,9 @@ Settings → Pages → Custom domain. Add a `CNAME` record at your registrar poi
 | `scheme_features.py` | point-in-time coaching-scheme ratings (pass rate, air yards, tempo, pass rush, protection, takeaways) |
 | `explain.py` | turns the model's own SHAP contributions into the "why it leans this way" text |
 | `merge_payload.py` | splices fresh predictions into `index.html` without touching the design or the audit |
+| `tracker.py` | the season tracker: locks each week's predictions, grades them when the games finish |
+| `seed_tracker.py` | one-off, already run — seeded `history.json` with the previous season |
+| `history.json` | **the tracker's memory.** Do not delete or regenerate it |
 
 ## What the daily job does
 
@@ -61,6 +64,26 @@ content checks — a bad data day leaves the last good version up rather than br
 
 `payload.json` is committed too, so `https://YOUR-USERNAME.github.io/YOUR-REPO/payload.json`
 is a usable JSON feed of the current predictions.
+
+## The season tracker, and why history.json matters
+
+`history.json` is the one file in this repo that cannot be rebuilt. It holds every prediction
+the site has published, written the first time that week's slate appears and never rewritten,
+plus the result once the game finishes.
+
+That immutability is the whole point. The model retrains every morning on more data, so if
+predictions were re-derived at grading time, "what we predicted" would quietly become "what we
+would predict now that we know the answer" — and the scorecard would flatter itself a little
+more every week. Locking makes the record checkable.
+
+So: the daily job commits `history.json`, and the workflow refuses to publish if it comes back
+smaller than expected. If you ever delete it, the tracker starts over and everything predicted
+before then is gone for good. Re-running `seed_tracker.py` restores the backtest-derived
+seasons but *not* the live locks.
+
+2025 rows are marked `src: "backtest"` and labelled separately on the site: the model had only
+seen earlier seasons, so they are genuinely out-of-sample, but they were produced in one batch
+after the fact rather than published before kickoff. Only rows marked `live` are true forecasts.
 
 ## Running it by hand
 

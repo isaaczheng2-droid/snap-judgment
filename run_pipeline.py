@@ -20,7 +20,9 @@ import numpy as np
 import pandas as pd
 
 import explain
-from scheme_features import SCHEME, SCHEME_FEATS, add_scheme_cols, team_scheme
+import tracker
+from scheme_features import (SCHEME, SCHEME_FEATS, add_scheme_cols,
+                             team_scheme, _per_game as sf_per_game)
 
 REL = "https://github.com/nflverse/nflverse-data/releases/download"
 SCHEDULES = "https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv"
@@ -462,7 +464,7 @@ PTARGETS = {
 OPPCOL = {"pass": "opp_rating_g_def_pass_epa_pp_allowed", "rush": "opp_rating_g_def_rush_epa_pp_allowed"}
 
 
-def player_projections(pw, ratings, sched, rost, depth, cur, target_week):
+def player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_map=None):
     from sklearn.linear_model import Ridge
     up = sched[(sched.season == cur) & (sched.week == target_week) & (sched.game_type == "REG")]
     opp = {}
@@ -532,10 +534,101 @@ def player_projections(pw, ratings, sched, rost, depth, cur, target_week):
             pdf[c] = pdf[c].round(1)
     pdf["headshot"] = pdf.player_id.map(heads)
     recs = pdf.replace({np.nan: None}).to_dict(orient="records")
+    inj_map = inj_map or {}
     for rec in recs:
         pid = rec.pop("player_id")
+        rec["player_key"] = pid          # the tracker locks projections against this id
         rec["why"] = {s: w for (p, s), w in why.items() if p == pid}
+        st = inj_map.get(pid)
+        if st:
+            rec["status"] = st
     return recs
+
+
+# --------------------------------------------------------------------------- injuries
+# The NFL's game-status ladder. Anything below Questionable never appears on the official
+# report; a player only practising in a limited way is shown separately and more softly,
+# because "limited on Wednesday" is routine maintenance, not doubt about Sunday.
+STATUS_RANK = {"Out": 4, "Doubtful": 3, "Questionable": 2}
+
+
+def injury_status(inj, cur, target_week):
+    """
+    Latest injury report for the upcoming week, per player.
+
+    The report for a given week is published in stages through that week, so early in the
+    week the target week's rows may not exist yet. Fall back to the most recent week that
+    does have rows, and say which week the information came from rather than implying it
+    is current.
+    """
+    if not len(inj):
+        return {}, {}, None
+    i = inj[(inj.season == cur) & inj.gsis_id.notna()].copy()
+    if not len(i):
+        return {}, {}, None
+
+    weeks = sorted(i.week.unique())
+    use = target_week if target_week in weeks else (max([w for w in weeks if w <= target_week],
+                                                        default=max(weeks)))
+    i = i[i.week == use]
+
+    def clean(v):
+        s = str(v).strip() if v is not None and str(v) != "nan" else ""
+        return "" if s.lower() in ("", "none", "nan") else s
+
+    out, by_team = {}, {}
+    for _, r in i.iterrows():
+        rep = clean(r.get("report_status"))
+        prac = clean(r.get("practice_status"))
+        harm = clean(r.get("report_primary_injury")) or clean(r.get("practice_primary_injury"))
+        second = clean(r.get("report_secondary_injury")) or clean(r.get("practice_secondary_injury"))
+
+        # veteran rest days come through the injury feed but are not injuries
+        rest = harm.lower().startswith("not injury related")
+        if rest:
+            harm, second = "", ""
+
+        # practice participation, in the words a reader uses
+        pw = ("did not practice" if prac.lower().startswith("did not")
+              else "limited in practice" if prac.lower().startswith("limited")
+              else "full practice" if prac.lower().startswith("full") else "")
+
+        if rep in STATUS_RANK:
+            level, label = rep.lower(), rep
+        elif rest:
+            level, label = "rest", "Rested"
+        elif pw in ("did not practice", "limited in practice"):
+            level, label = "limited", ("Did not practice" if pw == "did not practice" else "Limited")
+        else:
+            continue                       # full practice, no game status — nothing to report
+
+        bits = []
+        if harm:
+            bits.append(harm.lower() + (f" and {second.lower()}" if second else ""))
+        if pw and not (level == "limited" and pw.replace(" in practice", "") in label.lower()):
+            bits.append(pw)
+        why = ", ".join(bits)
+
+        if level == "out":
+            why = f"Ruled out{' — ' + why if why else ''}"
+        elif level == "rest":
+            why = "Veteran rest day, not an injury"
+        elif why:
+            why = why[0].upper() + why[1:]
+
+        rec = {"level": level, "label": label, "why": why,
+               "injury": harm or None, "week": int(use)}
+        out[r.gsis_id] = rec
+        by_team.setdefault(r.team, []).append(
+            dict(rec, name=clean(r.get("full_name")), pos=clean(r.get("position")),
+                 player_id=r.gsis_id))
+
+    # worst news first, and only the positions a reader is scanning for
+    order = {"out": 0, "doubtful": 1, "questionable": 2, "limited": 3, "rest": 4}
+    skill = {"QB": 0, "RB": 1, "WR": 2, "TE": 3}
+    for t, lst in by_team.items():
+        lst.sort(key=lambda x: (order.get(x["level"], 9), skill.get(x["pos"], 8), x["name"]))
+    return out, by_team, int(use)
 
 
 # --------------------------------------------------------------------------- coaches
@@ -595,7 +688,8 @@ def main():
     scheme, sch_lg = team_scheme(team, sched, cur, target_week)
     df = add_scheme_cols(df, scheme)
     up, imp, live, contribs = fit_predict(df, cur, target_week)
-    players = player_projections(pw, ratings, sched, rost, depth, cur, target_week)
+    inj_map, inj_teams, inj_week = injury_status(inj, cur, target_week)
+    players = player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_map)
 
     up = up.copy()
     up["gameday_s"] = pd.to_datetime(up.gameday).dt.strftime("%a %b ") + \
@@ -636,6 +730,11 @@ def main():
             "surface": None if pd.isna(r.get("surface")) else str(r.get("surface")),
             "stadium": None if pd.isna(r.get("stadium")) else str(r.get("stadium")),
             "home_out": int(r.get("home_n_out", 0)), "away_out": int(r.get("away_n_out", 0)),
+            "injuries": {
+                "week": inj_week,
+                "home": [p for p in inj_teams.get(r.home_team, []) if p["level"] != "rest"][:8],
+                "away": [p for p in inj_teams.get(r.away_team, []) if p["level"] != "rest"][:8],
+            },
             "why": reasons[i],
             "weather_note": explain.weather_note(indoor, temp, wind, r.get("roof"),
                                                  r.get("surface"), hs["pk_pass_rate"],
@@ -649,6 +748,35 @@ def main():
             },
         })
 
+    # ---- season tracker: lock this week's calls, grade anything that has now been played ----
+    hist_path = os.path.join(a.outdir, "history.json")
+    hist = tracker.load(hist_path)
+    gid_by_team = {}
+    for _, r in up.iterrows():
+        gid_by_team[r.home_team] = str(r.game_id)
+        gid_by_team[r.away_team] = str(r.game_id)
+    scheme_rows = [
+        {"team": t, "game_id": gid_by_team.get(t),
+         **{m: round(float(v), 4) for m, v in
+            scheme[(scheme.season == cur) & (scheme.week == target_week) &
+                   (scheme.team == t)][[f"sch_{x}" for x in tracker.SCHEME_TRACK]]
+            .iloc[0].items() if not pd.isna(v)}}
+        for t in gid_by_team
+        if len(scheme[(scheme.season == cur) & (scheme.week == target_week) & (scheme.team == t)])
+    ]
+    for row in scheme_rows:                       # strip the sch_ prefix to match the actuals
+        for m in tracker.SCHEME_TRACK:
+            if f"sch_{m}" in row:
+                row[m] = row.pop(f"sch_{m}")
+
+    locked = tracker.lock_week(hist, up, players, scheme_rows, cur, target_week)
+    graded = tracker.grade(hist, sched, plyr, sf_per_game(team, sched))
+    tracker.prune_players(hist, cur)
+    tracker.save(hist, hist_path)
+    log(f"tracker: {locked} new predictions locked, {graded} newly graded, "
+        f"{len(hist['games'])} games on file")
+
+
     payload = {
         "generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
         "season": cur, "week": target_week,
@@ -659,6 +787,7 @@ def main():
         "backtest": BACKTEST,
         "live": live,
         "scheme_league": {x: float(sch_lg[x]) for x in SCHEME},
+        "tracker": tracker.summarize(hist, cur),
     }
     # Full float repr costs ~40% of the payload for digits nothing renders. Four places is
     # more than any display uses and still exact enough for the charts.
