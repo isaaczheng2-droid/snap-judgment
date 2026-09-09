@@ -1,0 +1,1204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Snap Judgment — NFL Predictions</title>
+<meta name="description" content="Week-by-week NFL game and player projections built on nflverse play-by-play data, with a published accuracy audit against seven seasons of real results.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%9F%EF%B8%8F%3C/text%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Snap Judgment — NFL Predictions">
+<meta property="og:description" content="Week-by-week NFL game and player projections built on nflverse play-by-play data, with a published accuracy audit against seven seasons of real results.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Snap Judgment — NFL Predictions">
+<meta name="twitter:description" content="Week-by-week NFL game and player projections built on nflverse play-by-play data, with a published accuracy audit against seven seasons of real results.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap">
+<style>
+  /* baseline the artifact host normally provides */
+  [hidden] { display: none !important; }
+  img { max-width: 100%; }
+
+  /* ============ tokens ============ */
+  :root {
+    color-scheme: light;
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface-alt: #f6f6f6;
+    --surface-sunk: #eeeeee;
+    --border: #e2e2e2;
+    --border-strong: #cbcbcb;
+    --ink: #000000;
+    --ink-2: #545454;
+    --ink-3: #757575;
+    --ink-4: #afafaf;
+    --on-ink: #ffffff;
+    --link: #276ef1;
+    --pos: #05944f;
+    --neg: #e11900;
+    --series-1: #2a78d6;
+    --series-2: #eb6834;
+    --series-3: #1baf7a;
+    --seq-a: #cde2fb;
+    --seq-b: #86b6ef;
+    --seq-c: #3987e5;
+    --seq-d: #184f95;
+    --hairline: rgba(0, 0, 0, 0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #000000;
+      --surface: #141414;
+      --surface-alt: #1c1c1c;
+      --surface-sunk: #242424;
+      --border: #2e2e2e;
+      --border-strong: #3d3d3d;
+      --ink: #ffffff;
+      --ink-2: #c9c9c9;
+      --ink-3: #afafaf;
+      --ink-4: #757575;
+      --on-ink: #000000;
+      --link: #6ba1f7;
+      --pos: #1fbf63;
+      --neg: #ff6b5e;
+      --series-1: #3987e5;
+      --series-2: #d95926;
+      --series-3: #199e70;
+      --seq-a: #184f95;
+      --seq-b: #1c5cab;
+      --seq-c: #3987e5;
+      --seq-d: #9ec5f4;
+      --hairline: rgba(255, 255, 255, 0.08);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #000000;
+    --surface: #141414;
+    --surface-alt: #1c1c1c;
+    --surface-sunk: #242424;
+    --border: #2e2e2e;
+    --border-strong: #3d3d3d;
+    --ink: #ffffff;
+    --ink-2: #c9c9c9;
+    --ink-3: #afafaf;
+    --ink-4: #757575;
+    --on-ink: #000000;
+    --link: #6ba1f7;
+    --pos: #1fbf63;
+    --neg: #ff6b5e;
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --series-3: #199e70;
+    --seq-a: #184f95;
+    --seq-b: #1c5cab;
+    --seq-c: #3987e5;
+    --seq-d: #9ec5f4;
+    --hairline: rgba(255, 255, 255, 0.08);
+  }
+
+  /* ============ base ============ */
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 15px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+    font-variant-numeric: tabular-nums;
+  }
+  button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--link); outline-offset: 2px; border-radius: 4px; }
+  .num { font-variant-numeric: tabular-nums; }
+  .mono { font-family: "Roboto Mono", ui-monospace, monospace; }
+
+  /* ============ app bar ============ */
+  .appbar {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .appbar-inner {
+    max-width: 1080px; margin: 0 auto; padding: 0 20px;
+    height: 60px; display: flex; align-items: center; gap: 28px;
+  }
+  .wordmark {
+    font-weight: 800; font-size: 17px; letter-spacing: -0.035em;
+    white-space: nowrap; text-decoration: none; color: var(--ink);
+  }
+  .tabs { display: flex; gap: 4px; height: 100%; flex: 1; }
+  .tab {
+    position: relative; padding: 0 12px; height: 100%;
+    font-size: 14.5px; font-weight: 600; color: var(--ink-3);
+    display: inline-flex; align-items: center;
+  }
+  .tab:hover { color: var(--ink); }
+  .tab[aria-selected="true"] { color: var(--ink); }
+  .tab[aria-selected="true"]::after {
+    content: ""; position: absolute; left: 12px; right: 12px; bottom: 0;
+    height: 2px; background: var(--ink);
+  }
+  .week-badge {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.02em;
+    padding: 6px 12px; border-radius: 999px;
+    background: var(--surface-alt); color: var(--ink-2); white-space: nowrap;
+  }
+  @media (max-width: 620px) {
+    .appbar-inner { gap: 16px; padding: 0 14px; }
+    .week-badge { display: none; }
+    .tab { padding: 0 8px; font-size: 14px; }
+  }
+
+  /* ============ layout ============ */
+  main { max-width: 1080px; margin: 0 auto; padding: 32px 20px 88px; }
+  @media (max-width: 620px) { main { padding: 24px 14px 72px; } }
+  .page-head { margin-bottom: 22px; }
+  .page-head h1 {
+    font-size: 34px; font-weight: 800; letter-spacing: -0.035em;
+    margin: 0 0 6px; line-height: 1.08; text-wrap: balance;
+  }
+  .page-head .sub { margin: 0; color: var(--ink-3); font-size: 14.5px; max-width: 62ch; }
+  .page-head .stamp { margin: 8px 0 0; font-size: 12px; font-weight: 600; color: var(--ink-4);
+    font-family: "Roboto Mono", monospace; }
+
+  .controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 16px; }
+  .segmented { display: inline-flex; gap: 6px; flex-wrap: wrap; }
+  .seg {
+    padding: 8px 15px; border-radius: 999px; font-size: 13.5px; font-weight: 600;
+    background: var(--surface-alt); color: var(--ink-2); white-space: nowrap;
+  }
+  .seg:hover { background: var(--surface-sunk); }
+  .seg[aria-pressed="true"] { background: var(--ink); color: var(--on-ink); }
+  .control-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--ink-4); margin-right: 2px;
+  }
+
+  .search {
+    position: relative; flex: 1; min-width: 220px; max-width: 340px;
+  }
+  .search svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--ink-3); }
+  .search input {
+    width: 100%; padding: 10px 14px 10px 38px; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--surface-alt); color: var(--ink);
+    font: inherit; font-size: 14px;
+  }
+  .search input::placeholder { color: var(--ink-4); }
+  .search input:focus { outline: none; border-color: var(--ink); background: var(--surface); }
+
+  /* ============ list rows ============ */
+  .list {
+    border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--surface);
+  }
+  .row {
+    display: grid; grid-template-columns: 58px 1fr auto 20px;
+    gap: 14px; align-items: center;
+    padding: 15px 18px; width: 100%; text-align: left;
+    border-top: 1px solid var(--border);
+  }
+  .list > .row:first-child { border-top: none; }
+  .row:hover { background: var(--surface-alt); }
+  .row.is-open { background: var(--surface-alt); }
+  .kick { text-align: left; }
+  .kick .day { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+  .kick .date { font-size: 14px; font-weight: 700; letter-spacing: -0.01em; }
+
+  .matchup { min-width: 0; }
+  .teams { display: flex; align-items: baseline; gap: 8px; margin-bottom: 7px; }
+  .code { font-size: 17px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink-4); }
+  .code.fav { color: var(--ink); }
+  .vs { font-size: 12px; font-weight: 600; color: var(--ink-4); }
+  .probline { display: flex; align-items: center; gap: 10px; }
+  .bar { position: relative; flex: 1; max-width: 260px; height: 4px; border-radius: 2px; background: var(--surface-sunk); overflow: hidden; }
+  .bar i { position: absolute; inset: 0 auto 0 0; background: var(--ink); border-radius: 2px; display: block; }
+  .probtext { font-size: 12.5px; font-weight: 700; color: var(--ink-2); white-space: nowrap; }
+
+  .rowend { text-align: right; }
+  .rowend .score { display: block; font-size: 15px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; }
+  .rowend .meta { display: block; font-size: 11.5px; font-weight: 600; color: var(--ink-3); margin-top: 2px; white-space: nowrap; }
+  .chev { color: var(--ink-4); transition: transform 0.15s ease; display: flex; }
+  .row.is-open .chev { transform: rotate(90deg); }
+
+  /* below this width the bar has no room to read as a bar — the percentage carries it alone */
+  @media (max-width: 620px) {
+    .row { grid-template-columns: 50px 1fr auto 14px; gap: 10px; padding: 14px 14px; }
+    .bar { display: none; }
+    .probtext { font-size: 13px; }
+    .rowend .score { font-size: 14.5px; }
+    .rowend .meta { font-size: 11px; }
+    .detail { padding: 2px 14px 20px; }
+    .prow { padding: 13px 14px; }
+  }
+
+  /* ============ expanded detail ============ */
+  .detail {
+    padding: 2px 18px 22px; background: var(--surface-alt);
+  }
+  .detail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 18px; }
+  @media (max-width: 700px) { .detail-grid { grid-template-columns: 1fr; } }
+  .fact {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px;
+  }
+  .fact .k { font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-4); }
+  .fact .v { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin-top: 3px; }
+  .fact .n { font-size: 12px; color: var(--ink-3); font-weight: 500; margin-top: 1px; }
+  .ctxstrip {
+    display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 16px;
+  }
+  .ctxstrip span {
+    font-size: 12px; color: var(--ink-2); background: var(--surface);
+    border: 1px solid var(--border); border-radius: 999px; padding: 5px 12px;
+  }
+  .ctxstrip b { color: var(--ink-4); font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.05em; font-size: 10px; margin-right: 4px; }
+  .split { display: flex; gap: 16px; flex-wrap: wrap; }
+  .split-col { flex: 1; min-width: 210px; }
+  .split-col h4 {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--ink-4); margin: 0 0 8px;
+  }
+  .mini { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--hairline); font-size: 13.5px; }
+  .mini:last-child { border-bottom: none; }
+  .mini .who { font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .mini .who small { color: var(--ink-4); font-weight: 600; margin-left: 6px; }
+  .mini .stat { color: var(--ink-2); font-weight: 700; white-space: nowrap; }
+
+  /* ============ player rows ============ */
+  .prow {
+    display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center;
+    padding: 13px 18px; border-bottom: 1px solid var(--border);
+  }
+  .prow:last-child { border-bottom: none; }
+  .prow:hover { background: var(--surface-alt); }
+  .pname { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+  .pmeta { font-size: 12.5px; color: var(--ink-3); font-weight: 500; margin-top: 1px; }
+  .pstats { display: flex; gap: 22px; }
+  .pstat { text-align: right; min-width: 52px; }
+  .pstat .v { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; }
+  .pstat .k { font-size: 9.5px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-4); margin-top: 1px; }
+  @media (max-width: 560px) { .pstats { gap: 14px; } .pstat { min-width: 44px; } .pstat .v { font-size: 15px; } }
+  .empty { padding: 40px 18px; text-align: center; color: var(--ink-3); font-size: 14px; }
+
+  /* ============ model tab ============ */
+  .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 28px; }
+  @media (max-width: 780px) { .tiles { grid-template-columns: repeat(2, 1fr); } }
+  .tile { border: 1px solid var(--border); border-radius: 12px; padding: 16px 16px 14px; background: var(--surface); }
+  .tile .k { font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-4); }
+  .tile .v { font-size: 30px; font-weight: 800; letter-spacing: -0.04em; margin-top: 6px; line-height: 1; }
+  .tile .n { font-size: 12px; color: var(--ink-3); margin-top: 6px; font-weight: 500; }
+
+  .cards { display: grid; grid-template-columns: 1.25fr 1fr; gap: 12px; }
+  @media (max-width: 860px) { .cards { grid-template-columns: 1fr; } }
+  .card { border: 1px solid var(--border); border-radius: 12px; padding: 18px 18px 12px; background: var(--surface); }
+  .card h3 { font-size: 15px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 3px; }
+  .card .csub { font-size: 12.5px; color: var(--ink-3); margin: 0 0 12px; }
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 8px; font-size: 12px; font-weight: 600; color: var(--ink-2); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend i { width: 9px; height: 9px; border-radius: 2px; }
+  .chart-wrap { position: relative; }
+  svg.chart { display: block; width: 100%; height: auto; }
+  svg.chart text { fill: var(--ink-4); font-family: "Roboto Mono", monospace; font-size: 10px; }
+  svg.chart .gridline { stroke: var(--border); stroke-width: 1; }
+  .tip {
+    position: absolute; pointer-events: none; background: var(--ink); color: var(--on-ink);
+    font-size: 11.5px; font-weight: 600; padding: 5px 9px; border-radius: 6px;
+    transform: translate(-50%, -130%); white-space: nowrap; opacity: 0; transition: opacity 0.1s; z-index: 5;
+  }
+
+  .card.wide { grid-column: 1 / -1; }
+  .kv { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--hairline); font-size: 13.5px; }
+  .kv:last-child { border-bottom: none; }
+  .kv .kvk { color: var(--ink-2); font-weight: 500; }
+  .kv .kvv { font-weight: 700; white-space: nowrap; }
+  .kv .kvv.bad { color: var(--neg); }
+  .kv .kvv.good { color: var(--pos); }
+  .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  @media (max-width: 700px) { .twocol { grid-template-columns: 1fr; gap: 4px; } }
+
+  .atable { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .atable th {
+    text-align: right; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--ink-4); padding: 0 0 8px; border-bottom: 1px solid var(--border);
+  }
+  .atable th:first-child { text-align: left; }
+  .atable td { text-align: right; padding: 9px 0; border-bottom: 1px solid var(--hairline); font-variant-numeric: tabular-nums; }
+  .atable td:first-child { text-align: left; font-weight: 600; }
+  .atable tr:last-child td { border-bottom: none; }
+  .atable .muted { color: var(--ink-3); }
+  .tscroll { overflow-x: auto; }
+  .tscroll .atable { min-width: 520px; }
+
+  .verdict {
+    margin-top: 12px; border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px 22px; background: var(--surface-alt);
+  }
+  .verdict h3 { margin: 0 0 8px; font-size: 17px; font-weight: 800; letter-spacing: -0.02em; }
+  .verdict p { margin: 0 0 10px; font-size: 13.8px; color: var(--ink-2); line-height: 1.6; max-width: 74ch; }
+  .verdict p:last-child { margin-bottom: 0; }
+  .verdict b { color: var(--ink); font-weight: 700; }
+
+  .note {
+    margin-top: 12px; border: 1px solid var(--border); border-left: 3px solid var(--neg);
+    border-radius: 10px; padding: 16px 18px; background: var(--surface);
+    font-size: 13.5px; color: var(--ink-2); line-height: 1.55;
+  }
+  .note b { color: var(--ink); font-weight: 700; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+  @media (max-width: 860px) { .steps { grid-template-columns: 1fr; } }
+  .step { border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; background: var(--surface); }
+  .step h4 { margin: 0 0 6px; font-size: 14px; font-weight: 700; letter-spacing: -0.01em; }
+  .step p { margin: 0; font-size: 13px; color: var(--ink-2); line-height: 1.55; }
+  .sechead { font-size: 12px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-4); margin: 30px 0 12px; }
+  .sources { margin-top: 30px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 12.5px; color: var(--ink-4); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+
+<header class="appbar">
+  <div class="appbar-inner">
+    <span class="wordmark">Snap Judgment</span>
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <button class="tab" role="tab" id="tab-games" aria-selected="true" aria-controls="panel-games">Games</button>
+      <button class="tab" role="tab" id="tab-players" aria-selected="false" aria-controls="panel-players">Players</button>
+      <button class="tab" role="tab" id="tab-model" aria-selected="false" aria-controls="panel-model">Accuracy</button>
+    </nav>
+    <span class="week-badge" id="weekBadge">Week 1 &middot; 2026</span>
+  </div>
+</header>
+
+<main>
+  <!-- ================= GAMES ================= -->
+  <section id="panel-games" role="tabpanel" aria-labelledby="tab-games">
+    <div class="page-head">
+      <h1 id="gamesTitle">Week 1 predictions</h1>
+      <p class="sub">Sixteen games, September 9&ndash;14. Win probability blends an EPA power rating (40%) with the
+        closing market line (60%). Tap a game for the model&rsquo;s margin, its disagreement with Vegas,
+        the projected starting quarterbacks, and conditions.</p>
+      <p class="stamp" id="updated"></p>
+    </div>
+    <div class="controls">
+      <span class="control-label">Sort</span>
+      <div class="segmented" id="gameSort">
+        <button class="seg" data-sort="kickoff" aria-pressed="true">Kickoff</button>
+        <button class="seg" data-sort="confidence" aria-pressed="false">Confidence</button>
+        <button class="seg" data-sort="edge" aria-pressed="false">Model edge</button>
+      </div>
+    </div>
+    <div class="list" id="gameList"></div>
+  </section>
+
+  <!-- ================= PLAYERS ================= -->
+  <section id="panel-players" role="tabpanel" aria-labelledby="tab-players" hidden>
+    <div class="page-head">
+      <h1>Player projections</h1>
+      <p class="sub">Every team&rsquo;s current depth-chart starters, projected from their 2025 form against the
+        Week 1 opponent&rsquo;s defense.</p>
+    </div>
+    <div class="controls">
+      <label class="search">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <input id="playerSearch" type="search" placeholder="Search player, team, or opponent" aria-label="Search players">
+      </label>
+      <div class="segmented" id="posFilter">
+        <button class="seg" data-pos="QB" aria-pressed="true">QB</button>
+        <button class="seg" data-pos="RB" aria-pressed="false">RB</button>
+        <button class="seg" data-pos="WR" aria-pressed="false">WR</button>
+        <button class="seg" data-pos="TE" aria-pressed="false">TE</button>
+      </div>
+    </div>
+    <div class="list" id="playerList"></div>
+  </section>
+
+  <!-- ================= MODEL ================= -->
+  <section id="panel-model" role="tabpanel" aria-labelledby="tab-model" hidden>
+    <div class="page-head">
+      <h1>How accurate is it?</h1>
+      <p class="sub">Every game from 2019 to 2025 &mdash; 1,855 of them &mdash; predicted by a model that had only seen
+        the seasons before it, then scored against what actually happened. No hindsight, no retrofitting.</p>
+    </div>
+
+    <div class="tiles">
+      <div class="tile">
+        <div class="k">Picks the winner</div>
+        <div class="v num">61.2%</div>
+        <div class="n">1,136 of 1,855 games</div>
+      </div>
+      <div class="tile">
+        <div class="k">vs. the spread</div>
+        <div class="v num">50.4%</div>
+        <div class="n">A coin flip &mdash; no edge</div>
+      </div>
+      <div class="tile">
+        <div class="k">Score margin</div>
+        <div class="v num">&plusmn;10.5</div>
+        <div class="n">Points off, on average</div>
+      </div>
+      <div class="tile">
+        <div class="k">Season win totals</div>
+        <div class="v num">&plusmn;1.8</div>
+        <div class="n">Wins off, per team-season</div>
+      </div>
+    </div>
+
+    <div class="card wide" id="liveCard" style="margin-bottom:12px" hidden>
+      <h3 id="liveTitle">This season, scored live</h3>
+      <p class="csub">A model trained only on 2016&ndash;2025, graded on this season&rsquo;s completed games as
+        they finish. This is the cleanest test there is &mdash; the predictions were made before kickoff and
+        nothing about them can be revised after the fact.</p>
+      <div id="liveBody"></div>
+    </div>
+
+    <div class="cards">
+      <div class="card wide">
+        <h3>Measured against the obvious alternatives</h3>
+        <p class="csub">Share of 1,855 games where the pick was right, 2019&ndash;2025</p>
+        <div class="chart-wrap"><svg class="chart" id="baseChart"></svg><div class="tip" id="baseTip"></div></div>
+      </div>
+
+      <div class="card">
+        <h3>Is it right as often as it claims?</h3>
+        <p class="csub">Predicted home win probability vs. how often the home team actually won. The dashed
+          line is perfect calibration; points below it mean overconfidence.</p>
+        <div class="chart-wrap"><svg class="chart" id="calChart"></svg><div class="tip" id="calTip"></div></div>
+      </div>
+      <div class="card">
+        <h3>Accuracy by how sure it was</h3>
+        <p class="csub">Confidence is only worth something at the extreme</p>
+        <div class="legend">
+          <span><i style="background:var(--series-1)"></i>Model</span>
+          <span><i style="background:var(--series-2)"></i>Market, same games</span>
+        </div>
+        <div class="chart-wrap"><svg class="chart" id="confChart"></svg><div class="tip" id="confTip"></div></div>
+      </div>
+
+      <div class="card">
+        <h3>Accuracy by season</h3>
+        <p class="csub">The market wins six of seven seasons; 2021 is the only one the model takes</p>
+        <div class="legend">
+          <span><i style="background:var(--series-1)"></i>Model only</span>
+          <span><i style="background:var(--series-2)"></i>Market only</span>
+          <span><i style="background:var(--series-3)"></i>Blended</span>
+        </div>
+        <div class="chart-wrap"><svg class="chart" id="accChart"></svg><div class="tip" id="accTip"></div></div>
+      </div>
+      <div class="card">
+        <h3>Accuracy by point in the season</h3>
+        <p class="csub">Week 1 ratings are half league-average by construction, so early games are the model&rsquo;s
+          weakest &mdash; worth remembering on the Games tab</p>
+        <div class="legend">
+          <span><i style="background:var(--series-1)"></i>Model</span>
+          <span><i style="background:var(--series-2)"></i>Market</span>
+        </div>
+        <div class="chart-wrap"><svg class="chart" id="weekChart"></svg><div class="tip" id="weekTip"></div></div>
+      </div>
+
+      <div class="card wide">
+        <h3>Head to head with the closing line</h3>
+        <p class="csub">Splitting all 1,855 games by whether the model and the market picked the same winner</p>
+        <div class="twocol">
+          <div>
+            <div class="kv"><span class="kvk">They agree on the winner</span><span class="kvv">1,396 games (75%)</span></div>
+            <div class="kv"><span class="kvk">&hellip; and that pick is right</span><span class="kvv good">68.3%</span></div>
+            <div class="kv"><span class="kvk">They disagree</span><span class="kvv">459 games (25%)</span></div>
+            <div class="kv"><span class="kvk">&hellip; the model is right</span><span class="kvv bad">38.6%</span></div>
+            <div class="kv"><span class="kvk">&hellip; the market is right</span><span class="kvv good">61.4%</span></div>
+          </div>
+          <div>
+            <div class="kv"><span class="kvk">Games only the model got right</span><span class="kvv">177</span></div>
+            <div class="kv"><span class="kvk">Games only the market got right</span><span class="kvv">282</span></div>
+            <div class="kv"><span class="kvk">Is that gap real, or noise?</span><span class="kvv">Real &mdash; p &lt; 0.0001</span></div>
+            <div class="kv"><span class="kvk">Against the spread</span><span class="kvv">914&ndash;898, 50.4%</span></div>
+            <div class="kv"><span class="kvk">Break-even at standard juice</span><span class="kvv">52.4%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>How close the predicted scores land</h3>
+        <p class="csub">Predicted margin vs. actual margin, and the same figure for the closing spread</p>
+        <div class="kv"><span class="kvk">Average miss &mdash; model</span><span class="kvv">10.6 points</span></div>
+        <div class="kv"><span class="kvk">Average miss &mdash; Vegas spread</span><span class="kvv">9.8 points</span></div>
+        <div class="kv"><span class="kvk">Within 3 points of the real margin</span><span class="kvv">18.9%</span></div>
+        <div class="kv"><span class="kvk">Within 7 points</span><span class="kvv">42.1% <span class="muted" style="font-weight:500">(Vegas 47.1%)</span></span></div>
+        <div class="kv"><span class="kvk">Within 14 points</span><span class="kvv">71.6%</span></div>
+        <div class="kv"><span class="kvk">Systematic home-team bias</span><span class="kvv good">+0.27 pts &mdash; negligible</span></div>
+      </div>
+      <div class="card">
+        <h3>Predicted vs. actual team records</h3>
+        <p class="csub">223 team-seasons: summed win probability against the real W&ndash;L. Correlation 0.80.</p>
+        <div class="chart-wrap"><svg class="chart" id="recChart"></svg><div class="tip" id="recTip"></div></div>
+      </div>
+
+      <div class="card wide">
+        <h3>Player projections vs. real box scores</h3>
+        <p class="csub">Same walk-forward scoring. &ldquo;Lift&rdquo; is how much the projection beats simply
+          guessing that position&rsquo;s league average every week.</p>
+        <div class="tscroll"><table class="atable" id="playerAccTable"></table></div>
+      </div>
+    </div>
+
+    <div class="verdict">
+      <h3>The honest verdict</h3>
+      <p><b>It is a real model, and it is worse than Vegas.</b> Picking winners at 61.2% is decisively better than
+        chance (p &lt; 10<sup>&minus;20</sup>) and eight points better than blindly taking the home team. But the closing
+        market line picks at 66.6%, and a McNemar test on the paired predictions puts that gap far outside noise
+        (p &lt; 0.0001). When the two disagree, the market is right about three times in five.</p>
+      <p><b>Against the spread it has no edge at all.</b> 50.4%, with a 95% confidence interval of
+        48.1&ndash;52.8% &mdash; statistically indistinguishable from flipping a coin, and below the 52.4% needed to break
+        even on standard juice. Filtering to only the games where the model disagrees most with the line does not
+        help: at disagreements of five points or more it goes exactly 50.0%. This is the result that matters most,
+        and it is the one most prediction sites do not publish.</p>
+      <p><b>It is overconfident in the middle of its range.</b> When it says a team has a 65&ndash;75% chance, that team
+        wins meaningfully less often than that. Only its strongest calls hold up: above 70% confidence it
+        roughly matches the market on those games.</p>
+      <p><b>Where it does hold up is the long view.</b> Summed across a season its win probabilities reconstruct team
+        records with a correlation of 0.81 and an average miss of 1.75 wins. Its largest misses are the teams that famously
+        outran their underlying numbers &mdash; the 2024 Chiefs (predicted 9.9 wins, actual 15) and the 2022 Vikings
+        (8.5 vs. 13), both of whom went absurdly well in one-score games. Missing those in that direction is what a
+        working efficiency model is supposed to do.</p>
+    </div>
+
+    <div class="sechead">Method</div>
+    <div class="steps">
+      <div class="step">
+        <h4>Team ratings</h4>
+        <p>EPA per play &mdash; offense and defense-allowed, split by pass and rush &mdash; from nflverse team-week box
+          scores, smoothed with a six-game exponential average. At each season&rsquo;s start a team is 50% its final
+          rating from last year and 50% the league mean, which is why Week 1 ratings are flatter than 2025 form.</p>
+      </div>
+      <div class="step">
+        <h4>Game model</h4>
+        <p>Gradient-boosted trees on rating differentials, rest-day advantage, the division-game flag, the
+          projected starting quarterback&rsquo;s own passing and rushing form, whether a team is starting
+          someone other than last week&rsquo;s quarterback, and the share of each side&rsquo;s recent snaps
+          ruled out on the injury report. Weather is collected and shown but deliberately kept out of the
+          model &mdash; it tested as noise. The predicted score splits the market total by the predicted margin.</p>
+      </div>
+      <div class="step">
+        <h4>Player model</h4>
+        <p>Each player&rsquo;s rolling stat line, adjusted by the opponent&rsquo;s defensive EPA allowed at the relevant
+          skill, via ridge regression. Week 1 lines use 2025 season-end form matched to each player&rsquo;s current team
+          and depth-chart slot.</p>
+      </div>
+    </div>
+
+    <div class="cards" style="margin-top:12px">
+      <div class="card">
+        <h3>What the game model actually leans on</h3>
+        <p class="csub">Win-classifier split gain, normalized</p>
+        <div class="chart-wrap"><svg class="chart" id="featChart"></svg><div class="tip" id="featTip"></div></div>
+      </div>
+      <div class="card">
+        <h3>What each added factor was worth</h3>
+        <p class="csub">Walk-forward, 2019&ndash;2025, same protocol throughout. Quarterback identity is the only
+          addition that improved every measure at once &mdash; though not by enough to call it proven.</p>
+        <div class="tscroll"><table class="atable" id="abTable"></table></div>
+        <p class="csub" style="margin:12px 0 0">
+          Adding the starting QB&rsquo;s own form moved accuracy 61.0% &rarr; 61.8% and against-the-spread
+          50.4% &rarr; 52.2%, but a McNemar test on the paired picks returns <b>p&nbsp;=&nbsp;0.30</b>: only 179
+          of 1,855 games changed hands, 97&ndash;82 in the new model&rsquo;s favour. Directionally right on every
+          metric, statistically unproven on the one that counts. Weather changed nothing, exactly as expected —
+          both teams play in the same wind. Injuries sharpened the probabilities slightly (best Brier of any
+          set) without improving the picks.</p>
+      </div>
+    </div>
+
+    <div class="sources">
+      <span>Data: nflverse &mdash; schedules, closing lines, weather, injury reports, snap counts, rosters and depth charts, refreshed daily</span>
+      <span>Analysis only &mdash; not betting advice</span>
+    </div>
+  </section>
+</main>
+
+<script>
+const DATA = /*PAYLOAD_START*/{"generated": "2026-09-09 03:38 UTC", "games": [{"game_id": "2026_01_NE_SEA", "gameday": "Wed Sep 9", "home_team": "SEA", "away_team": "NE", "spread_line": 3.0, "total_line": 44.5, "p_model": 0.35476958751678467, "p_market": 0.6037569709421778, "p_blend": 0.5041620235324851, "margin_pred": -0.499559223651886, "predicted_winner": "SEA", "predicted_home_score": 22.000220388174057, "predicted_away_score": 22.499779611825943, "home_qb": "Sam Darnold", "away_qb": "Drake Maye", "wind": 7.0, "temp": 59.0, "indoor": 0, "home_out": 0, "away_out": 0}, {"game_id": "2026_01_SF_LA", "gameday": "Thu Sep 10", "home_team": "LA", "away_team": "SF", "spread_line": 3.5, "total_line": 48.5, "p_model": 0.5547128319740295, "p_market": 0.644729178800233, "p_blend": 0.6087226370895193, "margin_pred": 4.240724563598633, "predicted_winner": "LA", "predicted_home_score": 26.370362281799316, "predicted_away_score": 22.129637718200684, "home_qb": "Matthew Stafford", "away_qb": "Brock Purdy", "wind": 0.0, "temp": 70.0, "indoor": 1, "home_out": 0, "away_out": 0}, {"game_id": "2026_01_CHI_CAR", "gameday": "Sun Sep 13", "home_team": "CAR", "away_team": "CHI", "spread_line": -3.0, "total_line": 46.5, "p_model": 0.47608715295791626, "p_market": 0.4003612281757977, "p_blend": 0.4306515951084129, "margin_pred": -1.8445059061050415, "predicted_winner": "CHI", "predicted_home_score": 22.32774704694748, "predicted_away_score": 24.17225295305252, "home_qb": "Bryce Young", "away_qb": "Caleb Williams", "wind": 7.0, "temp": 59.0, "indoor": 0, "home_out": 0, "away_out": 0}, {"game_id": "2026_01_TB_CIN", "gameday": "Sun Sep 13", "home_team": "CIN", "away_team": "TB", "spread_line": 3.5, "total_line": 50.5, "p_model": 0.42563575506210327, "p_market": 0.644729178800233, "p_blend": 0.5570918122852133, "margin_pred": -0.8836108446121216, "predicted_winner": "CIN", "predicted_home_score": 24.80819457769394, "predicted_away_score": 25.69180542230606, "home_qb": "Joe Burrow", "away_qb": "Baker Mayfield", "wind": 7.0, "temp": 59.0, "indoor": 0, "home_out": 0, "away_out": 0}, {"game_id": "2026_01_NO_DET", "gameday": "Sun Sep 13", "home_team": "DET", "away_team": "NO", "spread_line": 7.0, "total_line": 49.5, "p_model": 0.6344082951545715, "p_market": 0.725752508361204, "p_blend": 0.689214823078551, "margin_pred": 3.3022851943969727, "predicted_winner": "DET", "predicted_home_score": 26.401142597198486, "predicted_away_score": 23.098857402801514, "home_qb": "Jared Goff", "away_qb": "Tyler Shough", "wind": 0.0, "temp": 70.0, "indoor": 1, "home_out": 0, "away_out": 0}, {"game_id": "2026_01_BUF_HOU", "gameday": "Sun Sep 13", "home_team": "HOU", "away_team": "BUF", "spread_line": -1.5, "total_line": 44.5, "p_model": 0.4740511476993561, "p_market": 0.4826358742837298, "p_blend": 0.47920198961044475, "margin_pred": -0.736367404460907, "predicted_winner": "BUF", "predicted_home_score": 21.881816297769547, "predicted_away_score": 22.618183702230453, "home_qb": "C.J. Stroud", "away_qb": "Josh Allen", "wind": 7.0, "temp": 59.0, "indoor": 0, "home_out": 0, "away_out": 0}, {"game_id": "2026_01_BAL_IND", "gameday": "Sun Sep 13", "home_team": "IND", "away_team": "BAL", "spread_line": -3.5, "total_line": 47.5, "p_model": 0.5211088061332703, "p_market": 0.39076376554174075, "p_blend": 0.44290178177835254, "margin_pred": 0.7232081294059753, "predicted_winner": "BAL", "predicted_home_score": 24.111604064702988, "predicted_away_score": 23.388395935297012, "home_qb": "Daniel Jones", "away_qb": "Lamar Jackson", "wind": 7.0, "temp": 59.0, "indoor": 0, "home_out": 0, "away_out": 0}, {"game_id": "2026_01_CLE_JAX", "gameday": "Sun Sep 13", "home_team": "JAX", "away_team": "CLE", "spread_line": 8.5, "total_line": 40.5, "p_model": 0.8398903608322144, "p_market": 0.7913616398243045, "p_blend": 0.8107731401483974, "margin_pred": 8.465055465698242, "predicted_winner": "JAX", "predicted_home_score": 24.48252773284912, "predicted_away_score": 16.01747226715088, "home_qb": "Trevor Lawrence", "away_qb": "Deshaun Watson", "wind": 7.0, "temp": 59.0, "indoor": 0, "home_out": 0, "away_out": 0}, {"game_id": "2026_01_ATL_PIT", "gameday": "Sun Sep 13", "home_team": "PIT", "away_team": "ATL", "spread_line": 3.5, "total_line": 42.5, "p_model": 0.5247287154197693, "p_market": 0.6224665518611737, "p_blend": 0.5833714143043798, "margin_pred": 2.0767743587493896, "predicted_winner": "PIT", "predicted_home_score": 22.288387179374695, "predicted_away_score": 20.211612820625305, "home_qb": "Aaron Rodgers", "away_qb": "Tua Tagovailoa", "wind": 7.0, "temp": 59.0, "indoor": 0, "home_out": 0, "away_out": 0}, {"game_id": "2026_01_NYJ_TEN", "gameday": "Sun Sep 13", "home_team": "TEN", "away_team": "NYJ", "spread_line": 1.5, "total_line": 39.5, "p_model": 0.5242787003517151, "p_market": 0.5260865852617197, "p_blend": 0.5253634283174856, "margin_pred": 1.511784553527832, "predicted_winner": "TEN", "predicted_home_score": 20.505892276763916, "predicted_away_score": 18.994107723236084, "home_qb": "Cam Ward", "away_qb": "Geno Smith", "wind": 7.0, "temp": 59.0, "indoor": 0, "home_out": 0, "away_out": 0}, {"game_id": "2026_01_ARI_LAC", "gameday": "Sun Sep 13", "home_team": "LAC", "away_team": "ARI", "spread_line": 9.5, "total_line": 47.5, "p_model": 0.6044989228248596, "p_market": 0.8042929292929294, "p_blend": 0.7243753356463982, "margin_pred": 4.253306865692139, "predicted_winner": "LAC", "predicted_home_score": 25.87665343284607, "predicted_away_score": 21.62334656715393, "home_qb": "Justin Herbert", "away_qb": "Jacoby Brissett", "wind": 0.0, "temp": 70.0, "indoor": 1, "home_out": 0, "away_out": 0}, {"game_id": "2026_01_MIA_LV", "gameday": "Sun Sep 13", "home_team": "LV", "away_team": "MIA", "spread_line": 3.5, "total_line": 40.5, "p_model": 0.32440200448036194, "p_market": 0.6224665518611737, "p_blend": 0.5032407329088491, "margin_pred": -5.060118675231934, "predicted_winner": "LV", "predicted_home_score": 17.719940662384033, "predicted_away_score": 22.780059337615967, "home_qb": "Kirk Cousins", "away_qb": "Malik Willis", "wind": 0.0, "temp": 70.0, "indoor": 1, "home_out": 0, "away_out": 0}, {"game_id": "2026_01_GB_MIN", "gameday": "Sun Sep 13", "home_team": "MIN", "away_team": "GB", "spread_line": 1.5, "total_line": 46.5, "p_model": 0.5197033882141113, "p_market": 0.5260865852617197, "p_blend": 0.5235333124031408, "margin_pred": -0.3729701042175293, "predicted_winner": "MIN", "predicted_home_score": 23.063514947891235, "predicted_away_score": 23.436485052108765, "home_qb": "Kyler Murray", "away_qb": "Jordan Love", "wind": 0.0, "temp": 70.0, "indoor": 1, "home_out": 0, "away_out": 0}, {"game_id": "2026_01_WAS_PHI", "gameday": "Sun Sep 13", "home_team": "PHI", "away_team": "WAS", "spread_line": 5.5, "total_line": 44.5, "p_model": 0.5384100675582886, "p_market": 0.6574752261956054, "p_blend": 0.6098491597604464, "margin_pred": 1.9706157445907593, "predicted_winner": "PHI", "predicted_home_score": 23.23530787229538, "predicted_away_score": 21.26469212770462, "home_qb": "Jalen Hurts", "away_qb": "Jayden Daniels", "wind": 7.0, "temp": 59.0, "indoor": 0, "home_out": 0, "away_out": 0}, {"game_id": "2026_01_DAL_NYG", "gameday": "Sun Sep 13", "home_team": "NYG", "away_team": "DAL", "spread_line": -3.0, "total_line": 48.5, "p_model": 0.49548426270484924, "p_market": 0.4066302458405761, "p_blend": 0.44217186152698207, "margin_pred": 0.79392009973526, "predicted_winner": "DAL", "predicted_home_score": 24.64696004986763, "predicted_away_score": 23.85303995013237, "home_qb": "Jaxson Dart", "away_qb": "Dak Prescott", "wind": 7.0, "temp": 59.0, "indoor": 0, "home_out": 0, "away_out": 0}, {"game_id": "2026_01_DEN_KC", "gameday": "Mon Sep 14", "home_team": "KC", "away_team": "DEN", "spread_line": 2.5, "total_line": 43.5, "p_model": 0.5101871490478516, "p_market": 0.5829926410466066, "p_blend": 0.5538704442471045, "margin_pred": 0.692493200302124, "predicted_winner": "KC", "predicted_home_score": 22.096246600151062, "predicted_away_score": 21.403753399848938, "home_qb": "Patrick Mahomes", "away_qb": "Bo Nix", "wind": 7.0, "temp": 59.0, "indoor": 0, "home_out": 0, "away_out": 0}], "players": [{"player_display_name": "Aaron Rodgers", "position": "QB", "team": "PIT", "opponent_team": "ATL", "is_home": 1, "passing_tds": 1.0, "passing_yards": 200.6, "qb_rushing_yards": 4.7, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Matthew Stafford", "position": "QB", "team": "LA", "opponent_team": "SF", "is_home": 1, "passing_tds": 2.1, "passing_yards": 307.0, "qb_rushing_yards": 1.8, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Kirk Cousins", "position": "QB", "team": "LV", "opponent_team": "MIA", "is_home": 1, "passing_tds": 1.4, "passing_yards": 196.9, "qb_rushing_yards": 1.2, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Travis Kelce", "position": "TE", "team": "KC", "opponent_team": "DEN", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 37.7, "receptions": 4.2, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Geno Smith", "position": "QB", "team": "NYJ", "opponent_team": "TEN", "is_home": 0, "passing_tds": 1.4, "passing_yards": 184.6, "qb_rushing_yards": 3.9, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Mike Evans", "position": "WR", "team": "SF", "opponent_team": "LA", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.4, "receiving_yards": 47.3, "receptions": 3.9, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Derrick Henry", "position": "RB", "team": "BAL", "opponent_team": "IND", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 7.8, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 1.1, "rushing_yards": 129.3}, {"player_display_name": "Dak Prescott", "position": "QB", "team": "DAL", "opponent_team": "NYG", "is_home": 0, "passing_tds": 1.4, "passing_yards": 282.4, "qb_rushing_yards": 12.6, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Hunter Henry", "position": "TE", "team": "NE", "opponent_team": "SEA", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 42.7, "receptions": 3.6, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Jared Goff", "position": "QB", "team": "DET", "opponent_team": "NO", "is_home": 1, "passing_tds": 1.8, "passing_yards": 275.4, "qb_rushing_yards": 2.3, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Jacoby Brissett", "position": "QB", "team": "ARI", "opponent_team": "LAC", "is_home": 0, "passing_tds": 1.5, "passing_yards": 218.3, "qb_rushing_yards": 7.3, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Christian McCaffrey", "position": "RB", "team": "SF", "opponent_team": "LA", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 31.5, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.5, "rushing_yards": 93.9}, {"player_display_name": "George Kittle", "position": "TE", "team": "SF", "opponent_team": "LA", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.4, "receiving_yards": 73.6, "receptions": 5.8, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Aaron Jones", "position": "RB", "team": "MIN", "opponent_team": "GB", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 16.0, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.2, "rushing_yards": 56.6}, {"player_display_name": "Samaje Perine", "position": "RB", "team": "CIN", "opponent_team": "TB", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 10.6, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.4, "rushing_yards": 22.7}, {"player_display_name": "Deshaun Watson", "position": "QB", "team": "CLE", "opponent_team": "JAX", "is_home": 0, "passing_tds": 0.8, "passing_yards": 156.0, "qb_rushing_yards": 20.1, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Patrick Mahomes", "position": "QB", "team": "KC", "opponent_team": "DEN", "is_home": 1, "passing_tds": 1.3, "passing_yards": 239.4, "qb_rushing_yards": 31.7, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Evan Engram", "position": "TE", "team": "DEN", "opponent_team": "KC", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 27.1, "receptions": 3.0, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Dallas Goedert", "position": "TE", "team": "PHI", "opponent_team": "WAS", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.4, "receiving_yards": 45.5, "receptions": 4.2, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Dalton Schultz", "position": "TE", "team": "HOU", "opponent_team": "BUF", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 36.1, "receptions": 4.4, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Mark Andrews", "position": "TE", "team": "BAL", "opponent_team": "IND", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 24.8, "receptions": 2.7, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Lamar Jackson", "position": "QB", "team": "BAL", "opponent_team": "IND", "is_home": 0, "passing_tds": 1.0, "passing_yards": 161.9, "qb_rushing_yards": 24.1, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "DJ Moore", "position": "WR", "team": "BUF", "opponent_team": "HOU", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.4, "receiving_yards": 40.0, "receptions": 2.9, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Mike Gesicki", "position": "TE", "team": "CIN", "opponent_team": "TB", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 36.7, "receptions": 2.7, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Saquon Barkley", "position": "RB", "team": "PHI", "opponent_team": "WAS", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 12.3, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.6, "rushing_yards": 97.4}, {"player_display_name": "Baker Mayfield", "position": "QB", "team": "TB", "opponent_team": "CIN", "is_home": 0, "passing_tds": 1.4, "passing_yards": 223.0, "qb_rushing_yards": 23.3, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Josh Allen", "position": "QB", "team": "BUF", "opponent_team": "HOU", "is_home": 0, "passing_tds": 1.3, "passing_yards": 181.9, "qb_rushing_yards": 35.5, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Sam Darnold", "position": "QB", "team": "SEA", "opponent_team": "NE", "is_home": 1, "passing_tds": 1.3, "passing_yards": 215.3, "qb_rushing_yards": 6.4, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Kyler Murray", "position": "QB", "team": "MIN", "opponent_team": "GB", "is_home": 1, "passing_tds": 1.4, "passing_yards": 193.6, "qb_rushing_yards": 32.7, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "T.J. Hockenson", "position": "TE", "team": "MIN", "opponent_team": "GB", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 38.9, "receptions": 3.6, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Tony Pollard", "position": "RB", "team": "TEN", "opponent_team": "NYJ", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 9.7, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.4, "rushing_yards": 87.3}, {"player_display_name": "DK Metcalf", "position": "WR", "team": "PIT", "opponent_team": "ATL", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 61.7, "receptions": 4.2, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Terry McLaurin", "position": "WR", "team": "WAS", "opponent_team": "PHI", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 56.1, "receptions": 3.9, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "A.J. Brown", "position": "WR", "team": "NE", "opponent_team": "SEA", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 75.5, "receptions": 6.1, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "David Montgomery", "position": "RB", "team": "HOU", "opponent_team": "BUF", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 11.0, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.4, "rushing_yards": 34.0}, {"player_display_name": "Daniel Jones", "position": "QB", "team": "IND", "opponent_team": "BAL", "is_home": 1, "passing_tds": 1.6, "passing_yards": 226.1, "qb_rushing_yards": 15.1, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Deebo Samuel Sr.", "position": "WR", "team": "SF", "opponent_team": "LA", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 46.6, "receptions": 3.3, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Juwan Johnson", "position": "TE", "team": "NO", "opponent_team": "DET", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 59.5, "receptions": 4.7, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "J.K. Dobbins", "position": "RB", "team": "DEN", "opponent_team": "KC", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 5.3, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.3, "rushing_yards": 72.7}, {"player_display_name": "Tua Tagovailoa", "position": "QB", "team": "ATL", "opponent_team": "PIT", "is_home": 0, "passing_tds": 1.0, "passing_yards": 163.4, "qb_rushing_yards": 1.5, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Jonathan Taylor", "position": "RB", "team": "IND", "opponent_team": "BAL", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 18.1, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.6, "rushing_yards": 79.3}, {"player_display_name": "Colby Parkinson", "position": "TE", "team": "LA", "opponent_team": "SF", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 38.2, "receptions": 3.7, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Jordan Love", "position": "QB", "team": "GB", "opponent_team": "MIN", "is_home": 0, "passing_tds": 1.5, "passing_yards": 217.9, "qb_rushing_yards": 12.0, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "D'Andre Swift", "position": "RB", "team": "CHI", "opponent_team": "CAR", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 15.4, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.6, "rushing_yards": 66.6}, {"player_display_name": "Justin Jefferson", "position": "WR", "team": "MIN", "opponent_team": "GB", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 45.3, "receptions": 4.1, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Justin Herbert", "position": "QB", "team": "LAC", "opponent_team": "ARI", "is_home": 1, "passing_tds": 1.4, "passing_yards": 215.5, "qb_rushing_yards": 29.1, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "CeeDee Lamb", "position": "WR", "team": "DAL", "opponent_team": "NYG", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 70.3, "receptions": 5.6, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Jalen Hurts", "position": "QB", "team": "PHI", "opponent_team": "WAS", "is_home": 1, "passing_tds": 1.6, "passing_yards": 202.2, "qb_rushing_yards": 31.2, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Jerry Jeudy", "position": "WR", "team": "CLE", "opponent_team": "JAX", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 38.7, "receptions": 3.4, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Joe Burrow", "position": "QB", "team": "CIN", "opponent_team": "TB", "is_home": 1, "passing_tds": 2.0, "passing_yards": 261.2, "qb_rushing_yards": 5.8, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Nico Collins", "position": "WR", "team": "HOU", "opponent_team": "BUF", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 76.5, "receptions": 4.3, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Chuba Hubbard", "position": "RB", "team": "CAR", "opponent_team": "CHI", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 12.6, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.2, "rushing_yards": 33.8}, {"player_display_name": "Jaylen Waddle", "position": "WR", "team": "DEN", "opponent_team": "KC", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 51.9, "receptions": 3.9, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Rhamondre Stevenson", "position": "RB", "team": "NE", "opponent_team": "SEA", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 25.9, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.4, "rushing_yards": 41.7}, {"player_display_name": "Pat Freiermuth", "position": "TE", "team": "PIT", "opponent_team": "ATL", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 35.9, "receptions": 3.0, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Ja'Marr Chase", "position": "WR", "team": "CIN", "opponent_team": "TB", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.4, "receiving_yards": 82.7, "receptions": 7.6, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "DeVonta Smith", "position": "WR", "team": "PHI", "opponent_team": "WAS", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 45.7, "receptions": 3.9, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Kenny Gainwell", "position": "RB", "team": "TB", "opponent_team": "CIN", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 30.2, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.2, "rushing_yards": 38.0}, {"player_display_name": "Amon-Ra St. Brown", "position": "WR", "team": "DET", "opponent_team": "NO", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 75.4, "receptions": 6.7, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Kyle Pitts", "position": "TE", "team": "ATL", "opponent_team": "PIT", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.4, "receiving_yards": 55.9, "receptions": 5.0, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Trevor Lawrence", "position": "QB", "team": "JAX", "opponent_team": "CLE", "is_home": 1, "passing_tds": 1.7, "passing_yards": 249.6, "qb_rushing_yards": 25.0, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Travis Etienne", "position": "RB", "team": "NO", "opponent_team": "DET", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 20.8, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.3, "rushing_yards": 57.0}, {"player_display_name": "Javonte Williams", "position": "RB", "team": "DAL", "opponent_team": "NYG", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 8.5, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.4, "rushing_yards": 63.8}, {"player_display_name": "Jaylen Warren", "position": "RB", "team": "PIT", "opponent_team": "ATL", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 12.7, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.5, "rushing_yards": 66.1}, {"player_display_name": "Drake London", "position": "WR", "team": "ATL", "opponent_team": "PIT", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 56.7, "receptions": 4.4, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Chris Olave", "position": "WR", "team": "NO", "opponent_team": "DET", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.5, "receiving_yards": 78.9, "receptions": 6.2, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "James Cook", "position": "RB", "team": "BUF", "opponent_team": "HOU", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 13.8, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.6, "rushing_yards": 93.1}, {"player_display_name": "Greg Dulcich", "position": "TE", "team": "MIA", "opponent_team": "LV", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 36.9, "receptions": 2.8, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Khalil Shakir", "position": "WR", "team": "BUF", "opponent_team": "HOU", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 40.2, "receptions": 3.9, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Rashid Shaheed", "position": "WR", "team": "SEA", "opponent_team": "NE", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 29.5, "receptions": 2.1, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Alec Pierce", "position": "WR", "team": "IND", "opponent_team": "BAL", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.4, "receiving_yards": 46.2, "receptions": 2.4, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Garrett Wilson", "position": "WR", "team": "NYJ", "opponent_team": "TEN", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.4, "receiving_yards": 53.0, "receptions": 5.2, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Trey McBride", "position": "TE", "team": "ARI", "opponent_team": "LAC", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.4, "receiving_yards": 68.6, "receptions": 7.8, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Brian Robinson", "position": "RB", "team": "ATL", "opponent_team": "PIT", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 4.6, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.2, "rushing_yards": 26.4}, {"player_display_name": "Chig Okonkwo", "position": "TE", "team": "WAS", "opponent_team": "PHI", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 37.4, "receptions": 3.5, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Brock Purdy", "position": "QB", "team": "SF", "opponent_team": "LA", "is_home": 0, "passing_tds": 2.2, "passing_yards": 252.7, "qb_rushing_yards": 19.0, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Isaiah Likely", "position": "TE", "team": "NYG", "opponent_team": "DAL", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 28.4, "receptions": 2.5, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Kyren Williams", "position": "RB", "team": "LA", "opponent_team": "SF", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 17.6, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.5, "rushing_yards": 80.3}, {"player_display_name": "Jake Ferguson", "position": "TE", "team": "DAL", "opponent_team": "NYG", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 24.8, "receptions": 3.0, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Breece Hall", "position": "RB", "team": "NYJ", "opponent_team": "TEN", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 16.1, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.2, "rushing_yards": 50.2}, {"player_display_name": "Christian Watson", "position": "WR", "team": "GB", "opponent_team": "MIN", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 42.4, "receptions": 2.9, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Malik Willis", "position": "QB", "team": "MIA", "opponent_team": "LV", "is_home": 0, "passing_tds": 0.8, "passing_yards": 81.8, "qb_rushing_yards": 20.9, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Cade Otton", "position": "TE", "team": "TB", "opponent_team": "CIN", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 28.5, "receptions": 3.4, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Kenneth Walker III", "position": "RB", "team": "KC", "opponent_team": "DEN", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 19.4, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.3, "rushing_yards": 56.7}, {"player_display_name": "Bijan Robinson", "position": "RB", "team": "ATL", "opponent_team": "PIT", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 42.5, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.5, "rushing_yards": 114.9}, {"player_display_name": "Jaxon Smith-Njigba", "position": "WR", "team": "SEA", "opponent_team": "NE", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.4, "receiving_yards": 83.7, "receptions": 7.3, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Tre Tucker", "position": "WR", "team": "LV", "opponent_team": "MIA", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 35.2, "receptions": 3.3, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Chase Brown", "position": "RB", "team": "CIN", "opponent_team": "TB", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 30.5, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.6, "rushing_yards": 71.8}, {"player_display_name": "Parker Washington", "position": "WR", "team": "JAX", "opponent_team": "CLE", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 74.8, "receptions": 4.7, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Dalton Kincaid", "position": "TE", "team": "BUF", "opponent_team": "HOU", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 31.4, "receptions": 2.4, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Brenton Strange", "position": "TE", "team": "JAX", "opponent_team": "CLE", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 39.6, "receptions": 3.1, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Marvin Mims Jr.", "position": "WR", "team": "DEN", "opponent_team": "KC", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 20.2, "receptions": 2.6, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Tucker Kraft", "position": "TE", "team": "GB", "opponent_team": "MIN", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.5, "receiving_yards": 64.8, "receptions": 4.2, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "De'Von Achane", "position": "RB", "team": "MIA", "opponent_team": "LV", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 25.4, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.5, "rushing_yards": 85.1}, {"player_display_name": "Zay Flowers", "position": "WR", "team": "BAL", "opponent_team": "IND", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 58.1, "receptions": 4.7, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Sam LaPorta", "position": "TE", "team": "DET", "opponent_team": "NO", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.4, "receiving_yards": 53.0, "receptions": 4.2, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Rashee Rice", "position": "WR", "team": "KC", "opponent_team": "DEN", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.4, "receiving_yards": 65.3, "receptions": 5.8, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Puka Nacua", "position": "WR", "team": "LA", "opponent_team": "SF", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.5, "receiving_yards": 112.1, "receptions": 7.5, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Jahmyr Gibbs", "position": "RB", "team": "DET", "opponent_team": "NO", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 35.6, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.5, "rushing_yards": 51.4}, {"player_display_name": "Bryce Young", "position": "QB", "team": "CAR", "opponent_team": "CHI", "is_home": 1, "passing_tds": 1.2, "passing_yards": 149.5, "qb_rushing_yards": 22.7, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "C.J. Stroud", "position": "QB", "team": "HOU", "opponent_team": "BUF", "is_home": 1, "passing_tds": 1.4, "passing_yards": 215.8, "qb_rushing_yards": 7.1, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Malik Nabers", "position": "WR", "team": "NYG", "opponent_team": "DAL", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.4, "receiving_yards": 67.0, "receptions": 5.1, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Brock Bowers", "position": "TE", "team": "LV", "opponent_team": "MIA", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.4, "receiving_yards": 49.2, "receptions": 5.2, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Bucky Irving", "position": "RB", "team": "TB", "opponent_team": "CIN", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 18.0, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.2, "rushing_yards": 51.5}, {"player_display_name": "Isaiah Williams", "position": "WR", "team": "NYJ", "opponent_team": "TEN", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 24.6, "receptions": 2.9, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Bo Nix", "position": "QB", "team": "DEN", "opponent_team": "KC", "is_home": 0, "passing_tds": 1.3, "passing_yards": 241.5, "qb_rushing_yards": 20.4, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "AJ Barner", "position": "TE", "team": "SEA", "opponent_team": "NE", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 35.1, "receptions": 3.2, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "MarShawn Lloyd", "position": "RB", "team": "GB", "opponent_team": "MIN", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 12.1, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.2, "rushing_yards": 31.5}, {"player_display_name": "Marvin Harrison Jr.", "position": "WR", "team": "ARI", "opponent_team": "LAC", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 45.4, "receptions": 3.4, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Drake Maye", "position": "QB", "team": "NE", "opponent_team": "SEA", "is_home": 0, "passing_tds": 1.9, "passing_yards": 252.3, "qb_rushing_yards": 23.6, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Brian Thomas Jr.", "position": "WR", "team": "JAX", "opponent_team": "CLE", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 47.1, "receptions": 3.4, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Jayden Daniels", "position": "QB", "team": "WAS", "opponent_team": "PHI", "is_home": 0, "passing_tds": 1.1, "passing_yards": 173.7, "qb_rushing_yards": 41.1, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Ladd McConkey", "position": "WR", "team": "LAC", "opponent_team": "ARI", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.4, "receiving_yards": 41.1, "receptions": 3.4, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Caleb Williams", "position": "QB", "team": "CHI", "opponent_team": "CAR", "is_home": 0, "passing_tds": 1.6, "passing_yards": 242.2, "qb_rushing_yards": 20.9, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Rome Odunze", "position": "WR", "team": "CHI", "opponent_team": "CAR", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 50.3, "receptions": 3.2, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Ashton Jeanty", "position": "RB", "team": "LV", "opponent_team": "MIA", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 23.3, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.3, "rushing_yards": 60.6}, {"player_display_name": "Tetairoa McMillan", "position": "WR", "team": "CAR", "opponent_team": "CHI", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 41.0, "receptions": 3.0, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Colston Loveland", "position": "TE", "team": "CHI", "opponent_team": "CAR", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 50.6, "receptions": 3.9, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Tyler Warren", "position": "TE", "team": "IND", "opponent_team": "BAL", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 34.3, "receptions": 3.7, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Emeka Egbuka", "position": "WR", "team": "TB", "opponent_team": "CIN", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 38.0, "receptions": 2.9, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Jacory Croskey-Merritt", "position": "RB", "team": "WAS", "opponent_team": "PHI", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 3.2, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.6, "rushing_yards": 57.2}, {"player_display_name": "Gunnar Helm", "position": "TE", "team": "TEN", "opponent_team": "NYJ", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 26.4, "receptions": 3.0, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Harold Fannin Jr.", "position": "TE", "team": "CLE", "opponent_team": "JAX", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 45.1, "receptions": 4.6, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Omarion Hampton", "position": "RB", "team": "LAC", "opponent_team": "ARI", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 15.2, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.4, "rushing_yards": 62.7}, {"player_display_name": "Cam Ward", "position": "QB", "team": "TEN", "opponent_team": "NYJ", "is_home": 1, "passing_tds": 1.6, "passing_yards": 204.8, "qb_rushing_yards": 10.1, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Jaxson Dart", "position": "QB", "team": "NYG", "opponent_team": "DAL", "is_home": 1, "passing_tds": 0.9, "passing_yards": 170.9, "qb_rushing_yards": 34.9, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Chimere Dike", "position": "WR", "team": "TEN", "opponent_team": "NYJ", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.3, "receiving_yards": 37.2, "receptions": 3.5, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Cam Skattebo", "position": "RB", "team": "NYG", "opponent_team": "DAL", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 23.3, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.5, "rushing_yards": 60.9}, {"player_display_name": "Travis Hunter", "position": "WR", "team": "JAX", "opponent_team": "CLE", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 22.9, "receptions": 2.1, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Bhayshul Tuten", "position": "RB", "team": "JAX", "opponent_team": "CLE", "is_home": 1, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 7.7, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.3, "rushing_yards": 17.8}, {"player_display_name": "Mason Taylor", "position": "TE", "team": "NYJ", "opponent_team": "TEN", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": null, "receiving_tds": 0.2, "receiving_yards": 24.2, "receptions": 2.8, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Tyler Shough", "position": "QB", "team": "NO", "opponent_team": "DET", "is_home": 0, "passing_tds": 1.1, "passing_yards": 249.0, "qb_rushing_yards": 15.6, "rb_receiving_yards": null, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": null, "rushing_yards": null}, {"player_display_name": "Quinshon Judkins", "position": "RB", "team": "CLE", "opponent_team": "JAX", "is_home": 0, "passing_tds": null, "passing_yards": null, "qb_rushing_yards": null, "rb_receiving_yards": 13.3, "receiving_tds": null, "receiving_yards": null, "receptions": null, "rushing_tds": 0.3, "rushing_yards": 42.9}], "game_backtest_summary": [{"method": "blended", "log_loss": 0.6178669946673908, "brier": 0.214594613129997, "accuracy": 0.6540703377753315}, {"method": "market_only", "log_loss": 0.6080342836210122, "brier": 0.2103614345958047, "accuracy": 0.6661097776287637}, {"method": "model_only", "log_loss": 0.6613239305468371, "brier": 0.233727074095181, "accuracy": 0.6090229461249445}], "game_backtest_per_season": [{"season": 2019, "model_acc": 0.5875, "market_acc": 0.65, "blend_acc": 0.6208333333333333, "model_logloss": 0.6924423396711864, "market_logloss": 0.6089292695780595}, {"season": 2020, "model_acc": 0.609375, "market_acc": 0.67578125, "blend_acc": 0.64453125, "model_logloss": 0.6619671025757434, "market_logloss": 0.5922138682400047}, {"season": 2021, "model_acc": 0.6066176470588235, "market_acc": 0.6213235294117647, "blend_acc": 0.6213235294117647, "model_logloss": 0.6761493118850437, "market_logloss": 0.6245084790607427}, {"season": 2022, "model_acc": 0.5940959409594095, "market_acc": 0.6605166051660517, "blend_acc": 0.6605166051660517, "model_logloss": 0.647429215185188, "market_logloss": 0.6075209876338057}, {"season": 2023, "model_acc": 0.5882352941176471, "market_acc": 0.6838235294117647, "blend_acc": 0.6544117647058824, "model_logloss": 0.675633967789791, "market_logloss": 0.627348797217123}, {"season": 2024, "model_acc": 0.6801470588235294, "market_acc": 0.7132352941176471, "blend_acc": 0.75, "model_logloss": 0.604192609851935, "market_logloss": 0.5874888995056521}, {"season": 2025, "model_acc": 0.6176470588235294, "market_acc": 0.6580882352941176, "blend_acc": 0.6617647058823529, "model_logloss": 0.641161031042858, "market_logloss": 0.6082296841116979}], "margin_mae_by_season": [{"season": 2019, "margin_mae": 11.432133387696618}, {"season": 2020, "margin_mae": 10.496740705886625}, {"season": 2021, "margin_mae": 11.685627415454398}, {"season": 2022, "margin_mae": 9.248396121700916}, {"season": 2023, "margin_mae": 10.983571096611044}, {"season": 2024, "margin_mae": 10.245098862721694}, {"season": 2025, "margin_mae": 10.48003939210492}], "player_backtest": [{"stat": "passing_tds", "adjusted_model": 0.9018759097854112, "naive_rolling_avg": 0.9059387252180228}, {"stat": "passing_yards", "adjusted_model": 71.79868363311746, "naive_rolling_avg": 72.26778522867816}, {"stat": "qb_rushing_yards", "adjusted_model": 11.46012591424114, "naive_rolling_avg": 11.658752242091326}, {"stat": "rb_receiving_yards", "adjusted_model": 12.506985564289431, "naive_rolling_avg": 12.413285963092893}, {"stat": "receiving_tds", "adjusted_model": 0.3929378075164806, "naive_rolling_avg": 0.3814186451180398}, {"stat": "receiving_yards", "adjusted_model": 25.06218383086331, "naive_rolling_avg": 25.002981561511437}, {"stat": "receptions", "adjusted_model": 1.7025139142285728, "naive_rolling_avg": 1.7030114965352134}, {"stat": "rushing_tds", "adjusted_model": 0.4458028842811671, "naive_rolling_avg": 0.4299627523741536}, {"stat": "rushing_yards", "adjusted_model": 24.72741795743585, "naive_rolling_avg": 24.732946113173387}], "feature_importance": [{"feature": "points_diff_rating", "importance": 0.22913435101509094}, {"feature": "off_epa_diff", "importance": 0.12729497253894806}, {"feature": "qb_epa_diff", "importance": 0.07514701038599014}, {"feature": "qb_change_diff", "importance": 0.06709766387939453}, {"feature": "def_epa_diff", "importance": 0.06487715989351273}, {"feature": "rush_epa_edge_home", "importance": 0.05829690769314766}, {"feature": "inj_off_diff", "importance": 0.057547427713871}, {"feature": "qb_rush_diff", "importance": 0.057050615549087524}, {"feature": "inj_def_diff", "importance": 0.054348450154066086}, {"feature": "pass_epa_edge_home", "importance": 0.05271534249186516}, {"feature": "net_epa_edge_home", "importance": 0.05229152366518974}, {"feature": "rest_diff", "importance": 0.052233122289180756}, {"feature": "div_game", "importance": 0.051965534687042236}], "n_games_trained": 6967, "n_seasons": "2016-2025", "accuracy": {"overall": {"n_games": 1855, "model_su": 0.6123989218328841, "market_su": 0.6663072776280323, "blend_su": 0.6598382749326146, "model_wins": 1136, "blend_wins": 1224, "market_wins": 1236, "home_win_rate": 0.5288409703504043, "always_home_su": 0.5288409703504043}, "by_season": [{"season": 2019, "n": 240, "model": 0.5875, "market": 0.65, "blend": 0.6208333333333333}, {"season": 2020, "n": 256, "model": 0.609375, "market": 0.67578125, "blend": 0.64453125}, {"season": 2021, "n": 272, "model": 0.6066176470588235, "market": 0.6213235294117647, "blend": 0.6213235294117647}, {"season": 2022, "n": 271, "model": 0.5940959409594095, "market": 0.6605166051660517, "blend": 0.6605166051660517}, {"season": 2023, "n": 272, "model": 0.5882352941176471, "market": 0.6838235294117647, "blend": 0.6544117647058824}, {"season": 2024, "n": 272, "model": 0.6801470588235294, "market": 0.7132352941176471, "blend": 0.75}, {"season": 2025, "n": 272, "model": 0.6176470588235294, "market": 0.6580882352941176, "blend": 0.6617647058823529}], "calibration": [{"bin": "<35%", "n": 262, "predicted": 0.28395811036115387, "actual": 0.3511450381679389}, {"bin": "35-45%", "n": 321, "predicted": 0.39892149064399746, "actual": 0.37694704049844235}, {"bin": "45-55%", "n": 361, "predicted": 0.49941111114546866, "actual": 0.49584487534626037}, {"bin": "55-65%", "n": 308, "predicted": 0.5993240162149652, "actual": 0.538961038961039}, {"bin": "65-75%", "n": 259, "predicted": 0.6984859019172698, "actual": 0.6486486486486487}, {"bin": ">75%", "n": 344, "predicted": 0.8233482527524926, "actual": 0.7412790697674418}], "confidence": [{"bin": "coin flip (50-55%)", "n": 361, "model": 0.4903047091412742, "market": 0.6011080332409973}, {"bin": "lean (55-60%)", "n": 304, "model": 0.555921052631579, "market": 0.6414473684210527}, {"bin": "moderate (60-65%)", "n": 325, "model": 0.6061538461538462, "market": 0.6646153846153846}, {"bin": "strong (65-70%)", "n": 267, "model": 0.599250936329588, "market": 0.6404494382022472}, {"bin": "very strong (70%+)", "n": 598, "model": 0.7240802675585284, "market": 0.7307692307692307}], "by_week": [{"bin": "Weeks 1-4", "n": 442, "model": 0.583710407239819, "market": 0.6289592760180995}, {"bin": "Weeks 5-9", "n": 499, "model": 0.5891783567134269, "market": 0.6673346693386774}, {"bin": "Weeks 10-13", "n": 402, "model": 0.6368159203980099, "market": 0.6716417910447762}, {"bin": "Weeks 14-18", "n": 512, "model": 0.640625, "market": 0.693359375}], "margin": {"model_mae": 10.541251585628546, "market_mae": 9.810242587601078, "model_rmse": 13.505361785947073, "market_rmse": 12.710046538815975, "model_bias": 0.27240564123679684, "market_bias": 0.07223719676549865, "within_3": 0.2, "within_7": 0.4269541778975741, "within_14": 0.7169811320754716, "market_within_7": 0.47115902964959566}, "ats": {"n": 1812, "rate": 0.5038631346578366, "pushes": 43, "breakeven": 0.5238, "ci_low": 0.4811, "ci_high": 0.5277, "p_value": 0.725, "by_edge": [{"thr": 1, "n": 1500, "rate": 0.508}, {"thr": 2, "n": 1209, "rate": 0.5210918114143921}, {"thr": 3, "n": 924, "rate": 0.5205627705627706}, {"thr": 5, "n": 481, "rate": 0.5072765072765073}], "by_season": [{"season": 2019, "n": 230, "rate": 0.483}, {"season": 2020, "n": 256, "rate": 0.523}, {"season": 2021, "n": 268, "rate": 0.478}, {"season": 2022, "n": 261, "rate": 0.525}, {"season": 2023, "n": 258, "rate": 0.5}, {"season": 2024, "n": 268, "rate": 0.534}, {"season": 2025, "n": 271, "rate": 0.487}]}, "disagreements": {"n_disagreements": 464, "share_of_games": 0.2501347708894879, "model_right": 0.3922413793103448, "market_right": 0.6077586206896551}, "agreement": {"n": 1396, "rate": 0.683}, "mcnemar": {"model_only_right": 177, "market_only_right": 282, "chi2": 23.6, "p": 1.21e-06}, "team_records": {"team_seasons": 223, "wins_mae": 1.753115192389809, "corr": 0.8091827192615101, "within_1_win": 0.28699551569506726, "within_2_wins": 0.6367713004484304}, "team_record_scatter": [{"season": 2019, "team": "ARI", "exp": 6.78, "act": 5}, {"season": 2019, "team": "ATL", "exp": 7.49, "act": 7}, {"season": 2019, "team": "BAL", "exp": 10.14, "act": 14}, {"season": 2019, "team": "BUF", "exp": 8.28, "act": 10}, {"season": 2019, "team": "CAR", "exp": 6.57, "act": 5}, {"season": 2019, "team": "CHI", "exp": 7.61, "act": 8}, {"season": 2019, "team": "CIN", "exp": 5.87, "act": 2}, {"season": 2019, "team": "CLE", "exp": 6.01, "act": 6}, {"season": 2019, "team": "DAL", "exp": 9.72, "act": 8}, {"season": 2019, "team": "DEN", "exp": 5.42, "act": 6}, {"season": 2019, "team": "DET", "exp": 7.12, "act": 4}, {"season": 2019, "team": "GB", "exp": 7.55, "act": 12}, {"season": 2019, "team": "HOU", "exp": 7.48, "act": 9}, {"season": 2019, "team": "IND", "exp": 6.8, "act": 7}, {"season": 2019, "team": "JAX", "exp": 6.26, "act": 5}, {"season": 2019, "team": "KC", "exp": 8.45, "act": 10}, {"season": 2019, "team": "LA", "exp": 8.85, "act": 9}, {"season": 2019, "team": "LAC", "exp": 7.68, "act": 5}, {"season": 2019, "team": "MIA", "exp": 6.23, "act": 5}, {"season": 2019, "team": "MIN", "exp": 8.8, "act": 9}, {"season": 2019, "team": "NE", "exp": 9.71, "act": 12}, {"season": 2019, "team": "NO", "exp": 9.74, "act": 13}, {"season": 2019, "team": "NYG", "exp": 6.91, "act": 4}, {"season": 2019, "team": "NYJ", "exp": 6.56, "act": 6}, {"season": 2019, "team": "PHI", "exp": 7.22, "act": 9}, {"season": 2019, "team": "PIT", "exp": 8.46, "act": 8}, {"season": 2019, "team": "SEA", "exp": 9.02, "act": 11}, {"season": 2019, "team": "SF", "exp": 9.04, "act": 13}, {"season": 2019, "team": "TB", "exp": 8.83, "act": 7}, {"season": 2019, "team": "TEN", "exp": 9.12, "act": 8}, {"season": 2019, "team": "WAS", "exp": 6.28, "act": 3}, {"season": 2020, "team": "ARI", "exp": 9.32, "act": 8}, {"season": 2020, "team": "ATL", "exp": 7.21, "act": 4}, {"season": 2020, "team": "BAL", "exp": 11.19, "act": 11}, {"season": 2020, "team": "BUF", "exp": 10.19, "act": 13}, {"season": 2020, "team": "CAR", "exp": 7.29, "act": 5}, {"season": 2020, "team": "CHI", "exp": 6.92, "act": 8}, {"season": 2020, "team": "CIN", "exp": 6.87, "act": 5}, {"season": 2020, "team": "CLE", "exp": 7.76, "act": 11}, {"season": 2020, "team": "DAL", "exp": 7.72, "act": 6}, {"season": 2020, "team": "DEN", "exp": 5.15, "act": 5}, {"season": 2020, "team": "DET", "exp": 6.44, "act": 5}, {"season": 2020, "team": "GB", "exp": 9.12, "act": 13}, {"season": 2020, "team": "HOU", "exp": 8.42, "act": 4}, {"season": 2020, "team": "IND", "exp": 9.11, "act": 11}, {"season": 2020, "team": "JAX", "exp": 5.09, "act": 1}, {"season": 2020, "team": "KC", "exp": 10.36, "act": 14}, {"season": 2020, "team": "LA", "exp": 8.96, "act": 10}, {"season": 2020, "team": "LAC", "exp": 8.25, "act": 7}, {"season": 2020, "team": "LV", "exp": 7.37, "act": 8}, {"season": 2020, "team": "MIA", "exp": 7.7, "act": 10}, {"season": 2020, "team": "MIN", "exp": 8.19, "act": 7}, {"season": 2020, "team": "NE", "exp": 7.93, "act": 7}, {"season": 2020, "team": "NO", "exp": 9.72, "act": 12}, {"season": 2020, "team": "NYG", "exp": 6.38, "act": 6}, {"season": 2020, "team": "NYJ", "exp": 4.84, "act": 2}, {"season": 2020, "team": "PHI", "exp": 6.72, "act": 4}, {"season": 2020, "team": "PIT", "exp": 9.09, "act": 12}, {"season": 2020, "team": "SEA", "exp": 9.31, "act": 12}, {"season": 2020, "team": "SF", "exp": 7.46, "act": 6}, {"season": 2020, "team": "TB", "exp": 9.03, "act": 11}, {"season": 2020, "team": "TEN", "exp": 9.72, "act": 11}, {"season": 2020, "team": "WAS", "exp": 7.17, "act": 7}, {"season": 2021, "team": "ARI", "exp": 10.48, "act": 11}, {"season": 2021, "team": "ATL", "exp": 6.99, "act": 7}, {"season": 2021, "team": "BAL", "exp": 9.19, "act": 8}, {"season": 2021, "team": "BUF", "exp": 11.32, "act": 11}, {"season": 2021, "team": "CAR", "exp": 6.64, "act": 5}, {"season": 2021, "team": "CHI", "exp": 6.74, "act": 6}, {"season": 2021, "team": "CIN", "exp": 9.73, "act": 10}, {"season": 2021, "team": "CLE", "exp": 7.57, "act": 8}, {"season": 2021, "team": "DAL", "exp": 9.67, "act": 12}, {"season": 2021, "team": "DEN", "exp": 9.53, "act": 7}, {"season": 2021, "team": "DET", "exp": 5.82, "act": 4}, {"season": 2021, "team": "GB", "exp": 10.9, "act": 13}, {"season": 2021, "team": "HOU", "exp": 6.24, "act": 4}, {"season": 2021, "team": "IND", "exp": 10.34, "act": 9}, {"season": 2021, "team": "JAX", "exp": 5.96, "act": 3}, {"season": 2021, "team": "KC", "exp": 10.81, "act": 12}, {"season": 2021, "team": "LA", "exp": 9.99, "act": 12}, {"season": 2021, "team": "LAC", "exp": 8.34, "act": 9}, {"season": 2021, "team": "LV", "exp": 7.22, "act": 10}, {"season": 2021, "team": "MIA", "exp": 8.58, "act": 9}, {"season": 2021, "team": "MIN", "exp": 7.54, "act": 8}, {"season": 2021, "team": "NE", "exp": 10.24, "act": 10}, {"season": 2021, "team": "NO", "exp": 8.17, "act": 9}, {"season": 2021, "team": "NYG", "exp": 5.8, "act": 4}, {"season": 2021, "team": "NYJ", "exp": 5.46, "act": 4}, {"season": 2021, "team": "PHI", "exp": 9.57, "act": 9}, {"season": 2021, "team": "PIT", "exp": 7.97, "act": 9}, {"season": 2021, "team": "SEA", "exp": 8.97, "act": 7}, {"season": 2021, "team": "SF", "exp": 9.43, "act": 10}, {"season": 2021, "team": "TB", "exp": 11.36, "act": 13}, {"season": 2021, "team": "TEN", "exp": 8.32, "act": 12}, {"season": 2021, "team": "WAS", "exp": 7.12, "act": 7}, {"season": 2022, "team": "ARI", "exp": 6.36, "act": 4}, {"season": 2022, "team": "ATL", "exp": 8.48, "act": 7}, {"season": 2022, "team": "BAL", "exp": 9.37, "act": 10}, {"season": 2022, "team": "BUF", "exp": 10.37, "act": 13}, {"season": 2022, "team": "CAR", "exp": 7.16, "act": 7}, {"season": 2022, "team": "CHI", "exp": 7.14, "act": 3}, {"season": 2022, "team": "CIN", "exp": 10.46, "act": 12}, {"season": 2022, "team": "CLE", "exp": 8.33, "act": 7}, {"season": 2022, "team": "DAL", "exp": 10.72, "act": 12}, {"season": 2022, "team": "DEN", "exp": 7.58, "act": 5}, {"season": 2022, "team": "DET", "exp": 8.89, "act": 9}, {"season": 2022, "team": "GB", "exp": 8.99, "act": 8}, {"season": 2022, "team": "HOU", "exp": 5.64, "act": 3}, {"season": 2022, "team": "IND", "exp": 6.79, "act": 5}, {"season": 2022, "team": "JAX", "exp": 8.86, "act": 9}, {"season": 2022, "team": "KC", "exp": 11.8, "act": 14}, {"season": 2022, "team": "LA", "exp": 7.26, "act": 5}, {"season": 2022, "team": "LAC", "exp": 8.12, "act": 10}, {"season": 2022, "team": "LV", "exp": 9.23, "act": 6}, {"season": 2022, "team": "MIA", "exp": 8.38, "act": 9}, {"season": 2022, "team": "MIN", "exp": 8.64, "act": 13}, {"season": 2022, "team": "NE", "exp": 8.36, "act": 8}, {"season": 2022, "team": "NO", "exp": 7.65, "act": 7}, {"season": 2022, "team": "NYG", "exp": 7.29, "act": 9}, {"season": 2022, "team": "NYJ", "exp": 6.94, "act": 7}, {"season": 2022, "team": "PHI", "exp": 10.93, "act": 14}, {"season": 2022, "team": "PIT", "exp": 7.3, "act": 9}, {"season": 2022, "team": "SEA", "exp": 9.46, "act": 9}, {"season": 2022, "team": "SF", "exp": 10.49, "act": 13}, {"season": 2022, "team": "TB", "exp": 9.48, "act": 8}, {"season": 2022, "team": "TEN", "exp": 7.36, "act": 7}, {"season": 2022, "team": "WAS", "exp": 7.19, "act": 9}, {"season": 2023, "team": "ARI", "exp": 5.83, "act": 4}, {"season": 2023, "team": "ATL", "exp": 8.7, "act": 7}, {"season": 2023, "team": "BAL", "exp": 10.76, "act": 13}, {"season": 2023, "team": "BUF", "exp": 10.98, "act": 11}, {"season": 2023, "team": "CAR", "exp": 5.57, "act": 2}, {"season": 2023, "team": "CHI", "exp": 7.65, "act": 7}, {"season": 2023, "team": "CIN", "exp": 8.64, "act": 9}, {"season": 2023, "team": "CLE", "exp": 7.42, "act": 11}, {"season": 2023, "team": "DAL", "exp": 10.71, "act": 12}, {"season": 2023, "team": "DEN", "exp": 7.77, "act": 8}, {"season": 2023, "team": "DET", "exp": 9.86, "act": 12}, {"season": 2023, "team": "GB", "exp": 9.6, "act": 9}, {"season": 2023, "team": "HOU", "exp": 8.56, "act": 10}, {"season": 2023, "team": "IND", "exp": 8.31, "act": 9}, {"season": 2023, "team": "JAX", "exp": 8.91, "act": 9}, {"season": 2023, "team": "KC", "exp": 10.28, "act": 11}, {"season": 2023, "team": "LA", "exp": 8.77, "act": 10}, {"season": 2023, "team": "LAC", "exp": 8.6, "act": 5}, {"season": 2023, "team": "LV", "exp": 8.24, "act": 8}, {"season": 2023, "team": "MIA", "exp": 11.52, "act": 11}, {"season": 2023, "team": "MIN", "exp": 8.07, "act": 7}, {"season": 2023, "team": "NE", "exp": 6.81, "act": 4}, {"season": 2023, "team": "NO", "exp": 8.9, "act": 9}, {"season": 2023, "team": "NYG", "exp": 4.97, "act": 6}, {"season": 2023, "team": "NYJ", "exp": 5.7, "act": 7}, {"season": 2023, "team": "PHI", "exp": 9.42, "act": 11}, {"season": 2023, "team": "PIT", "exp": 7.48, "act": 10}, {"season": 2023, "team": "SEA", "exp": 8.58, "act": 9}, {"season": 2023, "team": "SF", "exp": 11.85, "act": 12}, {"season": 2023, "team": "TB", "exp": 9.1, "act": 9}, {"season": 2023, "team": "TEN", "exp": 7.79, "act": 6}, {"season": 2023, "team": "WAS", "exp": 6.65, "act": 4}, {"season": 2024, "team": "ARI", "exp": 8.53, "act": 8}, {"season": 2024, "team": "ATL", "exp": 8.5, "act": 8}, {"season": 2024, "team": "BAL", "exp": 10.51, "act": 12}, {"season": 2024, "team": "BUF", "exp": 11.77, "act": 13}, {"season": 2024, "team": "CAR", "exp": 5.72, "act": 5}, {"season": 2024, "team": "CHI", "exp": 7.24, "act": 5}, {"season": 2024, "team": "CIN", "exp": 9.72, "act": 9}, {"season": 2024, "team": "CLE", "exp": 5.69, "act": 3}, {"season": 2024, "team": "DAL", "exp": 6.98, "act": 7}, {"season": 2024, "team": "DEN", "exp": 9.11, "act": 10}, {"season": 2024, "team": "DET", "exp": 10.81, "act": 15}, {"season": 2024, "team": "GB", "exp": 9.68, "act": 11}, {"season": 2024, "team": "HOU", "exp": 8.47, "act": 10}, {"season": 2024, "team": "IND", "exp": 8.03, "act": 8}, {"season": 2024, "team": "JAX", "exp": 7.38, "act": 4}, {"season": 2024, "team": "KC", "exp": 9.96, "act": 15}, {"season": 2024, "team": "LA", "exp": 8.53, "act": 10}, {"season": 2024, "team": "LAC", "exp": 9.61, "act": 11}, {"season": 2024, "team": "LV", "exp": 6.75, "act": 4}, {"season": 2024, "team": "MIA", "exp": 9.06, "act": 8}, {"season": 2024, "team": "MIN", "exp": 10.27, "act": 14}, {"season": 2024, "team": "NE", "exp": 6.69, "act": 4}, {"season": 2024, "team": "NO", "exp": 7.8, "act": 5}, {"season": 2024, "team": "NYG", "exp": 6.1, "act": 3}, {"season": 2024, "team": "NYJ", "exp": 6.76, "act": 5}, {"season": 2024, "team": "PHI", "exp": 10.17, "act": 14}, {"season": 2024, "team": "PIT", "exp": 8.1, "act": 10}, {"season": 2024, "team": "SEA", "exp": 7.67, "act": 10}, {"season": 2024, "team": "SF", "exp": 9.07, "act": 6}, {"season": 2024, "team": "TB", "exp": 10.58, "act": 10}, {"season": 2024, "team": "TEN", "exp": 6.58, "act": 3}, {"season": 2024, "team": "WAS", "exp": 10.15, "act": 12}, {"season": 2025, "team": "ARI", "exp": 7.08, "act": 3}, {"season": 2025, "team": "ATL", "exp": 6.95, "act": 8}, {"season": 2025, "team": "BAL", "exp": 9.68, "act": 8}, {"season": 2025, "team": "BUF", "exp": 10.65, "act": 12}, {"season": 2025, "team": "CAR", "exp": 6.64, "act": 8}, {"season": 2025, "team": "CHI", "exp": 7.96, "act": 11}, {"season": 2025, "team": "CIN", "exp": 7.97, "act": 6}, {"season": 2025, "team": "CLE", "exp": 5.35, "act": 5}, {"season": 2025, "team": "DAL", "exp": 8.69, "act": 7}, {"season": 2025, "team": "DEN", "exp": 9.31, "act": 14}, {"season": 2025, "team": "DET", "exp": 10.28, "act": 9}, {"season": 2025, "team": "GB", "exp": 10.36, "act": 10}, {"season": 2025, "team": "HOU", "exp": 9.42, "act": 12}, {"season": 2025, "team": "IND", "exp": 9.82, "act": 8}, {"season": 2025, "team": "JAX", "exp": 9.49, "act": 13}, {"season": 2025, "team": "KC", "exp": 9.45, "act": 6}, {"season": 2025, "team": "LA", "exp": 10.92, "act": 12}, {"season": 2025, "team": "LAC", "exp": 9.54, "act": 11}, {"season": 2025, "team": "LV", "exp": 6.37, "act": 3}, {"season": 2025, "team": "MIA", "exp": 9.06, "act": 7}, {"season": 2025, "team": "MIN", "exp": 6.97, "act": 9}, {"season": 2025, "team": "NE", "exp": 10.66, "act": 14}, {"season": 2025, "team": "NO", "exp": 7.51, "act": 6}, {"season": 2025, "team": "NYG", "exp": 6.99, "act": 4}, {"season": 2025, "team": "NYJ", "exp": 5.82, "act": 3}, {"season": 2025, "team": "PHI", "exp": 9.66, "act": 11}, {"season": 2025, "team": "PIT", "exp": 8.21, "act": 10}, {"season": 2025, "team": "SEA", "exp": 10.14, "act": 14}, {"season": 2025, "team": "SF", "exp": 9.07, "act": 12}, {"season": 2025, "team": "TB", "exp": 9.25, "act": 8}, {"season": 2025, "team": "TEN", "exp": 5.06, "act": 3}, {"season": 2025, "team": "WAS", "exp": 7.67, "act": 5}], "biggest_record_misses": [{"season": 2024, "team": "KC", "exp": 10.0, "act": 15}, {"season": 2025, "team": "DEN", "exp": 9.3, "act": 14}, {"season": 2019, "team": "GB", "exp": 7.5, "act": 12}, {"season": 2020, "team": "HOU", "exp": 8.4, "act": 4}, {"season": 2022, "team": "MIN", "exp": 8.6, "act": 13}, {"season": 2024, "team": "DET", "exp": 10.8, "act": 15}], "player_accuracy": [{"stat": "Passing yards", "n": 4440, "mae": 71.78936793977927, "naive_mae": 72.26004087170736, "flat_mae": 82.32136256348709, "rmse": 89.67271154234649, "corr": 0.5149218674618176, "bias": 2.2073084657660935, "within_band": 0.425, "band": 50, "lift_vs_flat": 0.12793756439084003, "actual_mean": 200.643018018018}, {"stat": "Passing TDs", "n": 4440, "mae": 0.9003072771760414, "naive_mae": 0.9043752551335437, "flat_mae": 0.985952515969906, "rmse": 1.1017367799336402, "corr": 0.3452946677408461, "bias": 0.023318649277797664, "within_band": 0.6256756756756757, "band": 1, "lift_vs_flat": 0.08686548024030671, "actual_mean": 1.2542792792792792}, {"stat": "QB rushing yards", "n": 4440, "mae": 11.480685489012677, "naive_mae": 11.67609769761562, "flat_mae": 14.381547095015904, "rmse": 16.39648361391465, "corr": 0.5854663738926024, "bias": -0.33054686022749247, "within_band": 0.7626126126126126, "band": 15, "lift_vs_flat": 0.20170720068138948, "actual_mean": 14.77972972972973}, {"stat": "Rushing yards", "n": 7327, "mae": 24.71491710615957, "naive_mae": 24.719386368500675, "flat_mae": 29.692081424225055, "rmse": 32.123047596540026, "corr": 0.5250975589491096, "bias": 0.6174340393768628, "within_band": 0.609799372185069, "band": 25, "lift_vs_flat": 0.16762598239423976, "actual_mean": 43.28360857103863}, {"stat": "Rushing TDs", "n": 7327, "mae": 0.44584642293820614, "naive_mae": 0.43003553725341764, "flat_mae": 0.4675941912761509, "rmse": 0.5817416324141427, "corr": 0.24218191452542157, "bias": -0.0024749986949313915, "within_band": 0.9456803603111779, "band": 1, "lift_vs_flat": 0.046509919805870714, "actual_mean": 0.3205950593694554}, {"stat": "Receiving yards", "n": 15709, "mae": 25.057014566191405, "naive_mae": 24.997690577623903, "flat_mae": 28.520129445364525, "rmse": 32.35083458282344, "corr": 0.4561965522209068, "bias": 0.39456978233474094, "within_band": 0.5900439238653001, "band": 25, "lift_vs_flat": 0.12142703930595211, "actual_mean": 41.216054491056084}, {"stat": "Receptions", "n": 15709, "mae": 1.702306593942061, "naive_mae": 1.7028098177039468, "flat_mae": 2.0223733564245765, "rmse": 2.172292787073005, "corr": 0.5197245668771193, "bias": 0.024627532087029905, "within_band": 0.6650327837545356, "band": 2, "lift_vs_flat": 0.15826294460700996, "actual_mean": 3.3759628238589343}], "baselines": [{"label": "Always pick the home team", "value": 0.5288409703504043, "kind": "baseline"}, {"label": "This model, on its own", "value": 0.6123989218328841, "kind": "model"}, {"label": "Model blended with the line", "value": 0.6598382749326146, "kind": "blend"}, {"label": "Always pick the Vegas favorite", "value": 0.6663072776280323, "kind": "market"}], "ab_test": [{"set": "base", "acc": 0.6097, "logloss": 0.6606, "brier": 0.2334, "mae": 10.642, "ats": 0.5044}, {"set": "+ QB", "acc": 0.6178, "logloss": 0.657, "brier": 0.2319, "mae": 10.542, "ats": 0.5221}, {"set": "+ QB + injuries", "acc": 0.6124, "logloss": 0.6563, "brier": 0.2316, "mae": 10.541, "ats": 0.5039}, {"set": "+ QB + weather", "acc": 0.6113, "logloss": 0.6604, "brier": 0.2335, "mae": 10.548, "ats": 0.521}], "mcnemar_qb": {"qb_only_right": 97, "base_only_right": 82, "chi2": 1.09, "p": 0.295, "changed": 179}}, "season": 2026, "week": 1, "live": null, "backtest": {"n_games": 1855, "model_su": 0.6124, "market_su": 0.6663, "blend_su": 0.6544, "always_home": 0.5288, "margin_mae": 10.54, "market_margin_mae": 9.81, "ats": 0.5039, "brier_model": 0.2316, "brier_market": 0.2104, "note": "base + QB + injury feature set"}}/*PAYLOAD_END*/;
+
+/* the daily refresh rewrites the payload above; everything below reads from it */
+(function stamp() {
+  const wk = DATA.week, sn = DATA.season;
+  if (wk && sn) {
+    document.getElementById("weekBadge").textContent = `Week ${wk} · ${sn}`;
+    document.getElementById("gamesTitle").textContent = `Week ${wk} predictions`;
+  }
+  if (DATA.generated) {
+    document.getElementById("updated").textContent = "Data refreshed " + DATA.generated;
+  }
+})();
+
+/* ---------------- tabs ---------------- */
+const tabs = [...document.querySelectorAll(".tab")];
+tabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute("aria-selected", String(on));
+      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+    });
+    window.scrollTo({ top: 0, behavior: "instant" });
+    if (tab.id === "tab-model") renderCharts();
+  });
+});
+
+/* ---------------- helpers ---------------- */
+const pct = v => Math.round(v * 100) + "%";
+const one = v => (v === null || v === undefined || Number.isNaN(v)) ? "—" : Number(v).toFixed(1);
+const signed = v => (v >= 0 ? "+" : "−") + Math.abs(v).toFixed(1);
+const chevron = '<svg class="chev" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3.5L10.5 8L6 12.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+// market spread as a conventional line for the home team: spread_line > 0 means home favored
+const homeLine = g => g.spread_line == null ? "—" : (g.spread_line > 0 ? "-" : "+") + Math.abs(g.spread_line);
+// how far the model sits from the market, in points, from the home team's side
+const edgeOf = g => g.margin_pred - g.spread_line;
+
+/* Conditions the model either uses (QB, injuries) or deliberately doesn't (weather —
+   it tested as noise for win probability, but a reader still wants to see the wind). */
+function contextStrip(g) {
+  const bits = [];
+  if (g.away_qb && g.home_qb) bits.push(`<b>QB</b> ${g.away_qb} vs. ${g.home_qb}`);
+  if (g.indoor) bits.push("<b>Indoors</b>");
+  else if (g.wind != null || g.temp != null) {
+    const w = [];
+    if (g.temp != null) w.push(`${Math.round(g.temp)}°F`);
+    if (g.wind != null) w.push(`${Math.round(g.wind)} mph wind`);
+    bits.push("<b>Conditions</b> " + w.join(", "));
+  }
+  const out = (g.away_out || 0) + (g.home_out || 0);
+  if (out > 0) bits.push(`<b>Ruled out</b> ${g.away_team} ${g.away_out || 0}, ${g.home_team} ${g.home_out || 0}`);
+  if (!bits.length) return "";
+  return `<div class="ctxstrip">${bits.map(b => `<span>${b}</span>`).join("")}</div>`;
+}
+
+function startersFor(team) {
+  const roster = DATA.players.filter(p => p.team === team);
+  const pick = (pos, key, n) => roster
+    .filter(p => p.position === pos && p[key] != null)
+    .sort((a, b) => b[key] - a[key])
+    .slice(0, n)
+    .map(p => ({ name: p.player_display_name, pos, val: p[key], key }));
+  return [
+    ...pick("QB", "passing_yards", 1),
+    ...pick("RB", "rushing_yards", 1),
+    ...pick("WR", "receiving_yards", 2),
+    ...pick("TE", "receiving_yards", 1),
+  ];
+}
+const STAT_UNIT = { passing_yards: "pass yds", rushing_yards: "rush yds", receiving_yards: "rec yds" };
+
+/* ---------------- games ---------------- */
+let gameSort = "kickoff";
+const gameList = document.getElementById("gameList");
+
+function sortedGames() {
+  const g = [...DATA.games];
+  if (gameSort === "confidence") return g.sort((a, b) => Math.max(b.p_blend, 1 - b.p_blend) - Math.max(a.p_blend, 1 - a.p_blend));
+  if (gameSort === "edge") return g.sort((a, b) => Math.abs(edgeOf(b)) - Math.abs(edgeOf(a)));
+  return g;
+}
+
+function renderGames() {
+  gameList.innerHTML = "";
+  sortedGames().forEach((g, i) => {
+    const homeFav = g.p_blend >= 0.5;
+    const favPct = Math.max(g.p_blend, 1 - g.p_blend);
+    const favTeam = homeFav ? g.home_team : g.away_team;
+    const [dayName, mon, dayNum] = g.gameday.split(" ");
+
+    const row = document.createElement("button");
+    row.className = "row";
+    row.setAttribute("aria-expanded", "false");
+    row.innerHTML = `
+      <span class="kick">
+        <span class="day">${dayName}</span><br>
+        <span class="date">${mon} ${dayNum}</span>
+      </span>
+      <span class="matchup">
+        <span class="teams">
+          <span class="code ${homeFav ? "" : "fav"}">${g.away_team}</span>
+          <span class="vs">at</span>
+          <span class="code ${homeFav ? "fav" : ""}">${g.home_team}</span>
+        </span>
+        <span class="probline">
+          <span class="bar"><i style="width:${(favPct * 100).toFixed(1)}%"></i></span>
+          <span class="probtext">${favTeam} ${pct(favPct)}</span>
+        </span>
+      </span>
+      <span class="rowend">
+        <span class="score">${one(g.predicted_away_score)} &ndash; ${one(g.predicted_home_score)}</span>
+        <span class="meta">${g.home_team} ${homeLine(g)} &middot; O/U ${g.total_line}</span>
+      </span>
+      ${chevron}
+    `;
+
+    const detail = document.createElement("div");
+    detail.className = "detail";
+    detail.hidden = true;
+    const edge = edgeOf(g);
+    const edgeTeam = edge >= 0 ? g.home_team : g.away_team;
+    const flat = Math.abs(edge) < 0.5;
+    const edgeValue = flat ? "None" : `${edgeTeam} +${Math.abs(edge).toFixed(1)}`;
+    const edgeText = flat
+      ? "The model and the market agree"
+      : `The model likes ${edgeTeam} by ${Math.abs(edge).toFixed(1)} points more than the closing line does`;
+
+    const away = startersFor(g.away_team), home = startersFor(g.home_team);
+    const miniList = arr => arr.map(p =>
+      `<span class="mini"><span class="who">${p.name}<small>${p.pos}</small></span>
+        <span class="stat">${one(p.val)} <span style="color:var(--ink-4);font-weight:600">${STAT_UNIT[p.key]}</span></span></span>`
+    ).join("");
+
+    detail.innerHTML = `
+      <div class="detail-grid">
+        <div class="fact">
+          <div class="k">Win probability</div>
+          <div class="v num">${pct(g.p_blend)} <span style="font-size:13px;font-weight:600;color:var(--ink-3)">${g.home_team}</span></div>
+          <div class="n">Model ${pct(g.p_model)}${g.p_market != null ? ' &middot; market ' + pct(g.p_market) : ''}</div>
+        </div>
+        <div class="fact">
+          <div class="k">Predicted margin</div>
+          <div class="v num">${signed(g.margin_pred)}</div>
+          <div class="n">Home side &middot; market has ${g.home_team} ${homeLine(g)}</div>
+        </div>
+        <div class="fact">
+          <div class="k">Model edge</div>
+          <div class="v num">${edgeValue}</div>
+          <div class="n">${edgeText}</div>
+        </div>
+      </div>
+      ${contextStrip(g)}
+      <div class="split">
+        <div class="split-col">
+          <h4>${g.away_team} projected starters</h4>
+          ${miniList(away) || '<span class="mini"><span class="who">No qualifying starters</span></span>'}
+        </div>
+        <div class="split-col">
+          <h4>${g.home_team} projected starters</h4>
+          ${miniList(home) || '<span class="mini"><span class="who">No qualifying starters</span></span>'}
+        </div>
+      </div>
+    `;
+
+    row.addEventListener("click", () => {
+      const open = !detail.hidden;
+      detail.hidden = open;
+      row.classList.toggle("is-open", !open);
+      row.setAttribute("aria-expanded", String(!open));
+    });
+
+    gameList.appendChild(row);
+    gameList.appendChild(detail);
+  });
+}
+
+document.getElementById("gameSort").addEventListener("click", e => {
+  const btn = e.target.closest(".seg");
+  if (!btn) return;
+  gameSort = btn.dataset.sort;
+  [...e.currentTarget.querySelectorAll(".seg")].forEach(b => b.setAttribute("aria-pressed", String(b === btn)));
+  renderGames();
+});
+renderGames();
+
+/* ---------------- players ---------------- */
+const POS_STATS = {
+  QB: [["passing_yards", "Pass yds"], ["passing_tds", "Pass TD"], ["qb_rushing_yards", "Rush yds"]],
+  RB: [["rushing_yards", "Rush yds"], ["rushing_tds", "Rush TD"], ["rb_receiving_yards", "Rec yds"]],
+  WR: [["receiving_yards", "Rec yds"], ["receptions", "Rec"], ["receiving_tds", "Rec TD"]],
+  TE: [["receiving_yards", "Rec yds"], ["receptions", "Rec"], ["receiving_tds", "Rec TD"]],
+};
+let curPos = "QB";
+let query = "";
+const playerList = document.getElementById("playerList");
+
+function renderPlayers() {
+  const cols = POS_STATS[curPos];
+  const q = query.trim().toLowerCase();
+  const rows = DATA.players
+    .filter(p => p.position === curPos)
+    .filter(p => !q || p.player_display_name.toLowerCase().includes(q) ||
+                 p.team.toLowerCase().includes(q) || p.opponent_team.toLowerCase().includes(q))
+    .sort((a, b) => (b[cols[0][0]] ?? -1) - (a[cols[0][0]] ?? -1));
+
+  if (!rows.length) {
+    playerList.innerHTML = `<div class="empty">No ${curPos}s match &ldquo;${query}&rdquo;.</div>`;
+    return;
+  }
+  playerList.innerHTML = rows.map(p => `
+    <div class="prow">
+      <div>
+        <div class="pname">${p.player_display_name}</div>
+        <div class="pmeta">${p.position} &middot; ${p.team} ${p.is_home ? "vs" : "at"} ${p.opponent_team}</div>
+      </div>
+      <div class="pstats">
+        ${cols.map(([key, label]) => `<div class="pstat"><div class="v num">${one(p[key])}</div><div class="k">${label}</div></div>`).join("")}
+      </div>
+    </div>
+  `).join("");
+}
+
+document.getElementById("posFilter").addEventListener("click", e => {
+  const btn = e.target.closest(".seg");
+  if (!btn) return;
+  curPos = btn.dataset.pos;
+  [...e.currentTarget.querySelectorAll(".seg")].forEach(b => b.setAttribute("aria-pressed", String(b === btn)));
+  renderPlayers();
+});
+document.getElementById("playerSearch").addEventListener("input", e => { query = e.target.value; renderPlayers(); });
+renderPlayers();
+
+/* ---------------- charts ---------------- */
+const NS = "http://www.w3.org/2000/svg";
+const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const el = (tag, attrs) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; };
+
+function lineChart(svgId, tipId, seasons, series, opts) {
+  const svg = document.getElementById(svgId), tip = document.getElementById(tipId);
+  const W = 440, H = 200, ML = 36, MR = 12, MT = 10, MB = 24;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  svg.innerHTML = "";
+  const pw = W - ML - MR, ph = H - MT - MB;
+  const x = i => ML + (i / (seasons.length - 1)) * pw;
+  const y = v => MT + ph - ((v - opts.yMin) / (opts.yMax - opts.yMin)) * ph;
+
+  for (let t = 0; t <= 3; t++) {
+    const v = opts.yMin + (t / 3) * (opts.yMax - opts.yMin), yy = y(v);
+    svg.appendChild(el("line", { class: "gridline", x1: ML, x2: W - MR, y1: yy, y2: yy }));
+    const lb = el("text", { x: ML - 6, y: yy + 3.5, "text-anchor": "end" });
+    lb.textContent = opts.fmt(v);
+    svg.appendChild(lb);
+  }
+  seasons.forEach((s, i) => {
+    const lb = el("text", { x: x(i), y: H - 7, "text-anchor": "middle" });
+    lb.textContent = "’" + String(s).slice(2);
+    svg.appendChild(lb);
+  });
+  series.forEach(s => {
+    let d = "";
+    s.values.forEach((v, i) => { d += (i ? "L" : "M") + x(i) + "," + y(v) + " "; });
+    svg.appendChild(el("path", { d, fill: "none", stroke: s.color, "stroke-width": 2, "stroke-linejoin": "round", "stroke-linecap": "round" }));
+    s.values.forEach((v, i) => {
+      const c = el("circle", { cx: x(i), cy: y(v), r: 3.2, fill: s.color, stroke: cssVar("--surface"), "stroke-width": 1.5 });
+      c.addEventListener("mouseenter", () => {
+        tip.style.opacity = 1; tip.style.left = x(i) / W * 100 + "%"; tip.style.top = y(v) / H * 100 + "%";
+        tip.textContent = `${s.name} ${seasons[i]}: ${opts.fmt(v)}`;
+      });
+      c.addEventListener("mouseleave", () => tip.style.opacity = 0);
+      svg.appendChild(c);
+    });
+  });
+}
+
+function barsH(svgId, tipId, data, opts = {}) {
+  const svg = document.getElementById(svgId), tip = document.getElementById(tipId);
+  const W = 440, rowH = opts.rowH || 24, ML = opts.ML || 122, MR = 42, MT = 4;
+  const H = MT * 2 + data.length * rowH;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  svg.innerHTML = "";
+  const pw = W - ML - MR;
+  // bars share one scale; a zero-based axis would waste the whole span on near-equal rates
+  const max = opts.max ?? Math.max(...data.map(d => d.value));
+  const min = opts.min ?? 0;
+  const ramp = [cssVar("--seq-a"), cssVar("--seq-b"), cssVar("--seq-c"), cssVar("--seq-d")];
+  data.forEach((d, i) => {
+    const yy = MT + i * rowH;
+    const frac = (d.value - min) / (max - min);
+    const bw = Math.max(2, frac * pw);
+    const shade = d.color || ramp[Math.min(3, Math.floor((d.value / max) * 4))];
+    const lb = el("text", { x: ML - 8, y: yy + rowH / 2 + 3.5, "text-anchor": "end" });
+    lb.textContent = d.label;
+    svg.appendChild(lb);
+    const r = el("rect", { x: ML, y: yy + 5, width: bw, height: rowH - 10, rx: 2, fill: shade });
+    r.addEventListener("mouseenter", () => {
+      tip.style.opacity = 1; tip.style.left = (ML + bw / 2) / W * 100 + "%"; tip.style.top = (yy + 4) / H * 100 + "%";
+      tip.textContent = `${d.label}: ${(d.value * 100).toFixed(1)}%`;
+    });
+    r.addEventListener("mouseleave", () => tip.style.opacity = 0);
+    svg.appendChild(r);
+    const val = el("text", { x: ML + bw + 6, y: yy + rowH / 2 + 3.5 });
+    val.textContent = (d.value * 100).toFixed(1) + "%";
+    svg.appendChild(val);
+  });
+}
+
+/* Dot plot. Used instead of bars wherever the values sit in a narrow band (here, 53-67%):
+   a bar's length encodes magnitude from zero, so truncating its axis to show small gaps
+   lies about the ratios. A dot encodes position only, so a truncated scale is honest. */
+function dotPlot(svgId, tipId, data, opts) {
+  const svg = document.getElementById(svgId), tip = document.getElementById(tipId);
+  const W = 440, rowH = 30, ML = 172, MR = 46, MT = 8, MB = 24;
+  const H = MT + MB + data.length * rowH;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  svg.innerHTML = "";
+  const pw = W - ML - MR;
+  const x = v => ML + ((v - opts.lo) / (opts.hi - opts.lo)) * pw;
+
+  opts.ticks.forEach(t => {
+    svg.appendChild(el("line", {
+      class: "gridline", x1: x(t), x2: x(t), y1: MT, y2: MT + data.length * rowH,
+    }));
+    const lb = el("text", { x: x(t), y: H - 8, "text-anchor": "middle" });
+    lb.textContent = Math.round(t * 100) + "%";
+    svg.appendChild(lb);
+  });
+  if (opts.ref != null) {
+    svg.appendChild(el("line", {
+      x1: x(opts.ref), x2: x(opts.ref), y1: MT, y2: MT + data.length * rowH,
+      stroke: cssVar("--ink-4"), "stroke-width": 1.2, "stroke-dasharray": "4 3",
+    }));
+  }
+
+  data.forEach((d, i) => {
+    const cy = MT + i * rowH + rowH / 2;
+    svg.appendChild(el("line", {
+      x1: ML, x2: W - MR, y1: cy, y2: cy, stroke: cssVar("--border"), "stroke-width": 1,
+    }));
+    const lb = el("text", { x: ML - 10, y: cy + 3.5, "text-anchor": "end" });
+    lb.textContent = d.label;
+    svg.appendChild(lb);
+    const c = el("circle", {
+      cx: x(d.value), cy, r: 6, fill: d.color,
+      stroke: cssVar("--surface"), "stroke-width": 2,
+    });
+    c.addEventListener("mouseenter", () => {
+      tip.style.opacity = 1; tip.style.left = x(d.value) / W * 100 + "%"; tip.style.top = (cy - 8) / H * 100 + "%";
+      tip.textContent = `${d.label}: ${(d.value * 100).toFixed(1)}%`;
+    });
+    c.addEventListener("mouseleave", () => tip.style.opacity = 0);
+    svg.appendChild(c);
+    const val = el("text", { x: W - MR + 8, y: cy + 3.5, "text-anchor": "start" });
+    val.textContent = (d.value * 100).toFixed(1) + "%";
+    svg.appendChild(val);
+  });
+}
+
+/* scatter with a 45° reference line, for calibration and predicted-vs-actual records */
+function scatterChart(svgId, tipId, pts, opts) {
+  const svg = document.getElementById(svgId), tip = document.getElementById(tipId);
+  const W = 440, H = 230, ML = 40, MR = 14, MT = 12, MB = 34;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  svg.innerHTML = "";
+  const pw = W - ML - MR, ph = H - MT - MB;
+  const { lo, hi } = opts;
+  const x = v => ML + ((v - lo) / (hi - lo)) * pw;
+  const y = v => MT + ph - ((v - lo) / (hi - lo)) * ph;
+
+  opts.ticks.forEach(t => {
+    svg.appendChild(el("line", { class: "gridline", x1: ML, x2: W - MR, y1: y(t), y2: y(t) }));
+    const yl = el("text", { x: ML - 6, y: y(t) + 3.5, "text-anchor": "end" });
+    yl.textContent = opts.fmt(t);
+    svg.appendChild(yl);
+    const xl = el("text", { x: x(t), y: H - 16, "text-anchor": "middle" });
+    xl.textContent = opts.fmt(t);
+    svg.appendChild(xl);
+  });
+  // perfect-agreement diagonal
+  svg.appendChild(el("line", {
+    x1: x(lo), y1: y(lo), x2: x(hi), y2: y(hi),
+    stroke: cssVar("--ink-4"), "stroke-width": 1.2, "stroke-dasharray": "4 3",
+  }));
+  const axl = el("text", { x: ML + pw / 2, y: H - 2, "text-anchor": "middle" });
+  axl.textContent = opts.xLabel;
+  svg.appendChild(axl);
+
+  pts.forEach(p => {
+    const c = el("circle", {
+      cx: x(p.x), cy: y(p.y), r: p.r || 3,
+      fill: p.color || cssVar("--series-1"),
+      "fill-opacity": p.opacity ?? 0.55,
+      stroke: p.stroke || "none", "stroke-width": 1.4,
+    });
+    c.addEventListener("mouseenter", () => {
+      tip.style.opacity = 1; tip.style.left = x(p.x) / W * 100 + "%"; tip.style.top = y(p.y) / H * 100 + "%";
+      tip.textContent = p.tip;
+    });
+    c.addEventListener("mouseleave", () => tip.style.opacity = 0);
+    svg.appendChild(c);
+  });
+}
+
+function groupedBars(svgId, tipId, groups, names, colors, fmt) {
+  const svg = document.getElementById(svgId), tip = document.getElementById(tipId);
+  const W = 440, H = 200, ML = 38, MR = 12, MT = 10, MB = 30;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  svg.innerHTML = "";
+  const pw = W - ML - MR, ph = H - MT - MB;
+  const max = Math.max(...groups.flatMap(g => g.values)) * 1.15;
+  const gw = pw / groups.length, bw = Math.min(18, gw / (names.length + 1.6));
+  const y = v => MT + ph - (v / max) * ph;
+  for (let t = 0; t <= 3; t++) {
+    const v = (t / 3) * max, yy = y(v);
+    svg.appendChild(el("line", { class: "gridline", x1: ML, x2: W - MR, y1: yy, y2: yy }));
+    const lb = el("text", { x: ML - 6, y: yy + 3.5, "text-anchor": "end" });
+    lb.textContent = fmt(v);
+    svg.appendChild(lb);
+  }
+  groups.forEach((g, gi) => {
+    const gx = ML + gi * gw + gw / 2;
+    g.values.forEach((v, si) => {
+      const bx = gx - (names.length * bw) / 2 + si * bw;
+      const r = el("rect", { x: bx, y: y(v), width: bw - 3, height: ph - (y(v) - MT), rx: 2, fill: colors[si] });
+      r.addEventListener("mouseenter", () => {
+        tip.style.opacity = 1; tip.style.left = (bx + bw / 2) / W * 100 + "%"; tip.style.top = y(v) / H * 100 + "%";
+        tip.textContent = `${g.label} — ${names[si]}: ${fmt(v)}`;
+      });
+      r.addEventListener("mouseleave", () => tip.style.opacity = 0);
+      svg.appendChild(r);
+    });
+    const lb = el("text", { x: gx, y: H - 10, "text-anchor": "middle" });
+    lb.textContent = g.label;
+    svg.appendChild(lb);
+  });
+}
+
+/* Populated by the daily refresh once this season has completed games. */
+function renderLive() {
+  const L = DATA.live, card = document.getElementById("liveCard");
+  if (!card) return;
+  if (!L || !L.n) { card.hidden = true; return; }
+  card.hidden = false;
+  document.getElementById("liveTitle").textContent = `${L.season} season, scored live`;
+  const beat = L.model_su >= L.market_su;
+  const rows = (L.games || []).slice().reverse().slice(0, 12);
+  document.getElementById("liveBody").innerHTML = `
+    <div class="twocol" style="margin-bottom:6px">
+      <div>
+        <div class="kv"><span class="kvk">Games completed and scored</span><span class="kvv">${L.n}</span></div>
+        <div class="kv"><span class="kvk">Model picked the winner</span><span class="kvv ${beat ? "good" : ""}">${(L.model_su * 100).toFixed(1)}%</span></div>
+        <div class="kv"><span class="kvk">Market picked the winner</span><span class="kvv">${(L.market_su * 100).toFixed(1)}%</span></div>
+      </div>
+      <div>
+        <div class="kv"><span class="kvk">Against the spread</span><span class="kvv">${L.ats == null ? "—" : (L.ats * 100).toFixed(1) + "%"}</span></div>
+        <div class="kv"><span class="kvk">Average margin miss</span><span class="kvv">${L.margin_mae.toFixed(1)} pts</span></div>
+        <div class="kv"><span class="kvk">Sample size caveat</span><span class="kvv">${L.n < 48 ? "Too small to read" : "Still early"}</span></div>
+      </div>
+    </div>
+    ${rows.length ? `<h4 style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-4);margin:14px 0 4px">Most recent</h4>
+    ${rows.map(g => `<div class="kv">
+        <span class="kvk">${g.away} at ${g.home}</span>
+        <span class="kvv ${g.correct ? "good" : "bad"}">${g.correct ? "✓" : "✗"}
+          <span style="color:var(--ink-3);font-weight:500">predicted ${g.pred_margin >= 0 ? "+" : ""}${g.pred_margin.toFixed(1)}, actual ${g.actual_margin >= 0 ? "+" : ""}${g.actual_margin.toFixed(0)}</span></span>
+      </div>`).join("")}` : ""}
+  `;
+}
+
+function renderCharts() {
+  renderLive();
+  const A = DATA.accuracy;
+
+  // --- how it stacks up against the obvious alternatives ---
+  const baseColor = { baseline: cssVar("--ink-4"), model: cssVar("--series-1"),
+                       blend: cssVar("--series-3"), market: cssVar("--series-2") };
+  const shortLabel = { baseline: "Always pick home", model: "This model alone",
+                        blend: "Model + market blend", market: "Always pick the favorite" };
+  dotPlot("baseChart", "baseTip",
+    A.baselines.map(b => ({ label: shortLabel[b.kind], value: b.value, color: baseColor[b.kind] })),
+    { lo: 0.50, hi: 0.70, ticks: [0.50, 0.55, 0.60, 0.65, 0.70], ref: 0.50 });
+
+  // --- calibration: claimed probability vs. what happened ---
+  scatterChart("calChart", "calTip", A.calibration.map(c => ({
+    x: c.predicted, y: c.actual,
+    r: 3 + Math.sqrt(c.n) / 5,
+    color: cssVar("--series-1"), opacity: 0.75,
+    tip: `Said ${Math.round(c.predicted * 100)}% → won ${Math.round(c.actual * 100)}% (${c.n} games)`,
+  })), {
+    lo: 0.2, hi: 0.9, ticks: [0.2, 0.4, 0.6, 0.8],
+    fmt: v => Math.round(v * 100) + "%",
+    xLabel: "predicted win probability  (actual rate on the vertical axis)",
+  });
+
+  // --- accuracy by confidence bucket ---
+  groupedBars("confChart", "confTip",
+    A.confidence.map(c => ({ label: c.bin.split(" (")[0], values: [c.model, c.market] })),
+    ["Model", "Market"], [cssVar("--series-1"), cssVar("--series-2")],
+    v => Math.round(v * 100) + "%");
+
+  // --- by season ---
+  const seasons = DATA.game_backtest_per_season.map(d => d.season);
+  lineChart("accChart", "accTip", seasons, [
+    { name: "Model", color: cssVar("--series-1"), values: DATA.game_backtest_per_season.map(d => d.model_acc) },
+    { name: "Market", color: cssVar("--series-2"), values: DATA.game_backtest_per_season.map(d => d.market_acc) },
+    { name: "Blended", color: cssVar("--series-3"), values: DATA.game_backtest_per_season.map(d => d.blend_acc) },
+  ], { fmt: v => Math.round(v * 100) + "%", yMin: 0.5, yMax: 0.78 });
+
+  // --- by point in the season ---
+  groupedBars("weekChart", "weekTip",
+    A.by_week.map(w => ({ label: w.bin.replace("Weeks ", ""), values: [w.model, w.market] })),
+    ["Model", "Market"], [cssVar("--series-1"), cssVar("--series-2")],
+    v => Math.round(v * 100) + "%");
+
+  // --- predicted vs actual team records ---
+  const misses = new Set(A.biggest_record_misses.map(m => `${m.season}-${m.team}`));
+  scatterChart("recChart", "recTip", A.team_record_scatter.map(t => {
+    const big = misses.has(`${t.season}-${t.team}`);
+    return {
+      x: t.exp, y: t.act, r: big ? 4.5 : 3,
+      color: big ? cssVar("--series-2") : cssVar("--series-1"),
+      opacity: big ? 0.95 : 0.4,
+      tip: `${t.team} ${t.season}: predicted ${t.exp.toFixed(1)} wins, actually ${t.act}`,
+    };
+  }), {
+    lo: 0, hi: 17, ticks: [0, 4, 8, 12, 16], fmt: v => String(v),
+    xLabel: "predicted wins  (actual wins on the vertical axis)",
+  });
+
+  // --- what the game model leans on ---
+  const label = { off_epa_diff: "Offense EPA", def_epa_diff: "Defense EPA", net_epa_edge_home: "Net EPA edge",
+    pass_epa_edge_home: "Pass matchup", rush_epa_edge_home: "Rush matchup", points_diff_rating: "Points rating",
+    rest_diff: "Rest days", div_game: "Division game",
+    qb_epa_diff: "QB passing form", qb_rush_diff: "QB rushing", qb_change_diff: "QB change",
+    inj_off_diff: "Offense injuries", inj_def_diff: "Defense injuries" };
+  barsH("featChart", "featTip", [...DATA.feature_importance]
+    .sort((a, b) => a.importance - b.importance)
+    .map(f => ({ label: label[f.feature] || f.feature, value: f.importance })));
+
+  // --- what each added factor bought ---
+  const ab = document.getElementById("abTable");
+  if (ab && A.ab_test) {
+    ab.innerHTML = `
+      <thead><tr><th>Feature set</th><th>Accuracy</th><th>Log loss</th><th>Brier</th><th>Margin</th><th>ATS</th></tr></thead>
+      <tbody>${A.ab_test.map(r => `
+        <tr>
+          <td>${r.set}</td>
+          <td>${(r.acc * 100).toFixed(1)}%</td>
+          <td class="muted">${r.logloss.toFixed(4)}</td>
+          <td class="muted">${r.brier.toFixed(4)}</td>
+          <td class="muted">${r.mae.toFixed(2)}</td>
+          <td>${(r.ats * 100).toFixed(1)}%</td>
+        </tr>`).join("")}
+      </tbody>`;
+  }
+
+  // --- player accuracy table ---
+  const t = document.getElementById("playerAccTable");
+  t.innerHTML = `
+    <thead><tr>
+      <th>Projection</th><th>Games</th><th>Actual avg.</th><th>Avg. miss</th>
+      <th>Correlation</th><th>Within band</th><th>Lift vs. average</th>
+    </tr></thead>
+    <tbody>${A.player_accuracy.map(p => `
+      <tr>
+        <td>${p.stat}</td>
+        <td class="muted">${p.n.toLocaleString()}</td>
+        <td class="muted">${p.actual_mean.toFixed(1)}</td>
+        <td>${p.mae.toFixed(p.mae < 5 ? 2 : 1)}</td>
+        <td>${p.corr.toFixed(2)}</td>
+        <td>${Math.round(p.within_band * 100)}% <span class="muted" style="font-weight:400">±${p.band}</span></td>
+        <td>${(p.lift_vs_flat * 100).toFixed(0)}%</td>
+      </tr>`).join("")}
+    </tbody>`;
+}
+renderCharts();
+</script>
+
+</body>
+</html>
