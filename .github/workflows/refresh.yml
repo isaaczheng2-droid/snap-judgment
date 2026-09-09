@@ -45,6 +45,22 @@ jobs:
               sys.exit("payload has no games — refusing to publish")
           print(f"{p['season']} week {p['week']}: {len(games)} games, "
                 f"{len(p.get('players', []))} players")
+          t = p.get("tracker") or {}
+          print("tracker seasons:", t.get("seasons"), "pending:", t.get("pending"))
+          PY
+
+      - name: Refuse to publish if the tracker's memory went missing
+        run: |
+          # An empty or vanished history.json means the locked predictions were lost, and a
+          # rebuilt one would silently re-lock today's odds as if they were last week's call.
+          test -s history.json
+          python - <<'PY'
+          import json, sys
+          h = json.load(open("history.json"))
+          n = len(h.get("games", {}))
+          if n < 100:
+              sys.exit(f"history.json only has {n} games — refusing to overwrite the record")
+          print(f"history ok: {n} games, {len(h.get('players', {}))} live player rows")
           PY
 
       - name: Splice the new data into the page
@@ -63,7 +79,9 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html payload.json
+          # history.json is the season tracker's memory — it MUST be committed or every run
+          # starts from an empty slate and no prediction is ever graded
+          git add index.html payload.json history.json
           if git diff --staged --quiet; then
             echo "No change — nothing to publish."
           else
