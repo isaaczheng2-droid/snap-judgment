@@ -11,15 +11,21 @@ import numpy as np, pandas as pd, xgboost as xgb
 from scipy import stats
 
 import run_pipeline as rp
+from adjusted_ratings import ADJ_FEATS, add_adjusted_cols, team_adjusted
 from elo import ELO_FEATS, add_elo_cols
 from scheme_features import team_scheme, add_scheme_cols, SCHEME_FEATS, DEF_FEATS, WEATHER_FEATS
 
 P = dict(max_depth=3, n_estimators=150, learning_rate=0.05, subsample=0.8,
          colsample_bytree=0.8, reg_lambda=2.0)
-OLD = rp.BASE_FEATS + rp.CTX_FEATS          # the shipped set before scheme was added
+RAW_EDGES = ["off_epa_diff", "def_epa_diff", "net_epa_edge_home",
+             "pass_epa_edge_home", "rush_epa_edge_home"]
+# the ladder is reconstructed from the RAW edges so the historical rows stay comparable to
+# what was published before opponent adjustment; only the shipped row uses the new ratings
+OLD = RAW_EDGES + ["points_diff_rating", "div_game", "rest_diff"] + rp.CTX_FEATS
 MID = OLD + SCHEME_FEATS
 NEW = MID + DEF_FEATS
-SHIPPED = NEW + ELO_FEATS       # what actually runs
+TRACK = NEW + ELO_FEATS         # the ladder step before opponent adjustment
+SHIPPED = rp.FEATS              # what actually runs: adjusted edges + everything above
 TIERS = [0.55, 0.60, 0.65, 0.70, 0.75, 0.80]
 
 
@@ -74,14 +80,16 @@ def main():
     df = rp.build_games(sched, ratings, ctx)
     scheme, _ = team_scheme(team, sched, cur, tw)
     df = add_scheme_cols(df, scheme)
+    df = add_adjusted_cols(df, team_adjusted(team, sched, cur, tw))
     df = add_elo_cols(df)
 
-    allf = sorted(set(SHIPPED + NEW + MID + OLD + WEATHER_FEATS))
+    allf = sorted(set(SHIPPED + TRACK + NEW + MID + OLD + WEATHER_FEATS))
     d = df.dropna(subset=["home_win", "home_margin"] + allf)
     tests = list(range(2019, int(cur)))
 
     p, m, y, mk, sp, am, sn, te = walk(d, SHIPPED, tests, keep=True)
     pd_, md_, *_ = walk(d, NEW, tests)          # the set before Elo was added
+    pt_, mt_, *_ = walk(d, TRACK, tests)        # Elo added, ratings still unadjusted
     pb, mb, *_ = walk(d, OLD, tests)
     pw_, mw_, *_ = walk(d, OLD + WEATHER_FEATS, tests)
     pm_, mm_, *_ = walk(d, MID, tests)
@@ -89,7 +97,7 @@ def main():
     wk = te.week.values
 
     n = len(y)
-    blend = np.where(~np.isnan(mk), 0.4 * p + 0.6 * mk, p)
+    blend = np.where(~np.isnan(mk), rp.BLEND_W * p + (1 - rp.BLEND_W) * mk, p)
     hit = (p > 0.5).astype(int) == y
     bhit = (blend > 0.5).astype(int) == y
     mhit = (mk > 0.5).astype(int) == y
@@ -150,7 +158,11 @@ def main():
              "logloss": round(ll(pd_), 4), "brier": round(brier(pd_), 4),
              "mae": round(float(np.abs(md_ - am).mean()), 3),
              "ats": round(float((((md_ > sp).astype(int) == cov)[ok]).mean()), 4)},
-            {"set": "+ track record (shipped)", "acc": round(float(hit.mean()), 4),
+            {"set": "+ track record", "acc": float(np.round(((pt_ > 0.5).astype(int) == y).mean(), 4)),
+             "logloss": round(ll(pt_), 4), "brier": round(brier(pt_), 4),
+             "mae": round(float(np.abs(mt_ - am).mean()), 3),
+             "ats": round(float((((mt_ > sp).astype(int) == cov)[ok]).mean()), 4)},
+            {"set": "+ opponent-adjusted ratings (shipped)", "acc": round(float(hit.mean()), 4),
              "logloss": round(ll(p), 4), "brier": round(brier(p), 4),
              "mae": round(float(np.abs(m - am).mean()), 3), "ats": round(float(ats_hit.mean()), 4)},
             # measured by test_pbp.py on these exact folds and this exact protocol; kept

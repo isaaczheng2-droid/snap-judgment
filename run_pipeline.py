@@ -22,6 +22,7 @@ import pandas as pd
 import elo
 import explain
 import tracker
+from adjusted_ratings import ADJ_FEATS, add_adjusted_cols, team_adjusted
 from elo import ELO_FEATS, add_elo_cols
 from scheme_features import (SCHEME, SCHEME_FEATS, DEF_FEATS, add_scheme_cols,
                              team_scheme, _per_game as sf_per_game)
@@ -33,8 +34,14 @@ EW_SPAN, K = 6, 3.0          # in-season smoothing span; shrinkage speed toward 
 
 METRICS = ["g_off_epa_pp", "g_def_epa_pp_allowed", "g_off_pass_epa_pp", "g_off_rush_epa_pp",
            "g_def_pass_epa_pp_allowed", "g_def_rush_epa_pp_allowed", "points_scored", "points_allowed"]
-BASE_FEATS = ["off_epa_diff", "def_epa_diff", "net_epa_edge_home", "pass_epa_edge_home",
-              "rush_epa_edge_home", "points_diff_rating", "div_game", "rest_diff"]
+# The five EPA edges here are OPPONENT-ADJUSTED (adjusted_ratings.py), not raw exponentially
+# weighted averages. The raw versions are still computed — the quality table and the
+# explanations quote them — but the model does not see them. Swapping rather than adding
+# keeps the feature count at 24 and beat the raw version on every probability measure:
+# Brier 0.2271 -> 0.2259, log loss 0.6486 -> 0.6461, margin MAE 10.32 -> 10.27, and blended
+# 66.90% -> 67.01%. Adding both instead was better on picks alone but worse on Brier, worse
+# blended, and cost five more features on 2,300 games.
+BASE_FEATS = ADJ_FEATS + ["points_diff_rating", "div_game", "rest_diff"]
 CTX_FEATS = ["qb_epa_diff", "qb_rush_diff", "qb_change_diff", "inj_off_diff", "inj_def_diff"]
 # Positional value for the injury features. QB is zero deliberately — see context_features.
 POS_WEIGHT = {"T": 1.35, "DE": 1.30, "CB": 1.25, "WR": 1.20, "DT": 1.00, "G": 0.85, "C": 0.85,
@@ -105,9 +112,31 @@ def read_many(pattern, seasons, d):
 def load_all(d, seasons):
     log("downloading schedules")
     sched_path = f"{d}/games.csv"
-    if os.path.exists(sched_path):
-        os.remove(sched_path)                     # always refresh: lines, weather, QBs move daily
-    subprocess.run(["curl", "-sSL", "--max-time", "90", "-o", sched_path, SCHEDULES], check=True)
+    # Download to a scratch path and only replace the good copy once the new one has been
+    # proved readable. The old code deleted the existing file FIRST and then fetched, so a
+    # single unreachable host destroyed the pipeline's own input and the run died with a
+    # curl error instead of carrying on with yesterday's schedule. Lines and weather move
+    # daily, so a fresh copy is still strongly preferred — but stale beats absent.
+    tmp = sched_path + ".new"
+    r = subprocess.run(["curl", "-sSL", "--max-time", "90", "-o", tmp, SCHEDULES],
+                       capture_output=True)
+    fresh = False
+    if r.returncode == 0 and os.path.exists(tmp) and os.path.getsize(tmp) > 100_000:
+        try:
+            pd.read_csv(tmp, low_memory=False, nrows=5)
+            os.replace(tmp, sched_path)
+            fresh = True
+        except Exception as e:
+            log(f"  downloaded schedule was unreadable ({e}); keeping the existing copy")
+    if os.path.exists(tmp):
+        os.remove(tmp)
+    if not fresh:
+        if not os.path.exists(sched_path):
+            raise SystemExit("no schedule available: the download failed and there is no "
+                             "local copy to fall back on")
+        age = (datetime.now(timezone.utc).timestamp() - os.path.getmtime(sched_path)) / 3600
+        log(f"  schedule download failed — using the local copy, {age:.0f}h old")
+
     sched = pd.read_csv(sched_path, low_memory=False)
     sched["gameday"] = pd.to_datetime(sched["gameday"])
 
@@ -273,6 +302,23 @@ def player_form(plyr, sched, ratings):
     od = ratings[["game_id", "team"] + dcols].rename(
         columns={"team": "opponent_team", **{c: f"opp_{c}" for c in dcols}})
     pw = pw.merge(od, on=["game_id", "opponent_team"], how="left")
+
+    # Share of the team's targets and carries, from PRIOR games only. Without these the
+    # projection is built entirely on what a player did, with no way to know his role
+    # changed — and measured against a rolling average of his own recent games the model
+    # was WORSE on four of nine stats. Adding usage took the weighted error from 13.04 to
+    # 12.71 against a 12.98 baseline. See test_props.py.
+    for col, out in [("targets", "tgt_share"), ("carries", "car_share")]:
+        if col not in pw.columns:
+            pw[out] = 0.0
+            continue
+        tm = pw.groupby(["team", "season", "week"])[col].transform("sum")
+        pw["_sh"] = (pw[col] / tm.replace(0, np.nan)).fillna(0)
+        pw[out] = (pw.sort_values(["player_id", "season", "week"])
+                   .groupby(["player_id", "season"])["_sh"]
+                   .transform(lambda x: x.shift(1).expanding().mean()))
+        pw[out] = pw[out].fillna(0)
+    pw = pw.drop(columns=["_sh"], errors="ignore")
     return pw
 
 
@@ -469,6 +515,18 @@ XGB_PARAMS = dict(max_depth=3, n_estimators=150, learning_rate=0.05, subsample=0
 # ten seconds. Every published figure is the ensemble, so nothing here depends on a lucky draw.
 N_SEEDS = 8
 
+# How much of the published number is the model, and how much is the closing line.
+# The old value was 0.4 and had never been checked. Swept over the whole 2019-2025 audit:
+# straight-up pick rate peaks at 0.20 (67.12% against 66.90% at 0.40), and Brier and log
+# loss both improve as well (0.2124 -> 0.2107, 0.6133 -> 0.6091). Fitting the weight
+# walk-forward, so it never saw the season it was scoring, chose 0.15 in each of the last
+# three seasons, which is the same region.
+#
+# Said plainly, because it is the most honest number on the site: log loss alone is
+# minimised at w = 0.05, i.e. very nearly "ignore the model". The model buys about half a
+# point of pick rate over the bare market and buys nothing at all in probability quality.
+BLEND_W = 0.20
+
 
 def _fit_ensemble(X, y_cls, y_reg):
     import xgboost as xgb
@@ -500,7 +558,8 @@ def fit_predict(df, cur, target_week):
     up = df[(df.season == cur) & (df.week == target_week)].dropna(subset=FEATS).copy()
     up["p_model"], _margin_ens = _ens_predict(pairs, up[FEATS])
     up["p_market"] = up.market_home_wp
-    up["p_blend"] = np.where(up.p_market.notna(), 0.4 * up.p_model + 0.6 * up.p_market, up.p_model)
+    up["p_blend"] = np.where(up.p_market.notna(),
+                             BLEND_W * up.p_model + (1 - BLEND_W) * up.p_market, up.p_model)
     up["margin_pred"] = _margin_ens
     tot = up.total_line.fillna(45.0)
     up["predicted_home_score"] = (tot + up.margin_pred) / 2
@@ -525,7 +584,7 @@ def fit_predict(df, cur, target_week):
     up["p_model_healthy"], up["margin_healthy"] = _ens_predict(pairs, healthy)
     # the published number blends with the market, so the shift a reader sees must too
     up["p_blend_healthy"] = np.where(up.p_market.notna(),
-                                     0.4 * up.p_model_healthy + 0.6 * up.p_market,
+                                     BLEND_W * up.p_model_healthy + (1 - BLEND_W) * up.p_market,
                                      up.p_model_healthy)
 
     imp = pd.Series(np.mean([c.feature_importances_ for c, _ in pairs], axis=0),
@@ -570,6 +629,9 @@ PTARGETS = {
     "receiving_tds": dict(stat="receiving_tds", pos=["WR", "TE"], vol="proj_targets", mn=3, opp="pass"),
 }
 OPPCOL = {"pass": "opp_rating_g_def_pass_epa_pp_allowed", "rush": "opp_rating_g_def_rush_epa_pp_allowed"}
+# collapsed into one reported "usage" term in the explanation: three near-collinear shares
+# are not three readable pieces
+USAGE = ["tgt_share", "car_share"]
 
 
 def player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_map=None,
@@ -601,15 +663,15 @@ def player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_ma
     for out_col, cfg in PTARGETS.items():
         oc = OPPCOL[cfg["opp"]]
         pc = f"proj_{cfg['stat']}"
-        sub = pw[pw.position.isin(cfg["pos"])].dropna(subset=[cfg["stat"], pc, oc, "is_home"])
+        sub = pw[pw.position.isin(cfg["pos"])].dropna(subset=[cfg["stat"], pc, oc, "is_home"] + USAGE)
         sub = sub[sub[cfg["vol"]] >= cfg["mn"]]
         if len(sub) < 200:
             continue
-        f = [pc, oc, "is_home"]
+        f = [pc, oc, "is_home"] + USAGE
         model = Ridge(alpha=5.0).fit(sub[f], sub[cfg["stat"]])
 
         cand = active[active.position.isin(cfg["pos"])].merge(
-            latest[["player_id", pc, cfg["vol"]]], on="player_id", how="inner")
+            latest[["player_id", pc, cfg["vol"]] + USAGE], on="player_id", how="inner")
         cand = cand[(cand[cfg["vol"]] >= cfg["mn"]) & (cand.team.isin(opp))]
         if not len(cand):
             continue
@@ -624,6 +686,7 @@ def player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_ma
         drank = wk_def[oc].rank(method="min").astype(int).to_dict()
         n_teams = int(wk_def[oc].notna().sum())
         fmean, omean = float(sub[pc].mean()), float(sub[oc].mean())
+        umean = [float(sub[u].mean()) for u in USAGE]
 
         for _, r in cand.iterrows():
             rows.append({"player_id": r.player_id, "player_display_name": r.player_display_name,
@@ -632,7 +695,8 @@ def player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_ma
                           "headshot": r.headshot_url if isinstance(r.headshot_url, str) else None})
             why[(r.player_id, out_col)] = explain.player_reason(
                 float(r.val), model.coef_, model.intercept_, float(r[pc]), float(r[oc]), int(r.is_home),
-                fmean, omean, drank.get(r.opponent_team, n_teams // 2), n_teams)
+                fmean, omean, drank.get(r.opponent_team, n_teams // 2), n_teams,
+                usage=[float(r[u]) for u in USAGE], usage_mean=umean)
     if not rows:
         return []
     rdf = pd.DataFrame(rows)
@@ -806,6 +870,7 @@ def main():
     df = build_games(sched, ratings, ctx)
     scheme, sch_lg = team_scheme(team, sched, cur, target_week)
     df = add_scheme_cols(df, scheme)
+    df = add_adjusted_cols(df, team_adjusted(team, sched, cur, target_week))
     df = add_elo_cols(df)
     up, imp, live, contribs = fit_predict(df, cur, target_week)
     inj_map, inj_teams, inj_week = injury_status(inj, cur, target_week)

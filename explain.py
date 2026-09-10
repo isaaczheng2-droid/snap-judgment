@@ -17,11 +17,13 @@ import pandas as pd
 
 # label, and how to describe the underlying numbers for one game
 FEATURE_INFO = {
-    "net_epa_edge_home": "Overall efficiency",
-    "off_epa_diff": "Offensive efficiency",
-    "def_epa_diff": "Defensive efficiency",
-    "pass_epa_edge_home": "Passing matchup",
-    "rush_epa_edge_home": "Running matchup",
+    # the model now sees opponent-adjusted versions of these five; the labels stay the same
+    # because the reader does not care which estimator produced the number
+    "adj_net_edge_home": "Overall efficiency",
+    "adj_off_diff": "Offensive efficiency",
+    "adj_def_diff": "Defensive efficiency",
+    "adj_pass_edge_home": "Passing matchup",
+    "adj_rush_edge_home": "Running matchup",
     "points_diff_rating": "Scoring margin",
     "div_game": "Division game",
     "rest_diff": "Rest",
@@ -36,6 +38,12 @@ FEATURE_INFO = {
     "press_edge_home": "Pass rush vs protection",
     "prot_edge_home": "Pass protection",
     "takeaway_diff": "Takeaways",
+    "havoc_diff": "Disruption",
+    "int_rate_diff": "Interceptions forced",
+    # a "funnel" defence is softer against one phase than the other; the fit is whether the
+    # offense across from it happens to lean the way that defence gives up
+    "funnel_fit_home": "Scheme fit",
+    "funnel_fit_away": "Scheme fit",
     # deliberately not called "Elo": nobody outside the hobby knows the word, and what it
     # measures in plain language is a season-long record of who has beaten whom
     "elo_logit": "Track record",
@@ -54,17 +62,23 @@ def detail_for(feat, r, H, A):
     """A short factual gloss on the two teams' underlying numbers for this feature."""
     f = lambda c: _g(r, c)
     try:
-        if feat == "off_epa_diff":
-            return f"{H} offense {f('home_rating_g_off_epa_pp'):+.3f} EPA/play, {A} {f('away_rating_g_off_epa_pp'):+.3f}"
-        if feat == "def_epa_diff":
-            return f"{H} defense allows {f('home_rating_g_def_epa_pp_allowed'):+.3f} EPA/play, {A} {f('away_rating_g_def_epa_pp_allowed'):+.3f}"
-        if feat == "net_epa_edge_home":
-            v = f("net_epa_edge_home")
-            return f"{abs(v):.3f} EPA/play net edge to {H if v > 0 else A}"
-        if feat == "pass_epa_edge_home":
-            return f"{H} passing game vs {A} pass defense nets {f('pass_epa_edge_home'):+.3f} EPA/play"
-        if feat == "rush_epa_edge_home":
-            return f"{H} run game vs {A} run defense nets {f('rush_epa_edge_home'):+.3f} EPA/play"
+        # "adjusted for opponent" is said out loud because it is the whole point of these
+        # numbers and it is what separates them from a raw season average anyone can look up
+        if feat == "adj_off_diff":
+            return (f"adjusted for opponent, {H} offense {f('home_adj_off_epa'):+.3f} EPA/play, "
+                    f"{A} {f('away_adj_off_epa'):+.3f}")
+        if feat == "adj_def_diff":
+            return (f"adjusted for opponent, {H} defense {f('home_adj_def_epa'):+.3f} EPA/play "
+                    f"suppressed, {A} {f('away_adj_def_epa'):+.3f}")
+        if feat == "adj_net_edge_home":
+            v = f("adj_net_edge_home")
+            return f"{abs(v):.3f} EPA/play net edge to {H if v > 0 else A}, adjusted for opponent"
+        if feat == "adj_pass_edge_home":
+            return (f"{H} passing game vs {A} pass defense nets {f('adj_pass_edge_home'):+.3f} "
+                    f"EPA/play, adjusted for opponent")
+        if feat == "adj_rush_edge_home":
+            return (f"{H} run game vs {A} run defense nets {f('adj_rush_edge_home'):+.3f} "
+                    f"EPA/play, adjusted for opponent")
         if feat == "points_diff_rating":
             return (f"{H} {f('home_rating_points_scored') - f('home_rating_points_allowed'):+.1f} pts/gm, "
                     f"{A} {f('away_rating_points_scored') - f('away_rating_points_allowed'):+.1f}")
@@ -105,6 +119,16 @@ def detail_for(feat, r, H, A):
             return f"{H} sacked on {f('home_sch_sack_rate'):.1%} of dropbacks, {A} {f('away_sch_sack_rate'):.1%}"
         if feat == "takeaway_diff":
             return f"{H} {f('home_sch_takeaway'):.1f} takeaways/gm, {A} {f('away_sch_takeaway'):.1f}"
+        if feat == "havoc_diff":
+            return (f"{H} disrupts {f('home_sch_havoc'):.1%} of plays (tackles for loss, passes "
+                    f"defended, forced fumbles), {A} {f('away_sch_havoc'):.1%}")
+        if feat == "int_rate_diff":
+            return f"{H} intercepts {f('home_sch_int_rate'):.1%} of dropbacks, {A} {f('away_sch_int_rate'):.1%}"
+        if feat in ("funnel_fit_home", "funnel_fit_away"):
+            d, o = ((A, H) if feat == "funnel_fit_home" else (H, A))
+            fn = f("away_sch_funnel") if feat == "funnel_fit_home" else f("home_sch_funnel")
+            soft = "the run" if fn > 0 else "the pass"
+            return f"{d} gives up more through {soft}, and {o} leans that way"
     except Exception:
         pass
     return ""
@@ -208,13 +232,24 @@ STAT_WORD = {
 
 
 def player_reason(val, coef, intercept, form, opp_def, is_home, form_mean, opp_mean,
-                  opp_rank, n_teams):
+                  opp_rank, n_teams, usage=None, usage_mean=None):
     """
-    Exact decomposition of a 3-term ridge: value = intercept + b0*form + b1*oppdef + b2*home.
-    Reported as movements away from a league-average context, so the pieces are readable and
-    base + form + matchup + venue adds back up to the projection.
+    Exact decomposition of the ridge, reported as movements away from a league-average
+    context so the pieces are readable and base + form + usage + matchup + venue adds back
+    up to the projection.
 
-    Only the numbers travel. The sentence is assembled in the page from these five fields,
+    The model used to be three terms (form, opponent, venue) and was, measured honestly,
+    WORSE than a rolling average of the player's own recent games on four of nine stats.
+    The missing ingredient was volume: a projection built from last year's yards cannot know
+    a receiver's role changed, but snap share and target share can. Adding them took the
+    weighted error from 13.04 to 12.71 against a 12.98 baseline — from losing to that
+    baseline to beating it.
+
+    `usage` is the block of usage coefficients and values (snap share, target share, carry
+    share) collapsed into ONE reported number, because three separate near-collinear shares
+    are not four readable pieces, they are noise with labels on.
+
+    Only the numbers travel. The sentence is assembled in the page from these fields,
     because shipping the prose for every player and every stat cost 150 KB of payload to say
     what the numbers already say.
     """
@@ -222,12 +257,16 @@ def player_reason(val, coef, intercept, form, opp_def, is_home, form_mean, opp_m
     fo = round(b0 * (form - form_mean), 1)
     mu = round(b1 * (opp_def - opp_mean), 1)
     ve = round(b2 * (is_home - 0.5), 1)
-    # The panel shows these four next to the projection and invites the reader to add them up,
-    # so they have to actually add up. Rounding each independently leaves up to 0.2 of drift;
-    # the residual is absorbed into the baseline, the least interesting of the four.
+    us = 0.0
+    if usage is not None and usage_mean is not None and len(coef) > 3:
+        us = round(float(sum(float(coef[3 + i]) * (usage[i] - usage_mean[i])
+                             for i in range(len(usage)))), 1)
+    # The panel shows these next to the projection and invites the reader to add them up, so
+    # they have to actually add up. Rounding each independently leaves drift; the residual is
+    # absorbed into the baseline, the least interesting of them.
     return {
-        "base": round(round(val, 1) - fo - mu - ve, 1),
-        "form": fo, "matchup": mu, "venue": ve,
+        "base": round(round(val, 1) - fo - mu - ve - us, 1),
+        "form": fo, "usage": us, "matchup": mu, "venue": ve,
         "opp_rank": int(opp_rank), "n_teams": int(n_teams),
     }
 
