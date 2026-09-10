@@ -236,6 +236,20 @@ def scheme_label(pk_pass, pk_adot, pk_pace):
     return ", ".join(x for x in [a, b, c] if x)
 
 
+def defense_label(pk_pressure, pk_havoc, pk_funnel):
+    """
+    The defensive counterpart. `funnel` percentile high = softer against the run than the
+    pass, which is what a play-caller sees as "run on them"; low = the reverse.
+    """
+    # 0.70 / 0.30 rather than a rounder 0.75 / 0.25: with 32 teams the percentiles land on
+    # multiples of 1/32, and 23/32 = 0.71875 is a top-quarter team that a 0.72 cutoff misses
+    a = ("blitz-heavy" if pk_pressure >= 0.70 else "passive rush" if pk_pressure <= 0.30 else None)
+    b = ("disruptive" if pk_havoc >= 0.70 else "bend-don't-break" if pk_havoc <= 0.30 else None)
+    c = ("run funnel" if pk_funnel >= 0.70 else "pass funnel" if pk_funnel <= 0.30 else None)
+    parts = [x for x in [a, b, c] if x]
+    return ", ".join(parts) if parts else "balanced"
+
+
 def style_clash(H, A, hm, am):
     """One sentence on how the two identities meet. Only speaks when a gap is real."""
     out = []
@@ -249,6 +263,17 @@ def style_clash(H, A, hm, am):
     if abs(hm["pk_pace"] - am["pk_pace"]) >= 0.55:
         f_, s_ = (H, A) if hm["pk_pace"] > am["pk_pace"] else (A, H)
         out.append(f"{f_} plays notably faster than {s_}")
+    # an offense's lean meeting the other defense's soft side, or its strong side
+    for off, deff, on, dn in [(hm, am, H, A), (am, hm, A, H)]:
+        if off["pk_pass_rate"] >= 0.70 and deff["pk_funnel"] <= 0.28:
+            out.append(f"{on} throws a lot into a {dn} defense that has been tougher against "
+                       f"the pass than the run")
+        elif off["pk_pass_rate"] >= 0.70 and deff["pk_funnel"] >= 0.72:
+            out.append(f"{on} throws a lot against a {dn} defense that has been softer "
+                       f"against the pass than the run")
+        elif off["pk_pass_rate"] <= 0.30 and deff["pk_funnel"] >= 0.72:
+            out.append(f"{on} leans on the run into a {dn} defense that has been softer "
+                       f"against the pass — the ground game meets its stronger side")
     return ("; ".join(out) + ".") if out else ""
 
 

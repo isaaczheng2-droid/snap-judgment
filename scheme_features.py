@@ -19,7 +19,17 @@ The metrics are chosen to describe how a staff plays, not how well:
 import numpy as np
 import pandas as pd
 
-SCHEME = ["pass_rate", "adot", "pace", "yac_share", "sack_rate", "pressure", "takeaway"]
+OFF_SCHEME = ["pass_rate", "adot", "pace", "yac_share", "sack_rate"]
+# Defensive identity. Only `pressure` and `takeaway` existed before; the rest describe HOW a
+# defense plays rather than how well, which the EPA-allowed ratings already cover:
+#   havoc        TFL + passes defended + forced fumbles, per play faced  -- disruption
+#   int_rate     interceptions per dropback faced                       -- ball-hawking
+#   funnel       rush EPA allowed minus pass EPA allowed, per play       -- positive = softer
+#                against the run than the pass, i.e. offenses should run on them
+#   opp_pass_rate  how often opponents actually throw against them      -- the funnel as
+#                observed, which is what a play-caller responds to
+DEF_SCHEME = ["pressure", "takeaway", "havoc", "int_rate", "funnel", "opp_pass_rate"]
+SCHEME = OFF_SCHEME + DEF_SCHEME
 EW_SPAN, K = 8, 4.0     # longer span / slower shrink than the EPA ratings: style moves less than form
 
 
@@ -27,8 +37,9 @@ def _per_game(team, sched):
     """One row per team-game with the raw style rates for that single game."""
     tw = team[team.season_type == "REG"].copy()
     for c in ["attempts", "sacks_suffered", "carries", "passing_air_yards", "passing_yards",
-              "passing_yards_after_catch", "def_sacks", "def_qb_hits", "def_interceptions",
-              "fumble_recovery_opp"]:
+              "passing_yards_after_catch", "passing_epa", "rushing_epa",
+              "def_sacks", "def_qb_hits", "def_interceptions", "fumble_recovery_opp",
+              "def_tackles_for_loss", "def_pass_defended", "def_fumbles_forced"]:
         if c not in tw.columns:
             tw[c] = 0.0
         tw[c] = tw[c].fillna(0)
@@ -37,13 +48,17 @@ def _per_game(team, sched):
     tw["off_plays"] = tw.dropbacks + tw.carries
 
     o = tw[["season", "week", "team", "opponent_team", "game_id", "dropbacks", "off_plays",
-            "attempts", "sacks_suffered", "passing_air_yards", "passing_yards",
-            "passing_yards_after_catch", "def_sacks", "def_qb_hits", "def_interceptions",
-            "fumble_recovery_opp"]].copy()
+            "attempts", "carries", "sacks_suffered", "passing_air_yards", "passing_yards",
+            "passing_yards_after_catch", "passing_epa", "rushing_epa",
+            "def_sacks", "def_qb_hits", "def_interceptions", "fumble_recovery_opp",
+            "def_tackles_for_loss", "def_pass_defended", "def_fumbles_forced"]].copy()
 
-    # dropbacks faced comes from the opponent's own row
-    faced = o[["season", "week", "game_id", "team", "dropbacks"]].rename(
-        columns={"team": "opponent_team", "dropbacks": "db_faced"})
+    # everything a defense "allowed" or "faced" is on the opponent's offensive row
+    faced = o[["season", "week", "game_id", "team", "dropbacks", "off_plays", "carries",
+               "passing_epa", "rushing_epa"]].rename(columns={
+        "team": "opponent_team", "dropbacks": "db_faced", "off_plays": "plays_faced",
+        "carries": "rush_faced", "passing_epa": "pass_epa_allowed",
+        "rushing_epa": "rush_epa_allowed"})
     o = o.merge(faced, on=["season", "week", "game_id", "opponent_team"], how="left")
 
     o["pass_rate"] = o.dropbacks / o.off_plays.replace(0, np.nan)
@@ -51,8 +66,16 @@ def _per_game(team, sched):
     o["pace"] = o.off_plays
     o["yac_share"] = o.passing_yards_after_catch / o.passing_yards.replace(0, np.nan)
     o["sack_rate"] = o.sacks_suffered / o.dropbacks.replace(0, np.nan)
-    o["pressure"] = (o.def_sacks + o.def_qb_hits) / o.db_faced.replace(0, np.nan)
+
+    pf = o.plays_faced.replace(0, np.nan)
+    db = o.db_faced.replace(0, np.nan)
+    o["pressure"] = (o.def_sacks + o.def_qb_hits) / db
     o["takeaway"] = o.def_interceptions + o.fumble_recovery_opp
+    o["havoc"] = (o.def_tackles_for_loss + o.def_pass_defended + o.def_fumbles_forced) / pf
+    o["int_rate"] = o.def_interceptions / db
+    o["funnel"] = (o.rush_epa_allowed / o.rush_faced.replace(0, np.nan)
+                   - o.pass_epa_allowed / db)
+    o["opp_pass_rate"] = o.db_faced / pf
 
     gd = sched[["game_id", "gameday"]].drop_duplicates("game_id")
     return o.merge(gd, on="game_id", how="left")
@@ -120,6 +143,10 @@ def team_scheme(team, sched, cur, target_week):
 
 SCHEME_FEATS = ["pass_rate_diff", "adot_diff", "pace_diff",
                 "press_edge_home", "prot_edge_home", "takeaway_diff"]
+# candidate defensive-scheme features, tested separately before any ship
+DEF_FEATS = ["havoc_diff", "int_rate_diff",
+             "funnel_fit_home",          # home offense's pass-lean meets the away defense's funnel
+             "funnel_fit_away"]
 WEATHER_FEATS = ["wind_f", "temp_f", "is_indoor", "wind_x_pass"]
 
 
@@ -139,6 +166,13 @@ def add_scheme_cols(df, scheme):
                              - (df.away_sch_pressure - df.home_sch_sack_rate))
     df["prot_edge_home"] = df.away_sch_sack_rate - df.home_sch_sack_rate
     df["takeaway_diff"] = df.home_sch_takeaway - df.away_sch_takeaway
+    df["havoc_diff"] = df.home_sch_havoc - df.away_sch_havoc
+    df["int_rate_diff"] = df.home_sch_int_rate - df.away_sch_int_rate
+    # A pass-heavy offense meeting a defense that is soft against the pass (negative funnel)
+    # should score more; positive when the offense's lean lines up with the defense's soft side.
+    # pass lean is centred so a balanced offense contributes nothing either way.
+    df["funnel_fit_home"] = (df.home_sch_pass_rate - 0.58) * (-df.away_sch_funnel)
+    df["funnel_fit_away"] = (df.away_sch_pass_rate - 0.58) * (-df.home_sch_funnel)
     # wind should matter more to two pass-heavy teams than to two run-heavy ones
     df["wind_x_pass"] = df.wind_f * (df.home_sch_pass_rate + df.away_sch_pass_rate) / 2
     return df

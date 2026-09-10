@@ -29,7 +29,7 @@ STAT_SOURCE = {                     # projection key -> column in the weekly pla
     "receiving_yards": "receiving_yards", "receptions": "receptions",
     "receiving_tds": "receiving_tds",
 }
-SCHEME_TRACK = ["pass_rate", "adot", "pace", "sack_rate", "pressure"]
+SCHEME_TRACK = ["pass_rate", "adot", "pace", "sack_rate", "pressure", "havoc", "funnel"]
 
 
 def load(path):
@@ -74,6 +74,11 @@ def lock_week(h, up, players, scheme, cur, week, source="live"):
     for _, r in up.iterrows():
         gid_for[r.home_team] = str(r.game_id)
         gid_for[r.away_team] = str(r.game_id)
+
+    # a week whose player rows were already folded into the season aggregate must not be
+    # re-locked — the rows are gone but they have been counted
+    if int(week) in folded_weeks(h, cur):
+        players = []
 
     for p in players or []:
         gid = gid_for.get(p.get("team"))
@@ -212,21 +217,41 @@ def _fold(agg, p):
         agg["best"] = sorted(agg["best"] + [keep], key=lambda x: x["err"])[:6]
 
 
+def folded_weeks(h, season):
+    return set(h.get("rollups", {}).get(str(season), {}).get("weeks_folded", []))
+
+
 def prune_players(h, cur, keep_weeks=4):
-    """Fold graded player rows into per-season aggregates, keeping recent weeks in detail."""
+    """
+    Fold graded player rows into per-season aggregates, keeping recent weeks in detail.
+
+    Whole weeks only, and each folded week is recorded. A folded row loses its key, so
+    without that record a re-seed or a re-lock of the same week would add the rows again
+    and fold them again — every stat silently doubled. (It happened. Once.) A week with any
+    row still ungraded is left alone until the last game in it finishes.
+    """
     live_weeks = sorted({p["w"] for p in h["players"].values() if p["s"] == cur})
     cutoff = (live_weeks[-keep_weeks] if len(live_weeks) > keep_weeks else -1)
+
+    by_week = {}
+    for k, p in h["players"].items():
+        by_week.setdefault((p["s"], p["w"]), []).append(k)
+
     dropped = 0
-    for k in list(h["players"]):
-        p = h["players"][k]
-        if "act" not in p:
+    for (s, w), keys in by_week.items():
+        if s == cur and w >= cutoff:
             continue
-        if p["s"] == cur and p["w"] >= cutoff:
-            continue
-        agg = h["rollups"].setdefault(str(p["s"]), {}).setdefault("players", {})
-        _fold(agg.setdefault(p["st"], _blank()), p)
-        del h["players"][k]
-        dropped += 1
+        if any("act" not in h["players"][k] for k in keys):
+            continue                                   # week not fully graded yet
+        roll = h["rollups"].setdefault(str(s), {})
+        agg = roll.setdefault("players", {})
+        for k in keys:
+            _fold(agg.setdefault(h["players"][k]["st"], _blank()), h["players"][k])
+            del h["players"][k]
+            dropped += 1
+        fw = set(roll.get("weeks_folded", []))
+        fw.add(int(w))
+        roll["weeks_folded"] = sorted(fw)
     return dropped
 
 

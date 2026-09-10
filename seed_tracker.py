@@ -88,7 +88,10 @@ def main():
         model = Ridge(alpha=5.0).fit(fit[f], fit[cfg["stat"]])
         tgt = tgt.copy()
         tgt["proj"] = model.predict(tgt[f])
+        done_weeks = tracker.folded_weeks(h, season)
         for _, r in tgt.iterrows():
+            if int(r.week) in done_weeks:
+                continue                     # already folded into the season aggregate
             k = f"{r.game_id}|{r.player_id}|{out_col}"
             if k in h["players"]:
                 continue

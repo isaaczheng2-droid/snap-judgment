@@ -464,7 +464,8 @@ PTARGETS = {
 OPPCOL = {"pass": "opp_rating_g_def_pass_epa_pp_allowed", "rush": "opp_rating_g_def_rush_epa_pp_allowed"}
 
 
-def player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_map=None):
+def player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_map=None,
+                       opp_scheme=None):
     from sklearn.linear_model import Ridge
     up = sched[(sched.season == cur) & (sched.week == target_week) & (sched.game_type == "REG")]
     opp = {}
@@ -535,6 +536,7 @@ def player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_ma
     pdf["headshot"] = pdf.player_id.map(heads)
     recs = pdf.replace({np.nan: None}).to_dict(orient="records")
     inj_map = inj_map or {}
+    opp_scheme = opp_scheme or {}
     for rec in recs:
         pid = rec.pop("player_id")
         rec["player_key"] = pid          # the tracker locks projections against this id
@@ -542,6 +544,11 @@ def player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_ma
         st = inj_map.get(pid)
         if st:
             rec["status"] = st
+        # the opponent's defensive identity, for the matchup badge. Context only: tested as
+        # a prop feature and it moved nothing, which the site says
+        osc = opp_scheme.get(rec.get("opponent_team"))
+        if osc:
+            rec["opp_scheme"] = osc
     return recs
 
 
@@ -689,7 +696,12 @@ def main():
     df = add_scheme_cols(df, scheme)
     up, imp, live, contribs = fit_predict(df, cur, target_week)
     inj_map, inj_teams, inj_week = injury_status(inj, cur, target_week)
-    players = player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_map)
+    wk_sc = scheme[(scheme.season == cur) & (scheme.week == target_week)].set_index("team")
+    opp_sc = {t: {"pk_pressure": round(float(r.get("pk_pressure", 0.5)), 3),
+                  "pk_funnel": round(float(r.get("pk_funnel", 0.5)), 3),
+                  "pk_havoc": round(float(r.get("pk_havoc", 0.5)), 3)}
+              for t, r in wk_sc.iterrows()}
+    players = player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_map, opp_sc)
 
     up = up.copy()
     up["gameday_s"] = pd.to_datetime(up.gameday).dt.strftime("%a %b ") + \
@@ -698,11 +710,34 @@ def main():
     ten = coach_tenure(sched, cur)
     recs = team_records(sched, cur)
 
+    # Defensive quality as the models actually consume it: EPA allowed per play, split by
+    # pass and rush, ranked across the league this week. Rank 1 = stingiest. These are the
+    # inputs; the "scheme" measures alongside them are context and were tested as noise.
+    wk_r = ratings[(ratings.season == cur) & (ratings.week == target_week)].copy()
+    n_rank = int(wk_r.team.nunique())
+    for c, nm in [("rating_g_def_pass_epa_pp_allowed", "def_pass"),
+                  ("rating_g_def_rush_epa_pp_allowed", "def_rush"),
+                  ("rating_g_off_pass_epa_pp", "off_pass"),
+                  ("rating_g_off_rush_epa_pp", "off_rush")]:
+        wk_r[f"{nm}_rank"] = wk_r[c].rank(method="min").astype(int)
+        wk_r[f"{nm}_val"] = wk_r[c]
+    # offense ranks read the other way: rank 1 = best offense
+    for nm in ["off_pass", "off_rush"]:
+        wk_r[f"{nm}_rank"] = (n_rank + 1 - wk_r[f"{nm}_rank"]).astype(int)
+    qual = wk_r.set_index("team")[[c for c in wk_r.columns if c.endswith("_rank") or c.endswith("_val")]]
+
     def side_scheme(r, side):
         """Everything the site needs to draw one team's identity panel."""
+        t = r[f"{side}_team"]
         d = {x: float(r.get(f"{side}_sch_{x}", np.nan)) for x in SCHEME}
         d.update({f"pk_{x}": float(r.get(f"{side}_pk_{x}", 0.5)) for x in SCHEME})
         d["label"] = explain.scheme_label(d["pk_pass_rate"], d["pk_adot"], d["pk_pace"])
+        d["def_label"] = explain.defense_label(d["pk_pressure"], d["pk_havoc"], d["pk_funnel"])
+        if t in qual.index:
+            q = qual.loc[t]
+            d["quality"] = {k: (int(q[f"{k}_rank"]), round(float(q[f"{k}_val"]), 4))
+                            for k in ["def_pass", "def_rush", "off_pass", "off_rush"]}
+            d["quality"]["n"] = n_rank
         return d
 
     games_out = []
