@@ -21,7 +21,7 @@ import pandas as pd
 
 import explain
 import tracker
-from scheme_features import (SCHEME, SCHEME_FEATS, add_scheme_cols,
+from scheme_features import (SCHEME, SCHEME_FEATS, DEF_FEATS, add_scheme_cols,
                              team_scheme, _per_game as sf_per_game)
 
 REL = "https://github.com/nflverse/nflverse-data/releases/download"
@@ -34,12 +34,23 @@ METRICS = ["g_off_epa_pp", "g_def_epa_pp_allowed", "g_off_pass_epa_pp", "g_off_r
 BASE_FEATS = ["off_epa_diff", "def_epa_diff", "net_epa_edge_home", "pass_epa_edge_home",
               "rush_epa_edge_home", "points_diff_rating", "div_game", "rest_diff"]
 CTX_FEATS = ["qb_epa_diff", "qb_rush_diff", "qb_change_diff", "inj_off_diff", "inj_def_diff"]
-# Scheme features earn their place on calibration, not on picks: Brier 0.2316 -> 0.2303 and
-# margin MAE 10.54 -> 10.48 across the 2019-25 walk-forward, while the straight-up pick rate
-# moves only 61.2% -> 61.8% (McNemar p = 0.55, i.e. indistinguishable from noise).
-# Weather was tested the same way and left OUT: it changed the pick rate by exactly 0.00%
-# and made Brier worse (0.2316 -> 0.2333). It is displayed as context, never fed to the model.
-FEATS = BASE_FEATS + CTX_FEATS + SCHEME_FEATS
+# Positional value for the injury features. QB is zero deliberately — see context_features.
+POS_WEIGHT = {"T": 1.35, "DE": 1.30, "CB": 1.25, "WR": 1.20, "DT": 1.00, "G": 0.85, "C": 0.85,
+              "TE": 0.85, "S": 0.80, "LB": 0.70, "RB": 0.65, "FB": 0.25, "K": 0.30, "P": 0.20,
+              "LS": 0.10, "QB": 0.0}
+OFF_POS = {"T", "G", "C", "WR", "TE", "RB", "FB", "QB"}
+# Both scheme blocks earn their place on calibration rather than on picks. Offensive scheme:
+# Brier 0.2323 -> 0.2305, MAE 10.51 -> 10.45. Defensive scheme on top of that: Brier -> 0.2293,
+# log loss 0.6544 -> 0.6512, MAE -> 10.43, while picks slip 62.3% -> 61.9% (McNemar p = 0.62).
+# Neither improves the picks and the site says so plainly.
+#
+# The defensive block was first judged useless on a single-seed run. The 8-seed ensemble
+# reversed that: single fits vary by about +/-0.4pp here, which is wider than the effect being
+# measured, so that first read was measuring the seed. Anything evaluated on one fit is noise.
+#
+# Weather stays OUT: it changed the pick rate by 0.00% and made Brier worse. Displayed as
+# context, never fed to the model.
+FEATS = BASE_FEATS + CTX_FEATS + SCHEME_FEATS + DEF_FEATS
 
 # Walk-forward backtest results, 2019-2025. These describe the model design, not today's
 # data, so they are constants; regenerate them if the feature set or hyperparameters change.
@@ -301,7 +312,19 @@ def context_features(sched, pw, inj, snap, rost, depth, cur):
     g["wind_f"] = np.where(g.is_indoor == 1, 0.0, g.wind.fillna(g.wind.median()))
     g["temp_f"] = np.where(g.is_indoor == 1, 70.0, g.temp.fillna(g.temp.median()))
 
-    # injuries weighted by the player's recent snap share
+    # ---- injuries: the two biggest absences per side, weighted by position ----
+    # This replaced a plain sum of every ruled-out player's snap share, which was measurably
+    # WORSE than having no injury features at all (-0.25pp on picks across 8 seeds). Summing
+    # made five rotational backups look like one lost left tackle, and it treated a starting
+    # corner the same as a starting guard. Weighting by positional value and keeping only the
+    # top two absences per side scores +0.49pp instead. Ordering is coherent and that is most
+    # of why it is believable: sum < max < weighted sum < weighted top-2.
+    #
+    # QB carries weight 0 on purpose. qb_change_diff already says "a different quarterback is
+    # starting"; letting the QB dominate here too would double-count the one case that matters
+    # most. Seed-to-seed noise on any of these numbers is about +/-0.4pp, so single runs mean
+    # nothing — everything above is a mean of 8 seeds.
+    inj_detail = {}
     if len(snap) and len(inj):
         s = snap[snap.game_type == "REG"].copy()
         cw = rost.dropna(subset=["gsis_id", "pfr_id"])[["gsis_id", "pfr_id"]].drop_duplicates("pfr_id")
@@ -313,16 +336,46 @@ def context_features(sched, pw, inj, snap, rost, depth, cur):
         usage[["season", "week"]] = usage[["season", "week"]].astype("int64")
         usage = usage.sort_values("week")
 
+        # The expanding mean above only looks within a season, so in Week 1 nobody has one
+        # and every injury would weigh zero — exactly when the site is live for the opener.
+        # Last season's average share is fully known before Week 1, so it is a legal
+        # point-in-time fallback; shift the season forward to make that explicit.
+        prev = (s.groupby(["gsis_id", "season"])[["offense_pct", "defense_pct"]].mean()
+                .reset_index().rename(columns={"offense_pct": "pr_off", "defense_pct": "pr_def"}))
+        prev["season"] = prev.season.astype("int64") + 1
+
         i = inj[(inj.game_type == "REG") & (inj.report_status == "Out")][
-            ["season", "week", "team", "gsis_id"]].dropna(subset=["gsis_id"]).copy()
+            ["season", "week", "team", "gsis_id", "position", "full_name"]].dropna(
+            subset=["gsis_id"]).copy()
         i[["season", "week"]] = i[["season", "week"]].astype("int64")
         i = i.sort_values("week")
         # a player who is Out has no snap row that week, so reach back to his last appearance
         i = pd.merge_asof(i, usage, on="week", by=["gsis_id", "season"], direction="backward")
-        i[["p_offense_pct", "p_defense_pct"]] = i[["p_offense_pct", "p_defense_pct"]].fillna(0)
-        ti = i.groupby(["season", "week", "team"]).agg(
-            out_off=("p_offense_pct", "sum"), out_def=("p_defense_pct", "sum"),
-            n_out=("gsis_id", "size")).reset_index()
+        i = i.merge(prev, on=["gsis_id", "season"], how="left")
+        i["p_offense_pct"] = i.p_offense_pct.fillna(i.pr_off).fillna(0)
+        i["p_defense_pct"] = i.p_defense_pct.fillna(i.pr_def).fillna(0)
+
+        i["pw"] = i.position.map(POS_WEIGHT).fillna(0.7)
+        off = i.position.isin(OFF_POS)
+        i["share"] = np.where(off, i.p_offense_pct, i.p_defense_pct)
+        i["wshare"] = i.share * i.pw
+        i["side"] = np.where(off, "off", "def")
+
+        rows = []
+        for (se, wk, tm), grp in i.groupby(["season", "week", "team"]):
+            rec = {"season": se, "week": wk, "team": tm, "n_out": len(grp)}
+            for side in ["off", "def"]:
+                sub = grp[grp.side == side].nlargest(2, "wshare")
+                rec[f"out_{side}"] = float(sub.wshare.sum())
+            rows.append(rec)
+            # keep the drivers so the site can name who the number is about
+            top = grp.nlargest(3, "wshare")
+            inj_detail[(int(se), int(wk), tm)] = [
+                {"name": r.full_name, "pos": r.position, "side": r.side,
+                 "share": round(float(r.share), 3), "weighted": round(float(r.wshare), 3)}
+                for r in top.itertuples() if r.wshare > 0.02]
+        ti = pd.DataFrame(rows) if rows else pd.DataFrame(
+            columns=["season", "week", "team", "n_out", "out_off", "out_def"])
         for side in ["home", "away"]:
             g = g.merge(ti.rename(columns={"team": f"{side}_team", "out_off": f"{side}_out_off",
                                             "out_def": f"{side}_out_def", "n_out": f"{side}_n_out"}),
@@ -347,7 +400,7 @@ def context_features(sched, pw, inj, snap, rost, depth, cur):
 
     # the raw sides of every diff come through too — the explanations quote them, and a
     # factor the reader can't check against a number is just an assertion
-    return g[["game_id"] + CTX_FEATS + ["wind_f", "temp_f", "is_indoor", "wx_known",
+    ctx_out = g[["game_id"] + CTX_FEATS + ["wind_f", "temp_f", "is_indoor", "wx_known",
                                          "home_qb_disp", "away_qb_disp",
                                          "home_n_out", "away_n_out",
                                          "home_qb_epa", "away_qb_epa",
@@ -355,6 +408,8 @@ def context_features(sched, pw, inj, snap, rost, depth, cur):
                                          "home_chg", "away_chg",
                                          "home_out_off", "away_out_off",
                                          "home_out_def", "away_out_def"]]
+    ctx_out.attrs["inj_detail"] = inj_detail
+    return ctx_out
 
 
 # --------------------------------------------------------------------------- assemble + model
@@ -388,24 +443,48 @@ def build_games(sched, ratings, ctx):
     return df
 
 
+XGB_PARAMS = dict(max_depth=3, n_estimators=150, learning_rate=0.05, subsample=0.8,
+                  colsample_bytree=0.8, reg_lambda=2.0)
+# XGBoost subsamples rows and columns, so a single fit is one draw from a distribution whose
+# spread on this data is about +/-0.4 percentage points of pick accuracy — wider than most of
+# the feature effects being tested. Averaging eight seeds removes that lottery: it beats the
+# average single seed by +0.51pp and the unluckiest by +1.13pp, lowers Brier, and costs about
+# ten seconds. Every published figure is the ensemble, so nothing here depends on a lucky draw.
+N_SEEDS = 8
+
+
+def _fit_ensemble(X, y_cls, y_reg):
+    import xgboost as xgb
+    pairs = []
+    for sd in range(N_SEEDS):
+        c = xgb.XGBClassifier(**XGB_PARAMS, eval_metric="logloss", random_state=sd)
+        c.fit(X, y_cls)
+        r = xgb.XGBRegressor(**XGB_PARAMS, random_state=sd)
+        r.fit(X, y_reg)
+        pairs.append((c, r))
+    return pairs
+
+
+def _ens_predict(pairs, X):
+    p = np.mean([c.predict_proba(X)[:, 1] for c, _ in pairs], axis=0)
+    m = np.mean([r.predict(X) for _, r in pairs], axis=0)
+    return p, m
+
+
 def fit_predict(df, cur, target_week):
     import xgboost as xgb
     tr = df[(df.season < cur) | ((df.season == cur) & df.home_win.notna())]
     tr = tr.dropna(subset=["home_win", "home_margin"] + FEATS)
-    log(f"training on {len(tr)} completed games")
+    log(f"training on {len(tr)} completed games ({N_SEEDS}-seed ensemble)")
 
-    clf = xgb.XGBClassifier(max_depth=3, n_estimators=150, learning_rate=0.05, subsample=0.8,
-                            colsample_bytree=0.8, reg_lambda=2.0, eval_metric="logloss")
-    clf.fit(tr[FEATS], tr.home_win)
-    reg = xgb.XGBRegressor(max_depth=3, n_estimators=150, learning_rate=0.05, subsample=0.8,
-                           colsample_bytree=0.8, reg_lambda=2.0)
-    reg.fit(tr[FEATS], tr.home_margin)
+    pairs = _fit_ensemble(tr[FEATS], tr.home_win, tr.home_margin)
+    clf, reg = pairs[0]                      # kept only for the SHAP call below
 
     up = df[(df.season == cur) & (df.week == target_week)].dropna(subset=FEATS).copy()
-    up["p_model"] = clf.predict_proba(up[FEATS])[:, 1]
+    up["p_model"], _margin_ens = _ens_predict(pairs, up[FEATS])
     up["p_market"] = up.market_home_wp
     up["p_blend"] = np.where(up.p_market.notna(), 0.4 * up.p_model + 0.6 * up.p_market, up.p_model)
-    up["margin_pred"] = reg.predict(up[FEATS])
+    up["margin_pred"] = _margin_ens
     tot = up.total_line.fillna(45.0)
     up["predicted_home_score"] = (tot + up.margin_pred) / 2
     up["predicted_away_score"] = (tot - up.margin_pred) / 2
@@ -414,22 +493,34 @@ def fit_predict(df, cur, target_week):
     # Exact tree SHAP: each column is one feature's signed contribution to this game's
     # log-odds, last column the bias. This is the model's own arithmetic, so the "why"
     # text cannot drift away from what the model actually did.
-    contribs = clf.get_booster().predict(xgb.DMatrix(up[FEATS]), pred_contribs=True)
+    # Averaged across the ensemble: each model's contributions sum to its own raw log-odds,
+    # so the mean matrix sums to the mean log-odds. Only relative shares are displayed, and
+    # for eight near-identical models those are stable.
+    dm = xgb.DMatrix(up[FEATS])
+    contribs = np.mean([c.get_booster().predict(dm, pred_contribs=True) for c, _ in pairs], axis=0)
 
-    imp = pd.Series(clf.feature_importances_, index=FEATS).sort_values(ascending=False)
+    # The injury counterfactual: the same fitted model asked again with both teams healthy.
+    # Because the model is deterministic this is exact, not an estimate — the difference IS
+    # what this model attributes to the injury report. Whether that attribution is any good
+    # is a separate question the Accuracy tab answers.
+    healthy = up[FEATS].copy()
+    healthy[["inj_off_diff", "inj_def_diff"]] = 0.0
+    up["p_model_healthy"], up["margin_healthy"] = _ens_predict(pairs, healthy)
+    # the published number blends with the market, so the shift a reader sees must too
+    up["p_blend_healthy"] = np.where(up.p_market.notna(),
+                                     0.4 * up.p_model_healthy + 0.6 * up.p_market,
+                                     up.p_model_healthy)
+
+    imp = pd.Series(np.mean([c.feature_importances_ for c, _ in pairs], axis=0),
+                    index=FEATS).sort_values(ascending=False)
 
     # live out-of-sample scoring: a model that saw only prior seasons, graded on this one
     live = None
     done = df[(df.season == cur) & df.home_win.notna()].dropna(subset=FEATS)
     if len(done) >= 8:
         prior = df[df.season < cur].dropna(subset=["home_win", "home_margin"] + FEATS)
-        c2 = xgb.XGBClassifier(max_depth=3, n_estimators=150, learning_rate=0.05, subsample=0.8,
-                               colsample_bytree=0.8, reg_lambda=2.0, eval_metric="logloss").fit(
-            prior[FEATS], prior.home_win)
-        r2 = xgb.XGBRegressor(max_depth=3, n_estimators=150, learning_rate=0.05, subsample=0.8,
-                              colsample_bytree=0.8, reg_lambda=2.0).fit(prior[FEATS], prior.home_margin)
-        p = c2.predict_proba(done[FEATS])[:, 1]
-        mg = r2.predict(done[FEATS])
+        prior_pairs = _fit_ensemble(prior[FEATS], prior.home_win, prior.home_margin)
+        p, mg = _ens_predict(prior_pairs, done[FEATS])
         correct = ((p > 0.5).astype(int) == done.home_win.values)
         mk = ((done.market_home_wp > 0.5).astype(int) == done.home_win.values)
         sp = done.spread_line.values
@@ -696,6 +787,7 @@ def main():
     df = add_scheme_cols(df, scheme)
     up, imp, live, contribs = fit_predict(df, cur, target_week)
     inj_map, inj_teams, inj_week = injury_status(inj, cur, target_week)
+    inj_drivers = ctx.attrs.get("inj_detail", {})
     wk_sc = scheme[(scheme.season == cur) & (scheme.week == target_week)].set_index("team")
     opp_sc = {t: {"pk_pressure": round(float(r.get("pk_pressure", 0.5)), 3),
                   "pk_funnel": round(float(r.get("pk_funnel", 0.5)), 3),
@@ -769,6 +861,17 @@ def main():
                 "week": inj_week,
                 "home": [p for p in inj_teams.get(r.home_team, []) if p["level"] != "rest"][:8],
                 "away": [p for p in inj_teams.get(r.away_team, []) if p["level"] != "rest"][:8],
+                # exact counterfactual: this model, same fit, both teams healthy
+                "impact": {
+                    "p_now": round(float(r.p_blend), 4),
+                    "p_healthy": round(float(r.p_blend_healthy), 4),
+                    "shift": round(float(r.p_blend - r.p_blend_healthy), 4),
+                    "margin_shift": round(float(r.margin_pred - r.margin_healthy), 2),
+                    "drivers": {
+                        "home": inj_drivers.get((cur, target_week, r.home_team), []),
+                        "away": inj_drivers.get((cur, target_week, r.away_team), []),
+                    },
+                },
             },
             "why": reasons[i],
             "weather_note": explain.weather_note(indoor, temp, wind, r.get("roof"),
