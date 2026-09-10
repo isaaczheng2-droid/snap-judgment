@@ -194,6 +194,14 @@ def team_ratings(team, sched, cur, target_week):
     upcoming = sched[(sched.season == cur) & (sched.week == target_week) & (sched.game_type == "REG")]
     teams = pd.unique(pd.concat([upcoming.home_team, upcoming.away_team]))
 
+    # A week is "upcoming" as soon as ONE of its games is unplayed, so on a Friday the
+    # Thursday teams already have a real stats row for this week. Giving them a synthetic
+    # one too puts the team in here twice, and every per-team lookup downstream
+    # (wk_def[oc].get(t), qual.loc[t]) then returns a Series instead of a number, which
+    # blows up inside Ridge.predict with a message that names none of this.
+    have = set(ratings[(ratings.season == cur) & (ratings.week == target_week)].team)
+    teams = [t for t in teams if t not in have]
+
     prev_cur = season_final[season_final.season == cur].set_index("team")
     rows = []
     for t in teams:
@@ -565,6 +573,10 @@ def player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_ma
         opp[r.away_team] = (r.home_team, 0)
     dcols = ["rating_g_def_pass_epa_pp_allowed", "rating_g_def_rush_epa_pp_allowed"]
     wk_def = ratings[(ratings.season == cur) & (ratings.week == target_week)][["team"] + dcols]
+    # keep="last" prefers the real box-score row over any synthetic one; the guard in
+    # team_ratings should make this a no-op, and it stays because a duplicate here fails
+    # deep inside Ridge.predict with an error that points nowhere near the cause
+    wk_def = wk_def.drop_duplicates("team", keep="last")
     wk_def = wk_def.rename(columns={c: f"opp_{c}" for c in dcols}).set_index("team")
 
     latest = pw.sort_values(["player_id", "gameday"]).groupby("player_id").tail(1)
@@ -788,7 +800,8 @@ def main():
     up, imp, live, contribs = fit_predict(df, cur, target_week)
     inj_map, inj_teams, inj_week = injury_status(inj, cur, target_week)
     inj_drivers = ctx.attrs.get("inj_detail", {})
-    wk_sc = scheme[(scheme.season == cur) & (scheme.week == target_week)].set_index("team")
+    wk_sc = (scheme[(scheme.season == cur) & (scheme.week == target_week)]
+             .drop_duplicates("team", keep="last").set_index("team"))
     opp_sc = {t: {"pk_pressure": round(float(r.get("pk_pressure", 0.5)), 3),
                   "pk_funnel": round(float(r.get("pk_funnel", 0.5)), 3),
                   "pk_havoc": round(float(r.get("pk_havoc", 0.5)), 3)}
@@ -806,6 +819,7 @@ def main():
     # pass and rush, ranked across the league this week. Rank 1 = stingiest. These are the
     # inputs; the "scheme" measures alongside them are context and were tested as noise.
     wk_r = ratings[(ratings.season == cur) & (ratings.week == target_week)].copy()
+    wk_r = wk_r.drop_duplicates("team", keep="last")
     n_rank = int(wk_r.team.nunique())
     for c, nm in [("rating_g_def_pass_epa_pp_allowed", "def_pass"),
                   ("rating_g_def_rush_epa_pp_allowed", "def_rush"),

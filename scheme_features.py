@@ -112,6 +112,11 @@ def team_scheme(team, sched, cur, target_week):
     gp = played.groupby("team").size().to_dict()
     up = sched[(sched.season == cur) & (sched.week == target_week) & (sched.game_type == "REG")]
     teams = pd.unique(pd.concat([up.home_team, up.away_team]))
+    # Once one game of the week has been played, its teams already have a real row here;
+    # a synthetic one on top would duplicate them and every per-team lookup downstream
+    # would come back as a Series. Same guard as team_ratings.
+    have = set(out[(out.season == cur) & (out.week == target_week)].team)
+    teams = [t for t in teams if t not in have]
     prev_cur = prev[prev.season == cur].set_index("team")
 
     rows = []
