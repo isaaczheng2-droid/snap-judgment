@@ -19,8 +19,10 @@ from datetime import datetime, timezone
 import numpy as np
 import pandas as pd
 
+import elo
 import explain
 import tracker
+from elo import ELO_FEATS, add_elo_cols
 from scheme_features import (SCHEME, SCHEME_FEATS, DEF_FEATS, add_scheme_cols,
                              team_scheme, _per_game as sf_per_game)
 
@@ -50,7 +52,14 @@ OFF_POS = {"T", "G", "C", "WR", "TE", "RB", "FB", "QB"}
 #
 # Weather stays OUT: it changed the pick rate by 0.00% and made Brier worse. Displayed as
 # context, never fed to the model.
-FEATS = BASE_FEATS + CTX_FEATS + SCHEME_FEATS + DEF_FEATS
+#
+# Elo is the single most valuable feature in the set and was the last one added, which is
+# its own small lesson: every feature above is a description of HOW a team plays, and none
+# of them had been checked against a rating system that only knows WHO BEAT WHOM. Alone,
+# Elo outscores the whole block (63.3% vs 61.9%). Added to it: 61.94% -> 63.83% straight
+# up, Brier 0.2299 -> 0.2253, margin MAE 10.42 -> 10.28. See elo.py for why that is not
+# an argument for deleting everything else.
+FEATS = BASE_FEATS + CTX_FEATS + SCHEME_FEATS + DEF_FEATS + ELO_FEATS
 
 # Walk-forward backtest results, 2019-2025. These describe the model design, not today's
 # data, so they are constants; regenerate them if the feature set or hyperparameters change.
@@ -797,6 +806,7 @@ def main():
     df = build_games(sched, ratings, ctx)
     scheme, sch_lg = team_scheme(team, sched, cur, target_week)
     df = add_scheme_cols(df, scheme)
+    df = add_elo_cols(df)
     up, imp, live, contribs = fit_predict(df, cur, target_week)
     inj_map, inj_teams, inj_week = injury_status(inj, cur, target_week)
     inj_drivers = ctx.attrs.get("inj_detail", {})

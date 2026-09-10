@@ -36,6 +36,9 @@ FEATURE_INFO = {
     "press_edge_home": "Pass rush vs protection",
     "prot_edge_home": "Pass protection",
     "takeaway_diff": "Takeaways",
+    # deliberately not called "Elo": nobody outside the hobby knows the word, and what it
+    # measures in plain language is a season-long record of who has beaten whom
+    "elo_logit": "Track record",
 }
 
 
@@ -67,6 +70,13 @@ def detail_for(feat, r, H, A):
                     f"{A} {f('away_rating_points_scored') - f('away_rating_points_allowed'):+.1f}")
         if feat == "div_game":
             return "division rivals — historically closer than the ratings suggest"
+        if feat == "elo_logit":
+            # said as a probability, because that is the only form of a rating anyone reads
+            p = f("p_elo")
+            fav, q = (H, p) if p >= 0.5 else (A, 1 - p)
+            return (f"on results alone, going back seasons, {fav} wins this {q:.0%} of the time"
+                    if abs(p - 0.5) > 0.02 else
+                    "on results alone, going back seasons, these two are a coin flip")
         if feat == "rest_diff":
             return f"{H} {f('home_rest'):.0f} days rest, {A} {f('away_rest'):.0f}"
         if feat == "qb_epa_diff":
@@ -279,14 +289,23 @@ def style_clash(H, A, hm, am):
 
 def weather_note(indoor, temp, wind, roof, surface, pk_pass_h, pk_pass_a):
     """
-    Conditions in words. temp/wind arrive as None when the schedule has no posted forecast —
-    the model median-fills them internally, but printing a filled value here would be
-    presenting a guess as a forecast, so this says "not posted yet" instead.
+    Conditions in words.
+
+    temp/wind arrive as None for every game that has not kicked off yet, and that is not a
+    timing quirk — the schedule feed RECORDS the weather a game was played in, it never
+    forecasts it. Measured across 2022-2025: 97% of played outdoor games carry temp and
+    wind, and 0% of unplayed ones ever do, in any season. So this is a post-game record,
+    and there is no point waiting for it to fill in.
+
+    A real forecast would need an external source keyed on stadium coordinates and kickoff
+    time. That is not wired up, so rather than dress the gap up as "not posted yet" this
+    says what is actually true. The model median-fills these internally and never sees the
+    difference, which is fine, because weather tested as noise and is not a model input.
     """
     if indoor:
         return f"Indoors ({roof}), so conditions are not a factor."
     if temp is None and wind is None:
-        s = "No forecast posted yet — the NFL usually publishes one inside the last few days"
+        s = "Conditions are recorded after kickoff, not forecast, so there is nothing to show yet"
         if surface:
             s += f". {str(surface).title()} surface"
         return s + "."

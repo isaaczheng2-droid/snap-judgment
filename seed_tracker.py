@@ -19,6 +19,7 @@ import xgboost as xgb
 from sklearn.linear_model import Ridge
 
 import run_pipeline as rp
+from elo import add_elo_cols
 import tracker
 from scheme_features import _per_game, team_scheme, add_scheme_cols
 
@@ -47,6 +48,7 @@ def main():
     df = rp.build_games(sched, ratings, ctx)
     scheme, _ = team_scheme(team, sched, cur, tw)
     df = add_scheme_cols(df, scheme)
+    df = add_elo_cols(df)
 
     d = df.dropna(subset=["home_win", "home_margin"] + rp.FEATS)
     tr = d[d.season < season]
