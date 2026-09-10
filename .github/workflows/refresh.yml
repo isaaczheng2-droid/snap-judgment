@@ -5,8 +5,17 @@ name: Refresh predictions
 # delay of 10-30 minutes is normal and not a failure.
 on:
   schedule:
-    - cron: "0 11 * * *"
-  workflow_dispatch: {}      # adds a "Run workflow" button for manual refreshes
+    # Hourly, not daily. Injury reports land through the week and again ~90 minutes before
+    # kickoff, so a once-a-day build can be 23 hours stale on exactly the information people
+    # come here for. Most of these runs cost seconds: the job checks whether nflverse has
+    # actually republished anything and stops if it has not.
+    - cron: "17 * * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Rebuild even if the upstream data is unchanged"
+        type: boolean
+        default: true
 
 # the job pushes the regenerated page back to the branch, so it needs write access
 permissions:
@@ -29,13 +38,61 @@ jobs:
           python-version: "3.11"
           cache: pip
 
+      # Cheap change detection before anything expensive. ETags identify the exact bytes
+      # nflverse is serving, so an unchanged pair means a rebuild would reproduce the file
+      # already committed — the run stops instead. A missing header just means "rebuild",
+      # because failing open costs one wasted build and failing closed costs a stale site.
+      - name: Has anything upstream actually changed?
+        id: check
+        run: |
+          set +e
+          REL=https://github.com/nflverse/nflverse-data/releases/download
+          SIG=""
+          for u in "$REL/injuries/injuries_2026.parquet" \
+                   "$REL/depth_charts/depth_charts_2026.parquet" \
+                   "https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv"; do
+            H=$(curl -sSI -L --max-time 30 "$u" | grep -iE '^(etag|content-length):' | tr -d '\r' | tail -2)
+            SIG="$SIG|$H"
+          done
+          NEW=$(printf '%s' "$SIG" | sha256sum | cut -c1-32)
+          OLD=$(cat .upstream-sig 2>/dev/null || echo none)
+          echo "new=$NEW old=$OLD"
+          if [ "$NEW" = "$OLD" ] && [ "${{ inputs.force }}" != "true" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Upstream unchanged — skipping the rebuild."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+          echo "$NEW" > .upstream-sig
+
       - name: Install dependencies
+        if: steps.check.outputs.changed == 'true'
         run: pip install -r requirements.txt
 
+      # history.json is the only file in this repo that cannot be recomputed from upstream
+      # data alone, because it records what the model said BEFORE each game. On a fresh
+      # checkout there is nothing to record yet, so the previous complete season is seeded
+      # from the walk-forward audit (written with src="backtest", and labelled that way on
+      # the site). This runs before the rebuild so the week's real locks append to it.
+      - name: Seed the tracker's history if this checkout has none
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          if [ -s history.json ]; then
+            python - <<'PY'
+          import json
+          print("history present:", len(json.load(open("history.json"))["games"]), "games")
+          PY
+          else
+            echo "No history.json in the checkout — seeding from the last complete season."
+            python seed_tracker.py --datadir data --out history.json
+          fi
+
       - name: Rebuild predictions
+        if: steps.check.outputs.changed == 'true'
         run: python run_pipeline.py --outdir . --datadir data
 
       - name: Sanity-check the payload before touching the page
+        if: steps.check.outputs.changed == 'true'
         run: |
           python - <<'PY'
           import json, sys
@@ -50,6 +107,7 @@ jobs:
           PY
 
       - name: Refuse to publish if the tracker's memory went missing
+        if: steps.check.outputs.changed == 'true'
         run: |
           # An empty or vanished history.json means the locked predictions were lost, and a
           # rebuilt one would silently re-lock today's odds as if they were last week's call.
@@ -64,9 +122,11 @@ jobs:
           PY
 
       - name: Splice the new data into the page
+        if: steps.check.outputs.changed == 'true'
         run: python merge_payload.py index.html payload.json
 
       - name: Verify the page survived the merge
+        if: steps.check.outputs.changed == 'true'
         run: |
           test -s index.html
           size=$(stat -c%s index.html)
@@ -81,10 +141,10 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           # history.json is the season tracker's memory — it MUST be committed or every run
           # starts from an empty slate and no prediction is ever graded
-          git add index.html payload.json history.json
+          git add index.html payload.json history.json .upstream-sig
           if git diff --staged --quiet; then
             echo "No change — nothing to publish."
           else
-            git commit -m "Refresh predictions ($(date -u +'%Y-%m-%d'))"
+            git commit -m "Refresh predictions ($(date -u +'%Y-%m-%d %H:%M') UTC)"
             git push
           fi
