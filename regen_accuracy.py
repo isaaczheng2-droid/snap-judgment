@@ -269,6 +269,40 @@ def main():
             "claimed": float(np.maximum(blend, 1 - blend)[sel].mean()),
         })
 
+    # ---------------------------------------------------------------- backtest.json
+    # The headline audit figures, written where the daily job can read them.
+    #
+    # These used to live as a hardcoded dict in run_pipeline.py with a comment saying to
+    # regenerate it by hand when the model changed. It was not regenerated when the model
+    # changed, and because merge_payload.py treats `backtest` as a fresh key, every hourly
+    # run quietly overwrote the correct audited numbers with the stale constant. The site
+    # spent 2026-09-11 telling the reader 64.3% in prose and 61.8% in its own data block,
+    # twelve hours after the correct numbers were published.
+    #
+    # A number that is measured in one file and retyped in another will drift. This is the
+    # only place these are computed, so this is the only place they are written.
+    bt = {
+        "n_games": int(n),
+        "model_su": round(float(hit.mean()), 4),
+        "market_su": round(float(mhit.mean()), 4),
+        "blend_su": round(float(bhit.mean()), 4),
+        "always_home": round(float(y.mean()), 4),
+        "margin_mae": round(float(np.abs(m - am).mean()), 2),
+        "market_margin_mae": round(float(np.abs(sp - am).mean()), 2),
+        "ats": round(float(ats_hit.mean()), 4),
+        "brier_model": round(brier(p), 4),
+        # the market has no price on a handful of games; score it only where it has one,
+        # against the matching outcomes rather than against all of them
+        "brier_market": round(float(np.mean((mk[~np.isnan(mk)] - y[~np.isnan(mk)]) ** 2)), 4),
+        "note": "opponent-adjusted ratings + QB + injuries + scheme + Elo",
+        "blend_w": rp.BLEND_W,
+        "generated": pd.Timestamp.utcnow().strftime("%Y-%m-%d %H:%M UTC"),
+    }
+    json.dump(bt, open("data/backtest.json", "w"), indent=1)
+    print("\nwrote data/backtest.json (the daily job reads this; nothing is retyped)")
+    for k, v in bt.items():
+        print(f"  {k:<20} {v}")
+
     json.dump(out, open("acc_patch.json", "w"), indent=1)
     print(json.dumps({k: v for k, v in out.items() if k != "pick_tiers"}, indent=1))
     print("\npick tiers")

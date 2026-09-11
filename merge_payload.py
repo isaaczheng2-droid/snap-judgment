@@ -47,7 +47,17 @@ def main():
         if k in new:
             merged[k] = new[k]
 
-    out = html[:i] + json.dumps(merged) + html[j:]
+    # `</script` inside a JSON string ends the script element, whatever the quoting, so the
+    # rest of the application would be parsed as page text. Injury notes are third-party
+    # wire copy and can contain anything. Escaping `<` is valid JSON and parses back to the
+    # identical string; U+2028/9 are string-legal but are line terminators to JavaScript.
+    # See build_site.embed() for the full story -- this is the same fix on the path the
+    # hourly workflow actually takes.
+    blob = (json.dumps(merged)
+            .replace("<", "\\u003c")
+            .replace("\u2028", "\\u2028")
+            .replace("\u2029", "\\u2029"))
+    out = html[:i] + blob + html[j:]
     open(a.out or a.html, "w").write(out)
     print(f"merged {len(new.get('games', []))} games, {len(new.get('players', []))} players "
           f"into {a.out or a.html}; kept {sorted(set(old) - set(FRESH_KEYS))}")

@@ -110,8 +110,48 @@ def lock_week(h, up, players, scheme, cur, week, source="live"):
 
 
 # --------------------------------------------------------------------------- grading
+def repair_phantom_dnp(h, plyr):
+    """
+    Undo grades written during the window described in grade() below.
+
+    A "did not play" is only meaningful next to teammates who did. If a game has graded
+    rows but NO rows at all in the box score, those grades were written against missing
+    data, not against a player who stayed on the bench — so they are cleared and will
+    regrade correctly once nflverse republishes.
+
+    Rows already folded into the season rollups have lost their keys and cannot be reached
+    from here. Nothing is folded until a week is four weeks old, so in practice this always
+    runs first; the grading guard is what stops the problem recurring, and this only cleans
+    up what was written before that guard existed.
+    """
+    if not len(plyr):
+        return 0
+    scored = set(plyr[plyr.season_type == "REG"].game_id.astype(str))
+    bad = {}
+    for k, p in h["players"].items():
+        if "act" not in p:
+            continue
+        gid = k.split("|")[0]
+        if gid not in scored:
+            bad.setdefault(gid, []).append(k)
+    # a game absent from the box score entirely is the signature; a game merely missing
+    # ONE player is a real no-show and must be left alone
+    n = 0
+    for gid, keys in bad.items():
+        for k in keys:
+            for f in ("act", "err", "dnp"):
+                h["players"][k].pop(f, None)
+            n += 1
+    if n:
+        print(f"  cleared {n} grade(s) across {len(bad)} game(s) written before the box "
+              f"score landed: {', '.join(sorted(bad)[:4])}"
+              + (" ..." if len(bad) > 4 else ""))
+    return n
+
+
 def grade(h, sched, plyr, per_game_scheme):
     """Fill in actuals for anything locked whose game has since finished."""
+    repair_phantom_dnp(h, plyr)
     done = sched[sched.home_score.notna()].set_index("game_id")
     graded = 0
 
@@ -140,12 +180,34 @@ def grade(h, sched, plyr, per_game_scheme):
         idx = {}
         for _, r in pb.iterrows():
             idx[(str(r.game_id), str(r.player_id))] = r
+        # Which games the box score actually covers. This is NOT the same set as the games
+        # the schedule shows a score for, and the gap between them is a trap:
+        # `games.csv` gets final scores within minutes of the whistle, while nflverse
+        # rebuilds `stats_player_week` hours later — sometimes not until the slate is done.
+        # In that window every player in a finished game has no row here. Read naively that
+        # says "he recorded nothing", so all 60-odd of them grade as no-shows against their
+        # projections, and because a graded row is never revisited the damage is permanent.
+        # It happened on 2026-09-10: the Rams-49ers box score lagged the score, and the
+        # whole game published as "did not play".
+        scored = set(pb.game_id.astype(str))
+        # Only games with something actually waiting on them are worth reporting. The
+        # schedule reaches back to 1999 while the box score starts in 2016, so a naive
+        # "finished but unscored" count is thousands of games nobody ever predicted.
+        waiting = sorted({k.split("|")[0] for k, p in h["players"].items()
+                          if "act" not in p and k.split("|")[0] in done.index
+                          and k.split("|")[0] not in scored})
+        if waiting:
+            print(f"  box score has not landed yet for {len(waiting)} finished game(s), "
+                  f"leaving them ungraded: {', '.join(waiting[:4])}"
+                  + (" ..." if len(waiting) > 4 else ""))
         for k, p in h["players"].items():
             if "act" in p:
                 continue
             gid, pid, stat = k.split("|")
             if gid not in done.index:
                 continue
+            if gid not in scored:
+                continue          # final score, no box score yet — wait for the next run
             row = idx.get((gid, pid))
             if row is None:
                 # the game finished and he recorded nothing — that is a real zero, not a gap

@@ -1,0 +1,15 @@
+{
+ "n_games": 1855,
+ "model_su": 0.6442,
+ "market_su": 0.6663,
+ "blend_su": 0.6706,
+ "always_home": 0.5288,
+ "margin_mae": 10.24,
+ "market_margin_mae": 9.81,
+ "ats": 0.532,
+ "brier_model": 0.2259,
+ "brier_market": 0.2104,
+ "note": "opponent-adjusted ratings + QB + injuries + scheme + Elo",
+ "blend_w": 0.2,
+ "generated": "2026-09-11 14:37 UTC"
+}

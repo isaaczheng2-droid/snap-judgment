@@ -20,6 +20,7 @@ import numpy as np
 import pandas as pd
 
 import elo
+import espn_injuries
 import explain
 import tracker
 from adjusted_ratings import ADJ_FEATS, add_adjusted_cols, team_adjusted
@@ -68,14 +69,49 @@ OFF_POS = {"T", "G", "C", "WR", "TE", "RB", "FB", "QB"}
 # an argument for deleting everything else.
 FEATS = BASE_FEATS + CTX_FEATS + SCHEME_FEATS + DEF_FEATS + ELO_FEATS
 
-# Walk-forward backtest results, 2019-2025. These describe the model design, not today's
-# data, so they are constants; regenerate them if the feature set or hyperparameters change.
-BACKTEST = {
-    "n_games": 1855, "model_su": 0.6183, "market_su": 0.6663, "blend_su": 0.6642,
-    "always_home": 0.5288, "margin_mae": 10.48, "market_margin_mae": 9.81,
-    "ats": 0.5248, "brier_model": 0.2303, "brier_market": 0.2104,
-    "note": "base + QB + injury + scheme feature set",
+# Walk-forward backtest results, 2019-2025. These describe the model design rather than
+# today's data, so they do not belong in the daily job's own computation — but they DO get
+# republished by it, because merge_payload.py carries `backtest` through as a fresh key.
+#
+# They used to be a hardcoded dict here with a comment asking whoever changed the model to
+# remember to retype them. Nobody did, and the failure was silent and self-reversing: the
+# audit would be published correctly by hand, and then the next hourly run would overwrite
+# it with these stale values. On 2026-09-11 the site was reporting 64.3% in prose and
+# 61.8% in the data block feeding the same page.
+#
+# regen_accuracy.py now writes data/backtest.json, which is committed alongside the code
+# and is the single source of these numbers. The dict below is only a fallback for a
+# checkout that has not got the file yet, and test_backtest_sync.py fails if the two
+# disagree, so the fallback cannot rot unnoticed.
+BACKTEST_FALLBACK = {
+    "n_games": 1855, "model_su": 0.6442, "market_su": 0.6663, "blend_su": 0.6706,
+    "always_home": 0.5288, "margin_mae": 10.24, "market_margin_mae": 9.81,
+    "ats": 0.532, "brier_model": 0.2259, "brier_market": 0.2104,
+    "note": "opponent-adjusted ratings + QB + injuries + scheme + Elo",
 }
+
+
+def load_backtest(datadir="data"):
+    """
+    The audited figures, preferring the file regen_accuracy.py writes.
+
+    Checked in two places on purpose. Locally it is written to data/, alongside everything
+    else the audit touches. In the repo it sits at the top level next to the code, because
+    `data/` is scratch that the daily job downloads into and the GitHub upload form has no
+    way to place a file inside a directory. Same file either way; first one found wins.
+    """
+    here = os.path.dirname(os.path.abspath(__file__))
+    for path in [os.path.join(datadir, "backtest.json"),
+                 os.path.join(here, "backtest.json")]:
+        try:
+            with open(path) as f:
+                bt = json.load(f)
+            if isinstance(bt, dict) and "model_su" in bt:
+                return bt
+        except Exception:
+            continue
+    log("  backtest.json not found; using the built-in audit figures")
+    return dict(BACKTEST_FALLBACK)
 
 
 def log(*a):
@@ -735,7 +771,7 @@ def player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_ma
 STATUS_RANK = {"Out": 4, "Doubtful": 3, "Questionable": 2}
 
 
-def injury_status(inj, cur, target_week):
+def injury_status(inj, cur, target_week, espn=None):
     """
     Latest injury report for the upcoming week, per player.
 
@@ -743,6 +779,11 @@ def injury_status(inj, cur, target_week):
     week the target week's rows may not exist yet. Fall back to the most recent week that
     does have rows, and say which week the information came from rather than implying it
     is current.
+
+    Where ESPN carried the news first, the row also gets the reporter's sentence and the
+    minute it was filed. A status with no timestamp is the official report, which is
+    published on a schedule; a status with one came off a live feed, and the difference is
+    worth showing rather than blending away.
     """
     if not len(inj):
         return {}, {}, None
@@ -758,6 +799,21 @@ def injury_status(inj, cur, target_week):
     def clean(v):
         s = str(v).strip() if v is not None and str(v) != "nan" else ""
         return "" if s.lower() in ("", "none", "nan") else s
+
+    # gsis_id -> the sentence the live feed ran, and when, but ONLY for the rows the
+    # overlay actually applied. A player whose status still comes from the official report
+    # must not be shown wearing a live timestamp; that would be claiming a freshness the
+    # number does not have.
+    notes = {}
+    if espn is not None and len(espn) and "gsis_id" in espn.columns:
+        src = espn[espn.get("applied", False) == True] if "applied" in espn.columns else espn
+        for _, e in src.dropna(subset=["gsis_id"]).iterrows():
+            if bool(e.get("scratch")):
+                continue
+            ts = e.get("updated")
+            notes[e.gsis_id] = {
+                "note": (str(e.get("note") or "").strip() or None),
+                "updated": None if pd.isna(ts) else pd.Timestamp(ts).strftime("%Y-%m-%dT%H:%MZ")}
 
     out, by_team = {}, {}
     for _, r in i.iterrows():
@@ -801,6 +857,11 @@ def injury_status(inj, cur, target_week):
 
         rec = {"level": level, "label": label, "why": why,
                "injury": harm or None, "week": int(use)}
+        e = notes.get(r.gsis_id)
+        if e:
+            rec["note"] = e["note"] or None
+            rec["updated"] = e["updated"]
+            rec["src"] = "espn"
         out[r.gsis_id] = rec
         by_team.setdefault(r.team, []).append(
             dict(rec, name=clean(r.get("full_name")), pos=clean(r.get("position")),
@@ -812,6 +873,60 @@ def injury_status(inj, cur, target_week):
     for t, lst in by_team.items():
         lst.sort(key=lambda x: (order.get(x["level"], 9), skill.get(x["pos"], 8), x["name"]))
     return out, by_team, int(use)
+
+
+def injuries_since_kickoff(sched, espn, cur, week):
+    """
+    Injuries filed AFTER a game started, for games in this week that are already over.
+
+    This is the gap that made the whole ESPN change necessary. The official injury report
+    is a pre-game document: it describes who might not play on Sunday, and it is published
+    Wednesday to Friday. An injury suffered DURING Sunday's game cannot appear on it until
+    the following Wednesday.
+
+    So for three or four days the site had a finished game sitting on the page, its injury
+    report showing the pre-kickoff picture, and no indication whatsoever that the home
+    team's quarterback had limped off in the third quarter. That is not a stale number, it
+    is a missing event, and no amount of refreshing the official report fixes it.
+
+    The pre-kickoff report on those cards is deliberately left alone. It is what the model
+    saw when it locked that prediction and rewriting it would be dishonest about what was
+    known at the time. This is a separate list, and the page labels it as one.
+
+    A status is "since kickoff" if its timestamp is later than the scheduled start. Kickoff
+    times in the schedule are US Eastern; comparing them to ESPN's UTC stamps without
+    converting would shift every game by four or five hours and quietly drop the injuries
+    reported in the first few hours after a game -- which is most of them.
+    """
+    if espn is None or not len(espn) or "updated" not in espn.columns:
+        return {}
+    d = sched[(sched.season == cur) & (sched.week == week) & sched.home_score.notna()]
+    if not len(d):
+        return {}
+    e = espn[~espn.scratch.fillna(False) & espn.updated.notna()].copy()
+    e["status"] = e.espn_status.str.lower().str.strip().map(espn_injuries.STATUS)
+    e = e[e.status.notna()]
+    if not len(e):
+        return {}
+
+    out = {}
+    for _, g in d.iterrows():
+        when = f"{pd.Timestamp(g.gameday).date()} {g.get('gametime') or '13:00'}"
+        try:
+            kick = pd.Timestamp(when).tz_localize("America/New_York").tz_convert("UTC")
+        except Exception:
+            continue
+        rows = e[e.team.isin([g.home_team, g.away_team]) & (e.updated > kick)]
+        if not len(rows):
+            continue
+        out[g.game_id] = [
+            {"name": r.full_name, "pos": r.position, "team": r.team,
+             "label": r.status, "level": r.status.lower(),
+             "injury": (r.injury_type or None) if str(r.injury_type) != "Undisclosed" else None,
+             "note": (str(r.note).strip() or None) if r.note else None,
+             "updated": pd.Timestamp(r.updated).strftime("%Y-%m-%dT%H:%MZ")}
+            for r in rows.sort_values("updated", ascending=False).head(8).itertuples()]
+    return out
 
 
 # --------------------------------------------------------------------------- coaches
@@ -864,6 +979,18 @@ def main():
         target_week = int(unplayed.week.min())
     log(f"target: {cur} week {target_week}")
 
+    # Live injury status, layered over the official report for the upcoming week only.
+    # Scoped to teams that have NOT kicked off yet: a team whose game is already in the
+    # books had its prediction locked before kickoff, and rewriting the inputs behind a
+    # locked prediction would be rewriting history. See espn_injuries.py.
+    tw_un = unplayed[unplayed.week == target_week] if len(unplayed) else unplayed
+    live_teams = set(tw_un.home_team) | set(tw_un.away_team) if len(tw_un) else None
+    # ESPN is refused by egress policy from both dev machines, so the only way to exercise
+    # this path outside CI is a captured response. Set the env var to a .psv fixture.
+    inj, espn = espn_injuries.live_overlay(inj, rost, cur, target_week, teams=live_teams,
+                                           fixture=os.environ.get("SJ_ESPN_FIXTURE") or None,
+                                           log=log)
+
     ratings, lg = team_ratings(team, sched, cur, target_week)
     pw = player_form(plyr, sched, ratings)
     ctx = context_features(sched, pw, inj, snap, rost, depth, cur)
@@ -873,7 +1000,11 @@ def main():
     df = add_adjusted_cols(df, team_adjusted(team, sched, cur, target_week))
     df = add_elo_cols(df)
     up, imp, live, contribs = fit_predict(df, cur, target_week)
-    inj_map, inj_teams, inj_week = injury_status(inj, cur, target_week)
+    inj_map, inj_teams, inj_week = injury_status(inj, cur, target_week, espn=espn)
+    since_kick = injuries_since_kickoff(sched, espn, cur, target_week)
+    if since_kick:
+        log(f"  {sum(len(v) for v in since_kick.values())} injury update(s) filed after "
+            f"kickoff across {len(since_kick)} finished game(s)")
     inj_drivers = ctx.attrs.get("inj_detail", {})
     wk_sc = (scheme[(scheme.season == cur) & (scheme.week == target_week)]
              .drop_duplicates("team", keep="last").set_index("team"))
@@ -948,6 +1079,7 @@ def main():
             "home_out": int(r.get("home_n_out", 0)), "away_out": int(r.get("away_n_out", 0)),
             "injuries": {
                 "week": inj_week,
+                "since": since_kick.get(r.game_id, []),
                 "home": [p for p in inj_teams.get(r.home_team, []) if p["level"] != "rest"][:8],
                 "away": [p for p in inj_teams.get(r.away_team, []) if p["level"] != "rest"][:8],
                 # exact counterfactual: this model, same fit, both teams healthy
@@ -1011,7 +1143,7 @@ def main():
         "players": players,
         "feature_importance": [{"feature": k, "importance": float(v),
                                 "label": explain.FEATURE_INFO.get(k, k)} for k, v in imp.items()],
-        "backtest": BACKTEST,
+        "backtest": load_backtest(a.datadir),
         "live": live,
         "scheme_league": {x: float(sch_lg[x]) for x in SCHEME},
         "tracker": tracker.summarize(hist, cur),
