@@ -22,6 +22,8 @@ import pandas as pd
 import elo
 import espn_injuries
 import explain
+import odds_api
+import prop_value
 import tracker
 from adjusted_ratings import ADJ_FEATS, add_adjusted_cols, team_adjusted
 from elo import ELO_FEATS, add_elo_cols
@@ -89,6 +91,24 @@ BACKTEST_FALLBACK = {
     "ats": 0.532, "brier_model": 0.2259, "brier_market": 0.2104,
     "note": "opponent-adjusted ratings + QB + injuries + scheme + Elo",
 }
+
+
+def load_prop_audit(datadir="data"):
+    """
+    What the prop comparison was measured at. Same single-source-of-truth rule as the game
+    backtest: written by prop_calibrate.py, read here, never retyped into prose.
+    """
+    here = os.path.dirname(os.path.abspath(__file__))
+    for path in [os.path.join(datadir, "prop_verdict.json"),
+                 os.path.join(here, "prop_verdict.json")]:
+        try:
+            with open(path) as f:
+                d = json.load(f)
+            if isinstance(d, dict) and "hit_rec" in d:
+                return d
+        except Exception:
+            continue
+    return None
 
 
 def load_backtest(datadir="data"):
@@ -1014,6 +1034,16 @@ def main():
               for t, r in wk_sc.iterrows()}
     players = player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_map, opp_sc)
 
+    # FanDuel comparison. Deliberately AFTER player_projections: the projections above were
+    # made from football data alone and cannot see a line. This only reads them.
+    prop_model = prop_value.PropModel()
+    props_by_game, props_meta = {}, None
+    if prop_model.ok:
+        props_by_game, props_meta = prop_value.build(
+            players, odds_api.fetch(log=log), prop_model, log=log)
+    else:
+        log("  props: no fitted prop model on disk; Player Prop Value is off this run")
+
     up = up.copy()
     up["gameday_s"] = pd.to_datetime(up.gameday).dt.strftime("%a %b ") + \
                       pd.to_datetime(up.gameday).dt.day.astype(str)
@@ -1077,6 +1107,7 @@ def main():
             "surface": None if pd.isna(r.get("surface")) else str(r.get("surface")),
             "stadium": None if pd.isna(r.get("stadium")) else str(r.get("stadium")),
             "home_out": int(r.get("home_n_out", 0)), "away_out": int(r.get("away_n_out", 0)),
+            "props": props_by_game.get(f"{r.away_team}@{r.home_team}", []),
             "injuries": {
                 "week": inj_week,
                 "since": since_kick.get(r.game_id, []),
@@ -1144,6 +1175,8 @@ def main():
         "feature_importance": [{"feature": k, "importance": float(v),
                                 "label": explain.FEATURE_INFO.get(k, k)} for k, v in imp.items()],
         "backtest": load_backtest(a.datadir),
+        "props_meta": props_meta,
+        "prop_audit": load_prop_audit(a.datadir),
         "live": live,
         "scheme_league": {x: float(sch_lg[x]) for x in SCHEME},
         "tracker": tracker.summarize(hist, cur),
