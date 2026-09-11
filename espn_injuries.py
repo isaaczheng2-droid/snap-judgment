@@ -85,6 +85,19 @@ STATUS = {
 # Reasons that are not injuries. ESPN files these under the same status as a real one.
 NOT_AN_INJURY = {"coach's decision", "coaches decision", "suspension", "not injury related"}
 
+# Roughly a third of ESPN's comments are not comments. Instead of a sentence from a
+# reporter, the field carries a bare repetition of the status -- "ir", "out",
+# "questionable", "nfi-r". Rendered under a badge that already says Out, a quote block
+# reading "out" looks like a rendering bug rather than information. Measured on the live
+# feed: 58 of 201 rows. Anything without a space, or too short to be a sentence, is one of
+# these; real notes ran 60 to 284 characters.
+NOTE_MIN = 25
+
+
+def _clean_note(s):
+    s = str(s or "").strip()
+    return s if len(s) >= NOTE_MIN and " " in s else ""
+
 COLS = ["espn_id", "team", "position", "full_name", "espn_status", "updated",
         "injury_type", "return_date", "scratch"]
 
@@ -152,7 +165,7 @@ def parse(raw):
                     "updated": it.get("date"),
                     "injury_type": typ,
                     "return_date": det.get("returnDate"),
-                    "note": (it.get("shortComment") or it.get("longComment") or "").strip(),
+                    "note": _clean_note(it.get("shortComment") or it.get("longComment")),
                     "scratch": typ.lower() in NOT_AN_INJURY,
                 })
             except Exception:
@@ -172,7 +185,7 @@ def parse_psv(path):
     df = pd.read_csv(path, sep="|", header=None, dtype=str,
                      names=["espn_id", "team", "position", "full_name", "espn_status",
                             "updated", "injury_type", "return_date", "note"])
-    df["note"] = df.note.fillna("")
+    df["note"] = df.note.fillna("").map(_clean_note)
     df["team"] = df.team.str.upper().map(lambda t: TEAM_FIX.get(t, t))
     df["injury_type"] = df.injury_type.fillna("")
     df["scratch"] = df.injury_type.str.lower().isin(NOT_AN_INJURY)
