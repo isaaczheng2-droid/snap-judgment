@@ -1,0 +1,730 @@
+{
+ "generated_at": "2026-09-12",
+ "note": "Coordinates are the stadium itself, not the city. roof_type: open | retractable | fixed_dome. A retractable roof's state for a given game is never assumed; see stadiums.roof_status().",
+ "stadiums": {
+  "ATL97": {
+   "stadium_id": "ATL97",
+   "stadium_name": "Mercedes-Benz Stadium",
+   "teams": [
+    "ATL"
+   ],
+   "latitude": 33.75551,
+   "longitude": -84.40085,
+   "timezone": "America/New_York",
+   "elevation_m": 307.4,
+   "roof_type": "retractable",
+   "indoor": false,
+   "retractable_roof": true,
+   "canopy": false,
+   "surface_type": "fieldturf",
+   "country": "United States",
+   "city": "Atlanta",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "BAL00": {
+   "stadium_id": "BAL00",
+   "stadium_name": "M&T Bank Stadium",
+   "teams": [
+    "BAL"
+   ],
+   "latitude": 39.27796,
+   "longitude": -76.62272,
+   "timezone": "America/New_York",
+   "elevation_m": 3.1,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "grass",
+   "country": "United States",
+   "city": "Baltimore",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "BOS00": {
+   "stadium_id": "BOS00",
+   "stadium_name": "Gillette Stadium",
+   "teams": [
+    "NE"
+   ],
+   "latitude": 42.09092,
+   "longitude": -71.26433,
+   "timezone": "America/New_York",
+   "elevation_m": 78.0,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "fieldturf",
+   "country": "United States",
+   "city": "Foxborough",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "BUF00": {
+   "stadium_id": "BUF00",
+   "stadium_name": "New Era Field",
+   "teams": [
+    "BUF"
+   ],
+   "latitude": 42.77375,
+   "longitude": -78.78695,
+   "timezone": "America/New_York",
+   "elevation_m": 218.3,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "a_turf",
+   "country": "United States",
+   "city": "Orchard Park",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "CAR00": {
+   "stadium_id": "CAR00",
+   "stadium_name": "Bank of America Stadium",
+   "teams": [
+    "CAR"
+   ],
+   "latitude": 35.22582,
+   "longitude": -80.85284,
+   "timezone": "America/New_York",
+   "elevation_m": 221.0,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "grass",
+   "country": "United States",
+   "city": "Charlotte",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "CHI98": {
+   "stadium_id": "CHI98",
+   "stadium_name": "Soldier Field",
+   "teams": [
+    "CHI"
+   ],
+   "latitude": 41.86246,
+   "longitude": -87.61678,
+   "timezone": "America/Chicago",
+   "elevation_m": 177.3,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "grass",
+   "country": "United States",
+   "city": "Chicago",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "CIN00": {
+   "stadium_id": "CIN00",
+   "stadium_name": "Paycor Stadium",
+   "teams": [
+    "CIN"
+   ],
+   "latitude": 39.09543,
+   "longitude": -84.51604,
+   "timezone": "America/New_York",
+   "elevation_m": 146.4,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "fieldturf",
+   "country": "United States",
+   "city": "Cincinnati",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "CLE00": {
+   "stadium_id": "CLE00",
+   "stadium_name": "FirstEnergy Stadium",
+   "teams": [
+    "CLE"
+   ],
+   "latitude": 41.50604,
+   "longitude": -81.69959,
+   "timezone": "America/New_York",
+   "elevation_m": 177.4,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "grass",
+   "country": "United States",
+   "city": "Cleveland",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "DAL00": {
+   "stadium_id": "DAL00",
+   "stadium_name": "AT&T Stadium",
+   "teams": [
+    "DAL"
+   ],
+   "latitude": 32.74797,
+   "longitude": -97.09285,
+   "timezone": "America/Chicago",
+   "elevation_m": 242.5,
+   "roof_type": "retractable",
+   "indoor": false,
+   "retractable_roof": true,
+   "canopy": false,
+   "surface_type": "matrixturf",
+   "country": "United States",
+   "city": "Arlington",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "DEN00": {
+   "stadium_id": "DEN00",
+   "stadium_name": "Empower Field at Mile High",
+   "teams": [
+    "DEN"
+   ],
+   "latitude": 39.74394,
+   "longitude": -105.02011,
+   "timezone": "America/Denver",
+   "elevation_m": 1583.6,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "grass",
+   "country": "United States",
+   "city": "Denver",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "DET00": {
+   "stadium_id": "DET00",
+   "stadium_name": "Ford Field",
+   "teams": [
+    "DET"
+   ],
+   "latitude": 42.34013,
+   "longitude": -83.04568,
+   "timezone": "America/Detroit",
+   "elevation_m": 183.8,
+   "roof_type": "fixed_dome",
+   "indoor": true,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "fieldturf",
+   "country": "United States",
+   "city": "Detroit",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "GNB00": {
+   "stadium_id": "GNB00",
+   "stadium_name": "Lambeau Field",
+   "teams": [
+    "GB"
+   ],
+   "latitude": 44.50148,
+   "longitude": -88.06216,
+   "timezone": "America/Chicago",
+   "elevation_m": 188.9,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "grass",
+   "country": "United States",
+   "city": "Green Bay",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "HOU00": {
+   "stadium_id": "HOU00",
+   "stadium_name": "NRG Stadium",
+   "teams": [
+    "HOU"
+   ],
+   "latitude": 29.68492,
+   "longitude": -95.41082,
+   "timezone": "America/Chicago",
+   "elevation_m": 15.2,
+   "roof_type": "retractable",
+   "indoor": false,
+   "retractable_roof": true,
+   "canopy": false,
+   "surface_type": "astroturf",
+   "country": "United States",
+   "city": "Houston",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "IND00": {
+   "stadium_id": "IND00",
+   "stadium_name": "Lucas Oil Stadium",
+   "teams": [
+    "IND"
+   ],
+   "latitude": 39.7602,
+   "longitude": -86.16381,
+   "timezone": "America/Indiana/Indianapolis",
+   "elevation_m": 216.4,
+   "roof_type": "retractable",
+   "indoor": false,
+   "retractable_roof": true,
+   "canopy": false,
+   "surface_type": "fieldturf",
+   "country": "United States",
+   "city": "Indianapolis",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "JAX00": {
+   "stadium_id": "JAX00",
+   "stadium_name": "TIAA Bank Stadium",
+   "teams": [
+    "JAX"
+   ],
+   "latitude": 30.32392,
+   "longitude": -81.63735,
+   "timezone": "America/New_York",
+   "elevation_m": 1.5,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "grass",
+   "country": "United States",
+   "city": "Jacksonville",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "KAN00": {
+   "stadium_id": "KAN00",
+   "stadium_name": "GEHA Field at Arrowhead Stadium",
+   "teams": [
+    "KC"
+   ],
+   "latitude": 39.04893,
+   "longitude": -94.484,
+   "timezone": "America/Chicago",
+   "elevation_m": 256.8,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "grass",
+   "country": "United States",
+   "city": "Kansas City",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "LAX01": {
+   "stadium_id": "LAX01",
+   "stadium_name": "SoFi Stadium",
+   "teams": [
+    "LAC",
+    "LA"
+   ],
+   "latitude": 33.95349,
+   "longitude": -118.33903,
+   "timezone": "America/Los_Angeles",
+   "elevation_m": 37.0,
+   "roof_type": "fixed_dome",
+   "indoor": true,
+   "retractable_roof": false,
+   "canopy": true,
+   "surface_type": "turf",
+   "country": "United States",
+   "city": "Inglewood",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "LON00": {
+   "stadium_id": "LON00",
+   "stadium_name": "Wembley Stadium",
+   "teams": [
+    "JAX"
+   ],
+   "latitude": 51.55598,
+   "longitude": -0.27959,
+   "timezone": "Europe/London",
+   "elevation_m": 45.4,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "grass",
+   "country": "United Kingdom",
+   "city": "London",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "LON02": {
+   "stadium_id": "LON02",
+   "stadium_name": "Tottenham Hotspur Stadium",
+   "teams": [
+    "WAS"
+   ],
+   "latitude": 51.60422,
+   "longitude": -0.06622,
+   "timezone": "Europe/London",
+   "elevation_m": 13.1,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "grass",
+   "country": "United Kingdom",
+   "city": "London",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "MEX00": {
+   "stadium_id": "MEX00",
+   "stadium_name": "Estadio Banorte",
+   "teams": [
+    "SF"
+   ],
+   "latitude": 19.30297,
+   "longitude": -99.15048,
+   "timezone": "America/Mexico_City",
+   "elevation_m": 2236.7,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "grass",
+   "country": "Mexico",
+   "city": "Ciudad de M\u00e9xico",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "MIA00": {
+   "stadium_id": "MIA00",
+   "stadium_name": "Hard Rock Stadium",
+   "teams": [
+    "MIA"
+   ],
+   "latitude": 25.95796,
+   "longitude": -80.23884,
+   "timezone": "America/New_York",
+   "elevation_m": 2.6,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "grass",
+   "country": "United States",
+   "city": "Miami Gardens",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "MIN01": {
+   "stadium_id": "MIN01",
+   "stadium_name": "U.S. Bank Stadium",
+   "teams": [
+    "MIN"
+   ],
+   "latitude": 44.97363,
+   "longitude": -93.25741,
+   "timezone": "America/Chicago",
+   "elevation_m": 260.8,
+   "roof_type": "fixed_dome",
+   "indoor": true,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "sportturf",
+   "country": "United States",
+   "city": "Minneapolis",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "NAS00": {
+   "stadium_id": "NAS00",
+   "stadium_name": "Nissan Stadium",
+   "teams": [
+    "TEN"
+   ],
+   "latitude": 36.16648,
+   "longitude": -86.77129,
+   "timezone": "America/Chicago",
+   "elevation_m": 121.1,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "grass",
+   "country": "United States",
+   "city": "Nashville-Davidson",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "NOR00": {
+   "stadium_id": "NOR00",
+   "stadium_name": "Mercedes-Benz Superdome",
+   "teams": [
+    "NO"
+   ],
+   "latitude": 29.95114,
+   "longitude": -90.08108,
+   "timezone": "America/Chicago",
+   "elevation_m": 0.5,
+   "roof_type": "fixed_dome",
+   "indoor": true,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "sportturf",
+   "country": "United States",
+   "city": "New Orleans",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "NYC01": {
+   "stadium_id": "NYC01",
+   "stadium_name": "MetLife Stadium",
+   "teams": [
+    "NYG",
+    "NYJ"
+   ],
+   "latitude": 40.81351,
+   "longitude": -74.07434,
+   "timezone": "America/New_York",
+   "elevation_m": 2.3,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "fieldturf",
+   "country": "United States",
+   "city": "East Rutherford",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "PHI00": {
+   "stadium_id": "PHI00",
+   "stadium_name": "Lincoln Financial Field",
+   "teams": [
+    "PHI"
+   ],
+   "latitude": 39.90079,
+   "longitude": -75.16746,
+   "timezone": "America/New_York",
+   "elevation_m": 3.2,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "grass",
+   "country": "United States",
+   "city": "Philadelphia",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "PHO00": {
+   "stadium_id": "PHO00",
+   "stadium_name": "State Farm Stadium",
+   "teams": [
+    "ARI"
+   ],
+   "latitude": 33.52776,
+   "longitude": -112.26259,
+   "timezone": "America/Phoenix",
+   "elevation_m": 325.7,
+   "roof_type": "retractable",
+   "indoor": false,
+   "retractable_roof": true,
+   "canopy": false,
+   "surface_type": "grass",
+   "country": "United States",
+   "city": "Glendale",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "PIT00": {
+   "stadium_id": "PIT00",
+   "stadium_name": "Acrisure Stadium",
+   "teams": [
+    "PIT"
+   ],
+   "latitude": 40.44679,
+   "longitude": -80.01577,
+   "timezone": "America/New_York",
+   "elevation_m": 220.6,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "grass",
+   "country": "United States",
+   "city": "Pittsburgh",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "SEA00": {
+   "stadium_id": "SEA00",
+   "stadium_name": "Lumen Field",
+   "teams": [
+    "SEA"
+   ],
+   "latitude": 47.59515,
+   "longitude": -122.33163,
+   "timezone": "America/Los_Angeles",
+   "elevation_m": 5.2,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "fieldturf",
+   "country": "United States",
+   "city": "Seattle",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "SFO01": {
+   "stadium_id": "SFO01",
+   "stadium_name": "Levi's Stadium",
+   "teams": [
+    "SF"
+   ],
+   "latitude": 37.40318,
+   "longitude": -121.96981,
+   "timezone": "America/Los_Angeles",
+   "elevation_m": 4.2,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "grass",
+   "country": "United States",
+   "city": "Santa Clara",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "TAM00": {
+   "stadium_id": "TAM00",
+   "stadium_name": "Raymond James Stadium",
+   "teams": [
+    "TB"
+   ],
+   "latitude": 27.97597,
+   "longitude": -82.50336,
+   "timezone": "America/New_York",
+   "elevation_m": 11.3,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "grass",
+   "country": "United States",
+   "city": "Tampa",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "VEG00": {
+   "stadium_id": "VEG00",
+   "stadium_name": "Allegiant Stadium",
+   "teams": [
+    "LV"
+   ],
+   "latitude": 36.09085,
+   "longitude": -115.18334,
+   "timezone": "America/Los_Angeles",
+   "elevation_m": 665.4,
+   "roof_type": "fixed_dome",
+   "indoor": true,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "grass",
+   "country": "United States",
+   "city": "Paradise",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "WAS00": {
+   "stadium_id": "WAS00",
+   "stadium_name": "FedExField",
+   "teams": [
+    "WAS"
+   ],
+   "latitude": 38.9077,
+   "longitude": -76.86451,
+   "timezone": "America/New_York",
+   "elevation_m": 59.6,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "grass",
+   "country": "United States",
+   "city": "Landover",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "MEL00": {
+   "stadium_id": "MEL00",
+   "stadium_name": "Melbourne Cricket Ground",
+   "teams": [
+    "LA"
+   ],
+   "latitude": -37.81994,
+   "longitude": 144.98345,
+   "timezone": "Australia/Melbourne",
+   "elevation_m": 13.0,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "matrixturf",
+   "country": "Australia",
+   "city": "Melbourne",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "RIO00": {
+   "stadium_id": "RIO00",
+   "stadium_name": "Maracana Stadium",
+   "teams": [
+    "DAL"
+   ],
+   "latitude": -22.91222,
+   "longitude": -43.23028,
+   "timezone": "America/Sao_Paulo",
+   "elevation_m": 15.0,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "matrixturf",
+   "country": "Brazil",
+   "city": "Rio de Janeiro",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "PAR00": {
+   "stadium_id": "PAR00",
+   "stadium_name": "Stade de France",
+   "teams": [
+    "NO"
+   ],
+   "latitude": 48.92444,
+   "longitude": 2.36,
+   "timezone": "Europe/Paris",
+   "elevation_m": 33.0,
+   "roof_type": "fixed_dome",
+   "indoor": true,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "sportturf",
+   "country": "France",
+   "city": "Saint-Denis",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "MAD01": {
+   "stadium_id": "MAD01",
+   "stadium_name": "Bernabeu",
+   "teams": [
+    "ATL"
+   ],
+   "latitude": 40.45306,
+   "longitude": -3.68835,
+   "timezone": "Europe/Madrid",
+   "elevation_m": 714.0,
+   "roof_type": "open",
+   "indoor": false,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "fieldturf",
+   "country": "Spain",
+   "city": "Madrid",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  },
+  "MUN01": {
+   "stadium_id": "MUN01",
+   "stadium_name": "FC Bayern Munich Stadium",
+   "teams": [
+    "DET"
+   ],
+   "latitude": 48.21889,
+   "longitude": 11.62472,
+   "timezone": "Europe/Munich",
+   "elevation_m": 492.6,
+   "roof_type": "fixed_dome",
+   "indoor": true,
+   "retractable_roof": false,
+   "canopy": false,
+   "surface_type": "fieldturf",
+   "country": "Germany",
+   "city": "M\u00fcnchen",
+   "source": "greerreNFL/stadiums (coordinates, tz, elevation) + nflverse games.csv (name, surface) + roof classification maintained here"
+  }
+ }
+}
