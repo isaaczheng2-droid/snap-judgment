@@ -10,23 +10,83 @@ on:
     # come here for. Most of these runs cost seconds: the job checks whether nflverse has
     # actually republished anything and stops if it has not.
     - cron: "17 * * * *"
+    # Live poll (players + weather, no retrain). GitHub's floor is 5 minutes and drift is
+    # normal, so the cadence is set here coarsely and run_live.py decides per game whether a
+    # poll is actually due from hours-to-kickoff (see CADENCE in run_live.py):
+    #   Sunday windows 13:00-05:00 UTC (9am ET to 1am ET)  every 15 min
+    #   Thursday, Monday nights 22:00-05:00 UTC             every 15 min
+    #   every other hour of the week                         :47 past the hour
+    - cron: "*/15 13-23 * * 0"
+    - cron: "*/15 0-5 * * 1"
+    - cron: "*/15 22-23 * * 1,4"
+    - cron: "*/15 0-5 * * 2,5"
+    - cron: "47 * * * *"
   workflow_dispatch:
     inputs:
       force:
         description: "Rebuild even if the upstream data is unchanged"
         type: boolean
         default: true
+      mode:
+        description: "full = retrain and publish; live = poll players and weather only"
+        type: choice
+        options: [full, live]
+        default: full
 
 # the job pushes the regenerated page back to the branch, so it needs write access
 permissions:
   contents: write
 
 concurrency:
-  group: refresh
+  group: publish
   cancel-in-progress: false
 
 jobs:
+  # ------------------------------------------------------------------ light poll
+  # Runs on every schedule line except the hourly :17 one. Fetches ESPN + nflverse + weather,
+  # writes append-only tables under live/data, updates the live context in payload.json,
+  # splices the page, and leaves live/data/refresh_request.json behind when a CRITICAL/HIGH
+  # event justifies a model rerun. It never retrains.
+  live:
+    if: github.event.schedule != '17 * * * *' && (github.event_name != 'workflow_dispatch' || inputs.mode == 'live')
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Poll players and weather
+        env:
+          NWS_USER_AGENT: ${{ secrets.NWS_USER_AGENT }}
+        run: |
+          test -s payload.json || { echo "no payload.json yet; run the full job first"; exit 0; }
+          python run_live.py --outdir . --datadir data
+      - name: Splice the live context into the page
+        run: |
+          test -s index.html && python merge_payload.py index.html payload.json
+      - name: Commit what changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html payload.json
+          for f in admin.html live/data; do if [ -e "$f" ]; then git add "$f"; fi; done
+          if git diff --staged --quiet; then echo "No change."; else
+            git commit -m "Live poll ($(date -u +'%Y-%m-%d %H:%M') UTC)"
+            git pull --rebase --autostash origin main || true
+            git push
+          fi
+      - name: Trigger a full rebuild if the poll asked for one
+        if: hashFiles('live/data/refresh_request.json') != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run refresh.yml -f mode=full -f force=true
+
+  # ------------------------------------------------------------------ full rebuild
   refresh:
+    if: github.event.schedule == '17 * * * *' || (github.event_name == 'workflow_dispatch' && inputs.mode != 'live')
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
@@ -57,6 +117,10 @@ jobs:
           NEW=$(printf '%s' "$SIG" | sha256sum | cut -c1-32)
           OLD=$(cat .upstream-sig 2>/dev/null || echo none)
           echo "new=$NEW old=$OLD"
+          if [ -s live/data/refresh_request.json ]; then
+            echo "A live event requested a rebuild:"; cat live/data/refresh_request.json
+            NEW="$NEW-live"
+          fi
           if [ "$NEW" = "$OLD" ] && [ "${{ inputs.force }}" != "true" ]; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "Upstream unchanged — skipping the rebuild."
@@ -87,15 +151,8 @@ jobs:
             python seed_tracker.py --datadir data --out history.json
           fi
 
-      # ODDS_API_KEY is what turns the Player Prop Value section on. It is read by
-      # odds_api.py and reaches nothing else — the projections are already final by the time
-      # any line is fetched, and cannot see one. With the secret unset the section renders an
-      # unconnected state and every other part of the build is unaffected, so this is safe to
-      # leave empty indefinitely.
       - name: Rebuild predictions
         if: steps.check.outputs.changed == 'true'
-        env:
-          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: python run_pipeline.py --outdir . --datadir data
 
       - name: Sanity-check the payload before touching the page
@@ -111,9 +168,6 @@ jobs:
                 f"{len(p.get('players', []))} players")
           t = p.get("tracker") or {}
           print("tracker seasons:", t.get("seasons"), "pending:", t.get("pending"))
-          m = p.get("props_meta")
-          print("props:", "none" if not m else
-                f"{m['matched']} matched, {m['recommended']} recommended, from {m['book']}")
           PY
 
       - name: Refuse to publish if the tracker's memory went missing
@@ -152,9 +206,11 @@ jobs:
           # history.json is the season tracker's memory — it MUST be committed or every run
           # starts from an empty slate and no prediction is ever graded
           git add index.html payload.json history.json .upstream-sig
+          for f in admin.html live/data; do if [ -e "$f" ]; then git add "$f"; fi; done
           if git diff --staged --quiet; then
             echo "No change — nothing to publish."
           else
             git commit -m "Refresh predictions ($(date -u +'%Y-%m-%d %H:%M') UTC)"
+            git pull --rebase --autostash origin main || true
             git push
           fi
