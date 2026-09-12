@@ -19,7 +19,7 @@ import json, re, sys, argparse
 # not, and the tab keys off the metadata to decide whether a feed exists at all.
 FRESH_KEYS = ["generated", "season", "week", "games", "players", "feature_importance",
                "backtest", "live", "scheme_league", "tracker",
-               "props_meta", "prop_audit", "prop_range"]
+               "props_meta", "prop_audit", "prop_range", "live_meta"]
 START, END = "/*PAYLOAD_START*/", "/*PAYLOAD_END*/"
 
 

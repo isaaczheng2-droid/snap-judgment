@@ -21,6 +21,7 @@ import pandas as pd
 
 import elo
 import espn_injuries
+from live import store as live_store, versions as live_versions, context as live_context
 import explain
 import odds_api
 import prop_value
@@ -1124,6 +1125,8 @@ def main():
         temp = float(r.get("temp_f")) if known and not pd.isna(r.get("temp_f")) else None
         games_out.append({
             "game_id": r.game_id, "gameday": r.gameday_s,
+            "gameday_iso": str(pd.Timestamp(r.gameday).date()),
+            "stadium_id": None if pd.isna(r.get("stadium_id")) else str(r.get("stadium_id")),
             "kickoff": (lambda k: None if k is None or (isinstance(k, float) and pd.isna(k)) else str(k))(kick.get(r.game_id)),
             "home_team": r.home_team, "away_team": r.away_team,
             "home_record": recs.get(r.home_team, "0-0"), "away_record": recs.get(r.away_team, "0-0"),
@@ -1217,6 +1220,29 @@ def main():
         "scheme_league": {x: float(sch_lg[x]) for x in SCHEME},
         "tracker": tracker.summarize(hist, cur),
     }
+    # ---- live layer: attach the live context to every game and record a prediction version.
+    # The engine above never read anything from the live store; this only annotates and
+    # records what it produced. See live/README.md.
+    try:
+        lstate = live_store.hydrate(live_store.load_state(), cur, target_week, [g["game_id"] for g in games_out])
+        mv = live_versions.model_version(XGB_PARAMS, FEATS, BLEND_W, N_SEEDS, f"{cur}-w{target_week}")
+        req_path = os.path.join(live_store.ROOT, "refresh_request.json")
+        reason = "Scheduled refresh: upstream data changed"
+        if os.path.exists(req_path):
+            try:
+                reason = "Live refresh: " + "; ".join(json.load(open(req_path)).get("reasons", [])[:3])
+            except Exception:
+                pass
+        live_versions.record(payload, mv, data_version=payload["generated"], injury_snapshot_id=lstate.get("snapshot_id"),
+                             weather_snapshot_id=(lstate.get("last_sync") or {}).get("weather"), default_reason=reason, log=log)
+        if os.path.exists(req_path):
+            os.remove(req_path)
+        for g in games_out:                      # after recording, so the page sees the new version
+            g["live"] = live_context.game_context(g, lstate)
+        payload["live_meta"] = live_context.live_meta(lstate, {"run": "full", "at": payload["generated"]})
+    except Exception as e:                       # the live layer must never stop a publish
+        log(f"  live layer skipped: {e}")
+
     # Full float repr costs ~40% of the payload for digits nothing renders. Four places is
     # more than any display uses and still exact enough for the charts.
     def trim(o):

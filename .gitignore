@@ -1,0 +1,6 @@
+# nflverse downloads — re-fetched on every run, ~40MB, no reason to track
+data/
+!live/data/
+__pycache__/
+*.pyc
+.DS_Store
