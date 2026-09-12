@@ -20,8 +20,13 @@ to compare against a sportsbook's implied probability.
 
 Measured raw, it came out overconfident by 2 to 5 points, worse the more confident it got.
 A single shrink toward 0.5, fitted walk-forward, took the expected calibration error from
-2.69% to 0.80%. The shrink settled near 0.80 in every season from 2021 on, which is what a
-real parameter looks like rather than a fitted one.
+2.69% to 0.80% -- and that number, while true, was hiding the actual problem. Broken out by
+how far the projection sits from the line, the bias FLIPS SIGN: too optimistic on extreme
+overs (claimed 72.0%, won 65.5%), too pessimistic on extreme unders (claimed 81.6%, won
+90.2%). One shrink moves both tails the same way, so it could never fix that; the average
+looked good because the two errors cancelled. The calibration is now fitted per side, in
+log-odds space, walk-forward. Worst-band error 8.5% -> 3.7%. It matters because the
+recommendation filter ONLY ever fires in those tails -- nothing near the line clears 65%.
 
 WHAT THE BACKTEST SUPPORTS, STATED PLAINLY
 
@@ -119,8 +124,20 @@ def fair_probability(price_side, price_other):
 class PropModel:
     """Turns (stat, projection, line) into a calibrated P(the side we take wins)."""
 
+    # Calibration is PER SIDE, and that is not a detail. Measured against the backtest, the
+    # raw probability is too optimistic on overs and too pessimistic on unders -- the bias
+    # flips sign between the tails. A single shrink toward 0.5 moves both tails the same
+    # way by construction, so it cannot fix one without worsening the other; it only looked
+    # fine because the two errors cancelled in the average. Broken out, the shipped shrink
+    # claimed 72.0% and delivered 65.5% on the extreme overs, which is exactly the region
+    # the recommendation filter fires in. Two parameters per side in log-odds space cut the
+    # worst band error from 8.5% to 3.7%. See test_prop_tail.py.
+    DEFAULT_CAL = {"over": {"a": 0.60, "b": -0.05}, "under": {"a": 1.00, "b": -0.10}}
+
     def __init__(self, path=None):
         self.ok = False
+        self.cal = dict(self.DEFAULT_CAL)
+        self.stats = {}
         for p in [path, os.path.join("data", MODEL_PATH),
                   os.path.join(os.path.dirname(os.path.abspath(__file__)), MODEL_PATH)]:
             if not p:
@@ -129,25 +146,52 @@ class PropModel:
                 with open(p) as f:
                     m = json.load(f)
                 if isinstance(m, dict) and m.get("stats"):
-                    self.shrink = float(m.get("shrink", 0.8))
                     self.stats = m["stats"]
+                    c = m.get("calibration")
+                    if isinstance(c, dict) and "over" in c and "under" in c:
+                        self.cal = c
+                    elif "shrink" in m:
+                        # an older model file: honour its shrink rather than silently
+                        # applying a calibration it was never fitted with
+                        k = float(m["shrink"])
+                        self.cal = {"over": {"a": k, "b": 0.0}, "under": {"a": k, "b": 0.0}}
                     self.ok = True
                     return
             except Exception:
                 continue
-        self.shrink, self.stats = 0.8, {}
 
-    def p_over(self, stat, projection, line):
-        """P(actual > line). None when the stat has no fitted residual distribution."""
+    def _raw_over(self, stat, projection, line):
         m = self.stats.get(stat)
         if not m or projection is None or line is None:
             return None
         scale = max(m["a"] + m["b"] * float(projection), 1e-6) * np.sqrt(np.pi / 2)
         z = np.asarray(m["z"])
         thr = (float(line) - float(projection)) / scale
-        raw = 1.0 - float(np.searchsorted(z, thr)) / len(z)
-        # shrink toward a coin flip: measured overconfidence, corrected
-        return float(np.clip(0.5 + (raw - 0.5) * self.shrink, 0.01, 0.99))
+        return 1.0 - float(np.searchsorted(z, thr)) / len(z)
+
+    def p_side(self, stat, projection, line):
+        """
+        (take_over, calibrated P(that side wins)). None if the stat has no fitted spread.
+
+        The side is chosen by the projection alone, before any price is seen, and the
+        calibration applied is the one fitted for that side.
+        """
+        raw = self._raw_over(stat, projection, line)
+        if raw is None:
+            return None, None
+        take_over = float(projection) > float(line)
+        p = raw if take_over else 1.0 - raw
+        c = self.cal["over" if take_over else "under"]
+        p = float(np.clip(p, 1e-6, 1 - 1e-6))
+        z = float(c["a"]) * np.log(p / (1 - p)) + float(c["b"])
+        return take_over, float(np.clip(1 / (1 + np.exp(-z)), 0.01, 0.99))
+
+    def p_over(self, stat, projection, line):
+        """Calibrated P(actual > line), for callers that want the over side specifically."""
+        take_over, p = self.p_side(stat, projection, line)
+        if p is None:
+            return None
+        return p if take_over else 1.0 - p
 
 
 # --------------------------------------------------------------------- the comparison
@@ -165,9 +209,9 @@ def evaluate(stat, projection, line, price_over, price_under, model):
     if price is None:
         return None
     other = price_under if take_over else price_over
-    p_over = model.p_over(stat, projection, line)
+    _, confidence_cal = model.p_side(stat, projection, line)
 
-    if p_over is None:
+    if confidence_cal is None:
         # No fitted residual distribution for this stat, so there is no honest probability
         # to put next to the sportsbook's. The row is still shown -- the projection and the
         # line are real and worth seeing -- but with the confidence column blank and the
@@ -191,7 +235,7 @@ def evaluate(stat, projection, line, price_over, price_under, model):
                            "probability can be put against the price"],
         }
 
-    confidence = p_over if take_over else 1.0 - p_over
+    confidence = confidence_cal
     edge = (float(projection) - float(line)) if take_over else (float(line) - float(projection))
     edge_pct = edge / max(abs(float(line)), 0.5)
 
