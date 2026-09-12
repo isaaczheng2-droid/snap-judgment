@@ -1,0 +1,43 @@
+{
+ "id": "https://api.weather.gov/points/39.0489,-94.484",
+ "type": "Feature",
+ "geometry": {
+  "type": "Point",
+  "coordinates": [
+   -94.484,
+   39.0489
+  ]
+ },
+ "properties": {
+  "@id": "https://api.weather.gov/points/39.0489,-94.484",
+  "@type": "wx:Point",
+  "cwa": "EAX",
+  "type": "land",
+  "forecastOffice": "https://api.weather.gov/offices/EAX",
+  "gridId": "EAX",
+  "gridX": 47,
+  "gridY": 48,
+  "forecast": "https://api.weather.gov/gridpoints/EAX/47,48/forecast",
+  "forecastHourly": "https://api.weather.gov/gridpoints/EAX/47,48/forecast/hourly",
+  "forecastGridData": "https://api.weather.gov/gridpoints/EAX/47,48",
+  "observationStations": "https://api.weather.gov/gridpoints/EAX/47,48/stations",
+  "relativeLocation": {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -94.5503133,
+     39.1251553
+    ]
+   },
+   "properties": {
+    "city": "Kansas City",
+    "state": "MO"
+   }
+  },
+  "forecastZone": "https://api.weather.gov/zones/forecast/MOZ037",
+  "county": "https://api.weather.gov/zones/county/MOC095",
+  "timeZone": "America/Chicago",
+  "radarStation": "KEAX"
+ }
+}

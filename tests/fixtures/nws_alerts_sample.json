@@ -1,0 +1,29 @@
+{
+ "type": "FeatureCollection",
+ "title": "Current watches, warnings, and advisories for 39.0489 N, 94.484 W",
+ "updated": "2026-09-12T15:33:15+00:00",
+ "features": [
+  {
+   "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.254d83faf71b1d7f27bbfe5a841448b7d4e743ac.001.1",
+   "type": "Feature",
+   "geometry": null,
+   "properties": {
+    "id": "urn:oid:2.49.0.1.840.0.254d83faf71b1d7f27bbfe5a841448b7d4e743ac.001.1",
+    "event": "Wind Advisory",
+    "severity": "Moderate",
+    "certainty": "Likely",
+    "urgency": "Expected",
+    "status": "Actual",
+    "messageType": "Update",
+    "headline": "Wind Advisory issued September 12 at 2:32AM PDT until September 13 at 5:00AM PDT by NWS Hanford CA",
+    "onset": "2026-09-12T19:00:00-07:00",
+    "effective": "2026-09-12T02:32:00-07:00",
+    "ends": "2026-09-13T05:00:00-07:00",
+    "expires": "2026-09-12T11:00:00-07:00",
+    "areaDesc": "Kern County Desert; Indian Wells Valley",
+    "senderName": "NWS Hanford CA",
+    "description": "* WHAT...Northwest winds 25 to 35 mph with gusts up to 55 mph expected."
+   }
+  }
+ ]
+}

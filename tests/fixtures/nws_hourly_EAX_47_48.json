@@ -1,0 +1,394 @@
+{
+ "type": "Feature",
+ "properties": {
+  "generatedAt": "2026-09-12T15:34:06+00:00",
+  "updateTime": "2026-09-12T12:01:40+00:00",
+  "validTimes": "2026-09-12T06:00:00+00:00/P7DT19H",
+  "units": "us",
+  "forecastGenerator": "HourlyForecastGenerator",
+  "elevation": {
+   "unitCode": "wmoUnit:m",
+   "value": 270.9672
+  },
+  "periods": [
+   {
+    "number": 1,
+    "name": "",
+    "startTime": "2026-09-14T10:00:00-05:00",
+    "endTime": "2026-09-14T11:00:00-05:00",
+    "isDaytime": true,
+    "temperature": 75,
+    "temperatureUnit": "F",
+    "temperatureTrend": "",
+    "probabilityOfPrecipitation": {
+     "unitCode": "wmoUnit:percent",
+     "value": 9
+    },
+    "dewpoint": {
+     "unitCode": "wmoUnit:degC",
+     "value": 18.0
+    },
+    "relativeHumidity": {
+     "unitCode": "wmoUnit:percent",
+     "value": 87
+    },
+    "windSpeed": "12 mph",
+    "windDirection": "SE",
+    "icon": "",
+    "shortForecast": "Mostly Sunny",
+    "detailedForecast": ""
+   },
+   {
+    "number": 2,
+    "name": "",
+    "startTime": "2026-09-14T11:00:00-05:00",
+    "endTime": "2026-09-14T12:00:00-05:00",
+    "isDaytime": true,
+    "temperature": 79,
+    "temperatureUnit": "F",
+    "temperatureTrend": "",
+    "probabilityOfPrecipitation": {
+     "unitCode": "wmoUnit:percent",
+     "value": 9
+    },
+    "dewpoint": {
+     "unitCode": "wmoUnit:degC",
+     "value": 18.0
+    },
+    "relativeHumidity": {
+     "unitCode": "wmoUnit:percent",
+     "value": 79
+    },
+    "windSpeed": "12 mph",
+    "windDirection": "SE",
+    "icon": "",
+    "shortForecast": "Mostly Sunny",
+    "detailedForecast": ""
+   },
+   {
+    "number": 3,
+    "name": "",
+    "startTime": "2026-09-14T12:00:00-05:00",
+    "endTime": "2026-09-14T13:00:00-05:00",
+    "isDaytime": true,
+    "temperature": 82,
+    "temperatureUnit": "F",
+    "temperatureTrend": "",
+    "probabilityOfPrecipitation": {
+     "unitCode": "wmoUnit:percent",
+     "value": 9
+    },
+    "dewpoint": {
+     "unitCode": "wmoUnit:degC",
+     "value": 18.0
+    },
+    "relativeHumidity": {
+     "unitCode": "wmoUnit:percent",
+     "value": 77
+    },
+    "windSpeed": "13 mph",
+    "windDirection": "SSE",
+    "icon": "",
+    "shortForecast": "Sunny",
+    "detailedForecast": ""
+   },
+   {
+    "number": 4,
+    "name": "",
+    "startTime": "2026-09-14T13:00:00-05:00",
+    "endTime": "2026-09-14T14:00:00-05:00",
+    "isDaytime": true,
+    "temperature": 85,
+    "temperatureUnit": "F",
+    "temperatureTrend": "",
+    "probabilityOfPrecipitation": {
+     "unitCode": "wmoUnit:percent",
+     "value": 2
+    },
+    "dewpoint": {
+     "unitCode": "wmoUnit:degC",
+     "value": 18.0
+    },
+    "relativeHumidity": {
+     "unitCode": "wmoUnit:percent",
+     "value": 72
+    },
+    "windSpeed": "13 mph",
+    "windDirection": "SSE",
+    "icon": "",
+    "shortForecast": "Sunny",
+    "detailedForecast": ""
+   },
+   {
+    "number": 5,
+    "name": "",
+    "startTime": "2026-09-14T14:00:00-05:00",
+    "endTime": "2026-09-14T15:00:00-05:00",
+    "isDaytime": true,
+    "temperature": 88,
+    "temperatureUnit": "F",
+    "temperatureTrend": "",
+    "probabilityOfPrecipitation": {
+     "unitCode": "wmoUnit:percent",
+     "value": 2
+    },
+    "dewpoint": {
+     "unitCode": "wmoUnit:degC",
+     "value": 18.0
+    },
+    "relativeHumidity": {
+     "unitCode": "wmoUnit:percent",
+     "value": 68
+    },
+    "windSpeed": "14 mph",
+    "windDirection": "SSE",
+    "icon": "",
+    "shortForecast": "Sunny",
+    "detailedForecast": ""
+   },
+   {
+    "number": 6,
+    "name": "",
+    "startTime": "2026-09-14T15:00:00-05:00",
+    "endTime": "2026-09-14T16:00:00-05:00",
+    "isDaytime": true,
+    "temperature": 89,
+    "temperatureUnit": "F",
+    "temperatureTrend": "",
+    "probabilityOfPrecipitation": {
+     "unitCode": "wmoUnit:percent",
+     "value": 2
+    },
+    "dewpoint": {
+     "unitCode": "wmoUnit:degC",
+     "value": 18.0
+    },
+    "relativeHumidity": {
+     "unitCode": "wmoUnit:percent",
+     "value": 66
+    },
+    "windSpeed": "15 mph",
+    "windDirection": "S",
+    "icon": "",
+    "shortForecast": "Sunny",
+    "detailedForecast": ""
+   },
+   {
+    "number": 7,
+    "name": "",
+    "startTime": "2026-09-14T16:00:00-05:00",
+    "endTime": "2026-09-14T17:00:00-05:00",
+    "isDaytime": true,
+    "temperature": 90,
+    "temperatureUnit": "F",
+    "temperatureTrend": "",
+    "probabilityOfPrecipitation": {
+     "unitCode": "wmoUnit:percent",
+     "value": 2
+    },
+    "dewpoint": {
+     "unitCode": "wmoUnit:degC",
+     "value": 18.0
+    },
+    "relativeHumidity": {
+     "unitCode": "wmoUnit:percent",
+     "value": 64
+    },
+    "windSpeed": "15 mph",
+    "windDirection": "S",
+    "icon": "",
+    "shortForecast": "Sunny",
+    "detailedForecast": ""
+   },
+   {
+    "number": 8,
+    "name": "",
+    "startTime": "2026-09-14T17:00:00-05:00",
+    "endTime": "2026-09-14T18:00:00-05:00",
+    "isDaytime": true,
+    "temperature": 90,
+    "temperatureUnit": "F",
+    "temperatureTrend": "",
+    "probabilityOfPrecipitation": {
+     "unitCode": "wmoUnit:percent",
+     "value": 2
+    },
+    "dewpoint": {
+     "unitCode": "wmoUnit:degC",
+     "value": 18.0
+    },
+    "relativeHumidity": {
+     "unitCode": "wmoUnit:percent",
+     "value": 64
+    },
+    "windSpeed": "14 mph",
+    "windDirection": "S",
+    "icon": "",
+    "shortForecast": "Sunny",
+    "detailedForecast": ""
+   },
+   {
+    "number": 9,
+    "name": "",
+    "startTime": "2026-09-14T18:00:00-05:00",
+    "endTime": "2026-09-14T19:00:00-05:00",
+    "isDaytime": true,
+    "temperature": 89,
+    "temperatureUnit": "F",
+    "temperatureTrend": "",
+    "probabilityOfPrecipitation": {
+     "unitCode": "wmoUnit:percent",
+     "value": 2
+    },
+    "dewpoint": {
+     "unitCode": "wmoUnit:degC",
+     "value": 18.0
+    },
+    "relativeHumidity": {
+     "unitCode": "wmoUnit:percent",
+     "value": 66
+    },
+    "windSpeed": "13 mph",
+    "windDirection": "S",
+    "icon": "",
+    "shortForecast": "Mostly Clear",
+    "detailedForecast": ""
+   },
+   {
+    "number": 10,
+    "name": "",
+    "startTime": "2026-09-14T19:00:00-05:00",
+    "endTime": "2026-09-14T20:00:00-05:00",
+    "isDaytime": false,
+    "temperature": 88,
+    "temperatureUnit": "F",
+    "temperatureTrend": "",
+    "probabilityOfPrecipitation": {
+     "unitCode": "wmoUnit:percent",
+     "value": 4
+    },
+    "dewpoint": {
+     "unitCode": "wmoUnit:degC",
+     "value": 18.0
+    },
+    "relativeHumidity": {
+     "unitCode": "wmoUnit:percent",
+     "value": 66
+    },
+    "windSpeed": "12 mph",
+    "windDirection": "S",
+    "icon": "",
+    "shortForecast": "Mostly Clear",
+    "detailedForecast": ""
+   },
+   {
+    "number": 11,
+    "name": "",
+    "startTime": "2026-09-14T20:00:00-05:00",
+    "endTime": "2026-09-14T21:00:00-05:00",
+    "isDaytime": false,
+    "temperature": 86,
+    "temperatureUnit": "F",
+    "temperatureTrend": "",
+    "probabilityOfPrecipitation": {
+     "unitCode": "wmoUnit:percent",
+     "value": 4
+    },
+    "dewpoint": {
+     "unitCode": "wmoUnit:degC",
+     "value": 18.0
+    },
+    "relativeHumidity": {
+     "unitCode": "wmoUnit:percent",
+     "value": 68
+    },
+    "windSpeed": "12 mph",
+    "windDirection": "S",
+    "icon": "",
+    "shortForecast": "Mostly Clear",
+    "detailedForecast": ""
+   },
+   {
+    "number": 12,
+    "name": "",
+    "startTime": "2026-09-14T21:00:00-05:00",
+    "endTime": "2026-09-14T22:00:00-05:00",
+    "isDaytime": false,
+    "temperature": 84,
+    "temperatureUnit": "F",
+    "temperatureTrend": "",
+    "probabilityOfPrecipitation": {
+     "unitCode": "wmoUnit:percent",
+     "value": 4
+    },
+    "dewpoint": {
+     "unitCode": "wmoUnit:degC",
+     "value": 18.0
+    },
+    "relativeHumidity": {
+     "unitCode": "wmoUnit:percent",
+     "value": 70
+    },
+    "windSpeed": "13 mph",
+    "windDirection": "S",
+    "icon": "",
+    "shortForecast": "Mostly Clear",
+    "detailedForecast": ""
+   },
+   {
+    "number": 13,
+    "name": "",
+    "startTime": "2026-09-14T22:00:00-05:00",
+    "endTime": "2026-09-14T23:00:00-05:00",
+    "isDaytime": false,
+    "temperature": 82,
+    "temperatureUnit": "F",
+    "temperatureTrend": "",
+    "probabilityOfPrecipitation": {
+     "unitCode": "wmoUnit:percent",
+     "value": 4
+    },
+    "dewpoint": {
+     "unitCode": "wmoUnit:degC",
+     "value": 18.0
+    },
+    "relativeHumidity": {
+     "unitCode": "wmoUnit:percent",
+     "value": 72
+    },
+    "windSpeed": "13 mph",
+    "windDirection": "S",
+    "icon": "",
+    "shortForecast": "Mostly Clear",
+    "detailedForecast": ""
+   },
+   {
+    "number": 14,
+    "name": "",
+    "startTime": "2026-09-14T23:00:00-05:00",
+    "endTime": "2026-09-14T24:00:00-05:00",
+    "isDaytime": false,
+    "temperature": 81,
+    "temperatureUnit": "F",
+    "temperatureTrend": "",
+    "probabilityOfPrecipitation": {
+     "unitCode": "wmoUnit:percent",
+     "value": 4
+    },
+    "dewpoint": {
+     "unitCode": "wmoUnit:degC",
+     "value": 18.0
+    },
+    "relativeHumidity": {
+     "unitCode": "wmoUnit:percent",
+     "value": 72
+    },
+    "windSpeed": "13 mph",
+    "windDirection": "S",
+    "icon": "",
+    "shortForecast": "Mostly Clear",
+    "detailedForecast": ""
+   }
+  ]
+ }
+}
