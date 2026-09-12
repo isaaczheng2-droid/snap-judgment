@@ -161,6 +161,10 @@ def main():
     dev = events.depth_changes({("KC", "QB"): ["00-A", "00-B"]}, {("KC", "QB"): ["00-B", "00-A"]}, {"00-A": "Starter", "00-B": "Backup"})
     check("starter replaced at QB -> CRITICAL depth event naming both", dev and dev[0]["severity"] == "CRITICAL" and "Starter" in dev[0]["detail"] and "Backup" in dev[0]["detail"])
     wev = events.weather_changes("G1", calm, dict(calm, max_window_wind=17, max_window_gust=30), [], al)
+    from live import events as _ev
+    _al = lambda ev, sv: _ev.weather_changes("g", {}, {}, [], [{"alert_id": "x", "event": ev, "severity": sv}], "nws")[0]["severity"]
+    check("Tornado Warning CRITICAL, Flood Watch HIGH, Heat Advisory MEDIUM",
+          _al("Tornado Warning", "Extreme") == "CRITICAL" and _al("Flood Watch", "Severe") == "HIGH" and _al("Heat Advisory", "Moderate") == "MEDIUM")
     check("wind 5 -> 17 gives a HIGH weather event plus an alert event", any(e["severity"] == "HIGH" and e["event_type"] == "WEATHER_CHANGE_EVENT" for e in wev) and any(e["event_type"] == "SEVERE_WEATHER_ALERT" for e in wev), str([(e["event_type"], e["severity"]) for e in wev]))
     check("refresh wanted for the QB event, not for the weather event", impact.wants_refresh(next(e for e in ev if e["event_type"] == "STARTING_QB_CHANGE")) and not any(impact.wants_refresh(e) for e in wev))
     events.record(ev + wev)
