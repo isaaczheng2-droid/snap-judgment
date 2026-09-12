@@ -50,24 +50,49 @@ MARKET_LIST = ",".join(MARKETS)
 
 
 def _get(url, timeout=25):
-    """Returns (parsed_json, headers_dict) or (None, {}). Never raises."""
+    """
+    Returns (parsed_json, headers_dict). Never raises.
+
+    `headers` always carries `_status` (the HTTP code) and, on a failure, `_error` (whatever
+    the API said went wrong). The first version of this swallowed both and logged only
+    "could not list events", which is true, useless, and cost a debugging round trip: the
+    API had actually returned a perfectly clear message and nothing was reading it.
+
+    The URL is never logged or returned, because the API key is in it.
+    """
     try:
         r = subprocess.run(["curl", "-sSL", "-D", "-", "--max-time", str(timeout), url],
                            capture_output=True, timeout=timeout + 10)
-        if r.returncode != 0 or not r.stdout:
-            return None, {}
+        if r.returncode != 0:
+            return None, {"_status": "0", "_error": f"curl exit {r.returncode}"}
+        if not r.stdout:
+            return None, {"_status": "0", "_error": "empty response"}
         raw = r.stdout.decode("utf-8", "replace")
         head, _, body = raw.partition("\r\n\r\n")
         if not body:
             head, _, body = raw.partition("\n\n")
         hdrs = {}
+        status = ""
         for ln in head.splitlines():
-            if ":" in ln:
+            if ln.upper().startswith("HTTP/"):
+                parts = ln.split()
+                status = parts[1] if len(parts) > 1 else ""
+            elif ":" in ln:
                 k, _, v = ln.partition(":")
                 hdrs[k.strip().lower()] = v.strip()
-        return json.loads(body), hdrs
-    except Exception:
-        return None, {}
+        hdrs["_status"] = status
+        try:
+            data = json.loads(body)
+        except Exception:
+            hdrs["_error"] = body.strip()[:200] or "unparseable response"
+            return None, hdrs
+        # The Odds API reports problems as an object with a message, not an HTTP-only code
+        if isinstance(data, dict) and ("message" in data or "error_code" in data):
+            hdrs["_error"] = str(data.get("message") or data.get("error_code"))[:200]
+            return None, hdrs
+        return data, hdrs
+    except Exception as e:
+        return None, {"_status": "0", "_error": f"{type(e).__name__}: {e}"}
 
 
 def _fresh(path, hours):
@@ -86,7 +111,7 @@ def fetch(key=None, cache=CACHE, refresh_hours=REFRESH_HOURS, log=print):
     which is the right behaviour: a six-hour-old line is far more useful than no line, and
     the page timestamps it so the reader can judge.
     """
-    key = key or os.environ.get("ODDS_API_KEY") or ""
+    key = (key or os.environ.get("ODDS_API_KEY") or "").strip()
     # Development only. The Odds API is refused by egress policy from both dev machines, so
     # the UI has to be built against a captured shape. A fixture is never published: it is
     # opt-in via an env var that CI does not set, and the payload records where lines came
@@ -112,9 +137,12 @@ def fetch(key=None, cache=CACHE, refresh_hours=REFRESH_HOURS, log=print):
         log("  odds: ODDS_API_KEY not set; no FanDuel lines this run")
         return _stale(cache, log)
 
+    if len(key) < 20:
+        log(f"  odds: ODDS_API_KEY looks too short ({len(key)} chars) - check it was pasted whole")
     events, hdrs = _get(f"{BASE}/events?apiKey={key}")
     if not isinstance(events, list):
-        log("  odds: could not list events")
+        log(f"  odds: could not list events - HTTP {hdrs.get('_status', '?')}"
+            f"{': ' + hdrs['_error'] if hdrs.get('_error') else ''}")
         return _stale(cache, log)
     remaining = hdrs.get("x-requests-remaining")
     log(f"  odds: {len(events)} events listed, {remaining or '?'} credits remaining")
@@ -126,7 +154,7 @@ def fetch(key=None, cache=CACHE, refresh_hours=REFRESH_HOURS, log=print):
         except ValueError:
             pass
 
-    props, used = {}, 0
+    props, used, errors = {}, 0, 0
     for ev in events:
         eid = ev.get("id")
         if not eid:
@@ -137,6 +165,10 @@ def fetch(key=None, cache=CACHE, refresh_hours=REFRESH_HOURS, log=print):
         used += 1
         remaining = h.get("x-requests-remaining", remaining)
         if not isinstance(data, dict):
+            if not errors:
+                log(f"  odds: event odds failed - HTTP {h.get('_status', '?')}"
+                    f"{': ' + h['_error'] if h.get('_error') else ''}")
+            errors += 1
             continue
         for bm in data.get("bookmakers", []):
             if bm.get("key") != BOOK:
@@ -168,7 +200,9 @@ def fetch(key=None, cache=CACHE, refresh_hours=REFRESH_HOURS, log=print):
                 pass
 
     if not props:
-        log("  odds: no player props returned")
+        log(f"  odds: no player props returned across {used} event(s), {errors} errored. "
+            f"If the events listed but no props came back, FanDuel props may not be covered "
+            f"for this sport on this plan.")
         return _stale(cache, log)
 
     out = {"fetched": time.strftime("%Y-%m-%dT%H:%MZ", time.gmtime()),
