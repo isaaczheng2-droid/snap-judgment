@@ -689,6 +689,34 @@ OPPCOL = {"pass": "opp_rating_g_def_pass_epa_pp_allowed", "rush": "opp_rating_g_
 # are not three readable pieces
 USAGE = ["tgt_share", "car_share"]
 
+# The player page plots the projection against what the player has actually done. Box
+# scores only, oldest first, capped so a hundred-odd players do not double the payload.
+LOG_COLS = {
+    "QB": ["attempts", "passing_yards", "passing_tds", "rushing_yards"],
+    "RB": ["carries", "rushing_yards", "rushing_tds", "targets", "receptions", "receiving_yards"],
+    "WR": ["targets", "receptions", "receiving_yards", "receiving_tds", "tgt_share"],
+    "TE": ["targets", "receptions", "receiving_yards", "receiving_tds", "tgt_share"],
+}
+LOG_N = 10
+
+
+def game_logs(pw, ids):
+    sub = pw[pw.player_id.isin(set(ids))].sort_values(["player_id", "gameday"])
+    out = {}
+    for pid, g in sub.groupby("player_id"):
+        pos = str(g.position.iloc[-1]) if "position" in g.columns else "WR"
+        have = [c for c in LOG_COLS.get(pos, LOG_COLS["WR"]) if c in pw.columns]
+        rows = []
+        for r in g.tail(LOG_N).itertuples():
+            d = {"s": int(r.season), "w": int(r.week), "opp": r.opponent_team,
+                 "h": None if pd.isna(r.is_home) else int(r.is_home)}
+            for c in have:
+                v = getattr(r, c)
+                d[c] = None if pd.isna(v) else round(float(v), 3 if "share" in c else 1)
+            rows.append(d)
+        out[pid] = rows
+    return out
+
 
 def player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_map=None,
                        opp_scheme=None):
@@ -769,9 +797,11 @@ def player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_ma
     recs = pdf.replace({np.nan: None}).to_dict(orient="records")
     inj_map = inj_map or {}
     opp_scheme = opp_scheme or {}
+    logs = game_logs(pw, pdf.player_id)
     for rec in recs:
         pid = rec.pop("player_id")
         rec["player_key"] = pid          # the tracker locks projections against this id
+        rec["log"] = logs.get(pid, [])
         rec["why"] = {s: w for (p, s), w in why.items() if p == pid}
         st = inj_map.get(pid)
         if st:
@@ -1082,6 +1112,8 @@ def main():
             d["quality"]["n"] = n_rank
         return d
 
+    kick = sched.drop_duplicates("game_id").set_index("game_id")["gametime"].to_dict() \
+        if "gametime" in sched.columns else {}
     games_out = []
     for i, (_, r) in enumerate(up.iterrows()):
         hs, as_ = side_scheme(r, "home"), side_scheme(r, "away")
@@ -1092,6 +1124,7 @@ def main():
         temp = float(r.get("temp_f")) if known and not pd.isna(r.get("temp_f")) else None
         games_out.append({
             "game_id": r.game_id, "gameday": r.gameday_s,
+            "kickoff": (lambda k: None if k is None or (isinstance(k, float) and pd.isna(k)) else str(k))(kick.get(r.game_id)),
             "home_team": r.home_team, "away_team": r.away_team,
             "home_record": recs.get(r.home_team, "0-0"), "away_record": recs.get(r.away_team, "0-0"),
             "spread_line": None if pd.isna(r.spread_line) else float(r.spread_line),
@@ -1177,6 +1210,9 @@ def main():
         "backtest": load_backtest(a.datadir),
         "props_meta": props_meta,
         "prop_audit": load_prop_audit(a.datadir),
+        # the fitted spread of each projection, so the page can draw an expected range
+        # around every number from the same distribution the prop probabilities use
+        "prop_range": prop_value.range_table(prop_model) if prop_model.ok else None,
         "live": live,
         "scheme_league": {x: float(sch_lg[x]) for x in SCHEME},
         "tracker": tracker.summarize(hist, cur),

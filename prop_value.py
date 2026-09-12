@@ -194,6 +194,30 @@ class PropModel:
         return p if take_over else 1.0 - p
 
 
+RANGE_Q = {"q10": 0.10, "q25": 0.25, "q50": 0.50, "q75": 0.75, "q90": 0.90}
+
+
+def range_table(model):
+    """
+    Per stat: the scale coefficients and a few quantiles of the standardised residual, so a
+    page can draw "expected range" around a projection as
+        projection + z_q * (a + b * projection) * sqrt(pi / 2).
+    This is the distribution the prop probabilities already come from; publishing its
+    quantiles adds no new model, it shows the one that exists.
+    """
+    out = {}
+    for stat, m in (model.stats or {}).items():
+        z = np.asarray(m["z"], dtype=float)
+        if not len(z):
+            continue
+        n = len(z)
+        out[stat] = {"a": round(float(m["a"]), 4), "b": round(float(m["b"]), 4),
+                     "k": round(float(np.sqrt(np.pi / 2)), 4),
+                     **{key: round(float(z[min(n - 1, int(round(q * (n - 1))))]), 3)
+                        for key, q in RANGE_Q.items()}}
+    return out
+
+
 # --------------------------------------------------------------------- the comparison
 def evaluate(stat, projection, line, price_over, price_under, model):
     """
