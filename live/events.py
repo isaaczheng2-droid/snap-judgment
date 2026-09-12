@@ -131,7 +131,12 @@ def weather_changes(game_id, prev_summary, cur_summary, prev_alerts, cur_alerts,
     for a in cur_alerts or []:
         if a.get("alert_id") in seen:
             continue
-        sev = "CRITICAL" if a.get("severity") in ("Extreme", "Severe") else "MEDIUM"
+        # NWS tags a Flood Watch "Severe" just like a Tornado Warning. A watch means conditions
+        # are possible; a warning means they are happening or imminent. Only the latter is
+        # CRITICAL; a severe watch is HIGH; advisories and statements are MEDIUM.
+        strong = a.get("severity") in ("Extreme", "Severe")
+        warning = "warning" in str(a.get("event") or "").lower()
+        sev = "CRITICAL" if strong and warning else "HIGH" if strong else "MEDIUM"
         events.append(_event("SEVERE_WEATHER_ALERT", game_id, None, None, sev, None, a.get("event"),
                              a.get("headline") or a.get("event"), "nws", a.get("onset"), alert=a))
     return events

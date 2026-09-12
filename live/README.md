@@ -177,7 +177,7 @@ Player: compares the merged current record with the previous merged record per p
 
 Depth: starter at a key slot changed → `DEPTH_CHART_CHANGE` (CRITICAL for QB, HIGH for RB/WR/TE/T, MEDIUM otherwise).
 
-Weather: `weather.diff` compares the new summary with the last stored one; a move beyond tolerance (wind 6 mph, gust 10, precip probability 25 pts, temp 12 °F, snow 0.1 in) or a change of impact level appends a new forecast row. `WEATHER_CHANGE_EVENT` (HIGH) fires for a ≥10 mph wind/gust move or an impact jump to HIGH; `SEVERE_WEATHER_ALERT` (CRITICAL) for an NWS alert with severity Extreme or Severe. Provider disagreement beyond tolerance (wind 6, precip 30, temp 10) sets `uncertainty` on the game's weather object and the page shows "Forecast uncertainty".
+Weather: `weather.diff` compares the new summary with the last stored one; a move beyond tolerance (wind 6 mph, gust 10, precip probability 25 pts, temp 12 °F, snow 0.1 in) or a change of impact level appends a new forecast row. `WEATHER_CHANGE_EVENT` (HIGH) fires for a ≥10 mph wind/gust move or an impact jump to HIGH; `SEVERE_WEATHER_ALERT` for a new NWS alert: CRITICAL when severity is Extreme or Severe and the product is a Warning, HIGH for a severe Watch, MEDIUM for advisories and statements. Provider disagreement beyond tolerance (wind 6, precip 30, temp 10) sets `uncertainty` on the game's weather object and the page shows "Forecast uncertainty".
 
 Impact thresholds (from the audit's evidence, roughly per 10 mph of wind ≈ −7% passing yards): wind ≥10 LOW, ≥15 MODERATE, ≥20 HIGH; gusts ≥30 bump, ≥40 HIGH; rain ≥60% and ≥0.1 in MODERATE, ≥0.25 in HIGH; snow MODERATE, ≥1 in HIGH; temp ≤25 °F MODERATE, ≤10 HIGH; severe alert HIGH.
 
