@@ -12,8 +12,14 @@ carried over from whatever is already in the page, so a refresh can never wipe i
 """
 import json, re, sys, argparse
 
+# Every key the daily run regenerates. A key missing from this list is NOT an omission the
+# page survives -- it silently keeps whatever was baked in at build time. That is how the
+# Bets tab ended up reporting "FanDuel lines are not connected" while payload.json held 212
+# live props: `games` was listed so the props themselves came through, but `props_meta` was
+# not, and the tab keys off the metadata to decide whether a feed exists at all.
 FRESH_KEYS = ["generated", "season", "week", "games", "players", "feature_importance",
-               "backtest", "live", "scheme_league", "tracker"]
+               "backtest", "live", "scheme_league", "tracker",
+               "props_meta", "prop_audit"]
 START, END = "/*PAYLOAD_START*/", "/*PAYLOAD_END*/"
 
 
