@@ -385,6 +385,8 @@ def build(players, odds, model, log=print):
             "team": pl.get("team"), "opponent": pl.get("opponent_team"),
             "position": pl.get("position"), "headshot": pl.get("headshot"),
             "is_home": pl.get("is_home"),
+            "line_open": slot.get("line_open"), "line_open_at": slot.get("line_open_at"),
+            "line_prev": slot.get("line_prev"), "line_moved_at": slot.get("line_moved_at"),
         })
         ev["reason"] = reason(ev, ev["player"], ev["opponent"])
         rows.append(ev)
@@ -402,5 +404,6 @@ def build(players, odds, model, log=print):
     meta = {"book": odds.get("book", "FanDuel"), "fetched": odds.get("fetched"),
             "matched": len(rows), "recommended": n_rec,
             "source": odds.get("source", "live"),
-            "credits_remaining": odds.get("credits_remaining")}
+            "credits_remaining": odds.get("credits_remaining"),
+            "moved": sum(1 for r in rows if r.get("line_open") is not None and r.get("line_open") != r.get("line"))}
     return by_game, meta

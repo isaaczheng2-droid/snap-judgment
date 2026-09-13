@@ -283,6 +283,7 @@ def main():
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--no-weather", action="store_true")
     ap.add_argument("--no-players", action="store_true")
+    ap.add_argument("--no-odds", action="store_true")
     a = ap.parse_args()
 
     payload_path = os.path.join(a.outdir, "payload.json")
@@ -362,6 +363,27 @@ def main():
     # ---- frontend objects
     for g in payload["games"]:
         g["live"] = context.game_context(g, state)
+    # Sportsbook lines, kept on the same clock as everything else. The projections are the
+    # published ones in payload.json and are not touched; only the comparison is redone.
+    # Cadence: every 3h normally, hourly inside 6h of a kickoff (odds_api.refresh_hours_for),
+    # which is ~3,000 credits a week against a 20,000-a-month plan.
+    if not a.no_odds:
+        try:
+            import odds_api, prop_value
+            hrs = odds_api.refresh_hours_for(list((state.get("kickoffs") or {}).values()))
+            odds = odds_api.fetch(refresh_hours=hrs, log=log)
+            if odds and odds.get("props"):
+                by_game, meta = prop_value.build(payload.get("players") or [], odds, prop_value.PropModel(), log=log)
+                for g in payload.get("games") or []:
+                    g["props"] = by_game.get(f"{g['away_team']}@{g['home_team']}", [])
+                payload["props_meta"] = meta
+                summary["odds"] = {"fetched": odds.get("fetched"), "matched": meta["matched"] if meta else 0,
+                                   "credits_remaining": odds.get("credits_remaining"), "refresh_hours": hrs,
+                                   "lines_changed": odds.get("lines_changed")}
+        except Exception as e:
+            log(f"odds refresh failed, keeping the published props: {e}")
+            summary["odds"] = {"error": str(e)}
+
     payload["live_meta"] = context.live_meta(state, summary)
     json.dump(payload, open(payload_path, "w"), separators=(",", ":"), default=str)
     store.save_state(state)
