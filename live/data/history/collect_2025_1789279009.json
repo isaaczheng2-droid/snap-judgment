@@ -1,0 +1,123 @@
+{
+ "season": 2025,
+ "weeks": [
+  2
+ ],
+ "events": 12,
+ "rows": 650,
+ "credits_used": 492,
+ "credits_remaining": "19436",
+ "cutoff_min": 60,
+ "closing": false,
+ "at": "2026-09-13T05:56:49Z",
+ "log": [
+  {
+   "game_id": "2025_02_WAS_GB",
+   "snapshot": "t-60",
+   "status": "ok",
+   "rows": 60,
+   "snapshot_ts": "2025-09-11T23:10:39Z",
+   "stale": false,
+   "cost": 40
+  },
+  {
+   "game_id": "2025_02_CLE_BAL",
+   "snapshot": "t-60",
+   "status": "ok",
+   "rows": 50,
+   "snapshot_ts": "2025-09-14T15:55:38Z",
+   "stale": false,
+   "cost": 40
+  },
+  {
+   "game_id": "2025_02_JAX_CIN",
+   "snapshot": "t-60",
+   "status": "ok",
+   "rows": 58,
+   "snapshot_ts": "2025-09-14T15:55:38Z",
+   "stale": false,
+   "cost": 40
+  },
+  {
+   "game_id": "2025_02_NYG_DAL",
+   "snapshot": "t-60",
+   "status": "ok",
+   "rows": 58,
+   "snapshot_ts": "2025-09-14T15:55:38Z",
+   "stale": false,
+   "cost": 40
+  },
+  {
+   "game_id": "2025_02_CHI_DET",
+   "snapshot": "t-60",
+   "status": "ok",
+   "rows": 60,
+   "snapshot_ts": "2025-09-14T15:55:38Z",
+   "stale": false,
+   "cost": 40
+  },
+  {
+   "game_id": "2025_02_NE_MIA",
+   "snapshot": "t-60",
+   "status": "ok",
+   "rows": 56,
+   "snapshot_ts": "2025-09-14T15:55:38Z",
+   "stale": false,
+   "cost": 40
+  },
+  {
+   "game_id": "2025_02_SF_NO",
+   "snapshot": "t-60",
+   "status": "ok",
+   "rows": 50,
+   "snapshot_ts": "2025-09-14T15:55:38Z",
+   "stale": false,
+   "cost": 40
+  },
+  {
+   "game_id": "2025_02_BUF_NYJ",
+   "snapshot": "t-60",
+   "status": "ok",
+   "rows": 46,
+   "snapshot_ts": "2025-09-14T15:55:38Z",
+   "stale": false,
+   "cost": 40
+  },
+  {
+   "game_id": "2025_02_SEA_PIT",
+   "snapshot": "t-60",
+   "status": "ok",
+   "rows": 58,
+   "snapshot_ts": "2025-09-14T15:55:38Z",
+   "stale": false,
+   "cost": 40
+  },
+  {
+   "game_id": "2025_02_LA_TEN",
+   "snapshot": "t-60",
+   "status": "ok",
+   "rows": 50,
+   "snapshot_ts": "2025-09-14T15:55:38Z",
+   "stale": false,
+   "cost": 40
+  },
+  {
+   "game_id": "2025_02_CAR_ARI",
+   "snapshot": "t-60",
+   "status": "ok",
+   "rows": 50,
+   "snapshot_ts": "2025-09-14T19:00:38Z",
+   "stale": false,
+   "cost": 40
+  },
+  {
+   "game_id": "2025_02_DEN_IND",
+   "snapshot": "t-60",
+   "status": "ok",
+   "rows": 54,
+   "snapshot_ts": "2025-09-14T19:00:38Z",
+   "stale": false,
+   "cost": 40
+  }
+ ]
+}
