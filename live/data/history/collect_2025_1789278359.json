@@ -1,0 +1,95 @@
+{
+ "season": 2025,
+ "weeks": [
+  2
+ ],
+ "events": 0,
+ "rows": 0,
+ "credits_used": 0,
+ "credits_remaining": null,
+ "cutoff_min": 60,
+ "closing": false,
+ "at": "2026-09-13T05:45:59Z",
+ "log": [
+  {
+   "game_id": "2025_02_WAS_GB",
+   "status": "events_failed",
+   "http": null
+  },
+  {
+   "game_id": "2025_02_CLE_BAL",
+   "status": "events_failed",
+   "http": null
+  },
+  {
+   "game_id": "2025_02_JAX_CIN",
+   "status": "events_failed",
+   "http": null
+  },
+  {
+   "game_id": "2025_02_NYG_DAL",
+   "status": "events_failed",
+   "http": null
+  },
+  {
+   "game_id": "2025_02_CHI_DET",
+   "status": "events_failed",
+   "http": null
+  },
+  {
+   "game_id": "2025_02_NE_MIA",
+   "status": "events_failed",
+   "http": null
+  },
+  {
+   "game_id": "2025_02_SF_NO",
+   "status": "events_failed",
+   "http": null
+  },
+  {
+   "game_id": "2025_02_BUF_NYJ",
+   "status": "events_failed",
+   "http": null
+  },
+  {
+   "game_id": "2025_02_SEA_PIT",
+   "status": "events_failed",
+   "http": null
+  },
+  {
+   "game_id": "2025_02_LA_TEN",
+   "status": "events_failed",
+   "http": null
+  },
+  {
+   "game_id": "2025_02_CAR_ARI",
+   "status": "events_failed",
+   "http": null
+  },
+  {
+   "game_id": "2025_02_DEN_IND",
+   "status": "events_failed",
+   "http": null
+  },
+  {
+   "game_id": "2025_02_PHI_KC",
+   "status": "events_failed",
+   "http": null
+  },
+  {
+   "game_id": "2025_02_ATL_MIN",
+   "status": "events_failed",
+   "http": null
+  },
+  {
+   "game_id": "2025_02_TB_HOU",
+   "status": "events_failed",
+   "http": null
+  },
+  {
+   "game_id": "2025_02_LAC_LV",
+   "status": "events_failed",
+   "http": null
+  }
+ ]
+}
