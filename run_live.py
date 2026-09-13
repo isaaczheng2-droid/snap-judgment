@@ -350,15 +350,34 @@ def main():
         summary["weather"] = {"polled": polled, "events": len(wev)}
         log(f"  weather: {polled} game(s) polled, {len(wev)} change event(s)")
 
+    crit = []
     if new_events:
         events.record(new_events)
         crit = [e for e in new_events if impact.wants_refresh(e)]
-        if crit:
-            req = {"requested_at": store.now_iso(), "reasons": [e["detail"] for e in crit][:10],
-                   "game_ids": sorted({e.get("game_id") for e in crit if e.get("game_id")}), "event_ids": [e["event_id"] for e in crit]}
-            json.dump(req, open(os.path.join(store.ROOT, "refresh_request.json"), "w"), indent=1)
-            log(f"  REFRESH REQUESTED: {len(crit)} event(s): " + " | ".join(req["reasons"][:3]))
         summary["events"] = {"total": len(new_events), "refresh": len(crit)}
+
+    # game-day windows: a finished slate segment or newly landed box scores also earn a rebuild
+    win_reasons = []
+    try:
+        from live import windows
+        win_reasons, wins = windows.check(state, season, week, datadir=a.datadir, log=log)
+        summary["windows"] = {"finished": sum(1 for w in wins if w["all_final"]), "total": len(wins), "requested": win_reasons}
+    except Exception as e:
+        log(f"  windows check failed: {e}")
+
+    if crit or win_reasons:
+        req_path = os.path.join(store.ROOT, "refresh_request.json")
+        try:
+            req = json.load(open(req_path))            # a pending request keeps its reasons
+        except Exception:
+            req = {"reasons": [], "game_ids": [], "event_ids": []}
+        req["requested_at"] = store.now_iso()
+        req["reasons"] = (req.get("reasons") or []) + [e["detail"] for e in crit] + win_reasons
+        req["reasons"] = req["reasons"][:12]
+        req["game_ids"] = sorted(set(req.get("game_ids") or []) | {e.get("game_id") for e in crit if e.get("game_id")})
+        req["event_ids"] = (req.get("event_ids") or []) + [e["event_id"] for e in crit]
+        json.dump(req, open(req_path, "w"), indent=1)
+        log(f"  REFRESH REQUESTED: {len(crit)} event(s), {len(win_reasons)} window trigger(s): " + " | ".join(req["reasons"][:3]))
 
     # ---- frontend objects
     for g in payload["games"]:

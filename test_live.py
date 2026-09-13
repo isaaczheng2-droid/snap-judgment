@@ -188,6 +188,27 @@ def main():
     check("a player missing from the box score is a void, not a loss", _gr["00-2"]["result"] == "void" and _gr["00-2"]["return"] == 0.0)
     _sm = _pp.summary()
     check("paper summary counts the settled recommended pick", _sm["recommended"]["n"] == 1 and _sm["recommended"]["hit"] == 1.0)
+    # game-day windows: grouped by kickoff, finished windows reported once, bootstrap silent
+    from live import windows as _w
+    _sched = _pd.DataFrame([
+        {"game_id": "a", "season": 2026, "week": 1, "game_type": "REG", "gameday": "2026-09-13", "gametime": "13:00", "home_team": "A", "away_team": "B", "home_score": 20, "away_score": 17},
+        {"game_id": "b", "season": 2026, "week": 1, "game_type": "REG", "gameday": "2026-09-13", "gametime": "13:00", "home_team": "C", "away_team": "D", "home_score": None, "away_score": None},
+        {"game_id": "c", "season": 2026, "week": 1, "game_type": "REG", "gameday": "2026-09-13", "gametime": "16:25", "home_team": "E", "away_team": "F", "home_score": None, "away_score": None},
+        {"game_id": "d", "season": 2026, "week": 1, "game_type": "REG", "gameday": "2026-09-10", "gametime": "20:15", "home_team": "G", "away_team": "H", "home_score": 30, "away_score": 3}])
+    _w.fresh_schedule = lambda datadir="data", log=print: _sched
+    _w._stats_signature = lambda season: "sig1"
+    _ws = _w.group(_sched, 2026, 1)
+    check("kickoffs within 90 min form one window; 4:25 is its own", [w["n"] for w in _ws] == [1, 2, 1] and _ws[1]["label"].startswith("Sunday 1:00 PM"))
+    _st = {}
+    _r0, _ = _w.check(_st, 2026, 1, log=lambda *a: None)
+    check("bootstrap records already-final windows without requesting a rebuild", _r0 == [] and len(_st["windows_done"]) == 1)
+    _sched.loc[_sched.game_id == "b", ["home_score", "away_score"]] = [10, 7]
+    _r1, _ = _w.check(_st, 2026, 1, log=lambda *a: None)
+    _r2, _ = _w.check(_st, 2026, 1, log=lambda *a: None)
+    check("a window finishing is reported exactly once", len(_r1) == 1 and "Sunday 1:00 PM" in _r1[0] and _r2 == [])
+    _w._stats_signature = lambda season: "sig2"
+    _r3, _ = _w.check(_st, 2026, 1, log=lambda *a: None)
+    check("new box scores are reported once", len(_r3) == 1 and _r3[0].startswith("Box scores updated"))
     check("Tornado Warning CRITICAL, Flood Watch HIGH, Heat Advisory MEDIUM",
           _al("Tornado Warning", "Extreme") == "CRITICAL" and _al("Flood Watch", "Severe") == "HIGH" and _al("Heat Advisory", "Moderate") == "MEDIUM")
     check("wind 5 -> 17 gives a HIGH weather event plus an alert event", any(e["severity"] == "HIGH" and e["event_type"] == "WEATHER_CHANGE_EVENT" for e in wev) and any(e["event_type"] == "SEVERE_WEATHER_ALERT" for e in wev), str([(e["event_type"], e["severity"]) for e in wev]))
