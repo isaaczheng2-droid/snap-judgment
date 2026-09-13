@@ -40,11 +40,17 @@ def _players_for(payload, g):
     return out
 
 
+# weather never feeds the model, so a weather event can never be the reason a prediction
+# moved; naming one would be a lie. Weather events are still marked processed, just not cited.
+_NOT_A_CAUSE = {"WEATHER_CHANGE_EVENT", "SEVERE_WEATHER_ALERT"}
+
+
 def _reason(game_events, default):
-    hot = [e for e in game_events if e.get("severity") in ("CRITICAL", "HIGH")]
-    src = hot or game_events
+    causal = [e for e in game_events if e.get("event_type") not in _NOT_A_CAUSE]
+    hot = [e for e in causal if e.get("severity") in ("CRITICAL", "HIGH")]
+    src = hot or causal
     if not src:
-        return default, []
+        return default, [e["event_id"] for e in game_events]
     src = sorted(src, key=lambda e: ["LOW", "MEDIUM", "HIGH", "CRITICAL"].index(e.get("severity", "LOW")), reverse=True)
     return "; ".join(e.get("detail") or e.get("event_type") for e in src[:3]), [e["event_id"] for e in src]
 
