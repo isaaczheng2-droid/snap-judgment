@@ -152,6 +152,10 @@ GitHub cron (UTC), in `.github/workflows/refresh.yml`:
 
 Played games are never polled. Domes and closed roofs skip weather entirely.
 
+### Game-day segments
+
+`live/windows.py` runs inside every live poll. It refetches `games.csv` (nflverse posts a final score within minutes of the whistle), groups the week's games into kickoff windows (kickoffs within 90 minutes of each other: the Sunday early slate, the late slate, the night game, Thursday, Monday, a London morning), and when every game in a window has a final score it writes a refresh request ("Window finished: Sunday 1:00 PM ET games (8 final)"). The live job then dispatches the full rebuild, so the ratings, the remaining games' predictions, the tracker's grades and the "Final" chips update within about 20 minutes of a segment ending instead of at the next hourly run. A second trigger fires once when the season's `stats_player_week` file changes upstream while the week has finals ("Box scores updated"), which is what grades player projections and the paper test; nflverse rebuilds that file hours after the scores. Both triggers are change-only and recorded in `cache.json` (`windows_done`, `stats_sig`); the first run after deployment records what is already final without requesting anything. The hourly rebuild's upstream signature now includes the box-score file as well.
+
 ## 7. "Backend routes"
 
 There is no server. The equivalents are:

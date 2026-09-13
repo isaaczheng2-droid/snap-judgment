@@ -106,7 +106,7 @@ def tail(table, n=50, where=None):
 # changes every run is a small cache (grid metadata, sync times, alerts). That keeps the
 # repository's history growing by what actually changed, not by a snapshot per poll.
 CACHE_PATH = os.path.join(ROOT, "cache.json")
-CACHE_KEYS = ("nws_grid", "last_sync", "last_poll", "sources", "kickoffs", "depth", "alerts", "snapshot_id", "conflicts_seen", "paper", "model_version")
+CACHE_KEYS = ("nws_grid", "last_sync", "last_poll", "sources", "kickoffs", "depth", "alerts", "snapshot_id", "conflicts_seen", "paper", "model_version", "windows_done", "stats_sig", "windows")
 
 
 def load_state():
