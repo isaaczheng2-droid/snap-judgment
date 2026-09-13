@@ -75,6 +75,7 @@ Paid upgrades if the site ever needs official inactives within seconds of the 90
 | Open-Meteo | ≤ 16 (one per outdoor/retractable game due) | ~2,400/week worst case | $0, well under 10,000/day free tier |
 | NWS points | cached per stadium in `cache.json` after first hit | ~40 total | $0 |
 | NWS hourly + alerts | ≤ 2 per US outdoor game due | ~4,800/week worst case | $0 |
+| The Odds API (FanDuel props) | 4 credits per event (4 markets × 1 region), ~64 per refresh | every 3 h, hourly inside 6 h of a kickoff: ~45 refreshes | ~3,000 credits/week, ~13,000/month on the 20,000/month plan; `QUOTA_FLOOR` 500 stops fetching before it runs out |
 | GitHub Actions | ~1 min per live poll, ~6 min per full rebuild | ~400 + ~170 | $0 on a public repo |
 
 The adaptive cadence (`run_live.CADENCE`) keeps most polls far below the peak: a game more than 3 days out is checked every 6 hours, one within 90 minutes every 15 minutes, and games already played are skipped.
@@ -111,13 +112,15 @@ Event types: `PLAYER_STATUS_CHANGE, GAMEDAY_INACTIVE, GAMEDAY_ACTIVE, STARTING_Q
 
 **data_quality** — `kind (unknown_player | bad_team | team_mismatch | unknown_game | bad_timestamp | implausible_timestamp | duplicate | impossible_transition), detail, player_id, source, system_received_at`
 
-Sidecars: `source_mapping.json` (identity crosswalk, rewritten only when its digest changes), `refresh_request.json` (present only between a qualifying event and the next full run).
+Sidecars: `source_mapping.json` (identity crosswalk, rewritten only when its digest changes), `refresh_request.json` (present only between a qualifying event and the next full run), `odds_cache.json` (last FanDuel fetch, so a run within the refresh window spends no credits).
+
+**prop_lines** (`prop_lines.ndjson`) — `at, player, market, commence, game, line, over, under`; one row per line or price change, first sighting included. Feeds `line_open`, `line_prev`, `line_moved_at` on every prop card and, later, closing-line value.
 
 ## 5. Environment variables and secrets
 
 | Name | Where | Required | Purpose |
 |---|---|---|---|
-| `ODDS_API_KEY` | GitHub secret | for props only | Unchanged. Never touched by the live layer |
+| `ODDS_API_KEY` | GitHub secret | for props only | Passed to both jobs. The live poll refreshes FanDuel lines on the cadence above; the projections never see them |
 | `NWS_USER_AGENT` | GitHub secret (optional) | no | NWS asks for a contact string. Default is `snap-judgment (github.com/isaaczheng2-droid/snap-judgment)`; set the secret if you want an email in it. Nothing in the code ever hard-codes a person |
 | `SJ_LIVE_DIR` | env | no | Relocate the tables (tests use a temp dir) |
 | `SJ_ESPN_FIXTURE` | env | no | Path to a saved ESPN response; skips the network |
