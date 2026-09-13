@@ -163,6 +163,9 @@ def main():
     wev = events.weather_changes("G1", calm, dict(calm, max_window_wind=17, max_window_gust=30), [], al)
     from live import events as _ev
     _al = lambda ev, sv: _ev.weather_changes("g", {}, {}, [], [{"alert_id": "x", "event": ev, "severity": sv}], "nws")[0]["severity"]
+    from live import versions as _vs
+    _r, _ids = _vs._reason([{"event_id": "w1", "event_type": "SEVERE_WEATHER_ALERT", "severity": "CRITICAL", "detail": "Tornado Warning"}], "Scheduled refresh")
+    check("a weather event is never cited as the reason a prediction moved", _r == "Scheduled refresh" and _ids == ["w1"])
     check("Tornado Warning CRITICAL, Flood Watch HIGH, Heat Advisory MEDIUM",
           _al("Tornado Warning", "Extreme") == "CRITICAL" and _al("Flood Watch", "Severe") == "HIGH" and _al("Heat Advisory", "Moderate") == "MEDIUM")
     check("wind 5 -> 17 gives a HIGH weather event plus an alert event", any(e["severity"] == "HIGH" and e["event_type"] == "WEATHER_CHANGE_EVENT" for e in wev) and any(e["event_type"] == "SEVERE_WEATHER_ALERT" for e in wev), str([(e["event_type"], e["severity"]) for e in wev]))
