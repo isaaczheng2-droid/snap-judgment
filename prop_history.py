@@ -359,6 +359,10 @@ def evaluate(season, model_path=None, min_p=0.65):
         rows.append(row)
     R = pd.DataFrame(rows)
     S = R[R.status == "scored"].copy()
+    # rows that never reached scoring left NaNs in these columns, which makes the dtype
+    # object; ~ on an object column of Python bools is integer bitwise-not, not logical not
+    for c in ("push", "recommended"):
+        S[c] = S[c].astype(bool)
     S["model_over"] = S.side == "Over"
     S["won"] = np.where(S.model_over, S.actual > S.line, S.actual < S.line)
     S["hist_over"] = S.hist_mean > S.line
