@@ -170,6 +170,8 @@ def _schedule(season, weeks, datadir="data"):
 
 def collect(season, weeks, cutoff_min=CUTOFF_MIN, closing=False, max_events=None, max_credits=None, datadir="data"):
     from live import teams
+    if max_credits is not None and max_credits <= 0:
+        log("credit cap is 0: collecting nothing, evaluating what is already on disk"); return 0
     key = (os.environ.get("ODDS_API_KEY") or "").strip()
     if not key:
         log("ODDS_API_KEY not set; nothing collected"); return 2
@@ -442,7 +444,16 @@ def main():
         return prepare(a.season, a.fit_through)
     if a.cmd == "collect":
         return collect(a.season, weeks, a.cutoff_min, a.closing, a.max_events, a.max_credits, a.datadir)
-    return evaluate(a.season)
+    try:
+        return evaluate(a.season)
+    except Exception:
+        import traceback
+        os.makedirs(HIST, exist_ok=True)
+        tb = traceback.format_exc()
+        json.dump({"at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "traceback": tb},
+                  open(os.path.join(HIST, "evaluate_error.json"), "w"), indent=1)
+        log(tb)
+        return 1
 
 
 if __name__ == "__main__":
