@@ -17,3 +17,4 @@ from . import store, teams, identity, normalize, stadiums, http, weather, events
 
 __all__ = ["store", "teams", "identity", "normalize", "stadiums", "http", "weather", "events",
            "impact", "versions", "context"]
+from . import paper  # noqa: F401

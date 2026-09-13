@@ -32,6 +32,8 @@ TABLES = [
     "api_sync_log",           # every provider call
     "source_conflicts",       # where two sources disagreed and how it was resolved
     "data_quality",           # validation failures, kept rather than dropped silently
+    "paper_trail",            # forward paper test: every prop at its decision time, never revised
+    "paper_grades",           # forward paper test: settled results, returns, closing-line value
 ]
 
 
@@ -104,7 +106,7 @@ def tail(table, n=50, where=None):
 # changes every run is a small cache (grid metadata, sync times, alerts). That keeps the
 # repository's history growing by what actually changed, not by a snapshot per poll.
 CACHE_PATH = os.path.join(ROOT, "cache.json")
-CACHE_KEYS = ("nws_grid", "last_sync", "last_poll", "sources", "kickoffs", "depth", "alerts", "snapshot_id", "conflicts_seen")
+CACHE_KEYS = ("nws_grid", "last_sync", "last_poll", "sources", "kickoffs", "depth", "alerts", "snapshot_id", "conflicts_seen", "paper", "model_version")
 
 
 def load_state():
