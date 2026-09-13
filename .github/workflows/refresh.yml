@@ -28,10 +28,23 @@ on:
         type: boolean
         default: true
       mode:
-        description: "full = retrain and publish; live = poll players and weather only"
+        description: "full = retrain and publish; live = poll players and weather only; history = collect FanDuel historical prop quotes (costs credits)"
         type: choice
-        options: [full, live]
+        options: [full, live, history]
         default: full
+      hist_season:
+        description: "history: season to collect"
+        default: "2025"
+      hist_weeks:
+        description: "history: weeks, e.g. 2 or 1-18"
+        default: "2"
+      hist_max_credits:
+        description: "history: stop before spending more than this many credits"
+        default: "500"
+      hist_closing:
+        description: "history: also fetch the closing quote at kickoff (doubles the cost)"
+        type: boolean
+        default: false
 
 # the job pushes the regenerated page back to the branch, so it needs write access
 permissions:
@@ -48,6 +61,41 @@ jobs:
   # writes append-only tables under live/data, updates the live context in payload.json,
   # splices the page, and leaves live/data/refresh_request.json behind when a CRITICAL/HIGH
   # event justifies a model rerun. It never retrains.
+  # ------------------------------------------------------------------ historical quotes
+  # Manual only. Pulls FanDuel player-prop quotes from The Odds API's historical snapshots at
+  # kickoff - 60 min for the requested weeks, then scores the walk-forward projections against
+  # them. Every call costs 10 x markets x regions credits (40 per event); the run stops at the
+  # credit cap. Results are committed under live/data/history.
+  history:
+    if: github.event_name == 'workflow_dispatch' && inputs.mode == 'history'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Collect quotes at the decision time
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: |
+          python prop_history.py collect --season "${{ inputs.hist_season }}" --weeks "${{ inputs.hist_weeks }}" \
+            --max-credits "${{ inputs.hist_max_credits }}" ${{ inputs.hist_closing && '--closing' || '' }} --datadir data
+      - name: Score the projections against the real quotes
+        run: python prop_history.py evaluate --season "${{ inputs.hist_season }}" || true
+      - name: Commit the history
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add live/data/history
+          if git diff --staged --quiet; then echo "No change."; else
+            git commit -m "Historical prop quotes: ${{ inputs.hist_season }} weeks ${{ inputs.hist_weeks }}"
+            git pull --rebase --autostash origin main || true
+            git push
+          fi
+
   live:
     if: github.event.schedule != '17 * * * *' && (github.event_name != 'workflow_dispatch' || inputs.mode == 'live')
     runs-on: ubuntu-latest
@@ -88,7 +136,7 @@ jobs:
 
   # ------------------------------------------------------------------ full rebuild
   refresh:
-    if: github.event.schedule == '17 * * * *' || (github.event_name == 'workflow_dispatch' && inputs.mode != 'live')
+    if: github.event.schedule == '17 * * * *' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'full')
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
