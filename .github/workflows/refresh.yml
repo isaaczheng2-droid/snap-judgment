@@ -160,6 +160,7 @@ jobs:
           SIG=""
           for u in "$REL/injuries/injuries_2026.parquet" \
                    "$REL/depth_charts/depth_charts_2026.parquet" \
+                   "$REL/stats_player/stats_player_week_2026.parquet" \
                    "https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv"; do
             H=$(curl -sSI -L --max-time 30 "$u" | grep -iE '^(etag|content-length):' | tr -d '\r' | tail -2)
             SIG="$SIG|$H"
