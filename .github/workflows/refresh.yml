@@ -61,6 +61,7 @@ jobs:
       - name: Poll players and weather
         env:
           NWS_USER_AGENT: ${{ secrets.NWS_USER_AGENT }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: |
           test -s payload.json || { echo "no payload.json yet; run the full job first"; exit 0; }
           python run_live.py --outdir . --datadir data
@@ -151,8 +152,15 @@ jobs:
             python seed_tracker.py --datadir data --out history.json
           fi
 
+      # ODDS_API_KEY is what turns the Player Prop Value section on. It is read by
+      # odds_api.py and reaches nothing else — the projections are already final by the time
+      # any line is fetched, and cannot see one. With the secret unset the section renders an
+      # unconnected state and every other part of the build is unaffected, so this is safe to
+      # leave empty indefinitely.
       - name: Rebuild predictions
         if: steps.check.outputs.changed == 'true'
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: python run_pipeline.py --outdir . --datadir data
 
       - name: Sanity-check the payload before touching the page
@@ -168,6 +176,9 @@ jobs:
                 f"{len(p.get('players', []))} players")
           t = p.get("tracker") or {}
           print("tracker seasons:", t.get("seasons"), "pending:", t.get("pending"))
+          m = p.get("props_meta")
+          print("props:", "none" if not m else
+                f"{m['matched']} matched, {m['recommended']} recommended, from {m['book']}")
           PY
 
       - name: Refuse to publish if the tracker's memory went missing
