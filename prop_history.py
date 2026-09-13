@@ -123,20 +123,31 @@ def prepare(season=2025, fit_through=2024):
 
 # ----------------------------------------------------------------------------- collect
 def _get(url, timeout=30):
-    r = subprocess.run(["curl", "-sS", "--max-time", str(timeout), "-D", "-", url], capture_output=True, text=True)
+    """(parsed json or None, headers). Never raises; never logs the URL (the key is in it)."""
+    try:
+        r = subprocess.run(["curl", "-sSL", "-D", "-", "--max-time", str(timeout), url], capture_output=True, timeout=timeout + 10)
+    except Exception as e:
+        return None, {"_status": "0", "_error": f"curl: {e}"[:200]}
     if r.returncode != 0:
-        return None, {"_error": r.stderr.strip()[:200]}
-    head, _, body = r.stdout.partition("\r\n\r\n")
-    hdrs = {}
-    for line in head.split("\r\n"):
-        if ":" in line:
-            k, v = line.split(":", 1)
-            hdrs[k.strip().lower()] = v.strip()
-        elif line.startswith("HTTP/"):
-            hdrs["_status"] = line.split()[1]
+        return None, {"_status": "0", "_error": f"curl exit {r.returncode}: {r.stderr.decode('utf-8', 'replace').strip()[:160]}"}
+    raw = r.stdout.decode("utf-8", "replace")
+    head, _, body = raw.partition("\r\n\r\n")
+    if not body:
+        head, _, body = raw.partition("\n\n")
+    # a redirect or a 100-continue leaves a second header block in front of the body
+    while body.lstrip().upper().startswith("HTTP/"):
+        head, _, body = body.partition("\r\n\r\n") if "\r\n\r\n" in body else body.partition("\n\n")
+    hdrs, status = {}, ""
+    for ln in head.splitlines():
+        if ln.upper().startswith("HTTP/"):
+            parts = ln.split(); status = parts[1] if len(parts) > 1 else ""
+        elif ":" in ln:
+            k, _, v = ln.partition(":"); hdrs[k.strip().lower()] = v.strip()
+    hdrs["_status"] = status
     try:
         return json.loads(body), hdrs
     except Exception:
+        hdrs["_error"] = body.strip()[:200] or "unparseable response"
         return None, hdrs
 
 
@@ -165,6 +176,11 @@ def collect(season, weeks, cutoff_min=CUTOFF_MIN, closing=False, max_events=None
     os.makedirs(HIST, exist_ok=True)
     sched = _schedule(season, weeks, datadir)
     names = {teams.NAMES[c]: c for c in teams.NAMES}
+    ping, h = _get(f"https://api.the-odds-api.com/v4/sports?apiKey={key}")
+    log(f"pre-flight: HTTP {h.get('_status')}, {h.get('x-requests-remaining', '?')} credits remaining"
+        f"{' (' + h['_error'] + ')' if h.get('_error') else ''}")
+    if not isinstance(ping, list):
+        log("the key was not accepted; nothing collected"); return 2
     used_total, remaining, n_events, n_rows = 0, None, 0, 0
     log_rows = []
     for wk in sorted(set(weeks)):
@@ -195,7 +211,7 @@ def collect(season, weeks, cutoff_min=CUTOFF_MIN, closing=False, max_events=None
             used_total += int(float(h.get("x-requests-last", 0) or 0))
             if not isinstance(ev, dict) or not isinstance(ev.get("data"), list):
                 log(f"  {g.game_id}: events list failed HTTP {h.get('_status')} {h.get('_error', '')}")
-                log_rows.append({"game_id": g.game_id, "status": "events_failed", "http": h.get("_status")})
+                log_rows.append({"game_id": g.game_id, "status": "events_failed", "http": h.get("_status"), "error": h.get("_error")})
                 continue
             eid = None
             for e in ev["data"]:
@@ -214,7 +230,7 @@ def collect(season, weeks, cutoff_min=CUTOFF_MIN, closing=False, max_events=None
                 cost = int(float(h.get("x-requests-last", 0) or 0)); used_total += cost
                 if not isinstance(data, dict) or not isinstance(data.get("data"), dict):
                     log(f"  {g.game_id} {tag}: odds failed HTTP {h.get('_status')} {h.get('_error', '')}")
-                    log_rows.append({"game_id": g.game_id, "snapshot": tag, "status": "odds_failed", "http": h.get("_status")})
+                    log_rows.append({"game_id": g.game_id, "snapshot": tag, "status": "odds_failed", "http": h.get("_status"), "error": h.get("_error")})
                     continue
                 ts = data.get("timestamp")
                 try:
