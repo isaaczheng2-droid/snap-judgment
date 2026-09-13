@@ -13,13 +13,16 @@ on:
     # Live poll (players + weather, no retrain). GitHub's floor is 5 minutes and drift is
     # normal, so the cadence is set here coarsely and run_live.py decides per game whether a
     # poll is actually due from hours-to-kickoff (see CADENCE in run_live.py):
-    #   Sunday windows 13:00-05:00 UTC (9am ET to 1am ET)  every 15 min
-    #   Thursday, Monday nights 22:00-05:00 UTC             every 15 min
+    #   Sunday windows 13:00-05:00 UTC (9am ET to 1am ET)  every 10 min
+    #   Thursday, Monday nights 22:00-05:00 UTC             every 10 min
     #   every other hour of the week                         :47 past the hour
-    - cron: "*/15 13-23 * * 0"
-    - cron: "*/15 0-5 * * 1"
-    - cron: "*/15 22-23 * * 1,4"
-    - cron: "*/15 0-5 * * 2,5"
+    # GitHub drops or delays high-frequency schedules under load (two consecutive 15-minute
+    # slots were skipped on 2026-09-13); 10-minute lines during game windows give it more
+    # chances, and run_live.py's own cadence check keeps the real poll rate sane.
+    - cron: "*/10 13-23 * * 0"
+    - cron: "*/10 0-5 * * 1"
+    - cron: "*/10 22-23 * * 1,4"
+    - cron: "*/10 0-5 * * 2,5"
     - cron: "47 * * * *"
   workflow_dispatch:
     inputs:
