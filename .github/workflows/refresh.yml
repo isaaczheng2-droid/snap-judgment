@@ -36,6 +36,7 @@ on:
 # the job pushes the regenerated page back to the branch, so it needs write access
 permissions:
   contents: write
+  actions: write     # the live job dispatches the full rebuild with `gh workflow run`
 
 concurrency:
   group: publish
