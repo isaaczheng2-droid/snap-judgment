@@ -166,6 +166,28 @@ def main():
     from live import versions as _vs
     _r, _ids = _vs._reason([{"event_id": "w1", "event_type": "SEVERE_WEATHER_ALERT", "severity": "CRITICAL", "detail": "Tornado Warning"}], "Scheduled refresh")
     check("a weather event is never cited as the reason a prediction moved", _r == "Scheduled refresh" and _ids == ["w1"])
+    # forward paper test: records once at the decision window, grades at the recorded price, voids no-shows
+    from live import paper as _pp
+    from datetime import datetime as _dt, timedelta as _td, timezone as _tz
+    import pandas as _pd
+    _pl = {"season": 2026, "week": 1, "generated": "x", "props_meta": {"fetched": "2026-09-13T16:05Z", "book": "FanDuel", "source": "live"},
+           "games": [{"game_id": "2026_01_A_B", "gameday_iso": "2026-09-13", "kickoff": "13:00", "props": [
+               {"player": "P One", "player_key": "00-1", "stat": "receptions", "line": 4.5, "side": "Over", "odds": -120, "confidence": 0.7, "fair": 0.55, "implied": 0.545, "ev": 0.28, "recommended": True},
+               {"player": "P Two", "player_key": "00-2", "stat": "receptions", "line": 3.5, "side": "Under", "odds": 110, "confidence": 0.6, "fair": 0.5, "implied": 0.476, "ev": 0.26, "recommended": False}]}]}
+    _kick = _dt(2026, 9, 13, 17, 0, tzinfo=_tz.utc)
+    _st = {}
+    _g, _n = _pp.record(_pl, _st, now=_kick - _td(minutes=55), log=lambda *a: None)
+    _g2, _n2 = _pp.record(_pl, _st, now=_kick - _td(minutes=30), log=lambda *a: None)
+    check("paper test records every prop once inside the decision window", (_g, _n, _g2, _n2) == (1, 2, 0, 0))
+    _early = {}
+    check("paper test does not record before the window", _pp.record(_pl, _early, now=_kick - _td(minutes=90), log=lambda *a: None) == (0, 0))
+    _stats = _pd.DataFrame([{"season": 2026, "game_id": "2026_01_A_B", "player_id": "00-1", "receptions": 6}])
+    _pp.grade(_stats, 2026, log=lambda *a: None)
+    _gr = {g["player_key"]: g for g in store.read("paper_grades")}
+    check("graded at the recorded price: over 4.5 with 6 catches wins +0.83 at -120", _gr["00-1"]["result"] == "win" and abs(_gr["00-1"]["return"] - 0.8333) < 0.001)
+    check("a player missing from the box score is a void, not a loss", _gr["00-2"]["result"] == "void" and _gr["00-2"]["return"] == 0.0)
+    _sm = _pp.summary()
+    check("paper summary counts the settled recommended pick", _sm["recommended"]["n"] == 1 and _sm["recommended"]["hit"] == 1.0)
     check("Tornado Warning CRITICAL, Flood Watch HIGH, Heat Advisory MEDIUM",
           _al("Tornado Warning", "Extreme") == "CRITICAL" and _al("Flood Watch", "Severe") == "HIGH" and _al("Heat Advisory", "Moderate") == "MEDIUM")
     check("wind 5 -> 17 gives a HIGH weather event plus an alert event", any(e["severity"] == "HIGH" and e["event_type"] == "WEATHER_CHANGE_EVENT" for e in wev) and any(e["event_type"] == "SEVERE_WEATHER_ALERT" for e in wev), str([(e["event_type"], e["severity"]) for e in wev]))

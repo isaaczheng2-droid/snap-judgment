@@ -384,6 +384,15 @@ def main():
             log(f"odds refresh failed, keeping the published props: {e}")
             summary["odds"] = {"error": str(e)}
 
+    # forward paper test: write every prop down at its decision time, never revised
+    try:
+        from live import paper
+        ng, nr = paper.record(payload, state, log=log)
+        summary["paper"] = {"games_recorded": ng, "rows": nr}
+        payload["paper_test"] = paper.summary()
+    except Exception as e:
+        log(f"paper test record failed: {e}")
+
     payload["live_meta"] = context.live_meta(state, summary)
     json.dump(payload, open(payload_path, "w"), separators=(",", ":"), default=str)
     store.save_state(state)

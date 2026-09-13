@@ -112,6 +112,33 @@ def load_prop_audit(datadir="data"):
     return None
 
 
+def load_json_any(name, datadir="data", require=None):
+    """A JSON file from data/ or next to the code, or None. Never retyped into prose."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    for path in [os.path.join(datadir, name), os.path.join(here, name), os.path.join(here, "live", "data", "history", name)]:
+        try:
+            with open(path) as f:
+                d = json.load(f)
+            if isinstance(d, dict) and (require is None or require in d):
+                return d
+        except Exception:
+            continue
+    return None
+
+
+def prop_audit_v2(datadir="data"):
+    """The handful of audit numbers the page quotes from prop_audit.py."""
+    a = load_json_any("prop_audit.json", datadir, require="baselines_on_recommended")
+    if not a:
+        return None
+    b = a.get("baselines_on_recommended") or {}
+    return {"agree": a.get("model_vs_hist_agreement"),
+            "hist_rule": b.get("player history: rolling mean vs line"),
+            "always_under_on_rec": b.get("always under"),
+            "blind_under_clean": a.get("blind_under_clean"), "blind_under_all": a.get("blind_under_all"),
+            "rec_clean": (a.get("rec_clean") or [None])[0], "test_2025": a.get("test_2025")}
+
+
 def load_backtest(datadir="data"):
     """
     The audited figures, preferring the file regen_accuracy.py writes.
@@ -1213,6 +1240,8 @@ def main():
         "backtest": load_backtest(a.datadir),
         "props_meta": props_meta,
         "prop_audit": load_prop_audit(a.datadir),
+        "prop_audit_v2": prop_audit_v2(a.datadir),
+        "real_backtest": load_json_any("backtest_2025.json", a.datadir, require="all_scored"),
         # the fitted spread of each projection, so the page can draw an expected range
         # around every number from the same distribution the prop probabilities use
         "prop_range": prop_value.range_table(prop_model) if prop_model.ok else None,
@@ -1239,6 +1268,17 @@ def main():
             os.remove(req_path)
         for g in games_out:                      # after recording, so the page sees the new version
             g["live"] = live_context.game_context(g, lstate)
+        # forward paper test: grade what has settled, record any game at its decision time,
+        # and publish the running tally. The model version travels with every row.
+        try:
+            from live import paper as live_paper
+            lstate["model_version"] = mv
+            live_paper.grade(plyr, cur, log=log)
+            live_paper.record(payload, lstate, log=log)
+            payload["paper_test"] = live_paper.summary()
+            live_store.save_state(lstate)        # the recorded-game marks must survive to the next poll
+        except Exception as e:
+            log(f"  paper test failed: {e}")
         payload["live_meta"] = live_context.live_meta(lstate, {"run": "full", "at": payload["generated"]})
     except Exception as e:                       # the live layer must never stop a publish
         log(f"  live layer skipped: {e}")

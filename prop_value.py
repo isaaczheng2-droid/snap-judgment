@@ -90,8 +90,32 @@ MIN_CONFIDENCE = 0.65
 MIN_SCORE = 65
 MIN_EDGE_PCT = 0.05          # "meaningfully differs from the line"
 
-TIERS = [(85, "Elite Model Edge", "elite"), (75, "Strong Model Edge", "strong"),
-         (65, "Moderate Model Edge", "moderate")]
+# The score measures how far the model disagrees with the price, not whether betting it
+# makes money. Until the real-market test says otherwise, every label carries "experimental".
+TIERS = [(85, "Large disagreement", "elite"), (75, "Clear disagreement", "strong"),
+         (65, "Moderate disagreement", "moderate")]
+NO_TIER = "No meaningful disagreement"
+
+# Sensitivity: a pick that flips or drops below the confidence floor when the projection
+# moves by this much is "fragile". Workload is the least certain input, and a 10% change in
+# expected volume is an ordinary week (a game script, a snap-count shift), not a shock.
+SENS_PCT = 0.10
+
+# Evidence labels. "validated" is reserved for markets where the model beat always-under,
+# always-over and the player-history rule on REAL sportsbook quotes with a sample large
+# enough to matter, and survived the sensitivity check. Nothing has earned it yet.
+EVIDENCE_DEFAULT = "experimental"
+
+
+def payout(american):
+    """Net return per unit staked when the bet wins."""
+    o = float(american)
+    return o / 100.0 if o > 0 else 100.0 / abs(o)
+
+
+def expected_value(p, american):
+    """Expected net return per unit staked at the offered price, given P(win) = p; pushes ignored."""
+    return float(p) * payout(american) - (1.0 - float(p))
 
 
 # ------------------------------------------------------------------------------- odds
@@ -253,7 +277,9 @@ def evaluate(stat, projection, line, price_over, price_under, model):
             "fair": round(fair_probability(price, other)[0], 4),
             "margin": None, "prob_edge": None, "prob_edge_raw": None,
             "volatility": VOLATILITY.get(stat, "high"),
-            "score": None, "tier": "No Strong Betting Edge", "tier_class": "none",
+            "score": None, "tier": NO_TIER, "tier_class": "none",
+            "breakeven": round(implied_probability(price), 4), "ev": None, "robust": None,
+            "evidence": "insufficient evidence", "odds_other": other,
             "recommended": False,
             "blocked_by": ["this stat has no measured error distribution, so no honest "
                            "probability can be put against the price"],
@@ -275,11 +301,31 @@ def evaluate(stat, projection, line, price_over, price_under, model):
     score = 100 * (0.40 * conf_pts + 0.30 * edge_pts + 0.20 * prob_pts + 0.10 * vol_pts)
     score = float(round(score))
 
-    label, klass = "No Strong Betting Edge", "none"
+    label, klass = NO_TIER, "none"
     for cut, nm, cl in TIERS:
         if score >= cut:
             label, klass = nm, cl
             break
+
+    # --- profitability, kept apart from disagreement: four different numbers ---
+    breakeven = implied                                   # what the price needs to win to break even
+    ev = expected_value(confidence, price)                # net return per unit at THIS price if the model is right
+    # --- sensitivity: move the projection by +/- SENS_PCT and see whether the pick survives ---
+    p_lo = p_hi = None
+    fragile = False
+    for k in (1 - SENS_PCT, 1 + SENS_PCT):
+        side_k, p_k = model.p_side(stat, float(projection) * k, line)
+        if p_k is None:
+            continue
+        if side_k != take_over:
+            fragile = True
+            p_k = 1 - p_k                                     # the probability of OUR side under that scenario
+        p_lo = p_k if p_lo is None else min(p_lo, p_k)
+        p_hi = p_k if p_hi is None else max(p_hi, p_k)
+    if p_lo is not None and p_lo < MIN_CONFIDENCE:
+        fragile = True
+    robust = {"fragile": fragile, "p_low": None if p_lo is None else round(p_lo, 4),
+              "p_high": None if p_hi is None else round(p_hi, 4), "shock_pct": SENS_PCT}
 
     # --- the filters, each recorded so the page can say WHICH one blocked it ---
     blocks = []
@@ -293,6 +339,10 @@ def evaluate(stat, projection, line, price_over, price_under, model):
         blocks.append(f"bet value {score:.0f} below {MIN_SCORE}")
     if stat in NOT_RECOMMENDABLE:
         blocks.append("this stat's model loses to a rolling average of the player's own games")
+    if fragile:
+        blocks.append(f"fragile: a {SENS_PCT:.0%} workload change flips the pick or drops it below {MIN_CONFIDENCE:.0%}")
+    evidence = ("insufficient evidence" if stat in NOT_RECOMMENDABLE
+                else "fragile" if fragile else EVIDENCE_DEFAULT)
 
     return {
         "stat": stat, "prop": PRETTY.get(stat, stat), "category": CATEGORY.get(stat, "other"),
@@ -309,6 +359,11 @@ def evaluate(stat, projection, line, price_over, price_under, model):
         "prob_edge": round(confidence - fair, 4),
         "prob_edge_raw": round(confidence - implied, 4),
         "volatility": vol,
+        "breakeven": round(breakeven, 4),
+        "ev": round(ev, 4),
+        "robust": robust,
+        "evidence": evidence,
+        "odds_other": other,
         "score": score,
         "tier": label, "tier_class": klass,
         "recommended": not blocks,
@@ -335,6 +390,12 @@ def reason(p, player, opponent):
         bits.append(f", which is no better than the {p['fair']:.0%} already priced in.")
     if p["volatility"] == "high":
         bits.append(" This is a volatile stat, so the gap has to be larger to mean as much.")
+    if p.get("ev") is not None:
+        bits.append(f" At {p['odds']:+d} that is {p['ev']:+.2f} per unit if the model's probability is right,"
+                    f" and it needs {p['breakeven']:.0%} to break even.")
+    if p.get("robust") and p["robust"].get("fragile"):
+        bits.append(" A 10% change in expected workload flips or weakens this pick, so treat it as fragile.")
+    bits.append(" The probability has only been measured against synthetic lines; the real-market test is running.")
     return "".join(bits)
 
 
@@ -385,6 +446,7 @@ def build(players, odds, model, log=print):
             "team": pl.get("team"), "opponent": pl.get("opponent_team"),
             "position": pl.get("position"), "headshot": pl.get("headshot"),
             "is_home": pl.get("is_home"),
+            "odds_over": slot.get("over"), "odds_under": slot.get("under"),
             "line_open": slot.get("line_open"), "line_open_at": slot.get("line_open_at"),
             "line_prev": slot.get("line_prev"), "line_moved_at": slot.get("line_moved_at"),
         })
