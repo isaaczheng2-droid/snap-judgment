@@ -1062,3 +1062,21 @@
 {"event_id":"ev_1789363803_7038b02f","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_01_NO_DET","player_id":"00-0039623","team_id":"NO","severity":"LOW","previous_value":"OUT","new_value":"IR","detail":"Mason Tipton: OUT \u2192 IR","source":"nflverse:rosters","occurred_at":"2026-09-14T05:30:03Z","received_at":"2026-09-14T05:30:03Z","processed":false,"prediction_recalculated":false,"impact_tier":"LOW","impact_reasons":["WR baseline high","depth 3"],"player_name":"Mason Tipton","system_received_at":"2026-09-14T05:30:03Z"}
 {"event_id":"ev_1789363803_6b35eb40","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_01_GB_MIN","player_id":"00-0039710","team_id":"MIN","severity":"LOW","previous_value":"SUSPENDED","new_value":"IR","detail":"Jeshaun Jones: SUSPENDED \u2192 IR","source":"nflverse:rosters","occurred_at":"2026-09-14T05:30:03Z","received_at":"2026-09-14T05:30:03Z","processed":false,"prediction_recalculated":false,"impact_tier":"LOW","impact_reasons":["WR baseline high","depth 6"],"player_name":"Jeshaun Jones","system_received_at":"2026-09-14T05:30:03Z"}
 {"event_id":"ev_1789363803_c8c4a7fd","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_01_ATL_PIT","player_id":"00-0041484","team_id":"ATL","severity":"LOW","previous_value":"OUT","new_value":"IR","detail":"Anterio Thompson: OUT \u2192 IR","source":"nflverse:rosters","occurred_at":"2026-09-14T05:30:03Z","received_at":"2026-09-14T05:30:03Z","processed":false,"prediction_recalculated":false,"impact_tier":"LOW","impact_reasons":["DL baseline low","depth 3"],"player_name":"Anterio Thompson","system_received_at":"2026-09-14T05:30:03Z"}
+{"event_id":"ev_1789363803_98d592b3","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-14T05:35:21Z"}
+{"event_id":"ev_1789363803_10ec64ea","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-14T05:35:21Z"}
+{"event_id":"ev_1789363803_f7b41c51","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-14T05:35:21Z"}
+{"event_id":"ev_1789363803_b69b332e","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-14T05:35:21Z"}
+{"event_id":"ev_1789363803_4ec30ef5","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-14T05:35:21Z"}
+{"event_id":"ev_1789363803_7038b02f","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-14T05:35:21Z"}
+{"event_id":"ev_1789363803_41a4ae05","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-14T05:35:21Z"}
+{"event_id":"ev_1789363803_86f5d145","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-14T05:35:21Z"}
+{"event_id":"ev_1789363803_0a8f75f2","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-14T05:35:21Z"}
+{"event_id":"ev_1789363803_dc66173c","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-14T05:35:21Z"}
+{"event_id":"ev_1789363803_c8c4a7fd","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-14T05:35:21Z"}
+{"event_id":"ev_1789363803_5a2216d0","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-14T05:35:21Z"}
+{"event_id":"ev_1789363803_c1fd116e","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-14T05:35:21Z"}
+{"event_id":"ev_1789363803_9d620abf","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-14T05:35:21Z"}
+{"event_id":"ev_1789363803_c858234f","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-14T05:35:21Z"}
+{"event_id":"ev_1789363803_8408f9c8","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-14T05:35:21Z"}
+{"event_id":"ev_1789363803_6b35eb40","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-14T05:35:21Z"}
+{"event_id":"ev_1789363803_ebffb896","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-14T05:35:21Z"}
