@@ -372,8 +372,14 @@ def main():
         except Exception:
             req = {"reasons": [], "game_ids": [], "event_ids": []}
         req["requested_at"] = store.now_iso()
-        req["reasons"] = (req.get("reasons") or []) + [e["detail"] for e in crit] + win_reasons
-        req["reasons"] = req["reasons"][:12]
+        # window triggers go first: the rebuild cites the first three reasons, and a finished
+        # segment (new final scores -> ratings, grades, remaining predictions) outranks any one
+        # player's status change. The first Sunday buried "Window finished" behind three injuries.
+        seen, reasons = set(), []
+        for r in win_reasons + (req.get("reasons") or []) + [e["detail"] for e in crit]:
+            if r and r not in seen:
+                seen.add(r); reasons.append(r)
+        req["reasons"] = reasons[:12]
         req["game_ids"] = sorted(set(req.get("game_ids") or []) | {e.get("game_id") for e in crit if e.get("game_id")})
         req["event_ids"] = (req.get("event_ids") or []) + [e["event_id"] for e in crit]
         json.dump(req, open(req_path, "w"), indent=1)
