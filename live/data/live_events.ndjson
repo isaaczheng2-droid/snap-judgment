@@ -952,3 +952,21 @@
 {"event_id":"ev_1789345743_abd549f8","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_01_GB_MIN","player_id":"00-0039710","team_id":"MIN","severity":"LOW","previous_value":"SUSPENDED","new_value":"IR","detail":"Jeshaun Jones: SUSPENDED \u2192 IR","source":"nflverse:rosters","occurred_at":"2026-09-14T00:29:03Z","received_at":"2026-09-14T00:29:03Z","processed":false,"prediction_recalculated":false,"impact_tier":"LOW","impact_reasons":["WR baseline high","depth 6"],"player_name":"Jeshaun Jones","system_received_at":"2026-09-14T00:29:06Z"}
 {"event_id":"ev_1789345743_84de0c0d","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_01_ATL_PIT","player_id":"00-0041484","team_id":"ATL","severity":"LOW","previous_value":"OUT","new_value":"IR","detail":"Anterio Thompson: OUT \u2192 IR","source":"nflverse:rosters","occurred_at":"2026-09-14T00:29:03Z","received_at":"2026-09-14T00:29:03Z","processed":false,"prediction_recalculated":false,"impact_tier":"LOW","impact_reasons":["DL baseline low","depth 3"],"player_name":"Anterio Thompson","system_received_at":"2026-09-14T00:29:06Z"}
 {"event_id":"ev_1789345746_adcc1e3c","event_type":"WEATHER_CHANGE_EVENT","game_id":"2026_01_DEN_KC","player_id":null,"team_id":null,"severity":"HIGH","previous_value":"MODERATE","new_value":"HIGH","detail":"Weather impact MODERATE \u2192 HIGH (worsening)","source":"openmeteo","occurred_at":"2026-09-14T00:29:06Z","received_at":"2026-09-14T00:29:06Z","processed":false,"prediction_recalculated":false,"field":"impact","system_received_at":"2026-09-14T00:29:06Z"}
+{"event_id":"ev_1789345743_7a8fb12e","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-14T01:16:34Z"}
+{"event_id":"ev_1789345743_663d959e","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-14T01:16:34Z"}
+{"event_id":"ev_1789345743_264bb679","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-14T01:16:34Z"}
+{"event_id":"ev_1789345743_c50dde9b","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-14T01:16:34Z"}
+{"event_id":"ev_1789345743_ea7b7334","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-14T01:16:34Z"}
+{"event_id":"ev_1789345743_cd92c960","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-14T01:16:34Z"}
+{"event_id":"ev_1789345743_fe84baae","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-14T01:16:34Z"}
+{"event_id":"ev_1789345743_9d7ae348","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-14T01:16:34Z"}
+{"event_id":"ev_1789345743_1baee239","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-14T01:16:34Z"}
+{"event_id":"ev_1789345743_c917bf26","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-14T01:16:34Z"}
+{"event_id":"ev_1789345743_84de0c0d","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-14T01:16:34Z"}
+{"event_id":"ev_1789345743_dc18580a","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-14T01:16:34Z"}
+{"event_id":"ev_1789345743_fe0a5c1b","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-14T01:16:34Z"}
+{"event_id":"ev_1789345743_a4d0988c","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-14T01:16:34Z"}
+{"event_id":"ev_1789345743_2970d9e2","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-14T01:16:34Z"}
+{"event_id":"ev_1789345743_abd549f8","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-14T01:16:34Z"}
+{"event_id":"ev_1789345743_ce2a2164","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-14T01:16:34Z"}
+{"event_id":"ev_1789345746_adcc1e3c","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-14T01:16:34Z"}
