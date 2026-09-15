@@ -1,0 +1,32 @@
+{
+ "reasons": [
+  "Garrett Nussmeier: ACTIVE \u2192 INACTIVE",
+  "Bryson Eason: no report \u2192 INACTIVE",
+  "Jared Wiley: no report \u2192 INACTIVE",
+  "Diego Pounds: ACTIVE \u2192 INACTIVE",
+  "Jack Pyburn: no report \u2192 INACTIVE",
+  "Tyler Badie: ACTIVE \u2192 INACTIVE",
+  "Sam Ehlinger: no report \u2192 INACTIVE",
+  "Jordan Jackson: no report \u2192 INACTIVE",
+  "Kage Casey: no report \u2192 INACTIVE",
+  "Tyler Onyedim: no report \u2192 INACTIVE",
+  "Dallen Bentley: no report \u2192 INACTIVE"
+ ],
+ "game_ids": [
+  "2026_01_DEN_KC"
+ ],
+ "event_ids": [
+  "ev_1789430482_87bff1cb",
+  "ev_1789430482_ff16353f",
+  "ev_1789430482_655f8e29",
+  "ev_1789430482_14244866",
+  "ev_1789430482_ad64c0f6",
+  "ev_1789430482_f58c263f",
+  "ev_1789430482_154ad54e",
+  "ev_1789430482_316738f7",
+  "ev_1789430482_ba4cca4a",
+  "ev_1789430482_63a17432",
+  "ev_1789430482_af6cd572"
+ ],
+ "requested_at": "2026-09-15T00:01:24Z"
+}
