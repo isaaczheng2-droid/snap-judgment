@@ -41,13 +41,14 @@ def main():
     un = reg[reg.home_score.isna()]
     tw = int(un.week.min()) if len(un) else int(reg.week.max())
     ratings, _ = rp.team_ratings(team, sched, cur, tw)
-    pw = rp.player_form(plyr, sched, ratings)      # now carries tgt_share / car_share
+    pw = rp.player_form(plyr, sched, ratings)      # carries tgt_share / car_share
+    pw, _ = rp.usage_extras(pw, snap, rost, inj)    # snap share (position-filled) and teammate absences
     tests = list(range(2019, int(cur)))
 
     acc, back = [], []
     for key, cfg in rp.PTARGETS.items():
-        oc, pc = rp.OPPCOL[cfg["opp"]], f"proj_{cfg['stat']}"
-        feats = [pc, oc, "is_home"] + rp.USAGE
+        pc = f"proj_{cfg['stat']}"
+        feats, _, _ = rp.player_feature_set(key)     # the same per-stat set the site runs
         sub = pw[pw.position.isin(cfg["pos"])].dropna(subset=[cfg["stat"]] + feats)
         sub = sub[sub[cfg["vol"]] >= cfg["mn"]]
         if len(sub) < 500:

@@ -232,7 +232,7 @@ STAT_WORD = {
 
 
 def player_reason(val, coef, intercept, form, opp_def, is_home, form_mean, opp_mean,
-                  opp_rank, n_teams, usage=None, usage_mean=None):
+                  opp_rank, n_teams, usage=None, usage_mean=None, extra=None, extra_mean=None):
     """
     Exact decomposition of the ridge, reported as movements away from a league-average
     context so the pieces are readable and base + form + usage + matchup + venue adds back
@@ -258,17 +258,31 @@ def player_reason(val, coef, intercept, form, opp_def, is_home, form_mean, opp_m
     mu = round(b1 * (opp_def - opp_mean), 1)
     ve = round(b2 * (is_home - 0.5), 1)
     us = 0.0
+    nu = len(usage) if usage is not None else 0
     if usage is not None and usage_mean is not None and len(coef) > 3:
         us = round(float(sum(float(coef[3 + i]) * (usage[i] - usage_mean[i])
-                             for i in range(len(usage)))), 1)
+                             for i in range(nu))), 1)
+    # `extra` is the teammate-absence block (the share of the position group's carries and
+    # targets newly out this week), reported separately because "his usage" and "the lead
+    # back is out" are different sentences. Zero, and omitted, when nobody is out.
+    ab = 0.0
+    if extra is not None and extra_mean is not None and len(coef) > 3 + nu:
+        ab = round(float(sum(float(coef[3 + nu + i]) * (extra[i] - extra_mean[i])
+                             for i in range(len(extra)))), 1)
     # The panel shows these next to the projection and invites the reader to add them up, so
     # they have to actually add up. Rounding each independently leaves drift; the residual is
     # absorbed into the baseline, the least interesting of them.
-    return {
-        "base": round(round(val, 1) - fo - mu - ve - us, 1),
+    show_ab = extra is not None and any(abs(x) > 0 for x in extra)
+    if not show_ab:
+        ab = 0.0                          # nobody out: the block is a constant, and lives in the baseline
+    out = {
+        "base": round(round(val, 1) - fo - mu - ve - us - ab, 1),
         "form": fo, "usage": us, "matchup": mu, "venue": ve,
         "opp_rank": int(opp_rank), "n_teams": int(n_teams),
     }
+    if show_ab:
+        out["absence"] = ab
+    return out
 
 
 # --------------------------------------------------------------------------- scheme prose

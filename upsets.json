@@ -1,0 +1,253 @@
+{
+ "definition": "The model's own probability (before the market blend) favours the team the closing line has as the underdog. Walk-forward, 8-seed ensemble, test season trained on earlier seasons only.",
+ "n_games": 1855,
+ "n_upset_calls": 366,
+ "share_of_games": 0.1973,
+ "all_games_dog_won": 0.3337,
+ "overall": {
+  "n": 366,
+  "dog_won": 0.4454,
+  "ci95": [
+   0.3937,
+   0.4979
+  ],
+  "market_said": 0.4025,
+  "fair_roi": 0.1061
+ },
+ "published": {
+  "n": 58,
+  "dog_won": 0.569,
+  "ci95": [
+   0.4323,
+   0.6984
+  ],
+  "market_said": 0.4783,
+  "fair_roi": 0.1939
+ },
+ "by_model_band": [
+  {
+   "band": "50-55%",
+   "lo": 0.5,
+   "hi": 0.55,
+   "n": 137,
+   "dog_won": 0.4745,
+   "ci95": [
+    0.3886,
+    0.5615
+   ],
+   "market_said": 0.3965,
+   "fair_roi": 0.2287,
+   "claimed": 0.5222
+  },
+  {
+   "band": "55-60%",
+   "lo": 0.55,
+   "hi": 0.6,
+   "n": 90,
+   "dog_won": 0.4222,
+   "ci95": [
+    0.3188,
+    0.5309
+   ],
+   "market_said": 0.3997,
+   "fair_roi": 0.0332,
+   "claimed": 0.5707
+  },
+  {
+   "band": "60-65%",
+   "lo": 0.6,
+   "hi": 0.65,
+   "n": 61,
+   "dog_won": 0.4426,
+   "ci95": [
+    0.3155,
+    0.5755
+   ],
+   "market_said": 0.412,
+   "fair_roi": 0.0765,
+   "claimed": 0.6255
+  },
+  {
+   "band": "65%+",
+   "lo": 0.65,
+   "hi": 1.01,
+   "n": 78,
+   "dog_won": 0.4231,
+   "ci95": [
+    0.3119,
+    0.5402
+   ],
+   "market_said": 0.4086,
+   "fair_roi": -0.0021,
+   "claimed": 0.7145
+  }
+ ],
+ "by_favorite": [
+  {
+   "band": "near pick'em (favourite under 55%)",
+   "lo": 0.5,
+   "hi": 0.55,
+   "n": 102,
+   "dog_won": 0.5196,
+   "ci95": [
+    0.4184,
+    0.6196
+   ],
+   "market_said": 0.4753,
+   "fair_roi": 0.0951,
+   "all_games_dog_won": 0.4918
+  },
+  {
+   "band": "modest favourite (55-65%)",
+   "lo": 0.55,
+   "hi": 0.65,
+   "n": 191,
+   "dog_won": 0.445,
+   "ci95": [
+    0.3733,
+    0.5185
+   ],
+   "market_said": 0.4077,
+   "fair_roi": 0.1002,
+   "all_games_dog_won": 0.4009
+  },
+  {
+   "band": "clear favourite (65-75%)",
+   "lo": 0.65,
+   "hi": 0.75,
+   "n": 60,
+   "dog_won": 0.4,
+   "ci95": [
+    0.2756,
+    0.5346
+   ],
+   "market_said": 0.3024,
+   "fair_roi": 0.3085,
+   "all_games_dog_won": 0.2913
+  },
+  {
+   "band": "heavy favourite (75%+)",
+   "lo": 0.75,
+   "hi": 1.01,
+   "n": 13,
+   "dog_won": 0.0769,
+   "ci95": [
+    0.0019,
+    0.3603
+   ],
+   "market_said": 0.2158,
+   "fair_roi": -0.6553,
+   "all_games_dog_won": 0.1769
+  }
+ ],
+ "by_season": [
+  {
+   "season": 2019,
+   "n": 51,
+   "dog_won": 0.451,
+   "ci95": [
+    0.3113,
+    0.5966
+   ],
+   "market_said": 0.3844,
+   "fair_roi": 0.1185
+  },
+  {
+   "season": 2020,
+   "n": 53,
+   "dog_won": 0.434,
+   "ci95": [
+    0.2984,
+    0.5772
+   ],
+   "market_said": 0.3949,
+   "fair_roi": 0.0718
+  },
+  {
+   "season": 2021,
+   "n": 54,
+   "dog_won": 0.463,
+   "ci95": [
+    0.3262,
+    0.6039
+   ],
+   "market_said": 0.3738,
+   "fair_roi": 0.2478
+  },
+  {
+   "season": 2022,
+   "n": 52,
+   "dog_won": 0.5,
+   "ci95": [
+    0.3581,
+    0.6419
+   ],
+   "market_said": 0.4076,
+   "fair_roi": 0.2617
+  },
+  {
+   "season": 2023,
+   "n": 60,
+   "dog_won": 0.3667,
+   "ci95": [
+    0.2459,
+    0.501
+   ],
+   "market_said": 0.4202,
+   "fair_roi": -0.0918
+  },
+  {
+   "season": 2024,
+   "n": 56,
+   "dog_won": 0.4286,
+   "ci95": [
+    0.2971,
+    0.5678
+   ],
+   "market_said": 0.4092,
+   "fair_roi": 0.0206
+  },
+  {
+   "season": 2025,
+   "n": 40,
+   "dog_won": 0.5,
+   "ci95": [
+    0.338,
+    0.662
+   ],
+   "market_said": 0.4315,
+   "fair_roi": 0.1583
+  }
+ ],
+ "calibration": [
+  {
+   "band": "50-55%",
+   "claimed": 0.5222,
+   "won": 0.4745,
+   "n": 137
+  },
+  {
+   "band": "55-60%",
+   "claimed": 0.5707,
+   "won": 0.4222,
+   "n": 90
+  },
+  {
+   "band": "60-65%",
+   "claimed": 0.6255,
+   "won": 0.4426,
+   "n": 61
+  },
+  {
+   "band": "65%+",
+   "claimed": 0.7145,
+   "won": 0.4231,
+   "n": 78
+  }
+ ],
+ "seasons": [
+  2019,
+  2025
+ ],
+ "generated": "2026-09-16 19:03 UTC"
+}

@@ -126,6 +126,31 @@ def load_json_any(name, datadir="data", require=None):
     return None
 
 
+def upset_call(p_model, p_market, p_blend, home, away, table):
+    """
+    The model's own number favours the market underdog. Returns the call with the backtest
+    record for that band of model confidence (from regen_upsets.py), or None. The published
+    pick is the market blend, so `published` says whether the headline number flipped too.
+    """
+    if p_market is None or pd.isna(p_market) or not table:
+        return None
+    mkt_home_fav = float(p_market) > 0.5
+    dog, fav = (away, home) if mkt_home_fav else (home, away)
+    pm = 1 - float(p_model) if mkt_home_fav else float(p_model)
+    pk = 1 - float(p_market) if mkt_home_fav else float(p_market)
+    pb = 1 - float(p_blend) if mkt_home_fav else float(p_blend)
+    if pm <= 0.5:
+        return None
+    band = next((b for b in table.get("by_model_band", []) if b["lo"] <= pm < b["hi"]), None)
+    fband = next((b for b in table.get("by_favorite", []) if b["lo"] <= 1 - pk < b["hi"]), None)
+    keep = ("n", "dog_won", "ci95", "market_said", "fair_roi")
+    return {"team": dog, "favorite": fav, "p_model": round(pm, 4), "p_market": round(pk, 4), "p_blend": round(pb, 4),
+            "published": pb > 0.5,
+            "band": band["band"] if band else None, "record": {k: band[k] for k in keep if band and k in band} if band else None,
+            "favorite_band": fband["band"] if fband else None,
+            "favorite_record": ({k: fband[k] for k in keep if k in fband} | {"all_games_dog_won": fband.get("all_games_dog_won")}) if fband else None}
+
+
 def prop_audit_v2(datadir="data"):
     """The handful of audit numbers the page quotes from prop_audit.py."""
     a = load_json_any("prop_audit.json", datadir, require="baselines_on_recommended")
@@ -404,6 +429,147 @@ def player_form(plyr, sched, ratings):
         pw[out] = pw[out].fillna(0)
     pw = pw.drop(columns=["_sh"], errors="ignore")
     return pw
+
+
+# --------------------------------------------------------------------------- usage extras
+# Two more things a projection can know before kickoff. Both measured on the walk-forward
+# harness in prop_absence_test.py (selection 2019-2024, 2025 untouched), shipped per stat
+# only where they paid for themselves; see EXTRA_FEATS below.
+#
+#   prior_snap   the player's offensive snap share over prior games. Cut passing-yard error
+#                3.6% (2.3% on 2025) and receptions/receiving yards ~0.5%; HURT the running
+#                back stats, so they do not get it.
+#   absence      the share of the position group's targets and carries that teammates listed
+#                Out or Doubtful THIS week leave behind, counting only absences that are new
+#                (the absentee played in one of the last two games, so his share is still in
+#                everyone else's prior). When the lead back is newly out the other backs get
+#                about 20% more carries than their form implies (n=434, 2019-2025) and the
+#                shipped model under-projected them by 7 yards; the block cut rushing-yard
+#                error 0.5% (0.8% on 2025). Receivers gain only ~6% targets from a lost WR1
+#                and the model could not turn that into fewer yards of error, so it is not
+#                applied to them.
+GRP = {"WR": "rec", "TE": "rec", "RB": "rb", "FB": "rb", "QB": "qb"}
+NEW_GAP = 2                  # the absentee appeared within this many weeks
+EXTRA_FEATS = {"passing_yards": ["prior_snap"], "qb_rushing_yards": ["prior_snap"],
+               "receiving_yards": ["prior_snap"], "receptions": ["prior_snap"],
+               "rushing_yards": ["lost_tgt", "lost_car"]}
+ADJ_SHARES = {"rushing_yards": ["tgt_share_adj", "car_share_adj"]}   # shares rescaled to the remaining pie
+
+
+def player_feature_set(out_col, has_extra=True):
+    """(features, usage_cols, absence_cols) for one stat: the shared block plus what it earned."""
+    cfg = PTARGETS[out_col]
+    shares = ADJ_SHARES.get(out_col, USAGE) if has_extra else list(USAGE)
+    extra = EXTRA_FEATS.get(out_col, []) if has_extra else []
+    usage_cols = shares + [e for e in extra if e == "prior_snap"]
+    abs_cols = [e for e in extra if e != "prior_snap"]
+    return [f"proj_{cfg['stat']}", OPPCOL[cfg["opp"]], "is_home"] + usage_cols + abs_cols, usage_cols, abs_cols
+
+
+def usage_extras(pw, snap, rost, inj, log=log):
+    """
+    Adds to every player-game row: prior_snap / snap_now (offensive snap share before / through
+    this game), lost_tgt / lost_car (own position group's share newly absent this week),
+    tgt_share_adj / car_share_adj. Returns (pw, lost) where lost is the per-(team, season,
+    week) table used for the upcoming week's candidates, including the names behind it.
+    """
+    pw = pw.copy()
+    pw[["season", "week"]] = pw[["season", "week"]].astype("int64")
+    # ---- snap share, via the pfr -> gsis crosswalk in the rosters
+    if len(snap):
+        s = snap[snap.game_type == "REG"].copy()
+        cw = rost.dropna(subset=["gsis_id", "pfr_id"])[["gsis_id", "pfr_id"]].drop_duplicates("pfr_id")
+        s = s.merge(cw, left_on="pfr_player_id", right_on="pfr_id", how="left").dropna(subset=["gsis_id"])
+        s = s.sort_values(["gsis_id", "season", "week"])
+        g = s.groupby(["gsis_id", "season"])["offense_pct"]
+        s["prior_snap"] = g.transform(lambda x: x.shift(1).expanding().mean())
+        s["snap_now"] = g.transform(lambda x: x.expanding().mean())
+        u = s[["gsis_id", "season", "week", "prior_snap", "snap_now"]].rename(columns={"gsis_id": "player_id"})
+        u[["season", "week"]] = u[["season", "week"]].astype("int64")
+        pw = pw.merge(u.drop_duplicates(["player_id", "season", "week"]), on=["player_id", "season", "week"], how="left")
+    else:
+        pw["prior_snap"] = np.nan
+        pw["snap_now"] = np.nan
+    # Missing snap data is filled by POSITION, never by one global number: a quarterback with
+    # no snap row is a full-time player, not a 50% one. The first cut used a global median and
+    # every quarterback lost 52 projected passing yards the week the current season's snap
+    # file was late. snap_carry is the player's last known share from any season, for the
+    # upcoming week's candidates when this season's file has not been posted yet.
+    pos_med = pw.groupby("position")["prior_snap"].median()
+    pw["snap_pos_median"] = pw.position.map(pos_med).fillna(pw.prior_snap.median() if pw.prior_snap.notna().any() else 0.5)
+    pw["prior_snap"] = pw.prior_snap.fillna(pw.snap_pos_median)
+    pw = pw.sort_values(["player_id", "season", "week"])
+    pw["snap_carry"] = pw.groupby("player_id")["snap_now"].ffill()
+    pw["snap_median"] = float(pw.prior_snap.median()) if pw.prior_snap.notna().any() else 0.5
+
+    # ---- absences: each skill player's share of the team's targets/carries per game
+    skill = pw[pw.position.isin(GRP)].copy()
+    for col, out in [("targets", "sh_tgt"), ("carries", "sh_car")]:
+        if col not in skill.columns:
+            skill[col] = 0.0
+        tm = skill.groupby(["team", "season", "week"])[col].transform("sum")
+        skill[out] = (skill[col] / tm.replace(0, np.nan)).fillna(0)
+    skill = skill.sort_values(["player_id", "season", "week"])
+    for c in ["sh_tgt", "sh_car"]:
+        skill[f"rec_{c}"] = skill.groupby(["player_id", "season"])[c].transform(lambda x: x.rolling(3, min_periods=1).mean())
+    acols = ["season", "week", "team", "gsis_id", "position", "full_name", "report_status"]
+    if len(inj) and all(c in inj.columns for c in acols + ["game_type"]):
+        absent = inj[(inj.game_type == "REG") & (inj.report_status.isin(["Out", "Doubtful"]))][acols].dropna(subset=["gsis_id"])
+    else:
+        absent = pd.DataFrame(columns=acols)
+    absent = absent.rename(columns={"gsis_id": "player_id"})
+    absent["grp"] = absent.position.map(GRP)
+    absent = absent.dropna(subset=["grp"])
+    absent[["season", "week"]] = absent[["season", "week"]].astype("int64")
+    absent = absent.drop_duplicates(["season", "week", "team", "player_id"]).sort_values("week")
+    pl = skill[["player_id", "season", "week", "rec_sh_tgt", "rec_sh_car"]].rename(columns={"week": "last_week"}).sort_values("last_week")
+    absent = pd.merge_asof(absent, pl, left_on="week", right_on="last_week", by=["player_id", "season"],
+                           direction="backward", allow_exact_matches=False)
+    absent = absent.dropna(subset=["rec_sh_tgt"])
+    absent = absent[(absent.week - absent.last_week) <= NEW_GAP]
+    lost = (absent.groupby(["team", "season", "week", "grp"]).agg(t=("rec_sh_tgt", "sum"), c=("rec_sh_car", "sum")).reset_index()
+            .pivot_table(index=["team", "season", "week"], columns="grp", values=["t", "c"], fill_value=0))
+    lost.columns = [f"lost_{a}_{b}" for a, b in lost.columns]
+    lost = lost.reset_index()
+    for c in ["lost_t_rec", "lost_t_rb", "lost_c_rb"]:
+        if c not in lost.columns:
+            lost[c] = 0.0
+    names = {}
+    for r in absent.itertuples():
+        names.setdefault((r.team, int(r.season), int(r.week), r.grp), []).append(
+            r.full_name if r.report_status == "Out" else f"{r.full_name} (doubtful)")
+    lost.attrs["names"] = names
+    lost.attrs["self"] = {(r.team, int(r.season), int(r.week), r.player_id): (float(r.rec_sh_tgt), float(r.rec_sh_car))
+                          for r in absent.itertuples()}
+
+    self_abs = absent[["team", "season", "week", "player_id", "rec_sh_tgt", "rec_sh_car"]].rename(
+        columns={"rec_sh_tgt": "self_tgt", "rec_sh_car": "self_car"})
+    pw = pw.merge(lost[["team", "season", "week", "lost_t_rec", "lost_t_rb", "lost_c_rb"]], on=["team", "season", "week"], how="left")
+    pw = pw.merge(self_abs, on=["team", "season", "week", "player_id"], how="left")
+    for c in ["lost_t_rec", "lost_t_rb", "lost_c_rb", "self_tgt", "self_car"]:
+        pw[c] = pw[c].fillna(0)
+    grp = pw.position.map(GRP)
+    own_t = np.where(grp == "rec", pw.lost_t_rec, np.where(grp == "rb", pw.lost_t_rb, 0.0))
+    own_c = np.where(grp == "rb", pw.lost_c_rb, 0.0)
+    pw["lost_tgt"] = np.clip(own_t - pw.self_tgt, 0, 0.9)
+    pw["lost_car"] = np.clip(own_c - pw.self_car, 0, 0.9)
+    pw["tgt_share_adj"] = (pw.tgt_share / (1 - pw.lost_tgt)).clip(upper=1)
+    pw["car_share_adj"] = (pw.car_share / (1 - pw.lost_car)).clip(upper=1)
+    log(f"  usage extras: snap share on {pw.prior_snap.notna().mean():.0%} of rows; "
+        f"{len(absent)} new absences with a recent share across {len(lost)} team-weeks")
+    return pw, lost
+
+
+def lost_now(lost, team, season, week, player_id=None):
+    """The upcoming week's newly absent share for one team's backs: (lost_tgt, lost_car, names)."""
+    row = lost[(lost.team == team) & (lost.season == season) & (lost.week == week)]
+    if not len(row):
+        return 0.0, 0.0, []
+    r = row.iloc[0]
+    t, c = float(r.lost_t_rb), float(r.lost_c_rb)
+    st, sc = lost.attrs.get("self", {}).get((team, int(season), int(week), player_id), (0.0, 0.0))
+    names = lost.attrs.get("names", {}).get((team, int(season), int(week), "rb"), [])
+    return float(np.clip(t - st, 0, 0.9)), float(np.clip(c - sc, 0, 0.9)), names
 
 
 # --------------------------------------------------------------------------- context
@@ -747,7 +913,7 @@ def game_logs(pw, ids):
 
 
 def player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_map=None,
-                       opp_scheme=None):
+                       opp_scheme=None, lost=None):
     from sklearn.linear_model import Ridge
     up = sched[(sched.season == cur) & (sched.week == target_week) & (sched.game_type == "REG")]
     opp = {}
@@ -771,25 +937,48 @@ def player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_ma
         d = depth[depth.dt == depth.dt.max()]
         starters = set(d[d.pos_rank == 1].gsis_id.dropna())
 
-    rows, why = [], {}
+    rows, why, absence = [], {}, {}
+    has_extra = "prior_snap" in pw.columns and "lost_car" in pw.columns
+    snap_fill = float(pw.snap_median.iloc[0]) if "snap_median" in pw.columns and len(pw) else 0.5
     for out_col, cfg in PTARGETS.items():
         oc = OPPCOL[cfg["opp"]]
         pc = f"proj_{cfg['stat']}"
-        sub = pw[pw.position.isin(cfg["pos"])].dropna(subset=[cfg["stat"], pc, oc, "is_home"] + USAGE)
+        # the shared block, plus whatever this stat earned on the walk-forward test; usage
+        # columns are reported as "usage", absence columns as "absence"
+        f, usage_cols, abs_cols = player_feature_set(out_col, has_extra)
+        shares = usage_cols[:2]
+        sub = pw[pw.position.isin(cfg["pos"])].copy()
+        sub = sub.dropna(subset=[cfg["stat"], cfg["vol"]] + f)
         sub = sub[sub[cfg["vol"]] >= cfg["mn"]]
         if len(sub) < 200:
             continue
-        f = [pc, oc, "is_home"] + USAGE
         model = Ridge(alpha=5.0).fit(sub[f], sub[cfg["stat"]])
 
+        # candidates: the latest row per player carries his form and prior shares; the
+        # snap share through his last game and this week's absences are point-in-time too
+        lcols = [c for c in ["snap_carry", "snap_pos_median"] if c in latest.columns]
         cand = active[active.position.isin(cfg["pos"])].merge(
-            latest[["player_id", pc, cfg["vol"]] + USAGE], on="player_id", how="inner")
-        cand = cand[(cand[cfg["vol"]] >= cfg["mn"]) & (cand.team.isin(opp))]
+            latest[["player_id", pc, cfg["vol"]] + USAGE + lcols], on="player_id", how="inner")
+        cand = cand[(cand[cfg["vol"]] >= cfg["mn"]) & (cand.team.isin(opp))].copy()
         if not len(cand):
             continue
         cand["opponent_team"] = cand.team.map(lambda t: opp[t][0])
         cand["is_home"] = cand.team.map(lambda t: opp[t][1])
         cand[oc] = cand.opponent_team.map(lambda t: wk_def[oc].get(t, np.nan))
+        if "prior_snap" in usage_cols:
+            carry = cand.snap_carry if "snap_carry" in cand.columns else pd.Series(np.nan, index=cand.index)
+            posmed = cand.snap_pos_median if "snap_pos_median" in cand.columns else pd.Series(snap_fill, index=cand.index)
+            cand["prior_snap"] = carry.fillna(posmed).fillna(snap_fill)
+        if abs_cols or shares != USAGE:
+            ln = [lost_now(lost, r.team, cur, target_week, r.player_id) if lost is not None else (0.0, 0.0, [])
+                  for r in cand.itertuples()]
+            cand["lost_tgt"] = [x[0] for x in ln]
+            cand["lost_car"] = [x[1] for x in ln]
+            cand["tgt_share_adj"] = (cand.tgt_share / (1 - cand.lost_tgt)).clip(upper=1)
+            cand["car_share_adj"] = (cand.car_share / (1 - cand.lost_car)).clip(upper=1)
+            for r, x in zip(cand.itertuples(), ln):
+                if x[2] and (x[0] > 0 or x[1] > 0):
+                    absence[(r.player_id, out_col)] = {"names": x[2][:3], "lost_car": round(x[1], 3), "lost_tgt": round(x[0], 3)}
         cand = cand.dropna(subset=f)
         cand["val"] = model.predict(cand[f])
 
@@ -798,7 +987,8 @@ def player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_ma
         drank = wk_def[oc].rank(method="min").astype(int).to_dict()
         n_teams = int(wk_def[oc].notna().sum())
         fmean, omean = float(sub[pc].mean()), float(sub[oc].mean())
-        umean = [float(sub[u].mean()) for u in USAGE]
+        umean = [float(sub[u].mean()) for u in usage_cols]
+        amean = [float(sub[u].mean()) for u in abs_cols]
 
         for _, r in cand.iterrows():
             rows.append({"player_id": r.player_id, "player_display_name": r.player_display_name,
@@ -808,7 +998,8 @@ def player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_ma
             why[(r.player_id, out_col)] = explain.player_reason(
                 float(r.val), model.coef_, model.intercept_, float(r[pc]), float(r[oc]), int(r.is_home),
                 fmean, omean, drank.get(r.opponent_team, n_teams // 2), n_teams,
-                usage=[float(r[u]) for u in USAGE], usage_mean=umean)
+                usage=[float(r[u]) for u in usage_cols], usage_mean=umean,
+                extra=[float(r[u]) for u in abs_cols] or None, extra_mean=amean or None)
     if not rows:
         return []
     rdf = pd.DataFrame(rows)
@@ -831,6 +1022,9 @@ def player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_ma
         rec["player_key"] = pid          # the tracker locks projections against this id
         rec["log"] = logs.get(pid, [])
         rec["why"] = {s: w for (p, s), w in why.items() if p == pid}
+        ab = {s: a for (p, s), a in absence.items() if p == pid}
+        if ab:
+            rec["absence"] = ab          # who is newly out at his position, for the sentence
         st = inj_map.get(pid)
         if st:
             rec["status"] = st
@@ -1071,6 +1265,7 @@ def main():
 
     ratings, lg = team_ratings(team, sched, cur, target_week)
     pw = player_form(plyr, sched, ratings)
+    pw, lost = usage_extras(pw, snap, rost, inj)
     ctx = context_features(sched, pw, inj, snap, rost, depth, cur)
     df = build_games(sched, ratings, ctx)
     scheme, sch_lg = team_scheme(team, sched, cur, target_week)
@@ -1090,7 +1285,7 @@ def main():
                   "pk_funnel": round(float(r.get("pk_funnel", 0.5)), 3),
                   "pk_havoc": round(float(r.get("pk_havoc", 0.5)), 3)}
               for t, r in wk_sc.iterrows()}
-    players = player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_map, opp_sc)
+    players = player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_map, opp_sc, lost=lost)
 
     # FanDuel comparison. Deliberately AFTER player_projections: the projections above were
     # made from football data alone and cannot see a line. This only reads them.
@@ -1142,6 +1337,8 @@ def main():
 
     kick = sched.drop_duplicates("game_id").set_index("game_id")["gametime"].to_dict() \
         if "gametime" in sched.columns else {}
+    # the upset record (regen_upsets.py) travels with every game the model calls against the line
+    upsets = load_json_any("upsets.json", a.datadir, require="by_model_band")
     games_out = []
     for i, (_, r) in enumerate(up.iterrows()):
         hs, as_ = side_scheme(r, "home"), side_scheme(r, "away")
@@ -1171,6 +1368,7 @@ def main():
             "stadium": None if pd.isna(r.get("stadium")) else str(r.get("stadium")),
             "home_out": int(r.get("home_n_out", 0)), "away_out": int(r.get("away_n_out", 0)),
             "props": props_by_game.get(f"{r.away_team}@{r.home_team}", []),
+            "upset": upset_call(r.p_model, r.p_market, r.p_blend, r.home_team, r.away_team, upsets),
             "injuries": {
                 "week": inj_week,
                 "since": since_kick.get(r.game_id, []),
@@ -1241,6 +1439,7 @@ def main():
         "props_meta": props_meta,
         "prop_audit": load_prop_audit(a.datadir),
         "prop_audit_v2": prop_audit_v2(a.datadir),
+        "upsets": upsets,
         "real_backtest": load_json_any("backtest_2025.json", a.datadir, require="all_scored"),
         # the fitted spread of each projection, so the page can draw an expected range
         # around every number from the same distribution the prop probabilities use
