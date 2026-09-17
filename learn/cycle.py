@@ -115,7 +115,11 @@ def step_train_compare_promote(config, datadir, dry_run):
     frames, used = candidates.run(rp, pw, sched, config, active["params"], config["candidates"], seasons, log=lambda *a: None)
     exp_id = f"exp-{now()[:10]}-{uuid.uuid4().hex[:6]}"
     assessments = []
+    skipped = used.pop("_skipped", {})
     for spec in config["candidates"]:
+        if spec["id"] in skipped:
+            log_event("candidate_skipped", candidate=spec["id"], reason=skipped[spec["id"]])
+            continue
         j = evaluate.paired(frames["current"], frames[spec["id"]])
         a = gate.assess(j, config)
         a["candidate"] = spec["id"]
@@ -129,6 +133,7 @@ def step_train_compare_promote(config, datadir, dry_run):
               "n_rows": int(len(frames["current"])), "current_mae": round(cur_mae, 4), "naive_mae": round(naive_mae, 4),
               "config": {k: config[k] for k in ("min_samples", "min_rel_gain", "alpha", "max_segment_loss", "bootstrap")},
               "candidates": [{k: v for k, v in a.items() if k != "segments"} | {"segments": a["segments"]} for a in assessments],
+              "skipped": [{"candidate": k, "reason": v} for k, v in skipped.items()],
               "dry_run": dry_run}
     accepted = [a for a in assessments if a["accepted"]]
     promoted = None

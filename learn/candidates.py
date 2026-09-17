@@ -5,6 +5,7 @@ row by row. Nothing here invents a feature; the menu lives in learn/config.json.
 """
 import copy
 
+import glob
 import numpy as np
 
 from fantasy import backtest, engine, scoring
@@ -27,6 +28,9 @@ def params_for(spec, current):
     return p
 
 
+PBP_GLOB = "data/pbp/play_by_play_*.parquet"
+
+
 def feature_fn(rp, params, targets):
     ef, ad = params["extra_feats"], params["adj_shares"]
     def fn(key):
@@ -46,9 +50,22 @@ def run(rp, pw, sched, config, current_params, specs, seasons, log=print):
     settings = scoring.PRESETS[scoring.DEFAULT]
     tests = list(range(int(seasons[0]), int(seasons[1]) + 1))
     need_script = any(s.get("script_feats") for s in specs) or current_params.get("script_feats")
+    skipped = {}
     if need_script and "exp_pass_att" not in pw.columns:
-        tg, rates = fscript.team_games(log=log)
-        pw = script_test.add_script(pw, sched, tg, rates, tests)
+        if glob.glob(PBP_GLOB):
+            tg, rates = fscript.team_games(pbp_glob=PBP_GLOB, log=log)
+            pw = script_test.add_script(pw, sched, tg, rates, tests)
+        else:
+            # Play-by-play is optional on the runner. A candidate whose inputs are not on file
+            # is skipped and recorded as such; it is never scored on filled-in values.
+            reason = "play-by-play not on file; script features cannot be built"
+            if current_params.get("script_feats"):
+                raise RuntimeError("active model needs script features but " + reason)
+            for s in specs:
+                if s.get("script_feats"):
+                    skipped[s["id"]] = reason
+                    log(f"  candidate {s['id']}: skipped ({reason})")
+            specs = [s for s in specs if not s.get("script_feats")]
     out, used = {}, {}
     cur_fn = feature_fn(rp, current_params, targets)
     rows = backtest.walk_forward(pw, targets, tests, alpha=current_params["alpha"], feature_fn=cur_fn, log=log)
@@ -61,4 +78,5 @@ def run(rp, pw, sched, config, current_params, specs, seasons, log=print):
         out[spec["id"]] = backtest.score_rows(rows, settings, targets)
         used[spec["id"]] = p
         log(f"  candidate {spec['id']}: {len(out[spec['id']])} rows, MAE {float((out[spec['id']].act_pts - out[spec['id']].proj_pts).abs().mean()):.3f}")
+    used["_skipped"] = skipped
     return out, used
