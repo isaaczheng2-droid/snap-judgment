@@ -1198,19 +1198,19 @@
   .fstrip { border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; margin: 0 0 12px; background: var(--surface-alt); font-size: 13px; color: var(--ink-2); line-height: 1.5; }
   .fnote { font-size: 12px; color: var(--ink-3); line-height: 1.45; display: block; }
   .ftable { border: 1px solid var(--border); border-radius: 12px; background: var(--surface); overflow: hidden; }
-  .frow { display: grid; grid-template-columns: 34px minmax(180px, 1.4fr) 84px minmax(120px, 1fr) minmax(120px, 1fr) minmax(90px, .9fr) 64px; gap: 10px; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--hairline); cursor: pointer; }
-  .frow:hover { background: var(--surface-alt); }
-  .frow.dim { opacity: .55; }
-  .frow .rk { font-size: 12px; font-weight: 800; color: var(--ink-4); font-variant-numeric: tabular-nums; }
-  .frow .who { display: flex; align-items: center; gap: 9px; min-width: 0; }
-  .frow .who .nm { min-width: 0; display: flex; flex-direction: column; }
-  .frow .who b { font-size: 14px; letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .frow .who small { font-size: 11.5px; color: var(--ink-3); font-weight: 600; }
-  .frow .pts b { font-size: 17px; font-weight: 800; letter-spacing: -.02em; display: block; }
-  .frow .pts small { font-size: 10.5px; color: var(--ink-4); font-weight: 600; white-space: nowrap; }
-  .frow .rng small, .frow .opp small { font-size: 11px; color: var(--ink-3); font-weight: 600; display: block; margin-top: 3px; }
-  .frow .tags { display: flex; flex-wrap: wrap; gap: 4px; }
-  .frow .act { display: flex; gap: 4px; justify-content: flex-end; }
+  #fantasyBody .frow { display: grid; grid-template-columns: 34px minmax(180px, 1.4fr) 84px minmax(120px, 1fr) minmax(120px, 1fr) minmax(90px, .9fr) 64px; gap: 10px; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--hairline); cursor: pointer; }
+  #fantasyBody .frow:hover { background: var(--surface-alt); }
+  #fantasyBody .frow.dim { opacity: .55; }
+  #fantasyBody .frow .rk { font-size: 12px; font-weight: 800; color: var(--ink-4); font-variant-numeric: tabular-nums; }
+  #fantasyBody .frow .who { display: flex; align-items: center; gap: 9px; min-width: 0; }
+  #fantasyBody .frow .who .nm { min-width: 0; display: flex; flex-direction: column; }
+  #fantasyBody .frow .who b { font-size: 14px; letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #fantasyBody .frow .who small { font-size: 11.5px; color: var(--ink-3); font-weight: 600; }
+  #fantasyBody .frow .pts b { font-size: 17px; font-weight: 800; letter-spacing: -.02em; display: block; }
+  #fantasyBody .frow .pts small { font-size: 10.5px; color: var(--ink-4); font-weight: 600; white-space: nowrap; }
+  #fantasyBody .frow .rng small, #fantasyBody .frow .opp small { font-size: 11px; color: var(--ink-3); font-weight: 600; display: block; margin-top: 3px; }
+  #fantasyBody .frow .tags { display: flex; flex-wrap: wrap; gap: 4px; }
+  #fantasyBody .frow .act { display: flex; gap: 4px; justify-content: flex-end; }
   .frange { position: relative; display: block; height: 10px; }
   .frange i { position: absolute; top: 3px; height: 4px; border-radius: 999px; background: var(--seq-b); opacity: .55; }
   .frange i.n { top: 2px; height: 6px; background: var(--seq-c); opacity: .9; }
@@ -1253,14 +1253,120 @@
   .kvv.warnc { color: var(--warn); }
   .num.good { color: var(--pos); } .num.dn { color: var(--neg); }
   @media (max-width: 860px) {
-    .frow { grid-template-columns: 26px minmax(140px, 1.6fr) 74px minmax(100px, 1fr) 60px; }
-    .frow .opp, .frow .tags { display: none; }
+    #fantasyBody .frow { grid-template-columns: 26px minmax(140px, 1.6fr) 74px minmax(100px, 1fr) 60px; }
+    #fantasyBody .frow .opp, #fantasyBody .frow .tags { display: none; }
     .fcols { grid-template-columns: 1fr; }
   }
+
+/* Dashboard presentation. Forecast data and model calculations are unchanged. */
+body { background:var(--surface-alt); line-height:1.6; }
+main { max-width:1600px; padding:32px 36px 88px; }
+.page-head { margin-bottom:16px; }
+.page-head h1 { font-size:32px; line-height:1.2; letter-spacing:-.035em; }
+.page-head .sub { max-width:80ch; font-size:15px; margin-top:8px; color:var(--ink-2); }
+.page-head .stamp { color:var(--ink-3); }
+.appbar { background:var(--surface); }
+.appbar-inner { max-width:none; height:68px; padding:0 28px; }
+.navlink { font-size:14px; padding:0 10px; }
+.subnav,.mtabs { gap:8px; padding:4px; background:var(--surface); border:1px solid var(--border); border-radius:10px; margin-bottom:24px; }
+.subnav a,.subnav button,.mtabs a { padding:10px 16px; border:0; margin:0; border-radius:7px; }
+.subnav a[aria-current=page],.mtabs a[aria-current=page] { background:var(--accent-soft); color:var(--accent-ink); border:0; }
+.controls { background:var(--surface); border:1px solid var(--border); padding:16px; border-radius:10px; gap:14px; }
+.control-label { color:var(--ink-2); text-transform:none; letter-spacing:0; font-size:13px; }
+.segmented { border-radius:8px; }
+.seg { border-radius:6px; min-height:40px; }
+.card,.cbox,.pcard,.gcard,.propcard,.ccard { box-shadow:0 2px 5px var(--hairline); border-radius:12px; }
+.cards { gap:20px; }.card { padding:24px; min-width:0; }
+.cards .wide { grid-column:1/-1; }
+.card h3,.cbox h4 { font-size:17px; line-height:1.4; }
+.csub,.whytext,.fdetail,.fnote { font-size:14px; line-height:1.65; color:var(--ink-2); }
+.tiles { gap:14px; margin-bottom:24px; }.tile { background:var(--surface); padding:20px; border:1px solid var(--border); border-radius:10px; }
+.tile .k { color:var(--ink-2); font-size:12px; }.tile .n { font-size:13px; color:var(--ink-3); }
+.gamegrid { gap:20px; }.pgrid { gap:20px; }
+.propcards { grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr)); gap:20px; }
+.pc-line .box { padding:14px; }.pc-four { gap:12px; }.pc-cell .k { min-height:38px; line-height:1.5; }
+.pc-cell .v { display:block; font-size:18px; }
+.pc-why,.pc-block { line-height:1.65; font-size:14px; }
+.purpose { gap:24px; padding:18px 20px; border-radius:10px; line-height:1.65; }
+.filterbar { background:var(--surface); padding:16px 20px; }.frow2 { grid-template-columns:130px 1fr; }
+.pf { min-height:36px; }.pfodds input { min-height:38px; }
+.more { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:0 18px; margin:16px 0; }
+.more>summary { padding:16px 0; font-size:14px; }.more>div { padding-bottom:16px; }
+.dashboard-help { padding:8px 14px; margin:0 0 16px; border-left:3px solid var(--accent); background:var(--accent-soft); border-radius:0 8px 8px 0; font-size:13px; color:var(--ink-2); }
+.dashboard-help summary { cursor:pointer; font-weight:650; }.dashboard-help p { margin:10px 0; }.dashboard-help a { white-space:nowrap; font-weight:650; }
+.dashboard-topline { display:flex; align-items:center; gap:12px; margin:0 0 16px; flex-wrap:wrap; }
+.dashboard-topline h2 { margin:0 auto 0 0; font-size:18px; }
+.dashboard-toolbar { display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:12px 14px; background:var(--surface); border:1px solid var(--border); border-radius:10px 10px 0 0; }
+.dashboard-toolbar label { display:flex; align-items:center; gap:8px; font-size:12px; color:var(--ink-2); }
+.dashboard-toolbar input,.dashboard-toolbar select { font:inherit; font-size:13px; color:var(--ink); background:var(--surface); border:1px solid var(--border-strong); border-radius:6px; padding:8px 10px; min-height:38px; max-width:100%; }
+.dashboard-toolbar input { width:200px; }.dashboard-toolbar .table-count { margin-left:auto; font-size:12px; color:var(--ink-2); }
+.dashboard-button { border:1px solid var(--border-strong); padding:8px 12px; border-radius:6px; background:var(--surface); font-size:13px; min-height:38px; }
+.dashboard-button:disabled { opacity:.4; cursor:default; }
+.dashboard-pager { display:flex; justify-content:flex-end; align-items:center; gap:12px; padding:10px 14px; background:var(--surface); border:1px solid var(--border); border-top:0; border-radius:0 0 10px 10px; font-size:13px; }
+.dashboard-sort { font:inherit; color:inherit; padding:4px 0; text-align:inherit; min-height:32px; }
+.dashboard-sort::after { content:' ↕'; font-size:11px; opacity:.55; }
+th[aria-sort=ascending] .dashboard-sort::after { content:' ↑'; opacity:1; }th[aria-sort=descending] .dashboard-sort::after { content:' ↓'; opacity:1; }
+.tscroll { border:1px solid var(--border); border-radius:8px; background:var(--surface); max-width:100%; }
+.dashboard-toolbar+.tscroll { border-radius:0; margin-top:0!important; }
+.tscroll.dashboard-scroll { max-height:650px; overflow:auto; }
+.atable { margin:0; width:100%; font-size:14px; border-collapse:separate; border-spacing:0; }
+.atable th { text-transform:none; letter-spacing:0; font-size:12px; line-height:1.4; background:var(--surface-alt); color:var(--ink-2); padding:12px 14px; white-space:normal; min-width:84px; vertical-align:middle; }
+.atable thead th { position:sticky; top:0; z-index:2; border-bottom:1px solid var(--border-strong); }
+.atable td { padding:13px 14px; border-bottom:1px solid var(--border); font-size:14px; vertical-align:middle; }
+.atable td:first-child { font-weight:600; }.atable tbody tr:nth-child(even) { background:var(--surface-alt); }
+.atable tbody tr:hover { background:var(--accent-soft); }
+.atable td.num,.atable th.num { text-align:right; font-variant-numeric:tabular-nums; }
+.atable td small { display:block; font-size:12px; color:var(--ink-3); font-weight:400; margin-top:3px; }
+.ptable td:nth-child(2) { white-space:normal; min-width:140px; }
+.ptable td:first-child { min-width:180px; }.ptable th { min-width:100px; }
+.ptable .badge { white-space:normal; }
+.table-empty { padding:24px; text-align:center; background:var(--surface); color:var(--ink-3); }
+.dashboard-table-view { display:block!important; }
+.ftable { border-radius:10px; overflow:auto; }
+#fantasyBody .frow,.fantasy-table-head { grid-template-columns:32px minmax(185px,1.5fr) 98px minmax(100px,1fr) minmax(110px,1fr) minmax(110px,1fr) 90px; gap:14px; }
+#fantasyBody .frow { padding:14px 16px; min-width:900px; }
+#fantasyBody .frow:nth-of-type(even) { background:var(--surface-alt); }
+#fantasyBody .frow:hover { background:var(--accent-soft); }
+.fantasy-table-head { display:grid; min-width:900px; padding:12px 16px; font-size:12px; font-weight:650; color:var(--ink-2); background:var(--surface-alt); border-bottom:1px solid var(--border-strong); }
+#fantasyBody .frow .who b { white-space:normal; }.frow .pts small { font-size:11px; line-height:1.4; }
+#fantasyBody .frow .rng small { display:block; }.fbtn { min-width:40px; min-height:40px; }
+.rank-name { color:var(--ink); text-align:left; font-weight:700; padding:0; }
+.fcols { gap:24px; }.fdetailp { padding:24px; min-width:850px; background:var(--surface); }
+.ccards { gap:20px; }.ccard { padding:24px; }.cgrid2 { gap:12px; }.cbig { margin:20px 0; }
+.skip-link { position:fixed; top:-80px; left:20px; z-index:100; background:var(--surface); color:var(--ink); padding:12px; }.skip-link:focus { top:12px; }
+@media(min-width:1180px) {
+ .appbar { position:fixed; width:232px; height:100vh; inset:0 auto 0 0; border:0; border-right:1px solid var(--border); }
+ .appbar-inner { height:100%; padding:32px 18px 24px; display:flex; flex-direction:column; align-items:stretch; gap:32px; }
+ .wordmark { padding:0 10px; }.nav { display:flex; flex-direction:column; height:auto; flex:0; gap:6px; }
+ .navlink { height:auto; min-height:48px; padding:12px 16px; border-radius:8px; font-size:15px; }
+ .navlink[aria-current=page] { color:var(--accent-ink); background:var(--accent-soft); }
+ .navlink[aria-current=page]::after { display:none; }
+ .appbar-right { margin: auto 0 0; border-top:1px solid var(--border); padding-top:20px; justify-content:space-between; }
+ main { margin-left:232px; max-width:calc(100% - 232px); }
+ .cards { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }.cards.wide-right { grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); }
+}
+@media(min-width:721px) and (max-width:1179px) { .navlink { font-size:12px; padding:0 7px; }.appbar-inner { gap:12px; padding:0 16px; }.wordmark { font-size:15px; }.week-badge { display:none; } }
+@media(max-width:1000px) { .cards,.cards.wide-right { grid-template-columns:1fr; }.gamegrid,.pgrid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:720px) {
+ main { padding:16px 14px 96px; }.appbar-inner { height:60px; padding:0 14px; }.page-head h1 { font-size:27px; }
+ .page-head .sub { display:none; }.page-head .stamp { font-size:11px; line-height:1.5; }.subnav { margin-bottom:14px; }.subnav a { padding:10px 12px; font-size:13px; }
+ .controls .control-label { display:none; }.controls .fnote { font-size:12px; }.more>summary { padding:10px 0; font-size:13px; }
+ .dashboard-help { flex-direction:column; gap:6px; font-size:13px; }.dashboard-toolbar { gap:8px; }.dashboard-toolbar label:first-child { flex:1; }.dashboard-toolbar input { width:100%; min-width:100px; }
+ .dashboard-toolbar .table-count { width:100%; margin:0; }.dashboard-toolbar a { font-size:12px; }.controls { padding:10px; }.card { padding:18px; }
+ .gamegrid,.pgrid,.ccards { grid-template-columns:1fr; }.tiles { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .bottomnav a { min-height:62px; font-size:10px; }.frow2 { grid-template-columns:1fr; }.purpose { flex-direction:column; }
+ .atable th,.atable td { padding:11px 12px; }.dashboard-scroll { max-height:560px!important; }
+ .fantasy-table-head,#fantasyBody .frow { min-width:800px; grid-template-columns:26px 170px 92px 105px 115px 110px 88px; gap:10px; }
+ #fantasyBody .frow .rng,#fantasyBody .frow .opp,#fantasyBody .frow .tags { display:block; }
+ #fantasyBody .frow .who { grid-column:auto; }.dashboard-pager { justify-content:space-between; }
+ .fdetailp { min-width:800px; }.fstrip { overflow-wrap:anywhere; }
+}
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation:none!important; transition:none!important; } }
 
 </style>
 </head>
 <body>
+<a class="skip-link" href="#mainContent">Skip to content</a>
 
 
 <header class="appbar">
@@ -1269,10 +1375,10 @@
     <nav class="nav" aria-label="Sections">
       <a class="navlink" href="#/games" data-nav="games">Games</a>
       <a class="navlink" href="#/fantasy" data-nav="fantasy">Fantasy</a>
-      <a class="navlink" href="#/players" data-nav="players">Players</a>
-      <a class="navlink" href="#/props" data-nav="props">Props</a>
-      <a class="navlink" href="#/performance" data-nav="performance">Model Performance</a>
-      <a class="navlink" href="#/about" data-nav="about">About</a>
+      <a class="navlink" href="#/players" data-nav="players">Player stats</a>
+      <a class="navlink" href="#/props" data-nav="props">Player props</a>
+      <a class="navlink" href="#/performance" data-nav="performance">Results &amp; accuracy</a>
+      <a class="navlink" href="#/about" data-nav="about">Help &amp; definitions</a>
     </nav>
     <div class="appbar-right">
       <span class="week-badge" id="weekBadge">Week 1 &middot; 2026</span>
@@ -1292,21 +1398,20 @@
   <a href="#/about" data-nav="about"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v6M12 7.5v.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>About</a>
 </nav>
 
-<main>
+<main id="mainContent" tabindex="-1">
   <!-- ================= GAMES ================= -->
   <section id="panel-games" data-panel="games">
     <div id="gamesHome">
       <div class="page-head">
         <div>
           <h1 id="gamesTitle">This week&rsquo;s games</h1>
-          <p class="sub">What the model predicts for every game, one number first. Open a game for the
-            reasons behind it, the analytics, the projections and the prop lines.</p>
+          <p class="sub">Weekly matchups, predicted winners, and win probabilities. Select a game to explore the details.</p>
           <p class="stamp" id="updated"></p>
         </div>
       </div>
       <div class="subnav" id="gamesSub">
         <a href="#/games" data-sub="week">This week</a>
-        <a href="#/games/picks" data-sub="picks">Confident picks</a>
+        <a href="#/games/picks" data-sub="picks">Win probabilities</a>
       </div>
       <div id="weekView">
         <div id="liveBanner"></div>
@@ -1374,6 +1479,7 @@
           <button class="seg" data-sort="matchup" aria-pressed="false">Best matchup</button>
         </div>
       </div>
+      <div class="dashboard-topline"><h2>Weekly player statistics</h2><div class="segmented" id="playerViewMode" aria-label="Player display"><button class="seg" data-mode="table" aria-pressed="true">Table</button><button class="seg" data-mode="cards" aria-pressed="false">Cards</button></div></div>
       <div class="pgrid" id="playerList"></div>
     </div>
     <div id="playerView" hidden></div>
@@ -1384,8 +1490,7 @@
     <div class="page-head">
       <div>
         <h1 id="fantasyTitle">Fantasy</h1>
-        <p class="sub">Weekly projections and rankings for QB, RB, WR and TE under your league&rsquo;s scoring, with a
-          range around every number and the record behind it. Full PPR by default.</p>
+        <p class="sub">Weekly rankings, start/sit comparisons, and your watchlist. Full PPR is the default; change scoring in League settings.</p>
         <p class="stamp" id="fantasyStamp"></p>
       </div>
     </div>
@@ -1403,9 +1508,8 @@
   <section id="panel-props" data-panel="props" hidden>
     <div class="page-head">
       <div>
-        <h1>Player prop value</h1>
-        <p class="sub">Our model creates independent player projections and then compares those projections
-          against available sportsbook lines. The projection never sees the line.</p>
+        <h1>Player props</h1>
+        <p class="sub">Sportsbook lines and model projections, side by side. Filter by statistic, side, or model probability.</p>
       </div>
     </div>
     <div id="propsBody"></div>
@@ -1415,16 +1519,16 @@
   <section id="panel-performance" data-panel="performance" hidden>
     <div class="page-head">
       <div>
-        <h1>Model performance</h1>
+        <h1>Results &amp; accuracy</h1>
         <p class="sub">Every prediction this site makes is locked before kickoff and graded afterwards. This page
           shows how it has done, this season and across seven seasons of history.</p>
       </div>
     </div>
     <div class="subnav" id="perfSub">
       <a href="#/performance" data-sub="season">This season</a>
-      <a href="#/performance/history" data-sub="history">Historical audit (2019&ndash;2025)</a>
-      <a href="#/performance/props" data-sub="props">Prop value</a>
-      <a href="#/performance/health" data-sub="health">Model health</a>
+      <a href="#/performance/history" data-sub="history">Historical results</a>
+      <a href="#/performance/props" data-sub="props">Prop testing</a>
+      <a href="#/performance/health" data-sub="health">Data &amp; model health</a>
     </div>
 
     <div id="perfSeason">
@@ -1433,12 +1537,12 @@
         <div class="segmented" id="seasonPills"></div>
         <span class="stamp" id="trackStamp" style="margin:0 0 0 auto;font-size:12px;font-weight:600;color:var(--ink-4);font-family:'Roboto Mono',monospace"></span>
       </div>
-      <div class="card wide" id="liveCard" style="margin-bottom:12px" hidden>
+      <details class="card wide more" id="liveCard" style="margin-bottom:12px" hidden><summary>Model-only results, before market blending</summary>
         <h3 id="liveTitle">This season, scored live</h3>
         <p class="csub">A model trained only on earlier seasons, graded on this season&rsquo;s completed games as
           they finish. The predictions were made before kickoff and cannot be revised after the fact.</p>
         <div id="liveBody"></div>
-      </div>
+      </details>
       <div id="trackBody"></div>
     </div>
 
@@ -1470,7 +1574,7 @@
     </div>
 
     <div class="card wide" id="liveCard" style="margin-bottom:12px" hidden>
-      <h3 id="liveTitle">This season, scored live</h3>
+      <h3 id="historicalLiveTitle">This season, scored live</h3>
       <p class="csub">A model trained only on 2016&ndash;2025, graded on this season&rsquo;s completed games as
         they finish. This is the cleanest test there is &mdash; the predictions were made before kickoff and
         nothing about them can be revised after the fact.</p>
@@ -1747,7 +1851,7 @@
   <section id="panel-about" data-panel="about" hidden>
     <div class="page-head">
       <div>
-        <h1>About Snap Judgment</h1>
+        <h1>Help &amp; definitions</h1>
         <p class="sub">How the predictions are made, what the words on this site mean, and what it does not claim.</p>
       </div>
     </div>
@@ -2668,7 +2772,7 @@ const PROP_SORTS = {
   odds:       (a, b) => (b.odds ?? -999) - (a.odds ?? -999),
   player:     (a, b) => String(a.player).localeCompare(String(b.player)),
 };
-const SORT_LABELS = { score: "Highest bet value", confidence: "Highest model confidence", edge_pct: "Largest projection edge",
+const SORT_LABELS = { score: "Largest model disagreement", confidence: "Highest model probability", edge_pct: "Largest projection gap",
   prob_edge: "Largest probability edge", odds: "Best odds", player: "Player name" };
 const oddsFmt = o => (o > 0 ? "+" : "") + o;
 const p1 = v => v == null ? "&mdash;" : (v * 100).toFixed(1) + "%";
@@ -2751,21 +2855,22 @@ function evidenceBadge(p) {
 }
 
 function propTable(list, st, scope) {
-  const cols = [["player", "Player", "player"], ["prop", "Prop", null], ["line", "FanDuel", null], ["projection", "Ours", null],
-                ["confidence", "Model", "confidence"], ["edge_pct", "Edge", "edge_pct"], ["odds", "Odds", "odds"], ["ev", "EV", "ev"], ["score", "Disagreement", "score"]];
-  return `<div class="tscroll"><table class="atable ptable">
+  const cols = [["player", "Player", "player"], ["prop", "Prop", null], ["line", "FanDuel line", null], ["projection", "Projection", null],
+                ["confidence", "Model probability", "confidence"], ["edge_pct", "Projection gap %", "edge_pct"], ["odds", "American odds", "odds"], ["ev", "Est. return / unit", "ev"], ["score", "Disagreement / 100", "score"], ["evidence", "Evidence", null]];
+  return `<div class="tscroll"><table class="atable ptable"><caption class="vh">Player prop comparisons</caption>
     <thead><tr>${cols.map(([k, lab, sk]) => `<th${k === "player" ? ' style="text-align:left"' : ""}>${
       sk ? `<button type="button" data-psort="${sk}" data-scope="${scope}"${st.sort === sk ? ' aria-sort="descending"' : ""}>${lab}${st.sort === sk ? " ↓" : ""}</button>` : lab}</th>`).join("")}</tr></thead>
     <tbody>${list.map(p => `<tr>
       <td style="text-align:left"><a href="${playerHref(p)}" style="color:inherit;text-decoration:none">${escHtml(p.player)}</a> <span class="muted">${p.team}</span></td>
       <td class="muted">${escHtml(p.prop)}</td>
-      <td>${p.side === "Over" ? "O" : "U"} ${p.line}</td>
+      <td>${p.side} ${p.line}</td>
       <td>${p.projection}</td>
       <td>${p0(p.confidence)}</td>
       <td class="${p.edge_pct >= 0.15 ? "up" : "muted"}">+${(p.edge_pct * 100).toFixed(0)}%</td>
       <td class="muted">${oddsFmt(p.odds)}</td>
       <td class="${p.ev > 0 ? "up" : "muted"}">${p.ev == null ? "&mdash;" : (p.ev >= 0 ? "+" : "&minus;") + Math.abs(p.ev).toFixed(2)}</td>
       <td class="${p.recommended ? (p.tier_class === "moderate" ? "" : "up") : "muted"}">${p.score == null ? "&mdash;" : p.score}</td>
+      <td>${evidenceBadge(p)}</td>
     </tr>`).join("")}</tbody></table></div>`;
 }
 
@@ -2777,7 +2882,7 @@ const topEdges = (rec, n = 3) => rec.length ? `<div class="topedges">${rec.slice
 function filterBar(st, scope, count) {
   const pill = (key, val, lab) => `<button type="button" class="pf" data-pk="${key}" data-pv="${val}" data-scope="${scope}" aria-pressed="${st[key] === val}">${lab}</button>`;
   const row = (lab, pills) => `<div class="frow2"><span class="lab">${lab}</span><span class="pills">${pills}</span></div>`;
-  const open = st.filtersOpen == null ? (scope === "all" && window.innerWidth > 720) : !!st.filtersOpen;
+  const open = st.filtersOpen == null ? false : !!st.filtersOpen;
   return `<details class="filterbar" data-scope="${scope}" ${open ? "open" : ""}><summary><span>Filters &amp; sort</span><span class="cnt">${count} shown</span></summary>
     <div class="frows">
       ${row("Category", pill("cat", "all", "All") + pill("cat", "passing", "Passing") + pill("cat", "rushing", "Rushing") + pill("cat", "receiving", "Receiving") + pill("cat", "touchdowns", "Touchdowns"))}
@@ -2850,10 +2955,10 @@ function renderProps() {
         real-market test says otherwise. The projection is made first, from football data alone, and never sees a line; this page only compares the two afterwards.${meta.source === "fixture" ? ' <span class="sample">sample data</span>' : ""}</div>
       <div>${freshBadge(meta.fetched, meta.source === "live" ? "" : "est", escHtml(meta.book || "FanDuel"))}</div>
     </div>
-    ${top.length ? `<div class="sechead" style="margin:0 0 8px">Largest disagreements with the market</div>${topEdges(top)}` : ""}
+    ${top.length ? `<details class="more"><summary>Top 3 model disagreements</summary><div>${topEdges(top)}</div></details>` : ""}
     ${filterBar(betState, "all", cards.length)}
-    ${cards.length ? `<div class="propcards">${cards.slice(0, 60).map(propCard).join("")}</div>${cards.length > 60 ? `<p class="fdetail" style="margin-top:8px">Showing the first 60 of ${cards.length}; the table below has all of them.</p>` : ""}` : NO_EDGE("all")}
-    ${shown.length ? `<details class="more" style="margin-top:22px"${betState.show === "everything" ? " open" : ""}><summary>Every matched prop, as a table (${shown.length})</summary><div>${propTable(shown, betState, "all")}</div></details>` : ""}
+    ${cards.length ? propTable(cards, betState, "all") : NO_EDGE("all")}
+    ${cards.length ? `<details class="more"><summary>Detailed cards and explanations (${Math.min(cards.length,60)}${cards.length>60 ? " of "+cards.length : ""})</summary><div class="propcards">${cards.slice(0,60).map(propCard).join("")}</div></details>` : ""}
     ${auditNote(A)}`;
 }
 
@@ -3487,6 +3592,13 @@ function playerCard(p) {
   </a>`;
 }
 
+let playerDisplay = "table";
+document.getElementById("playerViewMode").addEventListener("click", e => {
+  const b=e.target.closest("[data-mode]"); if(!b)return;
+  playerDisplay=b.dataset.mode;
+  e.currentTarget.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));
+  renderPlayers();
+});
 function renderPlayers() {
   const cols = POS_STATS[curPos];
   const primary = cols[0][0];
@@ -3509,7 +3621,9 @@ function renderPlayers() {
     playerList.innerHTML = `<div class="state" style="grid-column:1/-1"><b>No ${curPos}s match &ldquo;${escHtml(query)}&rdquo;</b>Try a team code or the opponent.</div>`;
     return;
   }
-  playerList.innerHTML = rows.map(playerCard).join("");
+  playerList.classList.toggle("dashboard-table-view", playerDisplay === "table");
+  if(playerDisplay === "cards") { playerList.innerHTML=rows.map(playerCard).join(""); return; }
+  playerList.innerHTML=`<div class="tscroll"><table class="atable"><caption class="vh">Weekly ${curPos} player projections</caption><thead><tr><th>Player / matchup</th>${cols.map(([k,l])=>`<th class="num">${STAT_LONG[k] || l}</th>`).join("")}<th>Primary stat range</th><th>Availability</th></tr></thead><tbody>${rows.map(p=>`<tr><td><a href="#/players/${encodeURIComponent(p.player_key)}">${escHtml(p.player_display_name)}</a><small>${p.team} ${p.is_home ? "vs" : "at"} ${p.opponent_team}</small></td>${cols.map(([k])=>`<td class="num">${fmtStat(k,p[k])}</td>`).join("")}<td>${rangeText(primary,p[primary]) || "Unavailable"}</td><td>${playerStatus(p) ? statusBadge(playerStatus(p)) : "No designation"}</td></tr>`).join("")}</tbody></table></div>`;
 }
 document.getElementById("posFilter").addEventListener("click", e => {
   const btn = e.target.closest(".seg"); if (!btn) return;
@@ -3749,7 +3863,7 @@ function rankRow(p, i, max) {
   return `<div class="frow${dim ? " dim" : ""}" data-key="${escHtml(p.player_key)}">
     <span class="rk">${i + 1}</span>
     <span class="who">${avatar(p.name, p.headshot, "sm")}<span class="nm"><b>${escHtml(p.name)}</b><small>${p.position} · ${p.team} ${p.opponent ? (p.is_home ? "vs " : "at ") + p.opponent : ""}${p.depth_rank ? ` · ${p.position}${p.depth_rank}` : ""}</small></span></span>
-    <span class="pts num"><b>${f1(p._pts)}</b>${p.p_play != null && p.p_play < 1 && a.status !== "bye" ? `<small>× ${pct(p.p_play)} = ${f1(p._exp)}</small>` : ""}</span>
+    <span class="pts num"><b>${f1(p._exp)}</b><small>${p.p_play != null && p.p_play < 1 ? `${f1(p._pts)} if active · ${pct(p.p_play)} plays` : "expected points"}</small></span>
     <span class="rng">${rangeBar(p._rng, p._pts, max)}<small>${p._rng ? `${f1(p._rng.p10)}&ndash;${f1(p._rng.p90)}${p._rng.scaled ? " (scaled)" : ""}` : "no range"}</small></span>
     <span class="opp"><small>${p.opportunity && p.opportunity.volume != null ? `${f1(p.opportunity.volume)} ${p.opportunity.volume_key}` : "—"}${p.opportunity && p.opportunity.share != null ? ` · ${pct(p.opportunity.share)} share` : ""}${p.opportunity && p.opportunity.snap_share != null ? ` · ${pct(p.opportunity.snap_share)} snaps` : ""}</small></span>
     <span class="tags">${availBadge(p)}${flagChips(p)}</span>
@@ -3798,11 +3912,11 @@ function renderRankings(host) {
       <div class="segmented" id="fPos">${["QB", "RB", "WR", "TE", "FLEX"].map(p => `<button class="seg" data-pos="${p}" aria-pressed="${p === fPos}">${p}</button>`).join("")}</div>
       <span class="fnote" style="margin-left:auto">${escHtml(fSettings.name || "Custom")} scoring · <a class="link" href="#/fantasy/settings">change</a></span>
     </div>
-    <div class="fstrip">
+    <details class="more"><summary>How rankings, ranges, and past accuracy work</summary><div class="fstrip">
       <div><b>How to read this.</b> Ranked by expected points: the projection times the chance he plays. The bar is the 10&ndash;90 range around the projection (darker: 25&ndash;75).
         ${rq ? `In the 2025 check the weekly ranking correlated ${rq.spearman.toFixed(2)} with what happened at ${fPos === "FLEX" ? "RB" : fPos} and ${pct(rq.top_n_precision)} of the projected top ${rq.top_n} finished there.` : ""} ${validationLine(fPos === "FLEX" ? "RB" : fPos)}</div>
       ${f.byes && f.byes.length ? `<div class="fnote">On bye: ${f.byes.join(", ")}.</div>` : ""}
-    </div>
+    </div></details>
     <div class="ftable">${rows.length ? rows.map((p, i) => rankRow(p, i, max)).join("") : `<div class="state quiet">No players at this position.</div>`}</div>`;
   host.querySelector("#fPos").addEventListener("click", e => { const b = e.target.closest(".seg"); if (!b) return; fPos = b.dataset.pos; renderRankings(host); });
   bindRowActions();
@@ -4416,7 +4530,7 @@ function renderLive() {
   if (!card) return;
   if (!L || !L.n) { card.hidden = true; return; }
   card.hidden = false;
-  document.getElementById("liveTitle").textContent = `${L.season} season, scored live`;
+  document.getElementById("liveTitle").textContent = `${L.season} model-only results`;
   const beat = L.model_su >= L.market_su;
   const rows = (L.games || []).slice().reverse().slice(0, 12);
   document.getElementById("liveBody").innerHTML = `
@@ -4927,5 +5041,143 @@ function viewAbout(r) {
 
 </script>
 
+<script>
+/* Presentation-only helpers: no model inputs, probabilities or forecasts are changed. */
+(() => {
+  const q = (s, root=document) => root.querySelector(s);
+  const qa = (s, root=document) => [...root.querySelectorAll(s)];
+  const text = (tag, value, cls) => { const e=document.createElement(tag); e.textContent=value; if(cls)e.className=cls; return e; };
+  const control = (value, action) => { const b=text('button',value,'dashboard-button'); b.type='button'; b.addEventListener('click',action); return b; };
+  const tableState=new WeakMap();
+  let fantasyQuery='';
+  q('.skip-link')?.addEventListener('click',e=>{e.preventDefault();q('main').focus();q('main').scrollIntoView();});
+  function enhanceTable(table) {
+    const body=table.tBodies[0], head=table.tHead;
+    if(!body || !head || !body.rows.length)return;
+    const old=tableState.get(table);
+    if(old && old.body===body)return;
+    if(old)old.controls.forEach(e=>e.remove());
+    const rows=[...body.rows], controls=[];
+    tableState.set(table,{body,controls});
+    const wrap=table.closest('.tscroll');
+    if(wrap) { wrap.classList.add('dashboard-scroll'); wrap.tabIndex=0; wrap.setAttribute('role','region'); wrap.setAttribute('aria-label','Scrollable data table'); }
+    const headers=[...head.rows[head.rows.length-1].cells];
+    headers.forEach(h=>h.scope='col');
+    const title=table.caption?.textContent || table.closest('.card,.cbox,details')?.querySelector('h3,h4,summary')?.textContent || 'Data';
+    if(!table.caption) { const cap=table.createCaption(); cap.className='vh'; cap.textContent=title; }
+    let sorted=rows.slice(), page=0, size=25, query='';
+    let status, pageText, prev, next, empty;
+    function paint() {
+      const matches=sorted.filter(r=>!query || r.textContent.toLowerCase().includes(query));
+      const pages=Math.max(1,Math.ceil(matches.length/size));
+      page=Math.min(page,pages-1);
+      const visible=new Set(matches.slice(page*size,(page+1)*size));
+      sorted.forEach(r=>{r.hidden=!visible.has(r); body.appendChild(r);});
+      if(status) status.textContent=`${matches.length ? page*size+1 : 0}–${Math.min((page+1)*size,matches.length)} of ${matches.length} rows${query ? ` (${rows.length} total)` : ''}`;
+      if(pageText)pageText.textContent=`Page ${page+1} of ${pages}`;
+      if(prev)prev.disabled=page===0;
+      if(next)next.disabled=page>=pages-1;
+      if(empty)empty.hidden=matches.length!==0;
+    }
+    // Small comparison tables keep every row visible and don't need a second filter bar.
+    if(rows.length>=8 && wrap) {
+      const toolbar=text('div','','dashboard-toolbar');
+      const label=text('label','Filter rows');
+      const input=document.createElement('input'); input.type='search'; input.placeholder='Player, team, or value';
+      input.setAttribute('aria-label',`Filter rows in ${title}`); label.append(input); toolbar.append(label);
+      input.addEventListener('input',()=>{query=input.value.trim().toLowerCase();page=0;paint();});
+      const sl=text('label','Rows'); const select=document.createElement('select'); select.setAttribute('aria-label',`Rows per page in ${title}`);
+      [25,50,100].forEach(n=>{const o=text('option',String(n));o.value=n;select.append(o);});
+      sl.append(select);toolbar.append(sl);select.addEventListener('change',()=>{size=Number(select.value);page=0;paint();});
+      status=text('span','','table-count'); status.setAttribute('role','status');toolbar.append(status);
+      wrap.before(toolbar);controls.push(toolbar);
+      const pager=text('div','','dashboard-pager');
+      prev=control('Previous',()=>{page--;paint();});next=control('Next',()=>{page++;paint();});pageText=text('span','');
+      pager.append(prev,pageText,next);wrap.after(pager);controls.push(pager);
+      empty=text('div','No rows match. Clear the search to see all rows.','table-empty');empty.hidden=true;wrap.after(empty);controls.push(empty);
+    } else size=Math.max(1,rows.length);
+    headers.forEach((h,index)=>{
+      if(h.querySelector('button') || h.colSpan!==1 || rows.some(r=>r.cells.length!==headers.length))return;
+      const label=h.textContent.trim();if(!label)return;
+      const b=text('button',label,'dashboard-sort');b.type='button';b.title=`Sort by ${label}`;
+      h.replaceChildren(b);h.setAttribute('aria-sort','none');let ascending=true;
+      const read=r=>r.cells[index].textContent.trim().replace(/[−–]/g,'-').replace(/,/g,'');
+      const isNumber=s=>/^[+-]?\d+(\.\d+)?%?$/.test(s);
+      b.addEventListener('click',()=>{
+        const numeric=rows.every(r=>isNumber(read(r)) || ['—','-','N/A',''].includes(read(r)));
+        sorted=rows.slice().sort((a,b)=>{
+          let av=read(a),bv=read(b);let cmp;
+          if(numeric) { const an=parseFloat(av),bn=parseFloat(bv);if(!Number.isFinite(an))return Number.isFinite(bn)?1:0;if(!Number.isFinite(bn))return -1;cmp=an-bn; }
+          else cmp=av.localeCompare(bv,undefined,{numeric:true,sensitivity:'base'});
+          return ascending?cmp:-cmp;
+        });
+        headers.forEach(x=>x.setAttribute('aria-sort','none'));
+        h.setAttribute('aria-sort',ascending?'ascending':'descending');ascending=!ascending;page=0;paint();
+      });
+    });
+    paint();
+  }
+  function fantasyTable(table) {
+    if(table.dataset.dashboard)return;
+    const rows=qa(':scope > .frow',table);if(!rows.length)return;
+    table.dataset.dashboard='true';
+    const head=text('div','','fantasy-table-head');
+    ['Rank','Player / matchup','Expected pts','Range if active','Usage','Availability / notes','Actions'].forEach(t=>head.append(text('span',t)));
+    table.prepend(head);
+    table.setAttribute('role','region');table.setAttribute('aria-label','Fantasy rankings; scroll horizontally for more columns');table.tabIndex=0;
+    rows.forEach(row=>{
+      const name=q('.who b',row)?.textContent || 'player';
+      const watch=q('[data-watch]',row),compare=q('[data-compare]',row);
+      if(watch)watch.setAttribute('aria-label',`Watch ${name}`);
+      if(compare)compare.setAttribute('aria-label',`Compare ${name}`);
+      const rk=q('.rk',row); if(rk)rk.setAttribute('aria-label',`Rank ${rk.textContent}`);
+      row.tabIndex=0;row.setAttribute('aria-label',`${name}. Press Enter for projection details.`);
+      row.addEventListener('keydown',e=>{if(e.target===row && (e.key==='Enter'||e.key===' ')){e.preventDefault();row.click();}});
+    });
+    if(rows.length<8)return;
+    const toolbar=text('div','','dashboard-toolbar');
+    const label=text('label','Find player');const input=document.createElement('input');input.type='search';input.placeholder='Name, team, or opponent';input.setAttribute('aria-label','Filter fantasy rankings');label.append(input);toolbar.append(label);
+    const count=text('span',`${rows.length} players`,'table-count');count.setAttribute('role','status');toolbar.append(count);
+    const link=text('a','Compare selected players →');link.href='#/fantasy/startsit';toolbar.append(link);
+    const filter=()=>{
+      const term=input.value.trim().toLowerCase();let n=0;
+      fantasyQuery=input.value;
+      qa('.fdetailp',table).forEach(e=>e.remove());
+      rows.forEach(row=>{row.hidden=!q('.who',row).textContent.toLowerCase().includes(term);if(!row.hidden)n++;});
+      count.textContent=`${n} of ${rows.length} players${n===0?' · No matches':''}`;
+    };
+    input.value=fantasyQuery;input.addEventListener('input',filter);filter();
+    table.before(toolbar);
+  }
+  const help={
+    games:['Compare the predicted winner and win chance. Open a matchup for team stats, player projections, and injuries.','How predictions work','#/about/method'],
+    fantasy:['Choose a position, find a player, then use Compare for start/sit. Expected points account for the estimated chance of playing.','Scoring settings','#/fantasy/settings'],
+    players:['Compare projected football statistics by position. Fantasy scoring is in the Fantasy tab. Select a player for the full breakdown.','Fantasy rankings','#/fantasy'],
+    props:['Compare the sportsbook line with the model projection. Model probability and estimated return are experimental; a disagreement does not establish a betting edge.','View test results','#/performance/props'],
+    performance:['Live results and historical tests are separate. Check sample sizes and the simple baseline before interpreting an apparent improvement.','Metric definitions','#/about/definitions'],
+    about:['Find the workflow, model methodology, and definitions here. Detailed statistical explanations remain available throughout the site.','Explore games','#/games']
+  };
+  function enhance() {
+    observer.disconnect();
+    try {
+      qa('[data-panel]').forEach(panel=>{
+        if(panel.hidden)return;
+        const head=q('.page-head',panel), key=panel.dataset.panel;
+        if(head && !q('.dashboard-help',panel) && help[key]) {
+          const box=text('details','','dashboard-help'), summary=text('summary','Quick guide'), p=text('p',help[key][0]), a=text('a',help[key][1]);a.href=help[key][2];box.append(summary,p,a);head.after(box);
+        }
+        qa('table.atable',panel).forEach(enhanceTable);
+        qa('#fantasyBody .ftable',panel).forEach(fantasyTable);
+      });
+      qa('.tscroll').forEach(w=>{if(!w.hasAttribute('aria-label')){w.tabIndex=0;w.setAttribute('aria-label','Scrollable data table');}});
+    } finally { observer.observe(document.querySelector('main'),{childList:true,subtree:true}); }
+  }
+  let pending=false;
+  const observer=new MutationObserver(()=>{if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;enhance();});});
+  window.addEventListener('hashchange',enhance);
+  enhance();
+})();
+
+</script>
 </body>
 </html>
