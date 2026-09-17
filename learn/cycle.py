@@ -221,6 +221,12 @@ def main():
     config = load_config()
     registry.init(rp)
     steps = [s.strip() for s in a.steps.split(",")]
+    # On a fresh checkout (the Actions runner) data/ is not committed; fetch it the same way
+    # the full rebuild does before reading anything.
+    os.makedirs(a.datadir, exist_ok=True)
+    if not os.path.exists(os.path.join(a.datadir, "games.csv")):
+        log_event("fetch", reason="data directory empty; downloading sources")
+        rp.load_all(a.datadir, None)
     sched = pd.read_csv(os.path.join(a.datadir, "games.csv"), low_memory=False)
     sched["gameday"] = pd.to_datetime(sched["gameday"])
     cur = int(sched[sched.game_type == "REG"].season.max())
