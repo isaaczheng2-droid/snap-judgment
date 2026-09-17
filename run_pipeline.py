@@ -258,6 +258,7 @@ def load_all(d, seasons):
                   f"{d}/stats_player/stats_player_week_{cur}.parquet",
                   f"{d}/injuries/injuries_{cur}.parquet",
                   f"{d}/snaps/snap_counts_{cur}.parquet",
+                  f"{d}/snap_counts/snap_counts_{cur}.parquet",
                   f"{d}/depth/depth_charts_{cur}.parquet",
                   f"{d}/rosters/roster_{cur}.parquet"]:
         if os.path.exists(stale):
@@ -267,7 +268,15 @@ def load_all(d, seasons):
     team = read_many("stats_team/stats_team_week_{y}.parquet", yrs, d)
     plyr = read_many("stats_player/stats_player_week_{y}.parquet", yrs, d)
     inj = read_many("injuries/injuries_{y}.parquet", yrs, d)
-    snap = read_many("snaps/snap_counts_{y}.parquet", yrs, d)
+    # nflverse renamed this release tag from `snaps` to `snap_counts`; the old path 404s for
+    # every season, which silently zeroed both injury features and every snap-share input
+    # (see claude/nfl-snapcounts-rename.md). New path first, old cache as the fallback, and
+    # an empty result is loud because everything downstream degrades quietly without it.
+    snap = read_many("snap_counts/snap_counts_{y}.parquet", yrs, d)
+    if not len(snap):
+        snap = read_many("snaps/snap_counts_{y}.parquet", yrs, d)
+    if not len(snap):
+        log("  WARNING: no snap counts loaded for any season; injury features and snap shares will be blank")
     rost = read_many("rosters/roster_{y}.parquet", yrs, d)
 
     depth = pd.DataFrame()
@@ -417,17 +426,30 @@ def player_form(plyr, sched, ratings):
     # changed — and measured against a rolling average of his own recent games the model
     # was WORSE on four of nine stats. Adding usage took the weighted error from 13.04 to
     # 12.71 against a 12.98 baseline. See test_props.py.
+    # Two versions of each share. `tgt_share` is the point-in-time input for the row's own
+    # game: the mean over PRIOR games this season, and in week 1 last season's mean (a real
+    # number that is fully known before the opener). It used to be zero in week 1 and one
+    # game stale for the upcoming week's candidates, which made "usage" a constant early in
+    # the season. `tgt_share_now` includes the row's own game and is what the NEXT game's
+    # projection should read; player_projections uses it for the candidates.
     for col, out in [("targets", "tgt_share"), ("carries", "car_share")]:
         if col not in pw.columns:
             pw[out] = 0.0
+            pw[f"{out}_now"] = 0.0
             continue
         tm = pw.groupby(["team", "season", "week"])[col].transform("sum")
         pw["_sh"] = (pw[col] / tm.replace(0, np.nan)).fillna(0)
-        pw[out] = (pw.sort_values(["player_id", "season", "week"])
-                   .groupby(["player_id", "season"])["_sh"]
-                   .transform(lambda x: x.shift(1).expanding().mean()))
-        pw[out] = pw[out].fillna(0)
-    pw = pw.drop(columns=["_sh"], errors="ignore")
+        pw = pw.sort_values(["player_id", "season", "week"])
+        g = pw.groupby(["player_id", "season"])["_sh"]
+        pw[out] = g.transform(lambda x: x.shift(1).expanding().mean())
+        pw[f"{out}_now"] = g.transform(lambda x: x.expanding().mean())
+        prev = pw.groupby(["player_id", "season"])["_sh"].mean().reset_index()
+        prev["season"] += 1
+        prev = prev.rename(columns={"_sh": "_prev_sh"})
+        pw = pw.merge(prev, on=["player_id", "season"], how="left")
+        pw[out] = pw[out].fillna(pw["_prev_sh"]).fillna(0)
+        pw = pw.drop(columns=["_prev_sh"])
+    pw = pw.drop(columns=["_sh"], errors="ignore").sort_values(["player_id", "gameday"]).reset_index(drop=True)
     return pw
 
 
@@ -456,11 +478,20 @@ EXTRA_FEATS = {"passing_yards": ["prior_snap"], "qb_rushing_yards": ["prior_snap
 ADJ_SHARES = {"rushing_yards": ["tgt_share_adj", "car_share_adj"]}   # shares rescaled to the remaining pie
 
 
-def player_feature_set(out_col, has_extra=True):
-    """(features, usage_cols, absence_cols) for one stat: the shared block plus what it earned."""
-    cfg = PTARGETS[out_col]
-    shares = ADJ_SHARES.get(out_col, USAGE) if has_extra else list(USAGE)
-    extra = EXTRA_FEATS.get(out_col, []) if has_extra else []
+RIDGE_ALPHA = 5.0
+
+
+def player_feature_set(out_col, has_extra=True, targets=None, extra_feats=None, adj_shares=None):
+    """
+    (features, usage_cols, absence_cols) for one stat: the shared block plus what it earned.
+    `extra_feats` / `adj_shares` override the shipped tables (the learning cycle's active
+    model carries its own copies; see learn/registry.py).
+    """
+    cfg = (targets or PTARGETS)[out_col]
+    ef = EXTRA_FEATS if extra_feats is None else extra_feats
+    ad = ADJ_SHARES if adj_shares is None else adj_shares
+    shares = ad.get(out_col, USAGE) if has_extra else list(USAGE)
+    extra = ef.get(out_col, []) if has_extra else []
     usage_cols = shares + [e for e in extra if e == "prior_snap"]
     abs_cols = [e for e in extra if e != "prior_snap"]
     return [f"proj_{cfg['stat']}", OPPCOL[cfg["opp"]], "is_home"] + usage_cols + abs_cols, usage_cols, abs_cols
@@ -555,7 +586,7 @@ def usage_extras(pw, snap, rost, inj, log=log):
     pw["lost_car"] = np.clip(own_c - pw.self_car, 0, 0.9)
     pw["tgt_share_adj"] = (pw.tgt_share / (1 - pw.lost_tgt)).clip(upper=1)
     pw["car_share_adj"] = (pw.car_share / (1 - pw.lost_car)).clip(upper=1)
-    log(f"  usage extras: snap share on {pw.prior_snap.notna().mean():.0%} of rows; "
+    log(f"  usage extras: snap share measured on {pw.snap_now.notna().mean():.0%} of rows (the rest position-median filled); "
         f"{len(absent)} new absences with a recent share across {len(lost)} team-weeks")
     return pw, lost
 
@@ -913,8 +944,17 @@ def game_logs(pw, ids):
 
 
 def player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_map=None,
-                       opp_scheme=None, lost=None):
+                       opp_scheme=None, lost=None, targets=None, depth_max_rank=1, alpha=None):
+    """
+    Per-stat ridge projections for the upcoming week. `targets` defaults to PTARGETS (the
+    prop stats); the fantasy engine passes its extra stats. `depth_max_rank` is the depth
+    chart rank a player may hold and still be projected (1 = the site's starters-only list;
+    the fantasy rankings use 3). `alpha` overrides the ridge penalty (the learning cycle's
+    active model may set it); the shipped default is 5.0.
+    """
     from sklearn.linear_model import Ridge
+    targets = targets or PTARGETS
+    alpha = float(alpha) if alpha is not None else RIDGE_ALPHA
     up = sched[(sched.season == cur) & (sched.week == target_week) & (sched.game_type == "REG")]
     opp = {}
     for _, r in up.iterrows():
@@ -932,34 +972,40 @@ def player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_ma
     active = rost[(rost.season == cur) & (rost.status == "ACT")][
         ["team", "gsis_id", "position", "full_name", "headshot_url"]].rename(
         columns={"gsis_id": "player_id", "full_name": "player_display_name"})
-    starters = set()
+    starters, depth_rank = set(), {}
     if len(depth):
         d = depth[depth.dt == depth.dt.max()]
-        starters = set(d[d.pos_rank == 1].gsis_id.dropna())
+        starters = set(d[d.pos_rank <= depth_max_rank].gsis_id.dropna())
+        depth_rank = d.dropna(subset=["gsis_id"]).groupby("gsis_id").pos_rank.min().astype(int).to_dict()
 
     rows, why, absence = [], {}, {}
     has_extra = "prior_snap" in pw.columns and "lost_car" in pw.columns
     snap_fill = float(pw.snap_median.iloc[0]) if "snap_median" in pw.columns and len(pw) else 0.5
-    for out_col, cfg in PTARGETS.items():
+    for out_col, cfg in targets.items():
         oc = OPPCOL[cfg["opp"]]
         pc = f"proj_{cfg['stat']}"
         # the shared block, plus whatever this stat earned on the walk-forward test; usage
         # columns are reported as "usage", absence columns as "absence"
-        f, usage_cols, abs_cols = player_feature_set(out_col, has_extra)
+        f, usage_cols, abs_cols = player_feature_set(out_col, has_extra, targets=targets)
         shares = usage_cols[:2]
         sub = pw[pw.position.isin(cfg["pos"])].copy()
         sub = sub.dropna(subset=[cfg["stat"], cfg["vol"]] + f)
         sub = sub[sub[cfg["vol"]] >= cfg["mn"]]
         if len(sub) < 200:
             continue
-        model = Ridge(alpha=5.0).fit(sub[f], sub[cfg["stat"]])
+        model = Ridge(alpha=alpha).fit(sub[f], sub[cfg["stat"]])
 
         # candidates: the latest row per player carries his form and prior shares; the
         # snap share through his last game and this week's absences are point-in-time too
-        lcols = [c for c in ["snap_carry", "snap_pos_median"] if c in latest.columns]
+        lcols = [c for c in ["snap_carry", "snap_pos_median", "tgt_share_now", "car_share_now"] if c in latest.columns]
         cand = active[active.position.isin(cfg["pos"])].merge(
             latest[["player_id", pc, cfg["vol"]] + USAGE + lcols], on="player_id", how="inner")
         cand = cand[(cand[cfg["vol"]] >= cfg["mn"]) & (cand.team.isin(opp))].copy()
+        # the upcoming game reads the share THROUGH the last game, not the share the last
+        # game itself was projected with (one game stale, and zero in week 1)
+        for u in USAGE:
+            if f"{u}_now" in cand.columns:
+                cand[u] = cand[f"{u}_now"].fillna(cand[u])
         if not len(cand):
             continue
         cand["opponent_team"] = cand.team.map(lambda t: opp[t][0])
@@ -1020,6 +1066,7 @@ def player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_ma
     for rec in recs:
         pid = rec.pop("player_id")
         rec["player_key"] = pid          # the tracker locks projections against this id
+        rec["depth_rank"] = depth_rank.get(pid)
         rec["log"] = logs.get(pid, [])
         rec["why"] = {s: w for (p, s), w in why.items() if p == pid}
         ab = {s: a for (p, s), a in absence.items() if p == pid}
@@ -1241,6 +1288,14 @@ def main():
     os.makedirs(a.datadir, exist_ok=True)
 
     sched, team, plyr, inj, snap, rost, depth, cur = load_all(a.datadir, None)
+    # the learning cycle's active model, if a registry exists (learn/registry.py); the
+    # shipped defaults otherwise. A promotion changes these parameters, never this code.
+    try:
+        from learn import registry as learn_registry
+        learn_registry.init(sys.modules[__name__])          # first run: the shipped defaults become version 1
+        learn_registry.apply(sys.modules[__name__], log=log)
+    except Exception as e:
+        log(f"  model registry not applied: {e}")
 
     reg = sched[(sched.season == cur) & (sched.game_type == "REG")]
     unplayed = reg[reg.home_score.isna()]
@@ -1286,6 +1341,16 @@ def main():
                   "pk_havoc": round(float(r.get("pk_havoc", 0.5)), 3)}
               for t, r in wk_sc.iterrows()}
     players = player_projections(pw, ratings, sched, rost, depth, cur, target_week, inj_map, opp_sc, lost=lost)
+
+    # fantasy workspace: the same stat models, four extra targets, points under every preset,
+    # a validated range, availability and the flags a lineup decision needs (fantasy/build.py)
+    fantasy = None
+    try:
+        from fantasy import build as fantasy_build
+        fantasy = fantasy_build.build(sys.modules[__name__], pw, ratings, sched, rost, depth, cur, target_week,
+                                      inj_map, opp_sc, lost, datadir=a.datadir, log=log)
+    except Exception as e:
+        log(f"  fantasy block failed: {e}")
 
     # FanDuel comparison. Deliberately AFTER player_projections: the projections above were
     # made from football data alone and cannot see a line. This only reads them.
@@ -1440,6 +1505,7 @@ def main():
         "prop_audit": load_prop_audit(a.datadir),
         "prop_audit_v2": prop_audit_v2(a.datadir),
         "upsets": upsets,
+        "fantasy": fantasy,
         "real_backtest": load_json_any("backtest_2025.json", a.datadir, require="all_scored"),
         # the fitted spread of each projection, so the page can draw an expected range
         # around every number from the same distribution the prop probabilities use
@@ -1481,6 +1547,50 @@ def main():
         payload["live_meta"] = live_context.live_meta(lstate, {"run": "full", "at": payload["generated"]})
     except Exception as e:                       # the live layer must never stop a publish
         log(f"  live layer skipped: {e}")
+
+    # ---- learning cycle hooks: data manifest, forecasts into the ledger before kickoff,
+    # actuals for finished games, and the health / learning blocks for the page. Training
+    # and promotion are NOT here: that is learn/cycle.py, run on its own schedule.
+    try:
+        from learn import manifest as learn_manifest, ledger as learn_ledger, checks as learn_checks, cycle as learn_cycle
+        mani = learn_manifest.snapshot(a.datadir, cur)
+        act_v = learn_registry.active() if "learn_registry" in dir() else None
+        if fantasy:
+            learn_ledger.record_forecasts(fantasy, sched, act_v["id"] if act_v else "unregistered", mani["data_version"], log=log)
+        digest = next((x.get("digest") for x in mani["sources"] if x["source"] == "player_stats"), None)
+        learn_ledger.record_actuals(plyr, sched, cur, source_digest=digest, log=log)
+        graded_df = learn_ledger.graded()
+        from learn import evaluate as learn_evaluate
+        pros = learn_evaluate.prospective(graded_df)
+        json.dump(pros, open(os.path.join(learn_ledger.STORE, "prospective.json"), "w"), indent=1)
+        ledger_stats = {"forecasts": len(learn_ledger._read(learn_ledger.FORECASTS)), "graded": int(len(graded_df)),
+                        "pending": len(learn_ledger.pending())}
+        payload["health"] = learn_checks.build(mani, target_week, pw, snap, rost, fantasy, inj_map, depth, cur,
+                                               ledger_stats=ledger_stats,
+                                               espn_stats=(getattr(espn, "attrs", {}) or {}).get("stats") if espn is not None else None)
+        payload["learning"] = learn_cycle.summary_for_payload()
+        # forecast-vs-result history for the fantasy page: this season's graded rows (recent
+        # weeks in detail, every week as a summary), all from the ledger
+        if len(graded_df):
+            gd = graded_df[graded_df.season == cur].sort_values(["week", "proj_pts"], ascending=[False, False])
+            by_week = []
+            for wk, g in gd.groupby("week"):
+                rr = g[g.range.apply(lambda r: isinstance(r, dict) and "p10" in r)]
+                cov = float(((rr.act_pts >= rr.range.apply(lambda r: r["p10"])) & (rr.act_pts <= rr.range.apply(lambda r: r["p90"]))).mean()) if len(rr) else None
+                nv = g.dropna(subset=["naive_pts"])
+                by_week.append({"week": int(wk), "n": int(len(g)), "mae": round(float((g.act_pts - g.proj_pts).abs().mean()), 2),
+                                "naive_mae": round(float((nv.act_pts - nv.naive_pts).abs().mean()), 2) if len(nv) else None,
+                                "coverage": None if cov is None else round(cov, 3), "dnp": int((g.played == False).sum())})
+            recent = gd[gd.week >= gd.week.max() - 1].head(120)
+            payload["fantasy_history"] = {"by_week": sorted(by_week, key=lambda x: x["week"]),
+                                          "rows": [{k: (None if (isinstance(v, float) and np.isnan(v)) else v) for k, v in r.items()}
+                                                   for r in recent[["week", "name", "position", "team", "proj_pts", "act_pts", "range", "played", "status"]].to_dict("records")]}
+        else:
+            payload["fantasy_history"] = {"by_week": [], "rows": []}
+        if payload["health"]["alerts"]:
+            log("  health: " + " | ".join(f"[{x['severity']}] {x['text']}" for x in payload["health"]["alerts"][:4]))
+    except Exception as e:
+        log(f"  learning hooks skipped: {e}")
 
     # Full float repr costs ~40% of the payload for digits nothing renders. Four places is
     # more than any display uses and still exact enough for the charts.

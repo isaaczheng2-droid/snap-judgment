@@ -1,0 +1,269 @@
+{
+ "shipped": {
+  "selection": {
+   "n": 23506,
+   "mae": 5.534,
+   "rmse": 7.122,
+   "bias": 0.014,
+   "naive_mae": 5.652,
+   "last_season_mae": 6.237,
+   "position_mae": 6.531,
+   "vs_naive": 0.0209
+  },
+  "holdout": {
+   "n": 3963,
+   "mae": 5.442,
+   "rmse": 7.018,
+   "bias": 0.268,
+   "naive_mae": 5.602,
+   "last_season_mae": 6.199,
+   "position_mae": 6.454,
+   "vs_naive": 0.0286
+  },
+  "by_position_selection": {
+   "QB": 6.385,
+   "RB": 5.522,
+   "TE": 4.691,
+   "WR": 5.495
+  },
+  "by_position_holdout": {
+   "QB": 6.802,
+   "RB": 5.491,
+   "TE": 4.697,
+   "WR": 5.131
+  },
+  "rank_holdout": {
+   "QB": {
+    "weeks": 18,
+    "spearman": 0.4387,
+    "top_n": 12,
+    "top_n_precision": 0.4586
+   },
+   "RB": {
+    "weeks": 18,
+    "spearman": 0.6002,
+    "top_n": 24,
+    "top_n_precision": 0.6042
+   },
+   "TE": {
+    "weeks": 18,
+    "spearman": 0.436,
+    "top_n": 12,
+    "top_n_precision": 0.5212
+   },
+   "WR": {
+    "weeks": 18,
+    "spearman": 0.5373,
+    "top_n": 24,
+    "top_n_precision": 0.5
+   }
+  },
+  "startsit_holdout": {
+   "1-3 pts": {
+    "n": 35971,
+    "higher_scored_more": 0.62,
+    "ci95": [
+     0.615,
+     0.625
+    ]
+   },
+   "3-5 pts": {
+    "n": 26229,
+    "higher_scored_more": 0.7094,
+    "ci95": [
+     0.7039,
+     0.7149
+    ]
+   },
+   "5+ pts": {
+    "n": 43859,
+    "higher_scored_more": 0.8204,
+    "ci95": [
+     0.8168,
+     0.824
+    ]
+   }
+  },
+  "side_flips_vs_shipped": 0.0,
+  "rel_selection": 0.0,
+  "rel_holdout": 0.0
+ },
+ "+script": {
+  "selection": {
+   "n": 23506,
+   "mae": 5.525,
+   "rmse": 7.117,
+   "bias": -0.015,
+   "naive_mae": 5.652,
+   "last_season_mae": 6.237,
+   "position_mae": 6.531,
+   "vs_naive": 0.0226
+  },
+  "holdout": {
+   "n": 3963,
+   "mae": 5.413,
+   "rmse": 7.002,
+   "bias": 0.189,
+   "naive_mae": 5.602,
+   "last_season_mae": 6.199,
+   "position_mae": 6.454,
+   "vs_naive": 0.0337
+  },
+  "by_position_selection": {
+   "QB": 6.383,
+   "RB": 5.508,
+   "TE": 4.684,
+   "WR": 5.484
+  },
+  "by_position_holdout": {
+   "QB": 6.792,
+   "RB": 5.462,
+   "TE": 4.666,
+   "WR": 5.097
+  },
+  "rank_holdout": {
+   "QB": {
+    "weeks": 18,
+    "spearman": 0.444,
+    "top_n": 12,
+    "top_n_precision": 0.4632
+   },
+   "RB": {
+    "weeks": 18,
+    "spearman": 0.598,
+    "top_n": 24,
+    "top_n_precision": 0.5977
+   },
+   "TE": {
+    "weeks": 18,
+    "spearman": 0.4425,
+    "top_n": 12,
+    "top_n_precision": 0.5171
+   },
+   "WR": {
+    "weeks": 18,
+    "spearman": 0.5398,
+    "top_n": 24,
+    "top_n_precision": 0.5093
+   }
+  },
+  "startsit_holdout": {
+   "1-3 pts": {
+    "n": 35723,
+    "higher_scored_more": 0.6184,
+    "ci95": [
+     0.6133,
+     0.6234
+    ]
+   },
+   "3-5 pts": {
+    "n": 26258,
+    "higher_scored_more": 0.7108,
+    "ci95": [
+     0.7053,
+     0.7163
+    ]
+   },
+   "5+ pts": {
+    "n": 44482,
+    "higher_scored_more": 0.8206,
+    "ci95": [
+     0.817,
+     0.8241
+    ]
+   }
+  },
+  "side_flips_vs_shipped": 0.06694819614838546,
+  "rel_selection": -0.0016542849000261706,
+  "rel_holdout": -0.005256539142112215
+ },
+ "+script*use": {
+  "selection": {
+   "n": 23506,
+   "mae": 5.527,
+   "rmse": 7.121,
+   "bias": -0.01,
+   "naive_mae": 5.652,
+   "last_season_mae": 6.237,
+   "position_mae": 6.531,
+   "vs_naive": 0.0222
+  },
+  "holdout": {
+   "n": 3963,
+   "mae": 5.41,
+   "rmse": 7.0,
+   "bias": 0.193,
+   "naive_mae": 5.602,
+   "last_season_mae": 6.199,
+   "position_mae": 6.454,
+   "vs_naive": 0.0342
+  },
+  "by_position_selection": {
+   "QB": 6.378,
+   "RB": 5.517,
+   "TE": 4.682,
+   "WR": 5.486
+  },
+  "by_position_holdout": {
+   "QB": 6.786,
+   "RB": 5.454,
+   "TE": 4.666,
+   "WR": 5.097
+  },
+  "rank_holdout": {
+   "QB": {
+    "weeks": 18,
+    "spearman": 0.4438,
+    "top_n": 12,
+    "top_n_precision": 0.4729
+   },
+   "RB": {
+    "weeks": 18,
+    "spearman": 0.6017,
+    "top_n": 24,
+    "top_n_precision": 0.6006
+   },
+   "TE": {
+    "weeks": 18,
+    "spearman": 0.4405,
+    "top_n": 12,
+    "top_n_precision": 0.5115
+   },
+   "WR": {
+    "weeks": 18,
+    "spearman": 0.5404,
+    "top_n": 24,
+    "top_n_precision": 0.5093
+   }
+  },
+  "startsit_holdout": {
+   "1-3 pts": {
+    "n": 35629,
+    "higher_scored_more": 0.6183,
+    "ci95": [
+     0.6132,
+     0.6234
+    ]
+   },
+   "3-5 pts": {
+    "n": 26152,
+    "higher_scored_more": 0.7115,
+    "ci95": [
+     0.706,
+     0.717
+    ]
+   },
+   "5+ pts": {
+    "n": 44711,
+    "higher_scored_more": 0.8199,
+    "ci95": [
+     0.8163,
+     0.8235
+    ]
+   }
+  },
+  "side_flips_vs_shipped": 0.07270013469729514,
+  "rel_selection": -0.001293568069887563,
+  "rel_holdout": -0.005778205209056031
+ }
+}

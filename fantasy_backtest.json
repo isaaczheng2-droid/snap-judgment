@@ -1,0 +1,560 @@
+{
+ "selection_seasons": [
+  2019,
+  2024
+ ],
+ "holdout_season": 2025,
+ "selection": {
+  "all": {
+   "n": 23506,
+   "mae": 5.506,
+   "rmse": 7.086,
+   "bias": 0.082,
+   "naive_mae": 5.652,
+   "last_season_mae": 6.237,
+   "position_mae": 6.531,
+   "vs_naive": 0.0259
+  },
+  "by_position": {
+   "QB": {
+    "n": 3779,
+    "mae": 6.389,
+    "rmse": 7.888,
+    "bias": 0.242,
+    "naive_mae": 6.555,
+    "last_season_mae": 7.179,
+    "position_mae": 7.452,
+    "vs_naive": 0.0254
+   },
+   "RB": {
+    "n": 6262,
+    "mae": 5.468,
+    "rmse": 7.013,
+    "bias": 0.335,
+    "naive_mae": 5.591,
+    "last_season_mae": 6.356,
+    "position_mae": 6.665,
+    "vs_naive": 0.022
+   },
+   "TE": {
+    "n": 3253,
+    "mae": 4.671,
+    "rmse": 6.081,
+    "bias": -0.052,
+    "naive_mae": 4.827,
+    "last_season_mae": 5.241,
+    "position_mae": 5.319,
+    "vs_naive": 0.0324
+   },
+   "WR": {
+    "n": 10212,
+    "mae": 5.468,
+    "rmse": 7.115,
+    "bias": -0.09,
+    "naive_mae": 5.618,
+    "last_season_mae": 6.133,
+    "position_mae": 6.495,
+    "vs_naive": 0.0267
+   }
+  },
+  "by_season": {
+   "2019": {
+    "n": 3742,
+    "mae": 5.685,
+    "rmse": 7.365,
+    "bias": 0.058,
+    "naive_mae": 5.839,
+    "last_season_mae": 6.461,
+    "position_mae": 6.653,
+    "vs_naive": 0.0263
+   },
+   "2020": {
+    "n": 3895,
+    "mae": 5.596,
+    "rmse": 7.212,
+    "bias": -0.179,
+    "naive_mae": 5.732,
+    "last_season_mae": 6.192,
+    "position_mae": 6.592,
+    "vs_naive": 0.0237
+   },
+   "2021": {
+    "n": 4071,
+    "mae": 5.556,
+    "rmse": 7.092,
+    "bias": 0.128,
+    "naive_mae": 5.714,
+    "last_season_mae": 6.3,
+    "position_mae": 6.571,
+    "vs_naive": 0.0277
+   },
+   "2022": {
+    "n": 3886,
+    "mae": 5.387,
+    "rmse": 6.894,
+    "bias": 0.358,
+    "naive_mae": 5.523,
+    "last_season_mae": 5.984,
+    "position_mae": 6.358,
+    "vs_naive": 0.0246
+   },
+   "2023": {
+    "n": 3966,
+    "mae": 5.359,
+    "rmse": 6.946,
+    "bias": 0.108,
+    "naive_mae": 5.485,
+    "last_season_mae": 6.129,
+    "position_mae": 6.418,
+    "vs_naive": 0.0229
+   },
+   "2024": {
+    "n": 3946,
+    "mae": 5.458,
+    "rmse": 7.012,
+    "bias": 0.015,
+    "naive_mae": 5.626,
+    "last_season_mae": 6.362,
+    "position_mae": 6.601,
+    "vs_naive": 0.03
+   }
+  },
+  "by_circumstance": {
+   "rookie": {
+    "n": 3496,
+    "mae": 4.988,
+    "rmse": 6.471,
+    "bias": 0.061,
+    "naive_mae": 5.436,
+    "last_season_mae": 6.494,
+    "position_mae": 6.494,
+    "vs_naive": 0.0825
+   },
+   "questionable": {
+    "n": 1215,
+    "mae": 5.62,
+    "rmse": 6.995,
+    "bias": 1.16,
+    "naive_mae": 5.716,
+    "last_season_mae": 6.188,
+    "position_mae": 5.971,
+    "vs_naive": 0.0167
+   },
+   "role_change": {
+    "n": 5892,
+    "mae": 5.491,
+    "rmse": 7.088,
+    "bias": 0.221,
+    "naive_mae": 5.497,
+    "last_season_mae": 6.289,
+    "position_mae": 6.351,
+    "vs_naive": 0.0011
+   },
+   "no_flags": {
+    "n": 13407,
+    "mae": 5.652,
+    "rmse": 7.258,
+    "bias": -0.038,
+    "naive_mae": 5.783,
+    "last_season_mae": 6.164,
+    "position_mae": 6.657,
+    "vs_naive": 0.0226
+   }
+  }
+ },
+ "holdout": {
+  "all": {
+   "n": 3963,
+   "mae": 5.404,
+   "rmse": 6.992,
+   "bias": 0.329,
+   "naive_mae": 5.602,
+   "last_season_mae": 6.199,
+   "position_mae": 6.454,
+   "vs_naive": 0.0354
+  },
+  "by_position": {
+   "QB": {
+    "n": 661,
+    "mae": 6.803,
+    "rmse": 8.309,
+    "bias": 0.668,
+    "naive_mae": 7.019,
+    "last_season_mae": 7.542,
+    "position_mae": 7.85,
+    "vs_naive": 0.0308
+   },
+   "RB": {
+    "n": 1065,
+    "mae": 5.417,
+    "rmse": 7.055,
+    "bias": 0.197,
+    "naive_mae": 5.636,
+    "last_season_mae": 6.319,
+    "position_mae": 6.753,
+    "vs_naive": 0.039
+   },
+   "TE": {
+    "n": 592,
+    "mae": 4.663,
+    "rmse": 6.251,
+    "bias": -0.233,
+    "naive_mae": 4.87,
+    "last_season_mae": 5.29,
+    "position_mae": 5.313,
+    "vs_naive": 0.0424
+   },
+   "WR": {
+    "n": 1645,
+    "mae": 5.099,
+    "rmse": 6.615,
+    "bias": 0.481,
+    "naive_mae": 5.273,
+    "last_season_mae": 5.908,
+    "position_mae": 6.109,
+    "vs_naive": 0.033
+   }
+  },
+  "by_season": {
+   "2025": {
+    "n": 3963,
+    "mae": 5.404,
+    "rmse": 6.992,
+    "bias": 0.329,
+    "naive_mae": 5.602,
+    "last_season_mae": 6.199,
+    "position_mae": 6.454,
+    "vs_naive": 0.0354
+   }
+  },
+  "by_circumstance": {
+   "rookie": {
+    "n": 648,
+    "mae": 4.96,
+    "rmse": 6.456,
+    "bias": 0.109,
+    "naive_mae": 5.472,
+    "last_season_mae": 6.352,
+    "position_mae": 6.352,
+    "vs_naive": 0.0936
+   },
+   "questionable": {
+    "n": 152,
+    "mae": 5.502,
+    "rmse": 7.317,
+    "bias": 0.893,
+    "naive_mae": 5.583,
+    "last_season_mae": 6.293,
+    "position_mae": 6.047,
+    "vs_naive": 0.0145
+   },
+   "role_change": {
+    "n": 866,
+    "mae": 5.344,
+    "rmse": 7.034,
+    "bias": -0.029,
+    "naive_mae": 5.412,
+    "last_season_mae": 6.266,
+    "position_mae": 6.4,
+    "vs_naive": 0.0127
+   },
+   "no_flags": {
+    "n": 2363,
+    "mae": 5.54,
+    "rmse": 7.109,
+    "bias": 0.52,
+    "naive_mae": 5.697,
+    "last_season_mae": 6.127,
+    "position_mae": 6.511,
+    "vs_naive": 0.0275
+   }
+  }
+ },
+ "rank_quality_selection": {
+  "QB": {
+   "weeks": 106,
+   "spearman": 0.495,
+   "top_n": 12,
+   "top_n_precision": 0.5198
+  },
+  "RB": {
+   "weeks": 106,
+   "spearman": 0.5798,
+   "top_n": 24,
+   "top_n_precision": 0.5899
+  },
+  "TE": {
+   "weeks": 106,
+   "spearman": 0.4295,
+   "top_n": 12,
+   "top_n_precision": 0.52
+  },
+  "WR": {
+   "weeks": 106,
+   "spearman": 0.5223,
+   "top_n": 24,
+   "top_n_precision": 0.4882
+  }
+ },
+ "rank_quality_holdout": {
+  "QB": {
+   "weeks": 18,
+   "spearman": 0.4365,
+   "top_n": 12,
+   "top_n_precision": 0.4636
+  },
+  "RB": {
+   "weeks": 18,
+   "spearman": 0.5973,
+   "top_n": 24,
+   "top_n_precision": 0.5922
+  },
+  "TE": {
+   "weeks": 18,
+   "spearman": 0.4268,
+   "top_n": 12,
+   "top_n_precision": 0.5111
+  },
+  "WR": {
+   "weeks": 18,
+   "spearman": 0.5433,
+   "top_n": 24,
+   "top_n_precision": 0.4977
+  }
+ },
+ "rank_quality_naive_holdout": {
+  "QB": {
+   "weeks": 18,
+   "spearman": 0.4132,
+   "top_n": 12,
+   "top_n_precision": 0.4665
+  },
+  "RB": {
+   "weeks": 18,
+   "spearman": 0.5628,
+   "top_n": 24,
+   "top_n_precision": 0.5979
+  },
+  "TE": {
+   "weeks": 18,
+   "spearman": 0.358,
+   "top_n": 12,
+   "top_n_precision": 0.4798
+  },
+  "WR": {
+   "weeks": 18,
+   "spearman": 0.4943,
+   "top_n": 24,
+   "top_n_precision": 0.5069
+  }
+ },
+ "startsit_selection": {
+  "1-3 pts": {
+   "n": 208085,
+   "higher_scored_more": 0.601,
+   "ci95": [
+    0.5989,
+    0.6031
+   ]
+  },
+  "3-5 pts": {
+   "n": 169404,
+   "higher_scored_more": 0.6887,
+   "ci95": [
+    0.6865,
+    0.6909
+   ]
+  },
+  "5+ pts": {
+   "n": 294217,
+   "higher_scored_more": 0.813,
+   "ci95": [
+    0.8116,
+    0.8144
+   ]
+  }
+ },
+ "startsit_holdout": {
+  "1-3 pts": {
+   "n": 32913,
+   "higher_scored_more": 0.5994,
+   "ci95": [
+    0.5941,
+    0.6047
+   ]
+  },
+  "3-5 pts": {
+   "n": 26833,
+   "higher_scored_more": 0.6973,
+   "ci95": [
+    0.6917,
+    0.7028
+   ]
+  },
+  "5+ pts": {
+   "n": 49267,
+   "higher_scored_more": 0.8198,
+   "ci95": [
+    0.8164,
+    0.8232
+   ]
+  }
+ },
+ "startsit_naive_holdout": {
+  "1-3 pts": {
+   "n": 37540,
+   "higher_scored_more": 0.6059,
+   "ci95": [
+    0.601,
+    0.6109
+   ]
+  },
+  "3-5 pts": {
+   "n": 27169,
+   "higher_scored_more": 0.7059,
+   "ci95": [
+    0.7004,
+    0.7113
+   ]
+  },
+  "5+ pts": {
+   "n": 40417,
+   "higher_scored_more": 0.8001,
+   "ci95": [
+    0.7962,
+    0.804
+   ]
+  }
+ },
+ "startsit_flex_holdout": {
+  "1-3 pts": {
+   "n": 79471,
+   "higher_scored_more": 0.6028,
+   "ci95": [
+    0.5994,
+    0.6062
+   ]
+  },
+  "3-5 pts": {
+   "n": 65090,
+   "higher_scored_more": 0.7005,
+   "ci95": [
+    0.6969,
+    0.704
+   ]
+  },
+  "5+ pts": {
+   "n": 115332,
+   "higher_scored_more": 0.8232,
+   "ci95": [
+    0.821,
+    0.8254
+   ]
+  }
+ },
+ "coverage_holdout": {
+  "QB": {
+   "n": 661,
+   "in_p10_p90": 0.7307,
+   "in_p25_p75": 0.4523
+  },
+  "RB": {
+   "n": 1065,
+   "in_p10_p90": 0.7991,
+   "in_p25_p75": 0.5239
+  },
+  "TE": {
+   "n": 592,
+   "in_p10_p90": 0.8007,
+   "in_p25_p75": 0.522
+  },
+  "WR": {
+   "n": 1645,
+   "in_p10_p90": 0.8249,
+   "in_p25_p75": 0.5246
+  }
+ },
+ "residuals": {
+  "QB": {
+   "a": 5.6471,
+   "b": 0.0516,
+   "n": 3779,
+   "q": {
+    "p10": -1.5817,
+    "p25": -0.9419,
+    "p50": -0.1161,
+    "p75": 0.7723,
+    "p90": 1.6345
+   }
+  },
+  "RB": {
+   "a": 2.955,
+   "b": 0.2429,
+   "n": 6262,
+   "q": {
+    "p10": -1.377,
+    "p25": -1.013,
+    "p50": -0.3764,
+    "p75": 0.6171,
+    "p90": 1.6418
+   }
+  },
+  "TE": {
+   "a": 2.1208,
+   "b": 0.3096,
+   "n": 3253,
+   "q": {
+    "p10": -1.3542,
+    "p25": -0.9561,
+    "p50": -0.2566,
+    "p75": 0.6923,
+    "p90": 1.7057
+   }
+  },
+  "WR": {
+   "a": 2.5861,
+   "b": 0.3042,
+   "n": 10212,
+   "q": {
+    "p10": -1.3323,
+    "p25": -0.9355,
+    "p50": -0.2971,
+    "p75": 0.6987,
+    "p90": 1.8142
+   }
+  }
+ },
+ "settings": {
+  "name": "Full PPR",
+  "rec": 1.0,
+  "pass_td": 4.0,
+  "pass_yd": 0.04,
+  "rush_yd": 0.1,
+  "rush_td": 6.0,
+  "rec_yd": 0.1,
+  "rec_td": 6.0,
+  "te_rec_bonus": 0.0,
+  "slots": {
+   "QB": 1,
+   "RB": 2,
+   "WR": 2,
+   "TE": 1,
+   "FLEX": 1
+  },
+  "flex_positions": [
+   "RB",
+   "WR",
+   "TE"
+  ],
+  "superflex": false,
+  "int": -2.0
+ },
+ "n_rows": 27469,
+ "model_fingerprint": "c53957039261",
+ "generated": "2026-09-16 21:32 UTC",
+ "notes": [
+  "Rows are player-weeks where the player appeared; availability is handled separately through play rates by designation.",
+  "Actual points are nflverse fantasy_points_ppr, which include fumbles and two-point conversions the projection does not model.",
+  "2025 was not used to choose anything; selection seasons are 2019-2024."
+ ]
+}
