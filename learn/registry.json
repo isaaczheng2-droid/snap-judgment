@@ -282,6 +282,202 @@
     "mae_candidate": 5.4913
    },
    "experiment": "exp-2026-09-17-0dce24"
+  },
+  "v7-b647db0fb735": {
+   "id": "v7-b647db0fb735",
+   "params": {
+    "alpha": 2.0,
+    "extra_feats": {
+     "passing_yards": [
+      "prior_snap"
+     ],
+     "qb_rushing_yards": [
+      "prior_snap"
+     ],
+     "receiving_yards": [
+      "prior_snap"
+     ],
+     "receptions": [
+      "prior_snap"
+     ],
+     "rushing_yards": [
+      "lost_tgt",
+      "lost_car"
+     ]
+    },
+    "adj_shares": {
+     "rushing_yards": [
+      "tgt_share_adj",
+      "car_share_adj"
+     ]
+    },
+    "script_feats": false
+   },
+   "fingerprint": "b647db0fb735",
+   "created_at": "2026-09-17T14:03:10Z",
+   "status": "rejected",
+   "reason": "gain +0.03% is below the 1.0% bar; not significant after adjusting for 4 candidates (p=0.068, alpha=0.05)",
+   "parent": "v1-f67fc4d5fd6d",
+   "metrics": {
+    "n": 23506,
+    "rel_gain": 0.0003,
+    "gain_ci95": [
+     0.0,
+     0.0006
+    ],
+    "p_adj": 0.0675,
+    "mae_current": 5.5056,
+    "mae_candidate": 5.504
+   },
+   "experiment": "exp-2026-09-17-236e0d"
+  },
+  "v8-e9a396e4f08c": {
+   "id": "v8-e9a396e4f08c",
+   "params": {
+    "alpha": 10.0,
+    "extra_feats": {
+     "passing_yards": [
+      "prior_snap"
+     ],
+     "qb_rushing_yards": [
+      "prior_snap"
+     ],
+     "receiving_yards": [
+      "prior_snap"
+     ],
+     "receptions": [
+      "prior_snap"
+     ],
+     "rushing_yards": [
+      "lost_tgt",
+      "lost_car"
+     ]
+    },
+    "adj_shares": {
+     "rushing_yards": [
+      "tgt_share_adj",
+      "car_share_adj"
+     ]
+    },
+    "script_feats": false
+   },
+   "fingerprint": "e9a396e4f08c",
+   "created_at": "2026-09-17T14:03:10Z",
+   "status": "rejected",
+   "reason": "gain -0.07% is below the 1.0% bar; not significant after adjusting for 4 candidates (p=1.000, alpha=0.05)",
+   "parent": "v1-f67fc4d5fd6d",
+   "metrics": {
+    "n": 23506,
+    "rel_gain": -0.0007,
+    "gain_ci95": [
+     -0.001,
+     -0.0003
+    ],
+    "p_adj": 1.0,
+    "mae_current": 5.5056,
+    "mae_candidate": 5.5092
+   },
+   "experiment": "exp-2026-09-17-236e0d"
+  },
+  "v9-0fa6227e1758": {
+   "id": "v9-0fa6227e1758",
+   "params": {
+    "alpha": 5.0,
+    "extra_feats": {
+     "passing_yards": [
+      "prior_snap"
+     ],
+     "qb_rushing_yards": [
+      "prior_snap"
+     ],
+     "receiving_yards": [
+      "prior_snap"
+     ],
+     "receptions": [
+      "prior_snap"
+     ],
+     "rushing_yards": [
+      "lost_car",
+      "lost_tgt",
+      "prior_snap"
+     ],
+     "rb_receiving_yards": [
+      "prior_snap"
+     ],
+     "rb_receptions": [
+      "prior_snap"
+     ],
+     "rushing_tds": [
+      "prior_snap"
+     ],
+     "rb_receiving_tds": [
+      "prior_snap"
+     ]
+    },
+    "adj_shares": {
+     "rushing_yards": [
+      "tgt_share_adj",
+      "car_share_adj"
+     ]
+    },
+    "script_feats": false
+   },
+   "fingerprint": "0fa6227e1758",
+   "created_at": "2026-09-17T14:03:10Z",
+   "status": "rejected",
+   "reason": "gain +0.13% is below the 1.0% bar",
+   "parent": "v1-f67fc4d5fd6d",
+   "metrics": {
+    "n": 23506,
+    "rel_gain": 0.0013,
+    "gain_ci95": [
+     0.0003,
+     0.0021
+    ],
+    "p_adj": 0.02,
+    "mae_current": 5.5056,
+    "mae_candidate": 5.4987
+   },
+   "experiment": "exp-2026-09-17-236e0d"
+  },
+  "v10-93a840f90b15": {
+   "id": "v10-93a840f90b15",
+   "params": {
+    "alpha": 5.0,
+    "extra_feats": {
+     "passing_yards": [
+      "prior_snap"
+     ],
+     "qb_rushing_yards": [
+      "prior_snap"
+     ],
+     "receiving_yards": [
+      "prior_snap"
+     ],
+     "receptions": [
+      "prior_snap"
+     ]
+    },
+    "adj_shares": {},
+    "script_feats": false
+   },
+   "fingerprint": "93a840f90b15",
+   "created_at": "2026-09-17T14:03:10Z",
+   "status": "rejected",
+   "reason": "gain -0.04% is below the 1.0% bar; not significant after adjusting for 4 candidates (p=1.000, alpha=0.05)",
+   "parent": "v1-f67fc4d5fd6d",
+   "metrics": {
+    "n": 23506,
+    "rel_gain": -0.0004,
+    "gain_ci95": [
+     -0.0007,
+     -0.0001
+    ],
+    "p_adj": 1.0,
+    "mae_current": 5.5056,
+    "mae_candidate": 5.508
+   },
+   "experiment": "exp-2026-09-17-236e0d"
   }
  },
  "history": [
@@ -325,6 +521,34 @@
    "version": "v6-0f83b5033de3",
    "reason": "gain +0.26% is below the 1.0% bar",
    "experiment": "exp-2026-09-17-0dce24"
+  },
+  {
+   "at": "2026-09-17T14:03:10Z",
+   "event": "rejected",
+   "version": "v7-b647db0fb735",
+   "reason": "gain +0.03% is below the 1.0% bar; not significant after adjusting for 4 candidates (p=0.068, alpha=0.05)",
+   "experiment": "exp-2026-09-17-236e0d"
+  },
+  {
+   "at": "2026-09-17T14:03:10Z",
+   "event": "rejected",
+   "version": "v8-e9a396e4f08c",
+   "reason": "gain -0.07% is below the 1.0% bar; not significant after adjusting for 4 candidates (p=1.000, alpha=0.05)",
+   "experiment": "exp-2026-09-17-236e0d"
+  },
+  {
+   "at": "2026-09-17T14:03:10Z",
+   "event": "rejected",
+   "version": "v9-0fa6227e1758",
+   "reason": "gain +0.13% is below the 1.0% bar",
+   "experiment": "exp-2026-09-17-236e0d"
+  },
+  {
+   "at": "2026-09-17T14:03:10Z",
+   "event": "rejected",
+   "version": "v10-93a840f90b15",
+   "reason": "gain -0.04% is below the 1.0% bar; not significant after adjusting for 4 candidates (p=1.000, alpha=0.05)",
+   "experiment": "exp-2026-09-17-236e0d"
   }
  ]
 }
