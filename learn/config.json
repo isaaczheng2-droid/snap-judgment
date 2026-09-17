@@ -1,0 +1,25 @@
+{
+  "paused": false,
+  "selection_seasons": [2019, 2024],
+  "min_samples": 2000,
+  "min_rel_gain": 0.01,
+  "alpha": 0.05,
+  "max_segment_loss": 0.02,
+  "segments": ["position", "season"],
+  "bootstrap": 400,
+  "report_holdout": false,
+  "prospective_min_weeks": 4,
+  "candidates": [
+    {"id": "alpha_2", "alpha": 2.0, "note": "less ridge shrinkage"},
+    {"id": "alpha_10", "alpha": 10.0, "note": "more ridge shrinkage"},
+    {"id": "snap_everywhere", "extra_feats_add": {"rushing_yards": ["prior_snap"], "rb_receiving_yards": ["prior_snap"], "rb_receptions": ["prior_snap"], "rushing_tds": ["prior_snap"], "rb_receiving_tds": ["prior_snap"]}, "note": "snap share on the running-back stats too"},
+    {"id": "no_absence", "extra_feats_drop": ["rushing_yards"], "adj_shares_drop": ["rushing_yards"], "note": "remove the teammate-absence block"},
+    {"id": "script_volume", "script_feats": true, "note": "game-script expected pass/rush attempts and expected targets/carries"}
+  ],
+  "notes": [
+    "This file is read by learn/cycle.py and never written by it. Loosening a threshold is a human decision.",
+    "Candidates are a fixed menu of parameter and feature-set choices; the cycle cannot invent features or edit code.",
+    "The decision uses the selection seasons only. The prospective ledger (forecasts saved before kickoff) is the final evaluation and is never used to choose a model.",
+    "report_holdout=false keeps the 2025 holdout out of routine cycles so it is not tuned against repeatedly."
+  ]
+}
