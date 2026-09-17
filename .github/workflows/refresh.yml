@@ -94,8 +94,17 @@ jobs:
           git add learn/data learn/registry.json
           if git diff --staged --quiet; then echo "No change."; else
             git commit -m "Learning cycle: $(date -u +%Y-%m-%d)"
-            git pull --rebase --autostash origin main || true
-            git push
+            # The hourly rebuild appends to the same ndjson files; .gitattributes marks them
+            # merge=union so a rebase resolves line appends on its own. If it still cannot,
+            # abort and merge instead; try a few times because the rebuild may push again.
+            for i in 1 2 3; do
+              git fetch origin main
+              if git rebase origin/main; then git push && break; fi
+              git rebase --abort || true
+              if git pull --no-rebase --no-edit origin main; then git push && break; fi
+              git merge --abort || true
+              sleep 30
+            done
           fi
 
   history:
