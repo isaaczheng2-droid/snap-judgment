@@ -24,6 +24,7 @@ on:
     - cron: "*/10 22-23 * * 1,4"
     - cron: "*/10 0-5 * * 2,5"
     - cron: "47 * * * *"
+    - cron: "0 9 * * 2"          # weekly learning cycle (Tuesday morning, after Monday night's box scores)
   workflow_dispatch:
     inputs:
       force:
@@ -31,9 +32,9 @@ on:
         type: boolean
         default: true
       mode:
-        description: "full = retrain and publish; live = poll players and weather only; history = collect FanDuel historical prop quotes (costs credits)"
+        description: "full = retrain and publish; live = poll players and weather only; history = collect FanDuel historical prop quotes (costs credits); learn = run the controlled learning cycle (candidates through the gate)"
         type: choice
-        options: [full, live, history]
+        options: [full, live, history, learn]
         default: full
       hist_season:
         description: "history: season to collect"
@@ -69,6 +70,37 @@ jobs:
   # kickoff - 60 min for the requested weeks, then scores the walk-forward projections against
   # them. Every call costs 10 x markets x regions credits (40 per event); the run stops at the
   # credit cap. Results are committed under live/data/history.
+  # ------------------------------------------------------------------ learning cycle
+  # Weekly (Tuesday 09:00 UTC) or on demand. Records the manifest, ledgers forecasts and
+  # actuals, measures the prospective record, trains the candidate menu walk-forward and
+  # promotes only through the gate in learn/config.json. Never edits code or the config.
+  learn:
+    if: github.event.schedule == '0 9 * * 2' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'learn')
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    concurrency:
+      group: publish
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Run the cycle
+        run: python learn/cycle.py --datadir data --payload payload.json
+      - name: Commit the ledger, experiments and registry
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add learn/data learn/registry.json
+          if git diff --staged --quiet; then echo "No change."; else
+            git commit -m "Learning cycle: $(date -u +%Y-%m-%d)"
+            git pull --rebase --autostash origin main || true
+            git push
+          fi
+
   history:
     if: github.event_name == 'workflow_dispatch' && inputs.mode == 'history'
     runs-on: ubuntu-latest
@@ -100,7 +132,7 @@ jobs:
           fi
 
   live:
-    if: github.event.schedule != '17 * * * *' && (github.event_name != 'workflow_dispatch' || inputs.mode == 'live')
+    if: github.event.schedule != '17 * * * *' && github.event.schedule != '0 9 * * 2' && (github.event_name != 'workflow_dispatch' || inputs.mode == 'live')
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
@@ -270,7 +302,7 @@ jobs:
           # history.json is the season tracker's memory — it MUST be committed or every run
           # starts from an empty slate and no prediction is ever graded
           git add index.html payload.json history.json .upstream-sig
-          for f in admin.html live/data; do if [ -e "$f" ]; then git add "$f"; fi; done
+          for f in admin.html live/data learn/data learn/registry.json; do if [ -e "$f" ]; then git add "$f"; fi; done
           if git diff --staged --quiet; then
             echo "No change — nothing to publish."
           else
