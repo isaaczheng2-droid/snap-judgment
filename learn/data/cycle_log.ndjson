@@ -1,0 +1,5 @@
+{"at": "2026-09-17T04:10:49Z", "event": "collect", "data_version": "74a9251fcbcd", "sources": 8}
+{"at": "2026-09-17T04:10:49Z", "event": "forecasts", "recorded": 0, "skipped_after_kickoff": 0, "week": 2}
+{"at": "2026-09-17T04:10:49Z", "event": "actuals", "graded": 0, "corrections": 0, "pending": 302}
+{"at": "2026-09-17T04:10:49Z", "event": "measure", "graded_rows": 0, "mae": null, "vs_naive": null}
+{"at": "2026-09-17T04:12:18Z", "event": "experiment", "id": "exp-2026-09-17-0dce24", "candidates": 5, "accepted": 0, "promoted": "none", "current_mae": 5.506, "naive_mae": 5.652}
