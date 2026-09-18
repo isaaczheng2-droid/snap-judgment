@@ -1,4 +1,55 @@
 {
- "n": 0,
- "note": "no graded forecasts yet"
+ "n": 16,
+ "weeks": [
+  2
+ ],
+ "seasons": [
+  2026
+ ],
+ "all": {
+  "n": 16,
+  "note": "fewer than 30 graded rows"
+ },
+ "played_only": {
+  "n": 14,
+  "note": "fewer than 30 graded rows"
+ },
+ "did_not_play": 2,
+ "by_position": {
+  "QB": {
+   "n": 4,
+   "note": "fewer than 30 graded rows"
+  },
+  "RB": {
+   "n": 3,
+   "note": "fewer than 30 graded rows"
+  },
+  "TE": {
+   "n": 3,
+   "note": "fewer than 30 graded rows"
+  },
+  "WR": {
+   "n": 6,
+   "note": "fewer than 30 graded rows"
+  }
+ },
+ "by_week": {
+  "2026-02": {
+   "n": 16,
+   "note": "fewer than 30 graded rows"
+  }
+ },
+ "by_status": {
+  "ok": {
+   "n": 16,
+   "note": "fewer than 30 graded rows"
+  }
+ },
+ "corrections": 0,
+ "by_model_version": {
+  "v1-f67fc4d5fd6d": {
+   "n": 16,
+   "note": "fewer than 30 graded rows"
+  }
+ }
 }
