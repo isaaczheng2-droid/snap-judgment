@@ -1,0 +1,23 @@
+{
+ "reasons": [
+  "Kyler Murray: QUESTIONABLE \u2192 OUT (Concussion)",
+  "Michael Penix Jr.: QUESTIONABLE \u2192 OUT (Knee - ACL)",
+  "Ashton Dulin: QUESTIONABLE \u2192 OUT (Ankle)",
+  "Josh Simmons: QUESTIONABLE \u2192 UNKNOWN (Back)",
+  "Christian McCaffrey: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_02_CAR_ATL",
+  "2026_02_IND_KC",
+  "2026_02_MIA_SF",
+  "2026_02_MIN_CHI"
+ ],
+ "event_ids": [
+  "ev_1789758887_d9fe4baf",
+  "ev_1789758887_c55024e6",
+  "ev_1789758887_ea94f1d6",
+  "ev_1789758887_9b20deca",
+  "ev_1789758887_b9d597d1"
+ ],
+ "requested_at": "2026-09-18T19:14:49Z"
+}
