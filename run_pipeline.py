@@ -1592,6 +1592,18 @@ def main():
     except Exception as e:
         log(f"  learning hooks skipped: {e}")
 
+    # ---- scheme & coaching context (shown, never modelled; see audit/nfl-coaching-scheme-test.md)
+    try:
+        import coaching
+        payload["coaching"] = coaching.build(a.datadir, sched, team, cur, coaches_path=os.path.join(a.outdir, "coaches.json")
+                                             if os.path.exists(os.path.join(a.outdir, "coaches.json")) else "coaches.json", log=log)
+        nt = len(payload["coaching"]["teams"])
+        log(f"  coaching: {nt} teams, staff as of {payload['coaching'].get('staff_as_of')}, "
+            f"{sum(1 for t in payload['coaching']['teams'].values() if t['alerts'])} staff alerts")
+    except Exception as e:
+        log(f"  coaching block skipped: {e}")
+        payload["coaching"] = None
+
     # Full float repr costs ~40% of the payload for digits nothing renders. Four places is
     # more than any display uses and still exact enough for the charts.
     def trim(o):

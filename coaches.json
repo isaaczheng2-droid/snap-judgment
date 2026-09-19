@@ -1,0 +1,1312 @@
+{
+ "as_of": "2026-09-19",
+ "season": 2026,
+ "sources": {
+  "staff": "Wikipedia: List of current NFL head coaches / offensive coordinators / defensive coordinators (read 2026-09-19); head coaches cross-checked against ESPN's team API",
+  "records": "Wikipedia head-coach list (regular season W-L-T, playoff W-L) as of 2026-09-19; refreshed by the pipeline from the schedule for the current tenure",
+  "photos": "Wikimedia Commons, each with its own licence and credit; no photo means none is available under an open licence",
+  "bios": "Written for this site from the coaches' Wikipedia articles; one or two sentences of background, no claims about play-calling"
+ },
+ "notes": "Edit this file by hand when a staff changes mid-season. The pipeline flags a head coach whose name no longer matches ESPN's.",
+ "teams": {
+  "ARI": {
+   "HC": {
+    "name": "Mike LaFleur",
+    "wiki": "Mike LaFleur",
+    "since": 2026,
+    "career": {
+     "w": 0,
+     "l": 0,
+     "t": 0,
+     "pw": 0,
+     "pl": 0
+    },
+    "bio": "First-year head coach after three seasons running the Rams offense as coordinator (2023 to 2025); earlier stops as an assistant with the 49ers, Jets and Falcons.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Mike_LaFleur_August_2015.jpg",
+     "license": "CC0",
+     "artist": "Thomson200",
+     "page": "https://commons.wikimedia.org/wiki/File:Mike_LaFleur_August_2015.jpg"
+    }
+   },
+   "OC": {
+    "name": "Nathaniel Hackett",
+    "wiki": "Nathaniel Hackett",
+    "since": 2026,
+    "prev": "Green Bay Packers defensive analyst (2025)",
+    "bio": "Former Packers and Jaguars offensive coordinator and Broncos head coach (2022); spent 2025 as an analyst in Green Bay before taking over the Cardinals offense.",
+    "photo": null
+   },
+   "DC": {
+    "name": "Nick Rallis",
+    "wiki": "Nick Rallis",
+    "since": 2023,
+    "prev": "Philadelphia Eagles linebackers coach (2021-2022)",
+    "bio": "In his fourth season running the Cardinals defense, now under a new head coach; came from the Eagles' linebackers room and played at Minnesota.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Nick_Rallis.jpg/330px-Nick_Rallis.jpg",
+     "license": "CC BY-SA 2.0",
+     "artist": "All-Pro Reels",
+     "page": "https://commons.wikimedia.org/wiki/File:Nick_Rallis.jpg"
+    }
+   }
+  },
+  "ATL": {
+   "HC": {
+    "name": "Kevin Stefanski",
+    "wiki": "Kevin Stefanski",
+    "since": 2026,
+    "career": {
+     "w": 45,
+     "l": 56,
+     "t": 0,
+     "pw": 1,
+     "pl": 2
+    },
+    "bio": "Head coach of the Browns from 2020 to 2025, twice named Coach of the Year there; a former Penn safety who came up through the Vikings' offensive staff.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Kevin_Stefanski_AUG2023_%28cropped%29.jpg/330px-Kevin_Stefanski_AUG2023_%28cropped%29.jpg",
+     "license": "CC BY 2.0",
+     "artist": "Erik Drost",
+     "page": "https://commons.wikimedia.org/wiki/File:Kevin_Stefanski_AUG2023_(cropped).jpg"
+    }
+   },
+   "OC": {
+    "name": "Tommy Rees",
+    "wiki": "Tommy Rees (American football)",
+    "since": 2026,
+    "prev": "Cleveland Browns offensive coordinator (2025)",
+    "bio": "Followed Stefanski from Cleveland, where he was offensive coordinator in 2025; a former Notre Dame quarterback and Alabama offensive coordinator.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Tommy_Rees_Sun_Bowl_%28cropped%29.jpg/330px-Tommy_Rees_Sun_Bowl_%28cropped%29.jpg",
+     "license": "Public domain",
+     "artist": "Mr. David E Poe",
+     "page": "https://commons.wikimedia.org/wiki/File:Tommy_Rees_Sun_Bowl_(cropped).jpg"
+    }
+   },
+   "DC": {
+    "name": "Jeff Ulbrich",
+    "wiki": "Jeff Ulbrich",
+    "since": 2025,
+    "prev": "New York Jets defensive coordinator (2021-2024)",
+    "bio": "Second season running the Falcons defense after four as the Jets' coordinator (and their interim head coach in 2024); a former 49ers linebacker.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/JeffULBRICHsf49er-53.jpg/330px-JeffULBRICHsf49er-53.jpg",
+     "license": "CC BY 3.0",
+     "artist": "Ulbrich53fan Joseph Chase",
+     "page": "https://commons.wikimedia.org/wiki/File:JeffULBRICHsf49er-53.jpg"
+    }
+   }
+  },
+  "BAL": {
+   "HC": {
+    "name": "Jesse Minter",
+    "wiki": "Jesse Minter",
+    "since": 2026,
+    "career": {
+     "w": 0,
+     "l": 0,
+     "t": 0,
+     "pw": 0,
+     "pl": 0
+    },
+    "bio": "First-year head coach, back in Baltimore where he was an assistant from 2017 to 2020; ran the Chargers defense in 2024 and 2025 and Michigan's national-title defense before that.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/2024-0106-Jesse_Minter.jpg/330px-2024-0106-Jesse_Minter.jpg",
+     "license": "CC BY 3.0",
+     "artist": "Bobak Ha'Eri",
+     "page": "https://commons.wikimedia.org/wiki/File:2024-0106-Jesse_Minter.jpg"
+    }
+   },
+   "OC": {
+    "name": "Declan Doyle",
+    "wiki": "Declan Doyle",
+    "since": 2026,
+    "prev": "Chicago Bears offensive coordinator (2025)",
+    "bio": "Thirty-year-old coordinator who ran the Bears offense in 2025 under Ben Johnson; started as a Saints offensive assistant and coached tight ends in Denver.",
+    "photo": null
+   },
+   "DC": {
+    "name": "Anthony Weaver",
+    "wiki": "Anthony Weaver",
+    "since": 2026,
+    "prev": "Miami Dolphins defensive coordinator (2024-2025)",
+    "bio": "Former Ravens defensive lineman who ran the Dolphins defense the last two seasons; earlier assistant stops with the Jets, Bills, Browns and Texans.",
+    "photo": null
+   }
+  },
+  "BUF": {
+   "HC": {
+    "name": "Joe Brady",
+    "wiki": "Joe Brady",
+    "since": 2026,
+    "career": {
+     "w": 0,
+     "l": 0,
+     "t": 0,
+     "pw": 0,
+     "pl": 0
+    },
+    "bio": "Promoted from within after two seasons as the Bills' offensive coordinator; won the Broyles Award as LSU's passing-game coordinator in 2019 and was Carolina's coordinator before Buffalo.",
+    "photo": null
+   },
+   "OC": {
+    "name": "Pete Carmichael Jr.",
+    "wiki": "Pete Carmichael Jr.",
+    "since": 2026,
+    "prev": "Denver Broncos senior offensive assistant (2024-2025)",
+    "bio": "Eighteen seasons on the Saints' offensive staff, fifteen of them as coordinator under Sean Payton, then two years as a senior assistant in Denver.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Pete_Carmichael%2C_Jr._in_2009.jpg",
+     "license": "CC BY 2.0",
+     "artist": "Vamos Tigres",
+     "page": "https://commons.wikimedia.org/wiki/File:Pete_Carmichael,_Jr._in_2009.jpg"
+    }
+   },
+   "DC": {
+    "name": "Jim Leonhard",
+    "wiki": "Jim Leonhard",
+    "since": 2026,
+    "prev": "Denver Broncos assistant head coach & defensive pass game coordinator (2025)",
+    "bio": "Ten-year NFL safety turned coach; Wisconsin's defensive coordinator and interim head coach before joining Denver's staff, now in his first season running the Bills defense.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Jim_Leonhard.JPG/330px-Jim_Leonhard.JPG",
+     "license": "CC BY-SA 3.0",
+     "artist": "Jeffrey Beall",
+     "page": "https://commons.wikimedia.org/wiki/File:Jim_Leonhard.JPG"
+    }
+   }
+  },
+  "CAR": {
+   "HC": {
+    "name": "Dave Canales",
+    "wiki": "Dave Canales",
+    "since": 2024,
+    "career": {
+     "w": 13,
+     "l": 21,
+     "t": 0,
+     "pw": 0,
+     "pl": 1
+    },
+    "bio": "Third season in Carolina after a long run on Pete Carroll's Seattle staff and one year as Tampa Bay's offensive coordinator; took the Panthers to the playoffs in 2025.",
+    "photo": null
+   },
+   "OC": {
+    "name": "Brad Idzik",
+    "wiki": "Brad Idzik",
+    "since": 2024,
+    "prev": "Tampa Bay Buccaneers wide receivers coach (2023)",
+    "bio": "Came with Canales from Tampa Bay, where he coached receivers; now in his third season as coordinator.",
+    "photo": null
+   },
+   "DC": {
+    "name": "Ejiro Evero",
+    "wiki": "Ejiro Evero",
+    "since": 2023,
+    "prev": "Denver Broncos defensive coordinator (2022)",
+    "bio": "Fourth season running the Panthers defense after one as Denver's coordinator; earlier an assistant with the Rams, Packers and Buccaneers.",
+    "photo": null
+   }
+  },
+  "CHI": {
+   "HC": {
+    "name": "Ben Johnson",
+    "wiki": "Ben Johnson (American football coach)",
+    "since": 2025,
+    "career": {
+     "w": 11,
+     "l": 6,
+     "t": 0,
+     "pw": 1,
+     "pl": 1
+    },
+    "bio": "Built top-five offenses in three seasons as Detroit's coordinator, then went 11-6 with a playoff win in his first year in Chicago, the Bears' first postseason victory since 2010.",
+    "photo": null
+   },
+   "OC": {
+    "name": "Press Taylor",
+    "wiki": "Press Taylor",
+    "since": 2026,
+    "prev": "Bears passing game coordinator (2025)",
+    "bio": "Promoted after a season as passing-game coordinator; previously Jacksonville's offensive coordinator and a long-time Eagles assistant.",
+    "photo": null
+   },
+   "DC": {
+    "name": "Dennis Allen",
+    "wiki": "Dennis Allen (American football)",
+    "since": 2025,
+    "prev": "New Orleans Saints head coach (2022-2024)",
+    "bio": "Second season with the Bears after head-coaching stints with the Raiders and Saints; spent most of the 2010s running the Saints defense.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Dennis_Allen.jpg/330px-Dennis_Allen.jpg",
+     "license": "CC BY-SA 2.0",
+     "artist": "All-Pro Reels from District of Columbia, USA",
+     "page": "https://commons.wikimedia.org/wiki/File:Dennis_Allen.jpg"
+    }
+   }
+  },
+  "CIN": {
+   "HC": {
+    "name": "Zac Taylor",
+    "wiki": "Zac Taylor",
+    "since": 2019,
+    "career": {
+     "w": 52,
+     "l": 63,
+     "t": 1,
+     "pw": 5,
+     "pl": 2
+    },
+    "bio": "Eighth season in Cincinnati; after a 6-25-1 start he took the Bengals to Super Bowl LVI and an AFC title game, and his five playoff wins match the franchise's total before he arrived.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Zac_Taylor_2019.jpg/330px-Zac_Taylor_2019.jpg",
+     "license": "CC BY 2.0",
+     "artist": "Erik Drost",
+     "page": "https://commons.wikimedia.org/wiki/File:Zac_Taylor_2019.jpg"
+    }
+   },
+   "OC": {
+    "name": "Dan Pitcher",
+    "wiki": "Dan Pitcher",
+    "since": 2024,
+    "prev": "Bengals quarterbacks coach (2020-2023)",
+    "bio": "A Bengals assistant since 2016 and Joe Burrow's position coach for four years before taking the coordinator job; a former Colgate and SUNY Cortland quarterback.",
+    "photo": null
+   },
+   "DC": {
+    "name": "Al Golden",
+    "wiki": "Al Golden",
+    "since": 2025,
+    "prev": "Notre Dame Fighting Irish defensive coordinator (2022-2024)",
+    "bio": "Former Temple and Miami head coach who returned to the Bengals after running Notre Dame's defense; second season as coordinator.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/2025-0118_Al_Golden.jpg/330px-2025-0118_Al_Golden.jpg",
+     "license": "CC BY 3.0",
+     "artist": "Bobak Ha'Eri",
+     "page": "https://commons.wikimedia.org/wiki/File:2025-0118_Al_Golden.jpg"
+    }
+   }
+  },
+  "CLE": {
+   "HC": {
+    "name": "Todd Monken",
+    "wiki": "Todd Monken",
+    "since": 2026,
+    "career": {
+     "w": 0,
+     "l": 0,
+     "t": 0,
+     "pw": 0,
+     "pl": 0
+    },
+    "bio": "First NFL head-coaching job at 60 after running the Ravens offense and Georgia's two national-title offenses; was Southern Miss head coach from 2013 to 2015.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Todd_Monken_%28cropped%29.jpg/330px-Todd_Monken_%28cropped%29.jpg",
+     "license": "CC BY 4.0",
+     "artist": "Erik Drost",
+     "page": "https://commons.wikimedia.org/wiki/File:Todd_Monken_(cropped).jpg"
+    }
+   },
+   "OC": {
+    "name": "Travis Switzer",
+    "wiki": "Travis Switzer",
+    "since": 2026,
+    "prev": "Baltimore Ravens run game coordinator (2024-2025)",
+    "bio": "Followed Monken from Baltimore, where he coordinated the run game; a former Akron offensive lineman in his first coordinator job.",
+    "photo": null
+   },
+   "DC": {
+    "name": "Mike Rutenberg",
+    "wiki": "Mike Rutenberg",
+    "since": 2026,
+    "prev": "Atlanta Falcons defensive pass game coordinator (2025)",
+    "bio": "First season as an NFL coordinator after coordinating the Falcons' pass defense; earlier college stops at UCLA and New Mexico.",
+    "photo": null
+   }
+  },
+  "DAL": {
+   "HC": {
+    "name": "Brian Schottenheimer",
+    "wiki": "Brian Schottenheimer",
+    "since": 2025,
+    "career": {
+     "w": 7,
+     "l": 9,
+     "t": 1,
+     "pw": 0,
+     "pl": 0
+    },
+    "bio": "Second season after being promoted from Cowboys offensive coordinator; a coordinator for the Jets, Rams and Seahawks over two decades before that.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Brian_Schottenheimer_2025.jpg/330px-Brian_Schottenheimer_2025.jpg",
+     "license": "CC BY-SA 4.0",
+     "artist": "All-Pro Reels",
+     "page": "https://commons.wikimedia.org/wiki/File:Brian_Schottenheimer_2025.jpg"
+    }
+   },
+   "OC": {
+    "name": "Klayton Adams",
+    "wiki": "Klayton Adams",
+    "since": 2025,
+    "prev": "Arizona Cardinals offensive line coach (2023-2024)",
+    "bio": "Offensive-line coach by trade (Cardinals, Colorado, Stanford) in his second season as coordinator.",
+    "photo": null
+   },
+   "DC": {
+    "name": "Christian Parker",
+    "wiki": "Christian Parker (American football)",
+    "since": 2026,
+    "prev": "Philadelphia Eagles defensive backs coach & pass game coordinator (2024-2025)",
+    "bio": "Coached the secondary on Philadelphia's Super Bowl LIX defense; first season running a defense at 34.",
+    "photo": null
+   }
+  },
+  "DEN": {
+   "HC": {
+    "name": "Sean Payton",
+    "wiki": "Sean Payton",
+    "since": 2023,
+    "career": {
+     "w": 184,
+     "l": 108,
+     "t": 0,
+     "pw": 10,
+     "pl": 10
+    },
+    "bio": "Fourth season in Denver after sixteen with the Saints, where he won Super Bowl XLIV and whose offenses scored more points than any other coach's over that span.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Sean_Payton_2021.jpg/330px-Sean_Payton_2021.jpg",
+     "license": "CC BY-SA 2.0",
+     "artist": "All-Pro Reels",
+     "page": "https://commons.wikimedia.org/wiki/File:Sean_Payton_2021.jpg"
+    }
+   },
+   "OC": {
+    "name": "Davis Webb",
+    "wiki": "Davis Webb",
+    "since": 2026,
+    "prev": "Broncos quarterbacks coach & pass game coordinator (2025)",
+    "bio": "A 2017 Giants draft pick as a quarterback, retired into coaching and became Bo Nix's position coach; promoted to coordinator at 31.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/DavisWebb.jpg/330px-DavisWebb.jpg",
+     "license": "CC BY 3.0",
+     "artist": "Wordbuilder",
+     "page": "https://commons.wikimedia.org/wiki/File:DavisWebb.jpg"
+    }
+   },
+   "DC": {
+    "name": "Vance Joseph",
+    "wiki": "Vance Joseph",
+    "since": 2023,
+    "prev": "Arizona Cardinals defensive coordinator (2019-2022)",
+    "bio": "Fourth season back in Denver, where he was head coach in 2017 and 2018; ran the Cardinals defense for four years in between.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Vance_joseph_2018_%28cropped%29.jpg/330px-Vance_joseph_2018_%28cropped%29.jpg",
+     "license": "Public domain",
+     "artist": "Army Sgt. Zach Sheely of the Colorado National Guard",
+     "page": "https://commons.wikimedia.org/wiki/File:Vance_joseph_2018_(cropped).jpg"
+    }
+   }
+  },
+  "DET": {
+   "HC": {
+    "name": "Dan Campbell",
+    "wiki": "Dan Campbell",
+    "since": 2021,
+    "career": {
+     "w": 53,
+     "l": 43,
+     "t": 1,
+     "pw": 2,
+     "pl": 2
+    },
+    "bio": "Sixth season; an eleven-year NFL tight end who took the Lions to their first division title since 1993 and an NFC title game in 2023.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Rivera-Campbell-shake_%28cropped%29.jpg/330px-Rivera-Campbell-shake_%28cropped%29.jpg",
+     "license": "CC BY-SA 2.0",
+     "artist": "All-Pro Reels",
+     "page": "https://commons.wikimedia.org/wiki/File:Rivera-Campbell-shake_(cropped).jpg"
+    }
+   },
+   "OC": {
+    "name": "Drew Petzing",
+    "wiki": "Drew Petzing",
+    "since": 2026,
+    "prev": "Arizona Cardinals offensive coordinator (2023-2025)",
+    "bio": "Ran the Cardinals offense for three seasons; earlier on Kevin Stefanski's staffs in Minnesota and Cleveland.",
+    "photo": null
+   },
+   "DC": {
+    "name": "Kelvin Sheppard",
+    "wiki": "Kelvin Sheppard",
+    "since": 2025,
+    "prev": "Detroit Lions linebackers coach (2022-2024)",
+    "bio": "Eight-year NFL linebacker promoted from the Lions' linebackers room after Aaron Glenn left; second season as coordinator.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Kelvin_Sheppard.JPG/330px-Kelvin_Sheppard.JPG",
+     "license": "CC BY 3.0",
+     "artist": "Jeffrey Beall",
+     "page": "https://commons.wikimedia.org/wiki/File:Kelvin_Sheppard.JPG"
+    }
+   }
+  },
+  "GB": {
+   "HC": {
+    "name": "Matt LaFleur",
+    "wiki": "Matt LaFleur",
+    "since": 2019,
+    "career": {
+     "w": 76,
+     "l": 40,
+     "t": 1,
+     "pw": 3,
+     "pl": 6
+    },
+    "bio": "Eighth season in Green Bay; a former Rams and Titans offensive coordinator, and the Packers have had a winning record in every one of his seasons.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/LaFleur_%28cropped%29.jpg/330px-LaFleur_%28cropped%29.jpg",
+     "license": "CC BY-SA 4.0",
+     "artist": "Schik8337",
+     "page": "https://commons.wikimedia.org/wiki/File:LaFleur_(cropped).jpg"
+    }
+   },
+   "OC": {
+    "name": "Adam Stenavich",
+    "wiki": "Adam Stenavich",
+    "since": 2022,
+    "prev": "Packers offensive line coach & run game coordinator (2019-2021)",
+    "bio": "Fifth season as coordinator after coaching the Packers' offensive line; a former NFL offensive tackle.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Adam_Stenavich_in_2013.jpg/330px-Adam_Stenavich_in_2013.jpg",
+     "license": "CC BY 2.0",
+     "artist": "Brad Muckenthaler",
+     "page": "https://commons.wikimedia.org/wiki/File:Adam_Stenavich_in_2013.jpg"
+    }
+   },
+   "DC": {
+    "name": "Jonathan Gannon",
+    "wiki": "Jonathan Gannon",
+    "since": 2026,
+    "prev": "Arizona Cardinals head coach (2023-2025)",
+    "bio": "Head coach of the Cardinals for three seasons and, before that, the coordinator of the Eagles' Super Bowl LVII defense; first season in Green Bay.",
+    "photo": null
+   }
+  },
+  "HOU": {
+   "HC": {
+    "name": "DeMeco Ryans",
+    "wiki": "DeMeco Ryans",
+    "since": 2023,
+    "career": {
+     "w": 32,
+     "l": 19,
+     "t": 0,
+     "pw": 3,
+     "pl": 3
+    },
+    "bio": "Fourth season; a two-time Pro Bowl linebacker for the Texans who was Assistant Coach of the Year running the 49ers defense in 2022.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/1/19/DeMeco_Ryans_2010-09-28_%28cropped%29.jpg",
+     "license": "Public domain",
+     "artist": "United States Department of Agriculture",
+     "page": "https://commons.wikimedia.org/wiki/File:DeMeco_Ryans_2010-09-28_(cropped).jpg"
+    }
+   },
+   "OC": {
+    "name": "Nick Caley",
+    "wiki": "Nick Caley",
+    "since": 2025,
+    "prev": "Los Angeles Rams tight ends coach & pass game coordinator (2024)",
+    "bio": "Second season as coordinator after a decade in college and tight-ends jobs with the Patriots and Rams.",
+    "photo": null
+   },
+   "DC": {
+    "name": "Matt Burke",
+    "wiki": "Matt Burke (American football)",
+    "since": 2023,
+    "prev": "Arizona Cardinals defensive line coach (2022)",
+    "bio": "Fourth season running the Texans defense under Ryans; previously Miami's coordinator and the Eagles' run-game coordinator.",
+    "photo": null
+   }
+  },
+  "IND": {
+   "HC": {
+    "name": "Shane Steichen",
+    "wiki": "Shane Steichen",
+    "since": 2023,
+    "career": {
+     "w": 25,
+     "l": 26,
+     "t": 0,
+     "pw": 0,
+     "pl": 0
+    },
+    "bio": "Fourth season; coordinated the Eagles' Super Bowl LVII offense and the Chargers' before that.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Shane_Steichen.jpg/330px-Shane_Steichen.jpg",
+     "license": "CC BY-SA 2.0",
+     "artist": "All-Pro Reels",
+     "page": "https://commons.wikimedia.org/wiki/File:Shane_Steichen.jpg"
+    }
+   },
+   "OC": {
+    "name": "Jim Bob Cooter",
+    "wiki": "Jim Bob Cooter",
+    "since": 2023,
+    "prev": "Jacksonville Jaguars passing game coordinator (2022)",
+    "bio": "Fourth season in Indianapolis; ran the Lions offense from 2015 to 2018 and coached Jets running backs before that.",
+    "photo": null
+   },
+   "DC": {
+    "name": "Lou Anarumo",
+    "wiki": "Lou Anarumo",
+    "since": 2025,
+    "prev": "Cincinnati Bengals defensive coordinator (2019-2024)",
+    "bio": "Six seasons running the Bengals defense, including the Super Bowl LVI run; second season with the Colts.",
+    "photo": null
+   }
+  },
+  "JAX": {
+   "HC": {
+    "name": "Liam Coen",
+    "wiki": "Liam Coen",
+    "since": 2025,
+    "career": {
+     "w": 13,
+     "l": 4,
+     "t": 0,
+     "pw": 0,
+     "pl": 1
+    },
+    "bio": "Went 13-4 in his first season after coordinating Tampa Bay's offense in 2024 and the Rams' in 2022; a Kentucky offensive coordinator in between.",
+    "photo": null
+   },
+   "OC": {
+    "name": "Grant Udinski",
+    "wiki": "Grant Udinski",
+    "since": 2025,
+    "prev": "Minnesota Vikings assistant offensive coordinator/quarterbacks coach (2024)",
+    "bio": "Thirty-year-old coordinator in his second season, hired from Kevin O'Connell's Vikings staff.",
+    "photo": null
+   },
+   "DC": {
+    "name": "Anthony Campanile",
+    "wiki": "Anthony Campanile",
+    "since": 2025,
+    "prev": "Green Bay Packers linebackers coach & run game coordinator (2024)",
+    "bio": "Second season running the Jaguars defense after coaching linebackers in Green Bay and Miami.",
+    "photo": null
+   }
+  },
+  "KC": {
+   "HC": {
+    "name": "Andy Reid",
+    "wiki": "Andy Reid",
+    "since": 2013,
+    "career": {
+     "w": 279,
+     "l": 157,
+     "t": 1,
+     "pw": 28,
+     "pl": 17
+    },
+    "bio": "Fourteenth season in Kansas City and the league's longest-tenured coach; three Super Bowl titles with the Chiefs after fourteen years running the Eagles.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Andy_Reid_%28Kansas_City_Chiefs_at_Washington_Football_Team%2C_October_17%2C_2021%29_%28cropped%29.jpg/330px-Andy_Reid_%28Kansas_City_Chiefs_at_Washington_Football_Team%2C_October_17%2C_2021%29_%28cropped%29.jpg",
+     "license": "CC BY-SA 2.0",
+     "artist": "All-Pro Reels",
+     "page": "https://commons.wikimedia.org/wiki/File:Andy_Reid_(Kansas_City_Chiefs_at_Washington_Football_Team,_October_17,_2021)_(cropped).jpg"
+    }
+   },
+   "OC": {
+    "name": "Eric Bieniemy",
+    "wiki": "Eric Bieniemy",
+    "since": 2026,
+    "prev": "Chicago Bears running backs coach (2025)",
+    "bio": "Back for a second stint as Chiefs coordinator, the job he held for the 2019 and 2022 title seasons; Colorado's all-time leading rusher as a player.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Eric_Bieniemy_OCT2021_%28cropped%29.jpg/330px-Eric_Bieniemy_OCT2021_%28cropped%29.jpg",
+     "license": "CC BY-SA 2.0",
+     "artist": "All-Pro Reels",
+     "page": "https://commons.wikimedia.org/wiki/File:Eric_Bieniemy_OCT2021_(cropped).jpg"
+    }
+   },
+   "DC": {
+    "name": "Steve Spagnuolo",
+    "wiki": "Steve Spagnuolo",
+    "since": 2019,
+    "prev": "New York Giants defensive coordinator (2015-2017)",
+    "bio": "Eighth season with the Chiefs and the coordinator of all three of their title defenses; earlier ran the Giants' Super Bowl XLII defense and was the Rams' head coach.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/NY_Football_Giants_Training_Camp_%2828194413913%29_%28cropped%29.jpg/330px-NY_Football_Giants_Training_Camp_%2828194413913%29_%28cropped%29.jpg",
+     "license": "CC BY 2.0",
+     "artist": "Tom Hanny from Kinnelon, USA",
+     "page": "https://commons.wikimedia.org/wiki/File:NY_Football_Giants_Training_Camp_(28194413913)_(cropped).jpg"
+    }
+   }
+  },
+  "LA": {
+   "HC": {
+    "name": "Sean McVay",
+    "wiki": "Sean McVay",
+    "since": 2017,
+    "career": {
+     "w": 92,
+     "l": 57,
+     "t": 0,
+     "pw": 10,
+     "pl": 6
+    },
+    "bio": "Tenth season; the youngest head coach to win a Super Bowl (LVI) and Coach of the Year, hired at 30 after coordinating Washington's offense.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Sean_McVay_2019_%28cropped2%29.jpg/330px-Sean_McVay_2019_%28cropped2%29.jpg",
+     "license": "CC BY 2.0",
+     "artist": "The 621st Contingency Response Wing",
+     "page": "https://commons.wikimedia.org/wiki/File:Sean_McVay_2019_(cropped2).jpg"
+    }
+   },
+   "OC": {
+    "name": "Nathan Scheelhaase",
+    "wiki": "Nathan Scheelhaase",
+    "since": 2026,
+    "prev": "Rams passing game coordinator (2025)",
+    "bio": "Promoted from passing-game coordinator; a former Illinois quarterback who was Iowa State's offensive coordinator before joining the Rams.",
+    "photo": null
+   },
+   "DC": {
+    "name": "Chris Shula",
+    "wiki": "Chris Shula",
+    "since": 2024,
+    "prev": "Los Angeles Rams linebackers coach & pass rush coordinator (2023)",
+    "bio": "Third season running the Rams defense after coaching their linebackers and pass rush; grandson of Don Shula.",
+    "photo": null
+   }
+  },
+  "LAC": {
+   "HC": {
+    "name": "Jim Harbaugh",
+    "wiki": "Jim Harbaugh",
+    "since": 2024,
+    "career": {
+     "w": 66,
+     "l": 31,
+     "t": 1,
+     "pw": 5,
+     "pl": 5
+    },
+    "bio": "Third season with the Chargers; won a national title at Michigan and took the 49ers to Super Bowl XLVII, after fourteen years as an NFL quarterback.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Jim_Harbaugh_%28Michigan_Wolverines_football_coach%29_during_Sept._29%2C_2018_game_against_Northwestern_Wildcats_at_Ryan_Field_%28441201710451%29.jpg/330px-Jim_Harbaugh_%28Michigan_Wolverines_football_coach%29_during_Sept._29%2C_2018_game_against_Northwestern_Wildcats_at_Ryan_Field_%28441201710451%29.jpg",
+     "license": "CC BY 2.0",
+     "artist": "Maize & Blue Nation",
+     "page": "https://commons.wikimedia.org/wiki/File:Jim_Harbaugh_(Michigan_Wolverines_football_coach)_during_Sept._29,_2018_game_against_Northwestern_Wildcats_at_Ryan_Field_(441201710451).jpg"
+    }
+   },
+   "OC": {
+    "name": "Mike McDaniel",
+    "wiki": "Mike McDaniel",
+    "since": 2026,
+    "prev": "Miami Dolphins head coach (2022-2025)",
+    "bio": "Head coach of the Dolphins for four seasons and the 49ers' offensive coordinator before that; first season calling the Chargers offense.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Mike_McDaniel_2023.png/330px-Mike_McDaniel_2023.png",
+     "license": "CC BY 3.0",
+     "artist": "Tennessee Titans",
+     "page": "https://commons.wikimedia.org/wiki/File:Mike_McDaniel_2023.png"
+    }
+   },
+   "DC": {
+    "name": "Chris O'Leary",
+    "wiki": "Chris O'Leary (American football)",
+    "since": 2026,
+    "prev": "Western Michigan Broncos defensive coordinator & safeties coach (2025)",
+    "bio": "Thirty-four-year-old coordinator hired from Western Michigan, where he ran the defense and coached safeties in 2025; first NFL coordinator job.",
+    "photo": null
+   }
+  },
+  "LV": {
+   "HC": {
+    "name": "Klint Kubiak",
+    "wiki": "Klint Kubiak",
+    "since": 2026,
+    "career": {
+     "w": 0,
+     "l": 0,
+     "t": 0,
+     "pw": 0,
+     "pl": 0
+    },
+    "bio": "First-year head coach after coordinating Seattle's Super Bowl LX offense; earlier the Saints' and Vikings' offensive coordinator, and Gary Kubiak's son.",
+    "photo": null
+   },
+   "OC": {
+    "name": "Andrew Janocko",
+    "wiki": "Andrew Janocko",
+    "since": 2026,
+    "prev": "Seattle Seahawks quarterbacks coach (2025)",
+    "bio": "Followed Kubiak from Seattle, where he coached quarterbacks on the title team; a former Pitt quarterback.",
+    "photo": null
+   },
+   "DC": {
+    "name": "Rob Leonard",
+    "wiki": "Rob Leonard",
+    "since": 2026,
+    "prev": "Las Vegas Raiders defensive line coach & run game coordinator (2023-2025)",
+    "bio": "Promoted from the Raiders' defensive-line room, where he also coordinated the run defense for three seasons; first season as coordinator.",
+    "photo": null
+   }
+  },
+  "MIA": {
+   "HC": {
+    "name": "Jeff Hafley",
+    "wiki": "Jeff Hafley",
+    "since": 2026,
+    "career": {
+     "w": 0,
+     "l": 0,
+     "t": 0,
+     "pw": 0,
+     "pl": 0
+    },
+    "bio": "First NFL head-coaching job; ran the Packers defense the last two seasons and was Boston College's head coach from 2020 to 2023.",
+    "photo": null
+   },
+   "OC": {
+    "name": "Bobby Slowik",
+    "wiki": "Bobby Slowik",
+    "since": 2026,
+    "prev": "Dolphins senior passing game coordinator (2025)",
+    "bio": "Houston's offensive coordinator for C.J. Stroud's first two seasons, then a year on the Dolphins staff before taking over the offense.",
+    "photo": null
+   },
+   "DC": {
+    "name": "Sean Duggan",
+    "wiki": "Sean Duggan (American football)",
+    "since": 2026,
+    "prev": "Green Bay Packers linebackers coach (2025)",
+    "bio": "Thirty-three-year-old coordinator who came with Hafley from Green Bay, where he coached linebackers.",
+    "photo": null
+   }
+  },
+  "MIN": {
+   "HC": {
+    "name": "Kevin O'Connell",
+    "wiki": "Kevin O'Connell (American football)",
+    "since": 2022,
+    "career": {
+     "w": 43,
+     "l": 25,
+     "t": 0,
+     "pw": 0,
+     "pl": 2
+    },
+    "bio": "Fifth season; coordinated the Rams' Super Bowl LVI offense and was 2024 Coach of the Year after a 14-3 season with Sam Darnold.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Kevin_O%27Connell_2019_%28cropped%29.jpg/330px-Kevin_O%27Connell_2019_%28cropped%29.jpg",
+     "license": "CC BY-SA 2.0",
+     "artist": "All-Pro Reels",
+     "page": "https://commons.wikimedia.org/wiki/File:Kevin_O%27Connell_2019_(cropped).jpg"
+    }
+   },
+   "OC": {
+    "name": "Wes Phillips",
+    "wiki": "Wes Phillips",
+    "since": 2022,
+    "prev": "Los Angeles Rams tight ends coach & passing game coordinator (2019-2021)",
+    "bio": "Fifth season as O'Connell's coordinator after three years on the Rams staff; son of Wade Phillips.",
+    "photo": null
+   },
+   "DC": {
+    "name": "Brian Flores",
+    "wiki": "Brian Flores",
+    "since": 2023,
+    "prev": "Pittsburgh Steelers senior defensive assistant & linebackers coach (2022)",
+    "bio": "Fourth season running the Vikings defense; head coach of the Dolphins from 2019 to 2021 after eleven years on the Patriots staff.",
+    "photo": null
+   }
+  },
+  "NE": {
+   "HC": {
+    "name": "Mike Vrabel",
+    "wiki": "Mike Vrabel",
+    "since": 2025,
+    "career": {
+     "w": 68,
+     "l": 48,
+     "t": 0,
+     "pw": 5,
+     "pl": 4
+    },
+    "bio": "Went 14-3 in his first season back in New England, where he won three Super Bowls as a linebacker; head coach of the Titans from 2018 to 2023.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Mike_Vrabel_2023.png/330px-Mike_Vrabel_2023.png",
+     "license": "CC BY 3.0",
+     "artist": "Tennesse Titans",
+     "page": "https://commons.wikimedia.org/wiki/File:Mike_Vrabel_2023.png"
+    }
+   },
+   "OC": {
+    "name": "Josh McDaniels",
+    "wiki": "Josh McDaniels",
+    "since": 2025,
+    "prev": "Las Vegas Raiders head coach (2022-2023)",
+    "bio": "Fifteenth non-consecutive season as Patriots coordinator, with head-coaching stints in Denver and Las Vegas in between.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Josh_McDaniels_New_Hampshire_Motor_Speedway_2017.jpg/330px-Josh_McDaniels_New_Hampshire_Motor_Speedway_2017.jpg",
+     "license": "CC BY-SA 2.0",
+     "artist": "Zach Catanzareti",
+     "page": "https://commons.wikimedia.org/wiki/File:Josh_McDaniels_New_Hampshire_Motor_Speedway_2017.jpg"
+    }
+   },
+   "DC": {
+    "name": "Zak Kuhr",
+    "wiki": "Zak Kuhr",
+    "since": 2026,
+    "prev": "New England Patriots inside linebackers coach (2025)",
+    "bio": "Promoted from inside linebackers coach; a Florida graduate with college and NFL stops before New England, in his first season as a coordinator.",
+    "photo": null
+   }
+  },
+  "NO": {
+   "HC": {
+    "name": "Kellen Moore",
+    "wiki": "Kellen Moore",
+    "since": 2025,
+    "career": {
+     "w": 6,
+     "l": 11,
+     "t": 0,
+     "pw": 0,
+     "pl": 0
+    },
+    "bio": "Second season; coordinated the Eagles' Super Bowl LIX offense and the Cowboys' and Chargers' before that, after a career as a backup quarterback.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Kellen_Moore_in_2012.jpg/330px-Kellen_Moore_in_2012.jpg",
+     "license": "CC BY-SA 3.0",
+     "artist": "Kevind810",
+     "page": "https://commons.wikimedia.org/wiki/File:Kellen_Moore_in_2012.jpg"
+    }
+   },
+   "OC": {
+    "name": "Doug Nussmeier",
+    "wiki": "Doug Nussmeier",
+    "since": 2025,
+    "prev": "Philadelphia Eagles quarterbacks coach (2024)",
+    "bio": "Second season as Moore's coordinator after coaching quarterbacks for him in Philadelphia and Dallas; a former Idaho and NFL quarterback.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Doug_Nussmeier_Media_Day.jpg/330px-Doug_Nussmeier_Media_Day.jpg",
+     "license": "CC BY 2.0",
+     "artist": "BU Rob13 derivative work; original work by Brad Muckenthaler",
+     "page": "https://commons.wikimedia.org/wiki/File:Doug_Nussmeier_Media_Day.jpg"
+    }
+   },
+   "DC": {
+    "name": "Brandon Staley",
+    "wiki": "Brandon Staley",
+    "since": 2025,
+    "prev": "San Francisco 49ers assistant head coach (2024)",
+    "bio": "Second season running the Saints defense; head coach of the Chargers from 2021 to 2023 and coordinator of the Rams' top-ranked 2020 defense.",
+    "photo": null
+   }
+  },
+  "NYG": {
+   "HC": {
+    "name": "John Harbaugh",
+    "wiki": "John Harbaugh",
+    "since": 2026,
+    "career": {
+     "w": 180,
+     "l": 113,
+     "t": 0,
+     "pw": 13,
+     "pl": 11
+    },
+    "bio": "First season with the Giants after eighteen in Baltimore, where he won Super Bowl XLVII and 193 games including playoffs.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/John_Harbaugh_%2852093585046%29_%28cropped%29.jpg/330px-John_Harbaugh_%2852093585046%29_%28cropped%29.jpg",
+     "license": "CC BY 2.0",
+     "artist": "Maryland GovPics",
+     "page": "https://commons.wikimedia.org/wiki/File:John_Harbaugh_(52093585046)_(cropped).jpg"
+    }
+   },
+   "OC": {
+    "name": "Matt Nagy",
+    "wiki": "Matt Nagy",
+    "since": 2026,
+    "prev": "Kansas City Chiefs offensive coordinator (2023-2025)",
+    "bio": "Three seasons as the Chiefs' coordinator and four as Bears head coach (Coach of the Year in 2018); first season with the Giants.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Matt_Nagy-P20230605AS-1193_%28cropped%29.jpg/330px-Matt_Nagy-P20230605AS-1193_%28cropped%29.jpg",
+     "license": "Public domain",
+     "artist": "Adam Schultz",
+     "page": "https://commons.wikimedia.org/wiki/File:Matt_Nagy-P20230605AS-1193_(cropped).jpg"
+    }
+   },
+   "DC": {
+    "name": "Dennard Wilson",
+    "wiki": "Dennard Wilson",
+    "since": 2026,
+    "prev": "Tennessee Titans defensive coordinator (2024-2025)",
+    "bio": "Ran the Titans defense for two seasons; a former NFL safety and long-time secondary coach (Rams, Jets, Eagles, Ravens).",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Titans_Introduce_DC_Dennard_Wilson_%28cropped%29.png/330px-Titans_Introduce_DC_Dennard_Wilson_%28cropped%29.png",
+     "license": "CC BY 3.0",
+     "artist": "Tennessee Titans",
+     "page": "https://commons.wikimedia.org/wiki/File:Titans_Introduce_DC_Dennard_Wilson_(cropped).png"
+    }
+   }
+  },
+  "NYJ": {
+   "HC": {
+    "name": "Aaron Glenn",
+    "wiki": "Aaron Glenn",
+    "since": 2025,
+    "career": {
+     "w": 3,
+     "l": 14,
+     "t": 0,
+     "pw": 0,
+     "pl": 0
+    },
+    "bio": "Second season after a 3-14 debut; coordinated the Lions defense for four years and played fifteen NFL seasons at cornerback, eight of them for the Jets.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/2025_NYJ_HC_Aaron_Glenn.png/330px-2025_NYJ_HC_Aaron_Glenn.png",
+     "license": "CC BY 3.0",
+     "artist": "New York Jets",
+     "page": "https://commons.wikimedia.org/wiki/File:2025_NYJ_HC_Aaron_Glenn.png"
+    }
+   },
+   "OC": {
+    "name": "Frank Reich",
+    "wiki": "Frank Reich",
+    "since": 2026,
+    "prev": "Stanford interim head coach (2025)",
+    "bio": "Former Colts and Panthers head coach and the Eagles' Super Bowl LII coordinator; spent 2025 as Stanford's interim head coach.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Frank_Reich_Behind_enemy_lines_%28cropped%29.png/330px-Frank_Reich_Behind_enemy_lines_%28cropped%29.png",
+     "license": "CC BY 3.0",
+     "artist": "Tennessee Titans",
+     "page": "https://commons.wikimedia.org/wiki/File:Frank_Reich_Behind_enemy_lines_(cropped).png"
+    }
+   },
+   "DC": {
+    "name": "Brian Duker",
+    "wiki": "Brian Duker",
+    "since": 2026,
+    "prev": "Miami Dolphins secondary coach & pass game coordinator (2024-2025)",
+    "bio": "First season as a coordinator after coaching Miami's secondary; a Towson graduate who started in the Lions' quality-control ranks.",
+    "photo": null
+   }
+  },
+  "PHI": {
+   "HC": {
+    "name": "Nick Sirianni",
+    "wiki": "Nick Sirianni",
+    "since": 2021,
+    "career": {
+     "w": 59,
+     "l": 26,
+     "t": 0,
+     "pw": 6,
+     "pl": 4
+    },
+    "bio": "Sixth season; playoffs in each of his first five, two NFC titles and the Super Bowl LIX win, after coordinating the Colts offense.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Nick_Sirianni_in_2025_%28cropped%29.jpg/330px-Nick_Sirianni_in_2025_%28cropped%29.jpg",
+     "license": "Public domain",
+     "artist": "The White House",
+     "page": "https://commons.wikimedia.org/wiki/File:Nick_Sirianni_in_2025_(cropped).jpg"
+    }
+   },
+   "OC": {
+    "name": "Sean Mannion",
+    "wiki": "Sean Mannion (American football)",
+    "since": 2026,
+    "prev": "Green Bay Packers quarterbacks coach (2025)",
+    "bio": "Thirty-four-year-old former NFL backup quarterback, promoted to coordinator after one season coaching Green Bay's quarterbacks.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Sean_Mannion_%28American_football%29.JPG/330px-Sean_Mannion_%28American_football%29.JPG",
+     "license": "CC BY 4.0",
+     "artist": "Jeffrey Beall",
+     "page": "https://commons.wikimedia.org/wiki/File:Sean_Mannion_(American_football).JPG"
+    }
+   },
+   "DC": {
+    "name": "Vic Fangio",
+    "wiki": "Vic Fangio",
+    "since": 2024,
+    "prev": "Miami Dolphins defensive coordinator (2023)",
+    "bio": "Third season with the Eagles and the coordinator of their Super Bowl LIX defense; more than thirty NFL seasons including three as Broncos head coach.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Vic_Fangio_-_Philadelphia_Eagles_Visit_ANC_April_2025_%28cropped%29.jpg/330px-Vic_Fangio_-_Philadelphia_Eagles_Visit_ANC_April_2025_%28cropped%29.jpg",
+     "license": "Public domain",
+     "artist": "Arlington National Cemetery",
+     "page": "https://commons.wikimedia.org/wiki/File:Vic_Fangio_-_Philadelphia_Eagles_Visit_ANC_April_2025_(cropped).jpg"
+    }
+   }
+  },
+  "PIT": {
+   "HC": {
+    "name": "Mike McCarthy",
+    "wiki": "Mike McCarthy",
+    "since": 2026,
+    "career": {
+     "w": 174,
+     "l": 112,
+     "t": 2,
+     "pw": 11,
+     "pl": 11
+    },
+    "bio": "First season with his hometown Steelers after nineteen as a head coach in Green Bay and Dallas, including the Packers' Super Bowl XLV win.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Mike_McCarthy_%28cropped%29.jpg/330px-Mike_McCarthy_%28cropped%29.jpg",
+     "license": "CC BY-SA 4.0",
+     "artist": "Gingersnap6288",
+     "page": "https://commons.wikimedia.org/wiki/File:Mike_McCarthy_(cropped).jpg"
+    }
+   },
+   "OC": {
+    "name": "Brian Angelichio",
+    "wiki": "Brian Angelichio",
+    "since": 2026,
+    "prev": "Minnesota Vikings tight ends coach & pass game coordinator (2022-2025)",
+    "bio": "First season as a coordinator after four years coaching tight ends and the passing game in Minnesota.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Brian_Angelichio_steelers.jpg/330px-Brian_Angelichio_steelers.jpg",
+     "license": "CC0",
+     "artist": "Cramerwiki",
+     "page": "https://commons.wikimedia.org/wiki/File:Brian_Angelichio_steelers.jpg"
+    }
+   },
+   "DC": {
+    "name": "Patrick Graham",
+    "wiki": "Patrick Graham (American football)",
+    "since": 2026,
+    "prev": "Las Vegas Raiders defensive coordinator (2022-2025)",
+    "bio": "Four seasons running the Raiders defense and two the Giants'; first season in Pittsburgh.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Patrick_Graham.jpg/330px-Patrick_Graham.jpg",
+     "license": "CC0",
+     "artist": "Cramerwiki",
+     "page": "https://commons.wikimedia.org/wiki/File:Patrick_Graham.jpg"
+    }
+   }
+  },
+  "SEA": {
+   "HC": {
+    "name": "Mike Macdonald",
+    "wiki": "Mike Macdonald",
+    "since": 2024,
+    "career": {
+     "w": 24,
+     "l": 10,
+     "t": 0,
+     "pw": 3,
+     "pl": 0
+    },
+    "bio": "Third season; won Super Bowl LX in his second year after building the Ravens' top-ranked 2023 defense as coordinator.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Mike_Macdonald_2_11_2026.jpg/330px-Mike_Macdonald_2_11_2026.jpg",
+     "license": "CC BY 4.0",
+     "artist": "Washington National Guard",
+     "page": "https://commons.wikimedia.org/wiki/File:Mike_Macdonald_2_11_2026.jpg"
+    }
+   },
+   "OC": {
+    "name": "Brian Fleury",
+    "wiki": "Brian Fleury",
+    "since": 2026,
+    "prev": "San Francisco 49ers tight ends coach & run game coordinator (2022-2025)",
+    "bio": "Hired from Kyle Shanahan's staff, where he coached tight ends and the run game for four seasons; first season as a coordinator.",
+    "photo": null
+   },
+   "DC": {
+    "name": "Aden Durde",
+    "wiki": "Aden Durde",
+    "since": 2024,
+    "prev": "Dallas Cowboys defensive line coach (2021-2023)",
+    "bio": "Third season running the Seahawks defense, the league's best in 2025; a British former linebacker who coached the Cowboys' defensive line.",
+    "photo": null
+   }
+  },
+  "SF": {
+   "HC": {
+    "name": "Kyle Shanahan",
+    "wiki": "Kyle Shanahan",
+    "since": 2017,
+    "career": {
+     "w": 82,
+     "l": 67,
+     "t": 0,
+     "pw": 9,
+     "pl": 5
+    },
+    "bio": "Tenth season; four NFC title games and two Super Bowl appearances with the 49ers after coordinating Atlanta's 2016 league-best offense.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Kyle_Shanahan_%28tight_crop%29.jpg/330px-Kyle_Shanahan_%28tight_crop%29.jpg",
+     "license": "CC BY-SA 2.0",
+     "artist": "AlexanderJonesi",
+     "page": "https://commons.wikimedia.org/wiki/File:Kyle_Shanahan_(tight_crop).jpg"
+    }
+   },
+   "OC": {
+    "name": "Klay Kubiak",
+    "wiki": "Klay Kubiak",
+    "since": 2025,
+    "prev": "49ers offensive passing game specialist (2024)",
+    "bio": "Second season as coordinator on Shanahan's staff; a former Colorado State quarterback and Gary Kubiak's son.",
+    "photo": null
+   },
+   "DC": {
+    "name": "Raheem Morris",
+    "wiki": "Raheem Morris",
+    "since": 2026,
+    "prev": "Atlanta Falcons head coach (2024-2025)",
+    "bio": "Back as a coordinator after two seasons as Falcons head coach; ran the Rams' Super Bowl LVI defense and was Tampa Bay's head coach from 2009 to 2011.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/2024_Atlanta_Falcons_Raheem_Morris_OTA_Press_Conference_%28cropped%29.png/330px-2024_Atlanta_Falcons_Raheem_Morris_OTA_Press_Conference_%28cropped%29.png",
+     "license": "CC BY 3.0",
+     "artist": "Atlanta Falcons",
+     "page": "https://commons.wikimedia.org/wiki/File:2024_Atlanta_Falcons_Raheem_Morris_OTA_Press_Conference_(cropped).png"
+    }
+   }
+  },
+  "TB": {
+   "HC": {
+    "name": "Todd Bowles",
+    "wiki": "Todd Bowles",
+    "since": 2022,
+    "career": {
+     "w": 61,
+     "l": 74,
+     "t": 0,
+     "pw": 1,
+     "pl": 3
+    },
+    "bio": "Fifth season as head coach and still the Buccaneers' defensive play-caller, a role he has held since 2019; head coach of the Jets from 2015 to 2018.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Tampa_Bay_Buccaneers_HC_Todd_Bowles_with_Meredith_Marakovits_%2871Zy1MYJ2tk%29_shadows_lifted.png/330px-Tampa_Bay_Buccaneers_HC_Todd_Bowles_with_Meredith_Marakovits_%2871Zy1MYJ2tk%29_shadows_lifted.png",
+     "license": "CC BY 3.0",
+     "artist": "YESNetwork",
+     "page": "https://commons.wikimedia.org/wiki/File:Tampa_Bay_Buccaneers_HC_Todd_Bowles_with_Meredith_Marakovits_(71Zy1MYJ2tk)_shadows_lifted.png"
+    }
+   },
+   "OC": {
+    "name": "Zac Robinson",
+    "wiki": "Zac Robinson",
+    "since": 2026,
+    "prev": "Atlanta Falcons offensive coordinator (2024-2025)",
+    "bio": "Two seasons as Atlanta's coordinator after five on Sean McVay's Rams staff; a former Oklahoma State quarterback.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Zac_Robinson_in_2010.jpg/330px-Zac_Robinson_in_2010.jpg",
+     "license": "CC BY 2.0",
+     "artist": "Brian J. McDermott",
+     "page": "https://commons.wikimedia.org/wiki/File:Zac_Robinson_in_2010.jpg"
+    }
+   },
+   "DC": {
+    "name": "Todd Bowles",
+    "wiki": "Todd Bowles",
+    "since": 2019,
+    "prev": "New York Jets head coach (2015-2018)",
+    "bio": "The head coach runs the defense himself, as he has since arriving as coordinator in 2019 for the Super Bowl LV season.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Tampa_Bay_Buccaneers_HC_Todd_Bowles_with_Meredith_Marakovits_%2871Zy1MYJ2tk%29_shadows_lifted.png/330px-Tampa_Bay_Buccaneers_HC_Todd_Bowles_with_Meredith_Marakovits_%2871Zy1MYJ2tk%29_shadows_lifted.png",
+     "license": "CC BY 3.0",
+     "artist": "YESNetwork",
+     "page": "https://commons.wikimedia.org/wiki/File:Tampa_Bay_Buccaneers_HC_Todd_Bowles_with_Meredith_Marakovits_(71Zy1MYJ2tk)_shadows_lifted.png"
+    }
+   }
+  },
+  "TEN": {
+   "HC": {
+    "name": "Robert Saleh",
+    "wiki": "Robert Saleh",
+    "since": 2026,
+    "career": {
+     "w": 20,
+     "l": 36,
+     "t": 0,
+     "pw": 0,
+     "pl": 0
+    },
+    "bio": "First season in Tennessee after a year back as the 49ers' defensive coordinator; head coach of the Jets from 2021 to 2024.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/2026_Titans_HC_Interview_-_Robert_Saleh_%28cropped%29.png/330px-2026_Titans_HC_Interview_-_Robert_Saleh_%28cropped%29.png",
+     "license": "CC BY 4.0",
+     "artist": "Tennessee Titans",
+     "page": "https://commons.wikimedia.org/wiki/File:2026_Titans_HC_Interview_-_Robert_Saleh_(cropped).png"
+    }
+   },
+   "OC": {
+    "name": "Brian Daboll",
+    "wiki": "Brian Daboll",
+    "since": 2026,
+    "prev": "New York Giants head coach (2022-2025)",
+    "bio": "Giants head coach for four seasons (Coach of the Year in 2022) and the coordinator who built Buffalo's offense around Josh Allen; first season with the Titans.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/2026_Official_Titans_Podcast_-_OC_Brian_Daboll.png/330px-2026_Official_Titans_Podcast_-_OC_Brian_Daboll.png",
+     "license": "CC BY 4.0",
+     "artist": "Tennessee Titans",
+     "page": "https://commons.wikimedia.org/wiki/File:2026_Official_Titans_Podcast_-_OC_Brian_Daboll.png"
+    }
+   },
+   "DC": {
+    "name": "Gus Bradley",
+    "wiki": "Gus Bradley",
+    "since": 2026,
+    "prev": "San Francisco 49ers assistant head coach (2025)",
+    "bio": "The original architect of Seattle's Legion of Boom defense, Jaguars head coach from 2013 to 2016 and a coordinator for the Chargers and Colts since; first season in Tennessee.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/2026_Official_Titans_Podcast_-_DC_Gus_Bradley.png/330px-2026_Official_Titans_Podcast_-_DC_Gus_Bradley.png",
+     "license": "CC BY 4.0",
+     "artist": "Tennessee Titans",
+     "page": "https://commons.wikimedia.org/wiki/File:2026_Official_Titans_Podcast_-_DC_Gus_Bradley.png"
+    }
+   }
+  },
+  "WAS": {
+   "HC": {
+    "name": "Dan Quinn",
+    "wiki": "Dan Quinn (American football)",
+    "since": 2024,
+    "career": {
+     "w": 60,
+     "l": 59,
+     "t": 0,
+     "pw": 5,
+     "pl": 3
+    },
+    "bio": "Third season in Washington, which he took to the NFC title game in his first year; head coach of the Falcons from 2015 to 2020 and coordinator of Seattle's Super Bowl defenses.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Dan_Quinn_training_camp_2025.jpg/330px-Dan_Quinn_training_camp_2025.jpg",
+     "license": "CC BY-SA 4.0",
+     "artist": "All-Pro Reels",
+     "page": "https://commons.wikimedia.org/wiki/File:Dan_Quinn_training_camp_2025.jpg"
+    }
+   },
+   "OC": {
+    "name": "David Blough",
+    "wiki": "David Blough",
+    "since": 2026,
+    "prev": "Commanders assistant quarterbacks coach (2024-2025)",
+    "bio": "Thirty-one-year-old former NFL quarterback promoted after two seasons as an assistant quarterbacks coach; first season as a coordinator.",
+    "photo": {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/David_Blough_2025_%28cropped%29.jpg/330px-David_Blough_2025_%28cropped%29.jpg",
+     "license": "CC BY-SA 4.0",
+     "artist": "All-Pro Reels",
+     "page": "https://commons.wikimedia.org/wiki/File:David_Blough_2025_(cropped).jpg"
+    }
+   },
+   "DC": {
+    "name": "Daronte Jones",
+    "wiki": "Daronte Jones",
+    "since": 2026,
+    "prev": "Minnesota Vikings defensive backs coach & pass game coordinator (2022-2025)",
+    "bio": "Four seasons coaching Minnesota's secondary under Brian Flores; earlier LSU's defensive coordinator. First season running an NFL defense.",
+    "photo": null
+   }
+  }
+ }
+}
