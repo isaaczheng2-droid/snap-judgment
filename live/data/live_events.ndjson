@@ -3953,3 +3953,20 @@
 {"event_id":"ev_1789794593_5985e97d","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_02_MIN_CHI","player_id":"00-0040741","team_id":"CHI","severity":"LOW","previous_value":"OUT","new_value":"IR","detail":"Shemar Turner: OUT \u2192 IR","source":"nflverse:rosters","occurred_at":"2026-09-19T05:09:53Z","received_at":"2026-09-19T05:09:53Z","processed":false,"prediction_recalculated":false,"impact_tier":"LOW","impact_reasons":["DL baseline low","depth 4"],"player_name":"Shemar Turner","system_received_at":"2026-09-19T05:09:54Z"}
 {"event_id":"ev_1789794593_4ea76d65","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_02_LV_LAC","player_id":"00-0041387","team_id":"LAC","severity":"LOW","previous_value":"OUT","new_value":"IR","detail":"Isaiah World: OUT \u2192 IR","source":"nflverse:rosters","occurred_at":"2026-09-19T05:09:53Z","received_at":"2026-09-19T05:09:53Z","processed":false,"prediction_recalculated":false,"impact_tier":"LOW","impact_reasons":["OL baseline moderate","depth 5"],"player_name":"Isaiah World","system_received_at":"2026-09-19T05:09:54Z"}
 {"event_id":"ev_1789794594_18c6510f","event_type":"WEATHER_CHANGE_EVENT","game_id":"2026_02_IND_KC","player_id":null,"team_id":null,"severity":"MEDIUM","previous_value":"LOW","new_value":"NONE","detail":"Weather impact LOW \u2192 NONE (improving)","source":"openmeteo","occurred_at":"2026-09-19T05:09:54Z","received_at":"2026-09-19T05:09:54Z","processed":false,"prediction_recalculated":false,"field":"impact","system_received_at":"2026-09-19T05:09:54Z"}
+{"event_id":"ev_1789794593_afcc830f","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-19T05:18:28Z"}
+{"event_id":"ev_1789794593_34127694","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-19T05:18:28Z"}
+{"event_id":"ev_1789794593_76647625","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-19T05:18:28Z"}
+{"event_id":"ev_1789794593_b17f5a5f","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-19T05:18:28Z"}
+{"event_id":"ev_1789794593_9abc1021","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-19T05:18:28Z"}
+{"event_id":"ev_1789794593_37e222e2","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-19T05:18:28Z"}
+{"event_id":"ev_1789794593_ab8e7340","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-19T05:18:28Z"}
+{"event_id":"ev_1789794593_5985e97d","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-19T05:18:28Z"}
+{"event_id":"ev_1789794593_5f36c2e1","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-19T05:18:28Z"}
+{"event_id":"ev_1789794593_a984673c","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-19T05:18:28Z"}
+{"event_id":"ev_1789794593_63fa7f87","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-19T05:18:28Z"}
+{"event_id":"ev_1789794593_4ea76d65","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-19T05:18:28Z"}
+{"event_id":"ev_1789794593_d1ed7173","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-19T05:18:28Z"}
+{"event_id":"ev_1789794593_c6b72547","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-19T05:18:28Z"}
+{"event_id":"ev_1789794594_18c6510f","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-19T05:18:28Z"}
+{"event_id":"ev_1789794593_53221d5c","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-19T05:18:28Z"}
+{"event_id":"ev_1789794593_2a5242b3","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-19T05:18:28Z"}
