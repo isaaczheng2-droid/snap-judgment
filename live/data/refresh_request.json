@@ -1,0 +1,16 @@
+{
+ "reasons": [
+  "Box scores updated: player results and the paper test can be graded",
+  "Ashton Jeanty: ACTIVE \u2192 UNKNOWN (Ankle)",
+  "Christian McCaffrey: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_02_LV_LAC",
+  "2026_02_MIA_SF"
+ ],
+ "event_ids": [
+  "ev_1789914130_e0f63b55",
+  "ev_1789914130_2bcb4fef"
+ ],
+ "requested_at": "2026-09-20T14:22:21Z"
+}
