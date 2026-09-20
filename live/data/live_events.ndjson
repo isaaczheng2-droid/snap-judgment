@@ -4381,3 +4381,18 @@
 {"event_id":"ev_1789863988_996b1dfd","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_02_LV_LAC","player_id":"00-0041387","team_id":"LAC","severity":"LOW","previous_value":"OUT","new_value":"IR","detail":"Isaiah World: OUT \u2192 IR","source":"nflverse:rosters","occurred_at":"2026-09-20T00:26:28Z","received_at":"2026-09-20T00:26:28Z","processed":false,"prediction_recalculated":false,"impact_tier":"LOW","impact_reasons":["OL baseline moderate","depth 5"],"player_name":"Isaiah World","system_received_at":"2026-09-20T00:26:44Z"}
 {"event_id":"ev_1789863991_ff364497","event_type":"WEATHER_CHANGE_EVENT","game_id":"2026_02_NO_BAL","player_id":null,"team_id":null,"severity":"MEDIUM","previous_value":"NONE","new_value":"LOW","detail":"Weather impact NONE \u2192 LOW (worsening)","source":"openmeteo","occurred_at":"2026-09-20T00:26:31Z","received_at":"2026-09-20T00:26:31Z","processed":false,"prediction_recalculated":false,"field":"impact","system_received_at":"2026-09-20T00:26:44Z"}
 {"event_id":"ev_1789864004_01eef440","event_type":"WEATHER_CHANGE_EVENT","game_id":"2026_02_IND_KC","player_id":null,"team_id":null,"severity":"MEDIUM","previous_value":"LOW","new_value":"NONE","detail":"Weather impact LOW \u2192 NONE (improving)","source":"openmeteo","occurred_at":"2026-09-20T00:26:44Z","received_at":"2026-09-20T00:26:44Z","processed":false,"prediction_recalculated":false,"field":"impact","system_received_at":"2026-09-20T00:26:44Z"}
+{"event_id":"ev_1789863991_ff364497","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-20T00:32:14Z"}
+{"event_id":"ev_1789863988_f9b3e8de","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-20T00:32:14Z"}
+{"event_id":"ev_1789863988_f503a564","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-20T00:32:14Z"}
+{"event_id":"ev_1789863988_73a534b7","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-20T00:32:14Z"}
+{"event_id":"ev_1789863988_13461cf6","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-20T00:32:14Z"}
+{"event_id":"ev_1789863988_5d88dd4c","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-20T00:32:14Z"}
+{"event_id":"ev_1789863988_15649e77","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-20T00:32:14Z"}
+{"event_id":"ev_1789863988_d46eec0e","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-20T00:32:14Z"}
+{"event_id":"ev_1789863988_0ebd0323","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-20T00:32:14Z"}
+{"event_id":"ev_1789863988_102cbe11","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-20T00:32:14Z"}
+{"event_id":"ev_1789863988_94f3aae7","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-20T00:32:14Z"}
+{"event_id":"ev_1789863988_996b1dfd","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-20T00:32:14Z"}
+{"event_id":"ev_1789863988_261e1c78","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-20T00:32:14Z"}
+{"event_id":"ev_1789863988_ae9a02e1","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-20T00:32:14Z"}
+{"event_id":"ev_1789864004_01eef440","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-20T00:32:14Z"}
