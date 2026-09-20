@@ -126,11 +126,12 @@ def load_json_any(name, datadir="data", require=None):
     return None
 
 
-def upset_call(p_model, p_market, p_blend, home, away, table):
+def upset_call(p_model, p_market, p_home, home, away, table):
     """
     The model's own number favours the market underdog. Returns the call with the backtest
-    record for that band of model confidence (from regen_upsets.py), or None. The published
-    pick is the market blend, so `published` says whether the headline number flipped too.
+    record for that band of model confidence (from regen_upsets.py), or None. Since the
+    model-only cutover the published pick IS the model, so every call is also the headline
+    pick; `published` is kept for the page and is always true here.
     """
     if p_market is None or pd.isna(p_market) or not table:
         return None
@@ -138,13 +139,13 @@ def upset_call(p_model, p_market, p_blend, home, away, table):
     dog, fav = (away, home) if mkt_home_fav else (home, away)
     pm = 1 - float(p_model) if mkt_home_fav else float(p_model)
     pk = 1 - float(p_market) if mkt_home_fav else float(p_market)
-    pb = 1 - float(p_blend) if mkt_home_fav else float(p_blend)
+    pb = 1 - float(p_home) if mkt_home_fav else float(p_home)
     if pm <= 0.5:
         return None
     band = next((b for b in table.get("by_model_band", []) if b["lo"] <= pm < b["hi"]), None)
     fband = next((b for b in table.get("by_favorite", []) if b["lo"] <= 1 - pk < b["hi"]), None)
     keep = ("n", "dog_won", "ci95", "market_said", "fair_roi")
-    return {"team": dog, "favorite": fav, "p_model": round(pm, 4), "p_market": round(pk, 4), "p_blend": round(pb, 4),
+    return {"team": dog, "favorite": fav, "p_model": round(pm, 4), "p_market": round(pk, 4), "p_home": round(pb, 4),
             "published": pb > 0.5,
             "band": band["band"] if band else None, "record": {k: band[k] for k in keep if band and k in band} if band else None,
             "favorite_band": fband["band"] if fband else None,
@@ -689,9 +690,23 @@ def context_features(sched, pw, inj, snap, rost, depth, cur):
         prev["season"] = prev.season.astype("int64") + 1
 
         i = inj[(inj.game_type == "REG") & (inj.report_status == "Out")][
-            ["season", "week", "team", "gsis_id", "position", "full_name"]].dropna(
-            subset=["gsis_id"]).copy()
+            ["season", "week", "team", "gsis_id", "position", "full_name"]].copy()
         i[["season", "week"]] = i[["season", "week"]].astype("int64")
+        # Affiliation check: an injury row only counts against a team if that player is on
+        # that team's roster for that season (stable gsis_id, not name). Rows that fail are
+        # quarantined and reported on the game's quality flags rather than silently used or
+        # silently dropped. Rows with no id cannot be matched and are quarantined too.
+        rs = rost.dropna(subset=["gsis_id"])[["season", "team", "gsis_id"]].drop_duplicates()
+        rs["season"] = rs.season.astype("int64")
+        rs["on_roster"] = 1
+        i = i.merge(rs, on=["season", "team", "gsis_id"], how="left")
+        bad = i[i.on_roster.isna() | i.gsis_id.isna()]
+        quarantine = {}
+        for r in bad.itertuples():
+            quarantine.setdefault((int(r.season), int(r.week), r.team), []).append(
+                {"name": r.full_name, "position": r.position, "gsis_id": r.gsis_id,
+                 "reason": "no player id" if pd.isna(r.gsis_id) else "not on that team's roster this season"})
+        i = i[i.on_roster.notna() & i.gsis_id.notna()].drop(columns="on_roster")
         i = i.sort_values("week")
         # a player who is Out has no snap row that week, so reach back to his last appearance
         i = pd.merge_asof(i, usage, on="week", by=["gsis_id", "season"], direction="backward")
@@ -753,6 +768,7 @@ def context_features(sched, pw, inj, snap, rost, depth, cur):
                                          "home_out_off", "away_out_off",
                                          "home_out_def", "away_out_def"]]
     ctx_out.attrs["inj_detail"] = inj_detail
+    ctx_out.attrs["inj_quarantine"] = quarantine if (len(snap) and len(inj)) else {}
     return ctx_out
 
 
@@ -776,6 +792,9 @@ def build_games(sched, ratings, ctx):
                                 - (df.away_rating_g_off_rush_epa_pp - df.home_rating_g_def_rush_epa_pp_allowed))
     df["points_diff_rating"] = ((df.home_rating_points_scored - df.home_rating_points_allowed)
                                 - (df.away_rating_points_scored - df.away_rating_points_allowed))
+    # combined scoring rate of the two teams: the one extra input the total-points model uses
+    df["points_sum_rating"] = ((df.home_rating_points_scored + df.home_rating_points_allowed)
+                               + (df.away_rating_points_scored + df.away_rating_points_allowed)) / 2
     df["rest_diff"] = df.home_rest - df.away_rest
     df["div_game"] = df.div_game.fillna(0)
 
@@ -796,17 +815,28 @@ XGB_PARAMS = dict(max_depth=3, n_estimators=150, learning_rate=0.05, subsample=0
 # ten seconds. Every published figure is the ensemble, so nothing here depends on a lucky draw.
 N_SEEDS = 8
 
-# How much of the published number is the model, and how much is the closing line.
-# The old value was 0.4 and had never been checked. Swept over the whole 2019-2025 audit:
-# straight-up pick rate peaks at 0.20 (67.12% against 66.90% at 0.40), and Brier and log
-# loss both improve as well (0.2124 -> 0.2107, 0.6133 -> 0.6091). Fitting the weight
-# walk-forward, so it never saw the season it was scoring, chose 0.15 in each of the last
-# three seasons, which is the same region.
-#
-# Said plainly, because it is the most honest number on the site: log loss alone is
-# minimised at w = 0.05, i.e. very nearly "ignore the model". The model buys about half a
-# point of pick rate over the bare market and buys nothing at all in probability quality.
-BLEND_W = 0.20
+# ---- Standalone model (cutover 2026-09-20) ----
+# Until 2026-09-20 the published probability was 0.20 * model + 0.80 * closing market line
+# ("blend_20_80_v1"). That number was better calibrated and picked winners slightly more
+# often than the model alone (67.1% vs 64.4% on 2019-2025), but it was not a prediction of
+# ours: the market did most of the work. From this version the published number IS the
+# model, the market appears only in clearly separate comparison panels and the evaluation,
+# and the historical record keeps every old forecast under its original method label.
+# LEGACY_BLEND_W exists only so old tracker rows can be labelled and audited; it is not used
+# by any prediction path (test_integrity.py checks that).
+LEGACY_BLEND_W = 0.20
+METHOD = "model_only_v2"
+LEGACY_METHOD = "blend_20_80_v1"
+SCHEMA_VERSION = "forecast.v2"
+CALIBRATION_VERSION = "none"      # raw ensemble probability; calibration is measured, not fitted
+# Tie convention: p_home is the probability the home team wins outright. A tie (about 0.2%
+# of games) counts as "home did not win" in training, so p_home + p_away = 1 by construction
+# and neither side is conditioned on a decisive result. The score summary is the EXPECTED
+# (mean) score under the model, not the most likely one, so a team can lead the expected
+# score while the other has the higher win probability only when the two regressions
+# disagree; the forecast record carries both and says which is which.
+TIE_CONVENTION = "tie counts as a home non-win; p_home + p_away = 1"
+SCORE_KIND = "expected (mean) score; margin_home = home minus away"
 
 
 def _fit_ensemble(X, y_cls, y_reg):
@@ -827,6 +857,15 @@ def _ens_predict(pairs, X):
     return p, m
 
 
+TOTAL_FEATS_EXTRA = ["points_sum_rating"]
+TOTAL_FEATS = FEATS + TOTAL_FEATS_EXTRA
+
+
+def _fit_total(X, y):
+    import xgboost as xgb
+    return [xgb.XGBRegressor(**XGB_PARAMS, random_state=sd).fit(X, y) for sd in range(N_SEEDS)]
+
+
 def fit_predict(df, cur, target_week):
     import xgboost as xgb
     tr = df[(df.season < cur) | ((df.season == cur) & df.home_win.notna())]
@@ -835,17 +874,21 @@ def fit_predict(df, cur, target_week):
 
     pairs = _fit_ensemble(tr[FEATS], tr.home_win, tr.home_margin)
     clf, reg = pairs[0]                      # kept only for the SHAP call below
+    # Total points: its own regressor on the same market-free features plus the two teams'
+    # combined scoring rate. The old code split the MARKET total by the model margin, which
+    # made every "predicted score" a market number in disguise.
+    tr = tr.assign(total_points=tr.home_score + tr.away_score)
+    tot_pairs = _fit_total(tr[TOTAL_FEATS], tr.total_points)
 
     up = df[(df.season == cur) & (df.week == target_week)].dropna(subset=FEATS).copy()
     up["p_model"], _margin_ens = _ens_predict(pairs, up[FEATS])
-    up["p_market"] = up.market_home_wp
-    up["p_blend"] = np.where(up.p_market.notna(),
-                             BLEND_W * up.p_model + (1 - BLEND_W) * up.p_market, up.p_model)
-    up["margin_pred"] = _margin_ens
-    tot = up.total_line.fillna(45.0)
-    up["predicted_home_score"] = (tot + up.margin_pred) / 2
-    up["predicted_away_score"] = (tot - up.margin_pred) / 2
-    up["predicted_winner"] = np.where(up.p_blend > 0.5, up.home_team, up.away_team)
+    up["p_home"] = up["p_model"]                     # the published number is the model
+    up["p_market"] = up.market_home_wp               # comparison only, never an input
+    up["margin_pred"] = _margin_ens                  # home minus away, expected margin
+    up["total_pred"] = np.mean([r.predict(up[TOTAL_FEATS]) for r in tot_pairs], axis=0)
+    up["predicted_home_score"] = (up.total_pred + up.margin_pred) / 2
+    up["predicted_away_score"] = (up.total_pred - up.margin_pred) / 2
+    up["predicted_winner"] = np.where(up.p_home > 0.5, up.home_team, up.away_team)
 
     # Exact tree SHAP: each column is one feature's signed contribution to this game's
     # log-odds, last column the bias. This is the model's own arithmetic, so the "why"
@@ -863,10 +906,7 @@ def fit_predict(df, cur, target_week):
     healthy = up[FEATS].copy()
     healthy[["inj_off_diff", "inj_def_diff"]] = 0.0
     up["p_model_healthy"], up["margin_healthy"] = _ens_predict(pairs, healthy)
-    # the published number blends with the market, so the shift a reader sees must too
-    up["p_blend_healthy"] = np.where(up.p_market.notna(),
-                                     BLEND_W * up.p_model_healthy + (1 - BLEND_W) * up.p_market,
-                                     up.p_model_healthy)
+    up["p_home_healthy"] = up["p_model_healthy"]     # same model, both teams healthy
 
     imp = pd.Series(np.mean([c.feature_importances_ for c, _ in pairs], axis=0),
                     index=FEATS).sort_values(ascending=False)
@@ -1157,8 +1197,12 @@ def injury_status(inj, cur, target_week, espn=None):
             level, label = "rest", "Rested"
         elif pw in ("did not practice", "limited in practice"):
             level, label = "limited", ("Did not practice" if pw == "did not practice" else "Limited")
+        elif pw == "full practice":
+            continue                       # full practice, no game status: nothing to report
         else:
-            continue                       # full practice, no game status — nothing to report
+            # On the report with neither a game status nor a practice entry: that is an
+            # unknown, shown as one. It is never read as healthy, and it never counts as out.
+            level, label = "unknown", "Status unknown"
 
         bits = []
         if harm:
@@ -1280,6 +1324,86 @@ def team_records(sched, cur):
 
 
 # --------------------------------------------------------------------------- main
+# --------------------------------------------------------------------------- forecast record
+def feature_version():
+    """A hash of the feature list and model settings: changes when the pipeline's inputs change."""
+    import hashlib
+    blob = json.dumps({"feats": list(FEATS), "total_feats": list(TOTAL_FEATS), "params": XGB_PARAMS,
+                       "n_seeds": N_SEEDS, "pos_weight": POS_WEIGHT, "first_season": FIRST_SEASON}, sort_keys=True)
+    return "f_" + hashlib.sha256(blob.encode()).hexdigest()[:10]
+
+
+def data_source_stamps(datadir, cur):
+    """(data_cutoff, stamps) - the newest modification time among the inputs the model read, and
+    each source's own timestamp. Never fetches; only looks at what is on disk."""
+    stamps = {}
+    latest = None
+    for name, path in [("schedule", f"{datadir}/games.csv"),
+                       ("team_stats", f"{datadir}/stats_team/stats_team_week_{cur}.parquet"),
+                       ("player_stats", f"{datadir}/stats_player/stats_player_week_{cur}.parquet"),
+                       ("injuries", f"{datadir}/injuries/injuries_{cur}.parquet"),
+                       ("snap_counts", f"{datadir}/snap_counts/snap_counts_{cur}.parquet"),
+                       ("rosters", f"{datadir}/rosters/roster_{cur}.parquet"),
+                       ("depth_charts", f"{datadir}/depth/depth_charts_{cur}.parquet")]:
+        try:
+            t = datetime.fromtimestamp(os.path.getmtime(path), tz=timezone.utc)
+            stamps[name] = t.strftime("%Y-%m-%dT%H:%M:%SZ")
+            latest = t if latest is None or t > latest else latest
+        except OSError:
+            stamps[name] = None
+    return (latest.strftime("%Y-%m-%dT%H:%M:%SZ") if latest else None), stamps
+
+
+def forecast_record(r, cur, week, forecast_at, data_cutoff, model_version_id, stamps, quality):
+    """
+    The one authoritative record for a game at this forecast cutoff. Every number the page
+    shows for the game is derived from this record; nothing is recomputed elsewhere.
+    Orientation is explicit: every quantity is from the HOME side unless named otherwise.
+    """
+    p_home = float(r.p_home)
+    margin = float(r.margin_pred)
+    total = float(r.total_pred)
+    return {
+        "schema_version": SCHEMA_VERSION,
+        "method": METHOD,
+        "forecast_id": f"{r.game_id}:{forecast_at}:{model_version_id}",
+        "game_id": str(r.game_id), "season": int(cur), "week": int(week),
+        "home_team": str(r.home_team), "away_team": str(r.away_team),
+        "forecast_at": forecast_at,
+        "data_cutoff": data_cutoff,
+        "source_timestamps": stamps,
+        "model_version": model_version_id,
+        "feature_version": feature_version(),
+        "calibration_version": CALIBRATION_VERSION,
+        # probabilities: home side; away = 1 - home under TIE_CONVENTION
+        "p_home": round(p_home, 6), "p_away": round(1 - p_home, 6),
+        "tie_convention": TIE_CONVENTION,
+        # scores: expected values; margin_home = expected home score minus expected away score
+        "score_kind": SCORE_KIND,
+        "expected_home_score": round((total + margin) / 2, 4),
+        "expected_away_score": round((total - margin) / 2, 4),
+        "expected_total": round(total, 4),
+        "margin_home": round(margin, 4),
+        # a margin edge against the sportsbook handicap is a COMPARISON, computed from the same
+        # unrounded margin; spread_line follows nflverse (positive = home favoured)
+        "market": {
+            "kind": "closing line from nflverse schedule (later information than a pregame decision)",
+            "spread_line_home": None if pd.isna(r.spread_line) else float(r.spread_line),
+            "total_line": None if pd.isna(r.total_line) else float(r.total_line),
+            "p_home_novig": None if pd.isna(r.p_market) else round(float(r.p_market), 6),
+            "devig": "moneyline implied probabilities normalised to sum to one",
+            "margin_edge_home": None if pd.isna(r.spread_line) else round(margin - float(r.spread_line), 4),
+            "used_in_model": False,
+        },
+        "uncertainty": {
+            "margin_mae_backtest": BACKTEST_FALLBACK["margin_mae"],
+            "note": "walk-forward 2019-2025 mean absolute margin error; per-game intervals are not fitted",
+        },
+        "counterfactual_healthy": {"p_home": round(float(r.p_home_healthy), 6), "margin_home": round(float(r.margin_healthy), 4)},
+        "quality": quality,
+    }
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--outdir", default=".")
@@ -1328,6 +1452,22 @@ def main():
     df = add_adjusted_cols(df, team_adjusted(team, sched, cur, target_week))
     df = add_elo_cols(df)
     up, imp, live, contribs = fit_predict(df, cur, target_week)
+    forecast_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    data_cutoff, source_stamps = data_source_stamps(a.datadir, cur)
+    model_version_id = live_versions.model_version(XGB_PARAMS, FEATS, None, N_SEEDS, f"{cur}-w{target_week}")
+    inj_quarantine = ctx.attrs.get("inj_quarantine", {})
+
+    def quality_for(r):
+        flags = []
+        if pd.isna(r.p_market):
+            flags.append("no market line on file (comparison unavailable)")
+        for side in ("home", "away"):
+            q = inj_quarantine.get((int(cur), int(target_week), r[f"{side}_team"]))
+            if q:
+                flags.append(f"{len(q)} injury row(s) for {r[f'{side}_team']} not matched to that week's roster; excluded from the injury features")
+        return {"status": "ok" if not flags else "caveats", "flags": flags,
+                "features_complete": bool(all(pd.notna(r[f]) for f in FEATS))}
+
     inj_map, inj_teams, inj_week = injury_status(inj, cur, target_week, espn=espn)
     since_kick = injuries_since_kickoff(sched, espn, cur, target_week)
     if since_kick:
@@ -1422,10 +1562,13 @@ def main():
             "spread_line": None if pd.isna(r.spread_line) else float(r.spread_line),
             "total_line": None if pd.isna(r.total_line) else float(r.total_line),
             "p_model": float(r.p_model), "p_market": None if pd.isna(r.p_market) else float(r.p_market),
-            "p_blend": float(r.p_blend), "margin_pred": float(r.margin_pred),
+            "p_home": float(r.p_home), "margin_pred": float(r.margin_pred),
+            "total_pred": float(r.total_pred),
             "predicted_winner": r.predicted_winner,
             "predicted_home_score": float(r.predicted_home_score),
             "predicted_away_score": float(r.predicted_away_score),
+            "forecast": forecast_record(r, cur, target_week, forecast_at, data_cutoff, model_version_id,
+                                        source_stamps, quality_for(r)),
             "home_qb": r.get("home_qb_disp"), "away_qb": r.get("away_qb_disp"),
             "wind": wind, "temp": temp, "indoor": indoor,
             "roof": None if pd.isna(r.get("roof")) else str(r.get("roof")),
@@ -1433,7 +1576,7 @@ def main():
             "stadium": None if pd.isna(r.get("stadium")) else str(r.get("stadium")),
             "home_out": int(r.get("home_n_out", 0)), "away_out": int(r.get("away_n_out", 0)),
             "props": props_by_game.get(f"{r.away_team}@{r.home_team}", []),
-            "upset": upset_call(r.p_model, r.p_market, r.p_blend, r.home_team, r.away_team, upsets),
+            "upset": upset_call(r.p_model, r.p_market, r.p_home, r.home_team, r.away_team, upsets),
             "injuries": {
                 "week": inj_week,
                 "since": since_kick.get(r.game_id, []),
@@ -1441,9 +1584,10 @@ def main():
                 "away": [p for p in inj_teams.get(r.away_team, []) if p["level"] != "rest"][:8],
                 # exact counterfactual: this model, same fit, both teams healthy
                 "impact": {
-                    "p_now": round(float(r.p_blend), 4),
-                    "p_healthy": round(float(r.p_blend_healthy), 4),
-                    "shift": round(float(r.p_blend - r.p_blend_healthy), 4),
+                    "method": "controlled recomputation: the same fitted model with both injury features set to zero",
+                    "p_now": round(float(r.p_home), 4),
+                    "p_healthy": round(float(r.p_home_healthy), 4),
+                    "shift": round(float(r.p_home - r.p_home_healthy), 4),
                     "margin_shift": round(float(r.margin_pred - r.margin_healthy), 2),
                     "drivers": {
                         "home": inj_drivers.get((cur, target_week, r.home_team), []),
@@ -1485,7 +1629,7 @@ def main():
             if f"sch_{m}" in row:
                 row[m] = row.pop(f"sch_{m}")
 
-    locked = tracker.lock_week(hist, up, players, scheme_rows, cur, target_week)
+    locked = tracker.lock_week(hist, up, players, scheme_rows, cur, target_week, method=METHOD, model_version=model_version_id)
     graded = tracker.grade(hist, sched, plyr, sf_per_game(team, sched))
     tracker.prune_players(hist, cur)
     tracker.save(hist, hist_path)
@@ -1519,16 +1663,21 @@ def main():
     # records what it produced. See live/README.md.
     try:
         lstate = live_store.hydrate(live_store.load_state(), cur, target_week, [g["game_id"] for g in games_out])
-        mv = live_versions.model_version(XGB_PARAMS, FEATS, BLEND_W, N_SEEDS, f"{cur}-w{target_week}")
+        mv = model_version_id
         req_path = os.path.join(live_store.ROOT, "refresh_request.json")
-        reason = "Scheduled refresh: upstream data changed"
+        # What triggered this rebuild is recorded separately from why any one game moved.
+        # The old code wrote the trigger (often injuries on OTHER teams) as the reason on
+        # every game whose number changed; that is how Zay Flowers, Ashton Jeanty and
+        # Christian McCaffrey were cited as the cause of a JAX-DEN move on 2026-09-19.
+        trigger = "scheduled rebuild: upstream data changed"
         if os.path.exists(req_path):
             try:
-                reason = "Live refresh: " + "; ".join(json.load(open(req_path)).get("reasons", [])[:3])
+                trigger = "live rebuild requested: " + "; ".join(json.load(open(req_path)).get("reasons", [])[:3])
             except Exception:
                 pass
         live_versions.record(payload, mv, data_version=payload["generated"], injury_snapshot_id=lstate.get("snapshot_id"),
-                             weather_snapshot_id=(lstate.get("last_sync") or {}).get("weather"), default_reason=reason, log=log)
+                             weather_snapshot_id=(lstate.get("last_sync") or {}).get("weather"),
+                             default_reason="Inputs refreshed; no event recorded for this game", trigger=trigger, log=log)
         if os.path.exists(req_path):
             os.remove(req_path)
         for g in games_out:                      # after recording, so the page sees the new version
@@ -1591,6 +1740,11 @@ def main():
             log("  health: " + " | ".join(f"[{x['severity']}] {x['text']}" for x in payload["health"]["alerts"][:4]))
     except Exception as e:
         log(f"  learning hooks skipped: {e}")
+
+    # ---- standalone model vs market evaluation (evaluate_standalone.py); shown as-is, never retyped
+    payload["standalone_eval"] = load_json_any("standalone_eval.json", a.datadir, require="verdict")
+    payload["method"] = {"published": METHOD, "legacy": LEGACY_METHOD, "cutover": "2026-09-20",
+                         "tie_convention": TIE_CONVENTION, "score_kind": SCORE_KIND, "schema_version": SCHEMA_VERSION}
 
     # ---- scheme & coaching context (shown, never modelled; see audit/nfl-coaching-scheme-test.md)
     try:

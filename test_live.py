@@ -217,12 +217,12 @@ def main():
     check("events persisted and readable newest-first", len(events.read_events()) == len(ev) + len(wev) and not events.read_events()[0]["processed"])
 
     print("\nVERSIONS")
-    payload = {"season": 2026, "week": 1, "games": [{"game_id": "G1", "home_team": "MIA", "away_team": "KC", "p_blend": 0.572, "p_model": 0.6, "p_market": 0.56, "margin_pred": 2.1, "predicted_home_score": 24.0, "predicted_away_score": 22.0}],
+    payload = {"season": 2026, "week": 1, "games": [{"game_id": "G1", "home_team": "MIA", "away_team": "KC", "p_home": 0.6, "p_model": 0.6, "p_market": 0.56, "margin_pred": 2.1, "predicted_home_score": 24.0, "predicted_away_score": 22.0}],
                "players": [{"player_key": "00-0001", "team": "MIA", "receiving_yards": 61.0}]}
     mv = versions.model_version({"max_depth": 3}, ["a", "b"], 0.2, 8, "2026-w1")
     v1, c1 = versions.record(payload, mv, "2026-09-12 10:00 UTC", log=lambda *a: None)
     check("first version is recorded as Initial prediction", len(v1) == 1 and v1[0]["reason"] == "Initial prediction" and c1 == [])
-    payload2 = json.loads(json.dumps(payload)); payload2["games"][0]["p_blend"] = 0.489; payload2["games"][0]["margin_pred"] = -1.4; payload2["players"][0]["receiving_yards"] = 40.0
+    payload2 = json.loads(json.dumps(payload)); payload2["games"][0]["p_home"] = 0.517; payload2["games"][0]["p_model"] = 0.517; payload2["games"][0]["margin_pred"] = -1.4; payload2["players"][0]["receiving_yards"] = 40.0
     # a new event arrives after the initial version: it must become the next version's reason
     later, _ = events.player_changes({"00-0009": {"normalized_status": "QUESTIONABLE"}}, {"00-0009": cur["00-0009"]}, {"00-0009": {"depth_order": 1, "is_starting_qb": True}})
     events.record(later)

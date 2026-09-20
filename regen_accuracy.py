@@ -97,7 +97,7 @@ def main():
     wk = te.week.values
 
     n = len(y)
-    blend = np.where(~np.isnan(mk), rp.BLEND_W * p + (1 - rp.BLEND_W) * mk, p)
+    blend = np.where(~np.isnan(mk), rp.LEGACY_BLEND_W * p + (1 - rp.LEGACY_BLEND_W) * mk, p)
     hit = (p > 0.5).astype(int) == y
     bhit = (blend > 0.5).astype(int) == y
     mhit = (mk > 0.5).astype(int) == y
@@ -295,7 +295,7 @@ def main():
         # against the matching outcomes rather than against all of them
         "brier_market": round(float(np.mean((mk[~np.isnan(mk)] - y[~np.isnan(mk)]) ** 2)), 4),
         "note": "opponent-adjusted ratings + QB + injuries + scheme + Elo",
-        "blend_w": rp.BLEND_W,
+        "blend_w": rp.LEGACY_BLEND_W,
         "generated": pd.Timestamp.utcnow().strftime("%Y-%m-%d %H:%M UTC"),
     }
     json.dump(bt, open("data/backtest.json", "w"), indent=1)

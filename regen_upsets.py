@@ -70,7 +70,7 @@ def main():
     tests = list(range(2019, int(cur)))
 
     p, m, y, mk, sp, am, sn, te = walk(d, SHIPPED, tests, keep=True)
-    blend = np.where(~np.isnan(mk), rp.BLEND_W * p + (1 - rp.BLEND_W) * mk, p)
+    blend = np.where(~np.isnan(mk), rp.LEGACY_BLEND_W * p + (1 - rp.LEGACY_BLEND_W) * mk, p)
     oof = pd.DataFrame({"game_id": te.game_id.values, "season": sn, "week": te.week.values,
                         "home_team": te.home_team.values, "away_team": te.away_team.values,
                         "p_model": p, "p_market": mk, "p_blend": blend, "margin_pred": m,

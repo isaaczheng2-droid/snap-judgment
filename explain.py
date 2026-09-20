@@ -160,7 +160,7 @@ def game_reasons(up, contribs, feats, top_n=5):
                 "detail": detail_for(fname, r, H, A),
             })
 
-        p = float(r.p_blend)
+        p = float(r.p_home)
         fav = H if p >= 0.5 else A
         dog = A if p >= 0.5 else H
         fp = max(p, 1 - p)

@@ -39,6 +39,10 @@ def load(path):
             if h.get("version") == VERSION:
                 for k in ("games", "players", "schemes", "rollups"):
                     h.setdefault(k, {})
+                # Rows locked before the model-only cutover carry no method; they were the
+                # 20/80 blend and are labelled as such, never rewritten.
+                for g in h["games"].values():
+                    g.setdefault("method", "blend_20_80_v1")
                 return h
         except Exception:
             pass
@@ -50,7 +54,7 @@ def save(h, path):
 
 
 # --------------------------------------------------------------------------- locking
-def lock_week(h, up, players, scheme, cur, week, source="live"):
+def lock_week(h, up, players, scheme, cur, week, source="live", method="model_only_v2", model_version=None):
     """Record this week's predictions, once. Existing keys are never overwritten."""
     ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
     n_new = 0
@@ -61,7 +65,8 @@ def lock_week(h, up, players, scheme, cur, week, source="live"):
             continue
         h["games"][gid] = {
             "s": int(cur), "w": int(week), "a": r.away_team, "hm": r.home_team,
-            "p": round(float(r.p_blend), 4), "pm": round(float(r.p_model), 4),
+            "p": round(float(r.p_home), 4), "pm": round(float(r.p_model), 4),
+            "method": method, "mv": model_version,
             "pk": None if pd.isna(r.p_market) else round(float(r.p_market), 4),
             "mg": round(float(r.margin_pred), 2),
             "sp": None if pd.isna(r.spread_line) else float(r.spread_line),
@@ -381,10 +386,21 @@ def summarize(h, cur, row_cap=400):
             "w": g["w"], "a": g["a"], "h": g["hm"], "pick": g["pick"],
             "p": g["p"], "mg": g["mg"], "sp": g.get("sp"), "at": g.get("at"),
         } for g in sorted(pend, key=lambda g: (g["w"], g["a"]))[:64]]
+        # the standalone model's own record, from the model probability stored on every row
+        # whichever method was published at the time
+        pm_ok = [((g["pm"] > 0.5) == (g["act"]["win"] == g["hm"])) for g in gs if g.get("pm") is not None and g["act"]["ok"] is not None]
+        methods = {}
+        for g in gs + pend:
+            methods[g.get("method", "blend_20_80_v1")] = methods.get(g.get("method", "blend_20_80_v1"), 0) + 1
         by_season[str(s)] = {
             "games": {
                 "n": len(gs), "pending": len(pend),
                 "su": _mean(ok), "right": int(sum(ok)), "wrong": len(ok) - int(sum(ok)),
+                "model_su": _mean(pm_ok), "model_n": len(pm_ok),
+                "model_brier": _mean([(g["pm"] - (1.0 if g["act"]["win"] == g["hm"] else 0.0)) ** 2
+                                      for g in gs if g.get("pm") is not None and g["act"]["ok"] is not None]),
+                "market_brier": _mean([(g["pk"] - (1.0 if g["act"]["win"] == g["hm"] else 0.0)) ** 2 for g in mk]),
+                "methods": methods,
                 "market_su": _mean(mk_ok), "market_n": len(mk_ok),
                 "ats": _mean(ats), "ats_n": len(ats),
                 "mae": _mean(err),
@@ -397,7 +413,7 @@ def summarize(h, cur, row_cap=400):
                     "p": g["p"], "mg": g["mg"], "sp": g.get("sp"),
                     "as": g["act"]["as"], "hs": g["act"]["hs"],
                     "ok": g["act"]["ok"], "ats": g["act"]["ats"], "err": g["act"]["err"],
-                    "src": g.get("src", "live"),
+                    "src": g.get("src", "live"), "pm": g.get("pm"), "pk": g.get("pk"), "method": g.get("method", "blend_20_80_v1"),
                 } for g in rows],
             }
         }
