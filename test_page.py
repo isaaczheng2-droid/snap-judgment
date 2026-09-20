@@ -101,7 +101,8 @@ async def main():
         md_font = await pg.evaluate("getComputedStyle(document.querySelector('.facts .fact .v')).fontSize")
         check(float(mk_font[:-2]) < float(md_font[:-2]), f"market number is visually secondary ({mk_font} vs {md_font})")
         jd = [g for g in payload["games"] if g["game_id"] == "2026_02_JAX_DEN"][0]
-        check("JAX by 2.4" in facts and "toward JAX" in facts and jd["forecast"]["margin_home"] < 0 and jd["forecast"]["market"]["margin_edge_home"] < 0,
+        jm = jd["forecast"]["margin_home"]
+        check(f"JAX by {abs(jm):.1f}" in facts and "toward JAX" in facts and jm < 0 and jd["forecast"]["market"]["margin_edge_home"] < 0,
               "JAX-DEN reproduction: margin and edge both point to JAX in words, and both are negative on the home side in the record")
 
         # 4: mascot

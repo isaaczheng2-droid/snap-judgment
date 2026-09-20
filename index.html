@@ -65,6 +65,7 @@
     --display: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
     --body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, "Roboto Mono", monospace;
+    --board-accent: #d9a441;
     --radius: 6px;
     --radius-lg: 10px;
   }
@@ -88,6 +89,8 @@
       --link: #7fcbc2;
       --amber: #e0a63d;
       --amber-soft: #3d2f12;
+    --board-accent: #8a5a00;
+      --board-accent: #8a5a00;
       --pos: #62b587;
       --pos-soft: #17301f;
       --neg: #e57a66;
@@ -125,6 +128,7 @@
     --link: #7fcbc2;
     --amber: #e0a63d;
     --amber-soft: #3d2f12;
+    --board-accent: #8a5a00;
     --pos: #62b587;
     --pos-soft: #17301f;
     --neg: #e57a66;
@@ -1396,7 +1400,7 @@
   .mprob .pv { font-family: var(--display); font-size: 62px; font-weight: 800; line-height: .95; letter-spacing: 0; color: var(--on-ink); }
   .mprob .pv.lose { color: color-mix(in srgb, var(--on-ink) 55%, transparent); }
   .mprob .pt { color: var(--on-ink); opacity: .8; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.08em; font-size: 11px; }
-  .mprob .mid .score { font-family: var(--display); font-size: 30px; font-weight: 700; color: var(--amber); }
+  .mprob .mid .score { font-family: var(--display); font-size: 30px; font-weight: 700; color: var(--board-accent); }
   .mprob .mid .sk { color: var(--on-ink); opacity: .75; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.08em; font-size: 10.5px; }
   .mhero .split2 { margin: 0; height: 10px; border-top: 1px solid var(--ink); }
   @media (max-width: 620px) { .mprob .pv { font-size: 44px; } .mprob .mid .score { font-size: 22px; } .mprob { padding: 14px 14px 10px; gap: 8px; } }
