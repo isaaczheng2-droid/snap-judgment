@@ -55,7 +55,7 @@ def _reason(game_events, default):
     return "; ".join(e.get("detail") or e.get("event_type") for e in src[:3]), [e["event_id"] for e in src]
 
 
-def record(payload, mv, data_version, injury_snapshot_id=None, weather_snapshot_id=None, default_reason="Scheduled refresh: upstream data changed", log=print):
+def record(payload, mv, data_version, injury_snapshot_id=None, weather_snapshot_id=None, default_reason="Inputs refreshed; no event recorded for this game", trigger=None, log=print):
     prev = latest_by_game()
     pending = events.unprocessed()
     by_game = {}
@@ -73,8 +73,10 @@ def record(payload, mv, data_version, injury_snapshot_id=None, weather_snapshot_
     new_rows, changes, processed = [], [], []
     for g in payload.get("games") or []:
         gid = g["game_id"]
-        cur = {"p_home": g.get("p_blend"), "p_model": g.get("p_model"), "p_market": g.get("p_market"),
+        fc = g.get("forecast") or {}
+        cur = {"p_home": g.get("p_home"), "p_model": g.get("p_model"), "p_market": g.get("p_market"),
                "margin": g.get("margin_pred"), "home_score": g.get("predicted_home_score"), "away_score": g.get("predicted_away_score"),
+               "forecast_id": fc.get("forecast_id"), "method": fc.get("method"), "data_cutoff": fc.get("data_cutoff"),
                "players": _players_for(payload, g)}
         old = prev.get(gid)
         diffs = []
@@ -97,12 +99,23 @@ def record(payload, mv, data_version, injury_snapshot_id=None, weather_snapshot_
             reason, eids = _reason(ge, default_reason)
         else:
             reason, eids = "Initial prediction", [e["event_id"] for e in ge]
+        # what kind of change this is, from the record itself rather than from the trigger:
+        # a new model version is a model release; otherwise the inputs moved. The market is
+        # tracked alongside but never moves p_home (it is not an input), so a market-only
+        # change produces no new version at all.
+        if old and old.get("model_version") and old.get("model_version") != mv:
+            source = "model release"
+        elif old and old.get("method") and cur.get("method") and old.get("method") != cur.get("method"):
+            source = "method change"
+        else:
+            source = "inputs"
         vid = store.new_id("pv")
         row = {"version_id": vid, "game_id": gid, "season": payload.get("season"), "week": payload.get("week"),
                "created_at": store.now_iso(), "model_version": mv, "data_version": data_version,
                "injury_snapshot_id": injury_snapshot_id, "weather_snapshot_id": weather_snapshot_id,
                "previous_version_id": old.get("version_id") if old else None,
-               "reason": reason, "event_ids": eids,
+               "reason": reason, "event_ids": eids, "source": source,
+               "trigger": trigger, "trigger_is_cause": False,
                "change": {"p_home": round(cur["p_home"] - old["p_home"], 4) if old and old.get("p_home") is not None and cur["p_home"] is not None else None,
                           "margin": round(cur["margin"] - old["margin"], 2) if old and old.get("margin") is not None and cur["margin"] is not None else None,
                           "n_fields": len(diffs)},
