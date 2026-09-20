@@ -1,0 +1,19 @@
+{
+ "reasons": [
+  "Box scores updated: player results and the paper test can be graded",
+  "Bo Melton: ACTIVE \u2192 QUESTIONABLE (Neck)",
+  "Ashton Jeanty: ACTIVE \u2192 UNKNOWN (Ankle)",
+  "Christian McCaffrey: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_02_GB_NYJ",
+  "2026_02_LV_LAC",
+  "2026_02_MIA_SF"
+ ],
+ "event_ids": [
+  "ev_1789939851_9b62db05",
+  "ev_1789939851_9ade0f09",
+  "ev_1789939851_9648f930"
+ ],
+ "requested_at": "2026-09-20T21:31:11Z"
+}
