@@ -1,0 +1,50 @@
+{
+ "reasons": [
+  "Montorie Foster Jr.: no report \u2192 INACTIVE",
+  "Mike Morris: ACTIVE \u2192 INACTIVE",
+  "Connor O'Toole: no report \u2192 INACTIVE",
+  "Ricky Barber: ACTIVE \u2192 INACTIVE",
+  "Luke McCaffrey: ACTIVE \u2192 INACTIVE",
+  "Athan Kaliakmanis: ACTIVE \u2192 INACTIVE",
+  "Tanoa Togiai: ACTIVE \u2192 INACTIVE",
+  "Isaac Yiadom: no report \u2192 INACTIVE",
+  "Jalen Huskey: ACTIVE \u2192 INACTIVE",
+  "Daniel Faalele: ACTIVE \u2192 INACTIVE",
+  "Quinn Ewers: ACTIVE \u2192 INACTIVE",
+  "Tanner Koziol: ACTIVE \u2192 INACTIVE"
+ ],
+ "game_ids": [
+  "2026_02_JAX_DEN",
+  "2026_02_LV_LAC",
+  "2026_02_MIA_SF",
+  "2026_02_SEA_ARI",
+  "2026_02_WAS_DAL"
+ ],
+ "event_ids": [
+  "ev_1789931146_2bb6694b",
+  "ev_1789931146_b9ccf35f",
+  "ev_1789931146_deb72d07",
+  "ev_1789931146_71320d86",
+  "ev_1789931146_51cc3918",
+  "ev_1789931146_83bb7fa5",
+  "ev_1789931146_72da6d3b",
+  "ev_1789931146_aa679066",
+  "ev_1789931146_a1c8dbdf",
+  "ev_1789931146_7039a8f6",
+  "ev_1789931146_7c4fb5ae",
+  "ev_1789931146_0ae7f329",
+  "ev_1789931146_ee3288a4",
+  "ev_1789931146_8d728b6a",
+  "ev_1789931146_07abc9a6",
+  "ev_1789931146_8f885bd7",
+  "ev_1789931146_b93ff3ee",
+  "ev_1789931146_12a88516",
+  "ev_1789931146_69b53e70",
+  "ev_1789931146_38df38c8",
+  "ev_1789931146_f5e084a7",
+  "ev_1789931146_b44fc84d",
+  "ev_1789931146_58744327",
+  "ev_1789931146_e15928a7"
+ ],
+ "requested_at": "2026-09-20T19:06:03Z"
+}
