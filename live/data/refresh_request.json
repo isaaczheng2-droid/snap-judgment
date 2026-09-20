@@ -1,0 +1,34 @@
+{
+ "reasons": [
+  "Jadarian Price: ACTIVE \u2192 QUESTIONABLE (Chest)",
+  "Riley Leonard: ACTIVE \u2192 INACTIVE",
+  "Dalton Tucker: ACTIVE \u2192 INACTIVE",
+  "George Gumbs Jr.: ACTIVE \u2192 INACTIVE",
+  "Austin Ajiake: ACTIVE \u2192 INACTIVE (Hamstring)",
+  "Mike Evans: ACTIVE \u2192 QUESTIONABLE (Hip)",
+  "Jayden Daniels: QUESTIONABLE \u2192 OUT (Elbow)",
+  "Ashton Jeanty: ACTIVE \u2192 UNKNOWN (Ankle)",
+  "Malik Willis: ACTIVE \u2192 UNKNOWN (Toe)",
+  "Christian McCaffrey: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_02_IND_KC",
+  "2026_02_LV_LAC",
+  "2026_02_MIA_SF",
+  "2026_02_SEA_ARI",
+  "2026_02_WAS_DAL"
+ ],
+ "event_ids": [
+  "ev_1789947066_e20eba91",
+  "ev_1789947066_981ba4d1",
+  "ev_1789947066_124d0f2b",
+  "ev_1789947066_d3141407",
+  "ev_1789947066_ee906f74",
+  "ev_1789947066_79d98ace",
+  "ev_1789947066_d8c66f85",
+  "ev_1789947066_4add47af",
+  "ev_1789947066_ea1c541b",
+  "ev_1789947066_391468fd"
+ ],
+ "requested_at": "2026-09-20T23:31:13Z"
+}
