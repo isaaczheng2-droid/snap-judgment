@@ -159,9 +159,33 @@ def repair_phantom_dnp(h, plyr):
     return n
 
 
+def backfill_model_verdict(h):
+    """
+    Add the standalone model's verdict to rows graded before that column existed.
+
+    A graded row is never revisited, which is the point -- but `okm` is not a regrade. It
+    reads the same stored `pm` (the model's own locked probability, written at lock) against
+    the same stored result, so it can only ever produce the answer that was already implied.
+    Nothing published is altered: `ok`, `pick` and `p` are untouched.
+    """
+    n = 0
+    for g in h.get("games", {}).values():
+        a = g.get("act")
+        if not a or "okm" in a or g.get("pm") is None:
+            continue
+        mpick = g["hm"] if g["pm"] >= 0.5 else g["a"]
+        a["mpick"] = mpick
+        a["okm"] = None if a.get("win") == "TIE" else bool(a.get("win") == mpick)
+        n += 1
+    return n
+
+
 def grade(h, sched, plyr, per_game_scheme):
     """Fill in actuals for anything locked whose game has since finished."""
     repair_phantom_dnp(h, plyr)
+    nb = backfill_model_verdict(h)
+    if nb:
+        print(f"  backfilled the standalone model's verdict on {nb} already-graded row(s)")
     done = sched[sched.home_score.notna()].set_index("game_id")
     graded = 0
 
@@ -177,9 +201,17 @@ def grade(h, sched, plyr, per_game_scheme):
         if g.get("sp") is not None and margin != g["sp"]:
             covered_home = margin > g["sp"]
             ats = bool((g["mg"] > g["sp"]) == covered_home)
+        # Two verdicts, because for rows locked before the 2026-09-20 cutover there were two
+        # numbers: `pick` is what the site published at the time (a 20/80 market blend on the
+        # old rows), and `pm` is what the standalone model said in the same run. The site
+        # publishes the model now, so it grades the model -- and keeps the old verdict rather
+        # than pretending the blend was never published.
+        mpick = None if g.get("pm") is None else (g["hm"] if g["pm"] >= 0.5 else g["a"])
         g["act"] = {
             "hs": hs, "as": as_, "mg": margin, "win": winner,
             "ok": None if winner == "TIE" else bool(winner == g["pick"]),
+            "okm": None if winner == "TIE" or mpick is None else bool(winner == mpick),
+            "mpick": mpick,
             "ats": ats, "err": round(abs(g["mg"] - margin), 2),
             "tot": None if g.get("tot") is None else bool((hs + as_) > g["tot"]),
         }
@@ -417,7 +449,8 @@ def summarize(h, cur, row_cap=400):
                     "w": g["w"], "a": g["a"], "h": g["hm"], "pick": g["pick"],
                     "p": g["p"], "mg": g["mg"], "sp": g.get("sp"),
                     "as": g["act"]["as"], "hs": g["act"]["hs"],
-                    "ok": g["act"]["ok"], "ats": g["act"]["ats"], "err": g["act"]["err"],
+                    "ok": g["act"]["ok"], "okm": g["act"].get("okm"), "mpick": g["act"].get("mpick"),
+                    "ats": g["act"]["ats"], "err": g["act"]["err"],
                     "src": g.get("src", "live"), "pm": g.get("pm"), "pk": g.get("pk"), "method": g.get("method", "blend_20_80_v1"),
                 } for g in rows],
             }

@@ -83,16 +83,17 @@ def main():
             if (g["predicted_winner"] == g["home_team"]) != (f["p_home"] > 0.5): bad.append((g["game_id"], "winner"))
             if "p_blend" in g: bad.append((g["game_id"], "p_blend present"))
             if f["schema_version"] != rp.SCHEMA_VERSION: bad.append((g["game_id"], "schema"))
+            # the standalone model is the headline whether the game is locked or live
+            if abs(g["p_model"] - f["p_home"]) > 1e-4: bad.append((g["game_id"], "p_model"))
+            if f["method"] != rp.METHOD: bad.append((g["game_id"], "method"))
             if live_fc:
-                # a forecast still being refreshed is the standalone model, start to finish
-                if abs(g["p_model"] - f["p_home"]) > 1e-4: bad.append((g["game_id"], "p_model"))
                 if abs(g["injuries"]["impact"]["p_now"] - f["p_home"]) > 1e-4: bad.append((g["game_id"], "impact"))
-                if f["method"] != rp.METHOD: bad.append((g["game_id"], "method"))
             else:
-                # a locked one is whatever was published at the time, and carries no re-run
+                # a locked one carries no re-run, and names any number published in its place
                 if g["injuries"]["impact"] is not None: bad.append((g["game_id"], "impact on a locked game"))
-                if f["method"] not in (rp.METHOD, rp.LEGACY_METHOD): bad.append((g["game_id"], "method"))
                 if f["forecast_at"] != lc.get("locked_at"): bad.append((g["game_id"], "locked_at"))
+                if lc.get("published_p_home_at_lock") is not None and lc.get("published_method") != rp.LEGACY_METHOD:
+                    bad.append((g["game_id"], "published method not named"))
         check(not bad, f"payload: {len(payload['games'])} games, every displayed number matches its forecast record ({bad[:3]})")
         opens = [g["forecast"]["forecast_at"] for g in payload["games"] if (g["forecast"].get("lifecycle") or {}).get("state") != "locked"]
         check(len(set(opens)) <= 1,
@@ -106,9 +107,12 @@ def main():
             if not r:
                 continue
             shown = g["home_team"] if g["p_home"] >= 0.5 else g["away_team"]
-            if shown != r["pick"] or abs(g["p_home"] - r["p"]) > 5e-4:
-                clash.append((g["game_id"], shown, r["pick"], g["p_home"], r["p"]))
-        check(not clash, f"every graded game shows the same pick and probability the tracker graded ({clash[:3]})")
+            winner = r["h"] if r["hs"] > r["as"] else r["a"]
+            if shown != (r.get("mpick") or r["pick"]) or abs(g["p_home"] - (r["pm"] if r.get("pm") is not None else r["p"])) > 5e-4:
+                clash.append((g["game_id"], shown, r.get("mpick"), g["p_home"], r.get("pm")))
+            if r.get("okm") is not None and r["okm"] != (shown == winner):
+                clash.append((g["game_id"], "verdict grades a different pick than the page shows"))
+        check(not clash, f"every graded game shows the standalone model's locked pick, and its verdict grades that same pick ({clash[:3]})")
     else:
         check(False, "a payload with forecast records is on disk (run the pipeline first)")
 
@@ -224,21 +228,26 @@ def main():
     frozen = rp.freeze_settled(up2, h3, sched, 2026, 2, now="2026-09-21T03:00:00Z", log=lambda *a: None)
     done = up2[up2.game_id == "G_DONE"].iloc[0]
     open_ = up2[up2.game_id == "G_OPEN"].iloc[0]
-    check(done.p_home == 0.5586 and done.p_model == 0.5047 and done.predicted_winner == "HOU" and done.margin_pred == 2.48,
-          "a kicked-off game is restored to the probability, model number, pick and margin locked before kickoff")
+    check(done.p_home == 0.5047 and done.p_model == 0.5047 and done.predicted_winner == "HOU" and done.margin_pred == 2.48,
+          "a kicked-off game is restored to the STANDALONE MODEL's own locked probability, pick and margin, not the retired blend")
     check(open_.p_home == 0.7100 and open_.predicted_winner == "LA",
           "a game that has not kicked off is left on the live forecast")
     rec = rp.forecast_record(done, 2026, 2, "2026-09-21T03:00:00Z", "2026-09-21T02:00:00Z", "m_new", {}, {"status": "locked", "flags": [], "features_complete": True}, frozen["G_DONE"])
-    check(rec["method"] == "blend_20_80_v1" and rec["model_version"] == "m_old" and rec["forecast_at"] == "2026-09-15T05:33Z",
-          "the record of a locked game names the method, model and time it was actually published under")
-    check(rec["lifecycle"]["state"] == "locked" and rec["lifecycle"]["standalone_p_home_at_lock"] == 0.5047
+    check(rec["method"] == rp.METHOD and rec["model_version"] == "m_old" and rec["forecast_at"] == "2026-09-15T05:33Z",
+          "the record of a locked game carries the model version and time it was locked, under the published method")
+    check(rec["lifecycle"]["state"] == "locked" and rec["lifecycle"]["published_p_home_at_lock"] == 0.5586
+          and rec["lifecycle"]["published_method"] == rp.LEGACY_METHOD and rec["lifecycle"]["published_pick"] == "HOU"
           and rec["counterfactual_healthy"] is None,
-          "a locked record states its lifecycle, keeps the standalone number from lock, and carries no re-run counterfactual")
+          "a locked record states its lifecycle, keeps the number published in its place under its own label, and carries no re-run counterfactual")
     check(rp.forecast_record(open_, 2026, 2, "2026-09-21T03:00:00Z", "2026-09-21T02:00:00Z", "m_new", {}, {"status": "ok", "flags": [], "features_complete": True}, frozen.get("G_OPEN"))["lifecycle"]["state"] == "open",
           "an unstarted game is recorded as open")
     # the displayed pick and the graded pick are now the same object
     pick_shown = done.home_team if done.p_home >= 0.5 else done.away_team
-    check(pick_shown == h3["games"]["G_DONE"]["pick"], "the team the page shows as the pick is the team the tracker grades")
+    h4 = {"games": {"G_DONE": dict(h3["games"]["G_DONE"], act={"win": "CIN", "hs": 6.0, "as": 20.0})}}
+    tracker.backfill_model_verdict(h4)
+    a4 = h4["games"]["G_DONE"]["act"]
+    check(a4["mpick"] == pick_shown and a4["okm"] is False and a4.get("ok") is None,
+          "the standalone model's verdict is backfilled onto an already-graded row, grading the pick the page shows and leaving the published one untouched")
     # and the version store records nothing more for it
     payload_frozen = {"season": 2026, "week": 2, "games": [{"game_id": "G_DONE", "home_team": "HOU", "away_team": "CIN",
         "p_home": 0.5586, "p_model": 0.5047, "p_market": 0.5721, "margin_pred": 2.48,

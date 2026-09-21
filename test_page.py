@@ -10,8 +10,8 @@ Page checks, run headless against site/index.html:
   6. keyboard: Tab reaches the nav and the first game link; focus is visible; skip nothing
   7. no market blend in the page code; reduced-motion rules exist; every image has alt text
   8. contrast of ink on ivory and the accent on ivory clears WCAG AA
-  9. a game that has kicked off shows the pick the tracker graded, and the verdict on the
-     card agrees with that pick against the final score (the 2026-09-20 CIN/LV/PIT fault)
+  9. a game that has kicked off shows the standalone model's own locked pick, and the verdict
+     on the card grades THAT pick against the final score (the 2026-09-20 CIN/LV/PIT fault)
 """
 import asyncio, json, math, re, sys
 from playwright.async_api import async_playwright
@@ -121,11 +121,23 @@ async def main():
             verdict_hit = "hit" in row.lower()
             home_won = r["hs"] > r["as"]
             winner = g["home_team"] if home_won else g["away_team"]
-            # what the card claims, read back off the card itself
-            if shown != r["pick"]: clash.append((g["game_id"], "shown", shown, "graded", r["pick"]))
+            # the page headlines the standalone model, so that is the pick it must grade
+            if shown != (r.get("mpick") or r["pick"]): clash.append((g["game_id"], "shown", shown, "graded", r.get("mpick")))
             if f"{shown} " not in row.upper(): clash.append((g["game_id"], "row does not name the shown pick"))
             if verdict_hit != (shown == winner): clash.append((g["game_id"], "verdict", row.replace("\n", " ")[:70]))
-        check(not clash, f"every settled game shows the graded pick and a verdict that matches it against the final score ({clash[:3]})")
+        check(not clash, f"every settled game shows the standalone model's locked pick and a verdict matching it against the final score ({clash[:3]})")
+        # the game the user caught: the model said LV, LV won, and the page must say so while
+        # still naming the blend that was published that day
+        lv = next((g for g in payload["games"] if g["game_id"].endswith("LV_LAC")), None)
+        if lv:
+            r = graded.get(("LV", "LAC"))
+            await pg.goto(URL + f"#/games/{lv['game_id']}"); await pg.wait_for_timeout(200)
+            body = await pg.inner_text("#matchView")
+            lc = lv["forecast"].get("lifecycle") or {}
+            check(lv["p_home"] < 0.5 and r and r.get("okm") is True and "MODEL PICK CORRECT" in body.upper(),
+                  "LV-LAC reproduction: the model picked LV, LV won, and the card marks the model pick correct")
+            check(lc.get("published_pick") == "LAC" and "LAC" in body and "published" in body.lower(),
+                  "the retired blend that was published that day is still named on the page, not erased")
         cin = next((g for g in payload["games"] if g["game_id"].endswith("CIN_HOU")), None)
         if cin:
             await pg.goto(URL + f"#/games/{cin['game_id']}"); await pg.wait_for_timeout(200)

@@ -1366,12 +1366,23 @@ def freeze_settled(up, hist, sched, cur, week, now=None, log=print):
     2026-09-20 that published "CIN 54%" on a card whose verdict graded a HOU pick as a miss,
     and the same for LV at LAC and PIT at NE.
 
-    For every game whose kickoff has passed, the locked row in history.json -- the row that
-    IS graded -- is therefore written back over the re-run, along with the method it was made
-    under, so the published number, the pick and the verdict are one number again. Expected
-    scores come from the locked row when it carries them, otherwise from the last prediction
-    version recorded at or before kickoff; rows predating both keep the re-run score and say
-    so. Nothing here overwrites a stored value: it restores one.
+    For every game whose kickoff has passed, the locked row in history.json is therefore
+    written back over the re-run. Two numbers were locked in that row: `p`, what the site
+    published at the time, and `pm`, what the standalone model said in the same pre-kickoff
+    run. Since the 2026-09-20 cutover the site publishes the model, so the model's own locked
+    number is what goes back -- not the retired 20/80 blend that `p` holds on older rows. It
+    is a genuine pre-kickoff forecast either way; `pm` is simply the one made by the method
+    this site now stands behind, and it is the one the verdict grades (`act.okm`). The blend
+    is kept in the record and named on the page, because it WAS published and pretending
+    otherwise would be rewriting history.
+
+    That also makes the card coherent: `mg` was always the model's margin, never blended, so
+    pairing it with the blend could put a 67% favourite next to an expected margin of 0.4
+    points, which is how LV at LAC read.
+
+    Expected scores come from the locked row when it carries them, otherwise from the last
+    prediction version recorded at or before kickoff; rows predating both keep the re-run
+    score and say so. Nothing here overwrites a stored value: it restores one.
     """
     now = now or datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     try:
@@ -1416,18 +1427,25 @@ def freeze_settled(up, hist, sched, cur, week, now=None, log=print):
         if total is None:
             total, src = float(r.total_pred), "expected total was not recorded before kickoff; taken from a later run"
         hs, as_ = (total + mg) / 2, (total - mg) / 2
-        up.at[i, "p_home"] = float(row["p"])
-        if row.get("pm") is not None:
-            up.at[i, "p_model"] = float(row["pm"])
+        # the headline is the standalone model's locked number; the blend only survives as a
+        # labelled record of what was published at the time
+        p_pub = float(row["p"])
+        p_model = float(row["pm"]) if row.get("pm") is not None else p_pub
+        up.at[i, "p_home"] = p_model
+        up.at[i, "p_model"] = p_model
         up.at[i, "p_market"] = np.nan if row.get("pk") is None else float(row["pk"])
         up.at[i, "margin_pred"] = mg
         up.at[i, "predicted_home_score"] = float(hs)
         up.at[i, "predicted_away_score"] = float(as_)
         up.at[i, "total_pred"] = float(total)
-        up.at[i, "predicted_winner"] = row.get("pick") or (r.home_team if row["p"] > 0.5 else r.away_team)
+        up.at[i, "predicted_winner"] = r.home_team if p_model >= 0.5 else r.away_team
+        pub_method = row.get("method", LEGACY_METHOD)
         out[gid] = {"kickoff": k, "locked": True, "locked_at": row.get("at"),
-                    "method": row.get("method", LEGACY_METHOD), "model_version": row.get("mv"),
-                    "p_model_at_lock": row.get("pm"), "score_source": src}
+                    "method": METHOD, "model_version": row.get("mv"), "score_source": src,
+                    # what the site actually showed at the time, kept and named
+                    "published_p_home_at_lock": None if abs(p_pub - p_model) < 1e-9 else round(p_pub, 4),
+                    "published_method": None if abs(p_pub - p_model) < 1e-9 else pub_method,
+                    "published_pick": row.get("pick")}
         restored += 1
     if restored or unlocked:
         log(f"  frozen: {restored} game(s) restored to the forecast locked before kickoff"
@@ -1452,7 +1470,7 @@ def forecast_record(r, cur, week, forecast_at, data_cutoff, model_version_id, st
     f = frozen or {}
     method, mv = METHOD, model_version_id
     if f.get("locked"):
-        method = f.get("method") or LEGACY_METHOD
+        method = f.get("method") or METHOD
         mv = f.get("model_version") or model_version_id
         forecast_at = f.get("locked_at") or forecast_at
         data_cutoff = f.get("locked_at") or data_cutoff
@@ -1496,9 +1514,11 @@ def forecast_record(r, cur, week, forecast_at, data_cutoff, model_version_id, st
             {"p_home": round(float(r.p_home_healthy), 6), "margin_home": round(float(r.margin_healthy), 4)},
         # a kicked-off game states what it is: the forecast as locked, not a re-run
         "lifecycle": ({"state": "locked", "kickoff": f.get("kickoff"), "locked_at": f.get("locked_at"),
-                       "standalone_p_home_at_lock": f.get("p_model_at_lock"),
+                       "published_p_home_at_lock": f.get("published_p_home_at_lock"),
+                       "published_method": f.get("published_method"),
+                       "published_pick": f.get("published_pick"),
                        "expected_score_source": f.get("score_source"),
-                       "note": "locked before kickoff and not re-run; this is the forecast that is graded"}
+                       "note": "the standalone model's own forecast, locked before kickoff and not re-run; this is what the verdict grades"}
                       if f.get("locked") else
                       {"state": "kicked_off_unlocked", "kickoff": f.get("kickoff"),
                        "note": "this game had kicked off before any forecast was locked for it; the numbers shown are a later run and are not graded"}
@@ -1569,7 +1589,9 @@ def main():
         flags = []
         fz = frozen.get(str(r.game_id)) or {}
         if fz.get("locked"):
-            flags.append(f"locked before kickoff under {fz.get('method') or LEGACY_METHOD}; not re-run since")
+            flags.append("locked before kickoff; not re-run since"
+                         + (f" (the site published a {fz['published_method']} number that day)"
+                            if fz.get("published_method") else ""))
         elif fz:
             flags.append("kicked off with no locked forecast; these numbers are a later run and are not graded")
         if pd.isna(r.p_market):
