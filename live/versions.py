@@ -74,6 +74,13 @@ def record(payload, mv, data_version, injury_snapshot_id=None, weather_snapshot_
     for g in payload.get("games") or []:
         gid = g["game_id"]
         fc = g.get("forecast") or {}
+        # A game that has kicked off is not forecast any more. run_pipeline.freeze_settled
+        # puts its published numbers back to the row that was locked before kickoff, so the
+        # only "change" left to record here would be that restoration -- which is not a new
+        # prediction and must not appear in the version history as one.
+        if (fc.get("lifecycle") or {}).get("state") == "locked" or g.get("settled"):
+            processed += [(e["event_id"], False) for e in by_game.get(gid, [])]
+            continue
         cur = {"p_home": g.get("p_home"), "p_model": g.get("p_model"), "p_market": g.get("p_market"),
                "margin": g.get("margin_pred"), "home_score": g.get("predicted_home_score"), "away_score": g.get("predicted_away_score"),
                "forecast_id": fc.get("forecast_id"), "method": fc.get("method"), "data_cutoff": fc.get("data_cutoff"),
