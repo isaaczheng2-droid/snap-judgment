@@ -69,6 +69,11 @@ def lock_week(h, up, players, scheme, cur, week, source="live", method="model_on
             "method": method, "mv": model_version,
             "pk": None if pd.isna(r.p_market) else round(float(r.p_market), 4),
             "mg": round(float(r.margin_pred), 2),
+            # the expected score as published, so a finished game can show the forecast it
+            # was graded on without re-running the model (see run_pipeline.freeze_settled)
+            **({"ehs": round(float(r.predicted_home_score), 4),
+                "eas": round(float(r.predicted_away_score), 4)}
+               if r.get("predicted_home_score") is not None and not pd.isna(r.get("predicted_home_score")) else {}),
             "sp": None if pd.isna(r.spread_line) else float(r.spread_line),
             "tot": None if pd.isna(r.total_line) else float(r.total_line),
             "pick": r.predicted_winner, "src": source, "at": ts,

@@ -71,18 +71,44 @@ def main():
             payload = json.load(open(path)); break
     if payload and payload.get("games") and payload["games"][0].get("forecast"):
         bad = []
+        locked_n = 0
         for g in payload["games"]:
             f = g["forecast"]
-            if abs(g["p_home"] - f["p_home"]) > 1e-4 or abs(g["p_model"] - f["p_home"]) > 1e-4: bad.append((g["game_id"], "p"))
+            lc = f.get("lifecycle") or {}
+            live_fc = lc.get("state") != "locked"
+            locked_n += not live_fc
+            if abs(g["p_home"] - f["p_home"]) > 1e-4: bad.append((g["game_id"], "p"))
             if abs(g["predicted_home_score"] - f["expected_home_score"]) > 1e-3 or abs(g["predicted_away_score"] - f["expected_away_score"]) > 1e-3: bad.append((g["game_id"], "score"))
             if abs(g["margin_pred"] - f["margin_home"]) > 1e-3: bad.append((g["game_id"], "margin"))
             if (g["predicted_winner"] == g["home_team"]) != (f["p_home"] > 0.5): bad.append((g["game_id"], "winner"))
-            if abs(g["injuries"]["impact"]["p_now"] - f["p_home"]) > 1e-4: bad.append((g["game_id"], "impact"))
             if "p_blend" in g: bad.append((g["game_id"], "p_blend present"))
-            if f["method"] != rp.METHOD or f["schema_version"] != rp.SCHEMA_VERSION: bad.append((g["game_id"], "method"))
+            if f["schema_version"] != rp.SCHEMA_VERSION: bad.append((g["game_id"], "schema"))
+            if live_fc:
+                # a forecast still being refreshed is the standalone model, start to finish
+                if abs(g["p_model"] - f["p_home"]) > 1e-4: bad.append((g["game_id"], "p_model"))
+                if abs(g["injuries"]["impact"]["p_now"] - f["p_home"]) > 1e-4: bad.append((g["game_id"], "impact"))
+                if f["method"] != rp.METHOD: bad.append((g["game_id"], "method"))
+            else:
+                # a locked one is whatever was published at the time, and carries no re-run
+                if g["injuries"]["impact"] is not None: bad.append((g["game_id"], "impact on a locked game"))
+                if f["method"] not in (rp.METHOD, rp.LEGACY_METHOD): bad.append((g["game_id"], "method"))
+                if f["forecast_at"] != lc.get("locked_at"): bad.append((g["game_id"], "locked_at"))
         check(not bad, f"payload: {len(payload['games'])} games, every displayed number matches its forecast record ({bad[:3]})")
-        check(all(g["forecast"]["forecast_at"] == payload["games"][0]["forecast"]["forecast_at"] for g in payload["games"]),
-              "all games in the payload share one forecast cutoff (no mixed snapshots)")
+        opens = [g["forecast"]["forecast_at"] for g in payload["games"] if (g["forecast"].get("lifecycle") or {}).get("state") != "locked"]
+        check(len(set(opens)) <= 1,
+              f"every game still being forecast shares one cutoff, and the {locked_n} kicked-off game(s) keep their own lock time (no mixed snapshots)")
+        # the payload's own tracker must agree with what the cards show, game for game
+        T = (payload.get("tracker") or {}).get("by_season", {}).get(str(payload["season"]), {}).get("games", {})
+        gr = {(r["a"], r["h"]): r for r in (T.get("rows") or []) if r.get("w") == payload["week"]}
+        clash = []
+        for g in payload["games"]:
+            r = gr.get((g["away_team"], g["home_team"]))
+            if not r:
+                continue
+            shown = g["home_team"] if g["p_home"] >= 0.5 else g["away_team"]
+            if shown != r["pick"] or abs(g["p_home"] - r["p"]) > 5e-4:
+                clash.append((g["game_id"], shown, r["pick"], g["p_home"], r["p"]))
+        check(not clash, f"every graded game shows the same pick and probability the tracker graded ({clash[:3]})")
     else:
         check(False, "a payload with forecast records is on disk (run the pipeline first)")
 
@@ -177,6 +203,55 @@ def main():
         check(abs((g0["predicted_home_score"] + g0["predicted_away_score"]) - g0["total_pred"]) < 2e-3 and
               abs((g0["predicted_home_score"] - g0["predicted_away_score"]) - g0["margin_pred"]) < 2e-3,
               "scores in the payload derive from the unrounded total and margin (four decimals kept; rounding is for display)")
+
+    # ---- 11. a game that has kicked off shows the forecast it was graded on
+    #      (the 2026-09-20 fault: the page showed "CIN 54%" while grading a HOU pick as a miss)
+    sched = pd.DataFrame([
+        dict(game_id="G_DONE", season=2026, week=2, game_type="REG", gameday="2026-09-20", gametime="13:00",
+             home_team="HOU", away_team="CIN", home_score=6.0, away_score=20.0),
+        dict(game_id="G_OPEN", season=2026, week=2, game_type="REG", gameday="2099-01-01", gametime="13:00",
+             home_team="LA", away_team="NYG", home_score=np.nan, away_score=np.nan)])
+    up2 = pd.DataFrame([
+        dict(game_id="G_DONE", home_team="HOU", away_team="CIN", p_home=0.4620, p_model=0.4620, p_market=0.5721,
+             margin_pred=-1.9, total_pred=45.0, predicted_home_score=21.55, predicted_away_score=23.45,
+             predicted_winner="CIN", spread_line=2.5, total_line=45.5, p_home_healthy=0.46, margin_healthy=-1.9),
+        dict(game_id="G_OPEN", home_team="LA", away_team="NYG", p_home=0.7100, p_model=0.7100, p_market=0.6900,
+             margin_pred=5.3, total_pred=47.0, predicted_home_score=26.15, predicted_away_score=20.85,
+             predicted_winner="LA", spread_line=7.0, total_line=47.0, p_home_healthy=0.71, margin_healthy=5.3)])
+    h3 = {"version": 1, "games": {"G_DONE": {"s": 2026, "w": 2, "a": "CIN", "hm": "HOU", "p": 0.5586, "pm": 0.5047,
+          "pk": 0.5721, "mg": 2.48, "pick": "HOU", "src": "live", "at": "2026-09-15T05:33Z",
+          "method": "blend_20_80_v1", "mv": "m_old"}}, "players": {}, "schemes": {}, "rollups": {}}
+    frozen = rp.freeze_settled(up2, h3, sched, 2026, 2, now="2026-09-21T03:00:00Z", log=lambda *a: None)
+    done = up2[up2.game_id == "G_DONE"].iloc[0]
+    open_ = up2[up2.game_id == "G_OPEN"].iloc[0]
+    check(done.p_home == 0.5586 and done.p_model == 0.5047 and done.predicted_winner == "HOU" and done.margin_pred == 2.48,
+          "a kicked-off game is restored to the probability, model number, pick and margin locked before kickoff")
+    check(open_.p_home == 0.7100 and open_.predicted_winner == "LA",
+          "a game that has not kicked off is left on the live forecast")
+    rec = rp.forecast_record(done, 2026, 2, "2026-09-21T03:00:00Z", "2026-09-21T02:00:00Z", "m_new", {}, {"status": "locked", "flags": [], "features_complete": True}, frozen["G_DONE"])
+    check(rec["method"] == "blend_20_80_v1" and rec["model_version"] == "m_old" and rec["forecast_at"] == "2026-09-15T05:33Z",
+          "the record of a locked game names the method, model and time it was actually published under")
+    check(rec["lifecycle"]["state"] == "locked" and rec["lifecycle"]["standalone_p_home_at_lock"] == 0.5047
+          and rec["counterfactual_healthy"] is None,
+          "a locked record states its lifecycle, keeps the standalone number from lock, and carries no re-run counterfactual")
+    check(rp.forecast_record(open_, 2026, 2, "2026-09-21T03:00:00Z", "2026-09-21T02:00:00Z", "m_new", {}, {"status": "ok", "flags": [], "features_complete": True}, frozen.get("G_OPEN"))["lifecycle"]["state"] == "open",
+          "an unstarted game is recorded as open")
+    # the displayed pick and the graded pick are now the same object
+    pick_shown = done.home_team if done.p_home >= 0.5 else done.away_team
+    check(pick_shown == h3["games"]["G_DONE"]["pick"], "the team the page shows as the pick is the team the tracker grades")
+    # and the version store records nothing more for it
+    payload_frozen = {"season": 2026, "week": 2, "games": [{"game_id": "G_DONE", "home_team": "HOU", "away_team": "CIN",
+        "p_home": 0.5586, "p_model": 0.5047, "p_market": 0.5721, "margin_pred": 2.48,
+        "predicted_home_score": 23.99, "predicted_away_score": 21.51, "settled": True, "forecast": rec}], "players": []}
+    with tempfile.TemporaryDirectory() as d:
+        os.environ["SJ_LIVE_DIR"] = d
+        import importlib
+        from live import versions as _v, store as _s
+        importlib.reload(_s); importlib.reload(_v)
+        rows, _ = _v.record(payload_frozen, "m_new", "2026-09-21 03:00 UTC", log=lambda *a: None)
+        check(rows == [], "no new prediction version is recorded for a game that has kicked off")
+    os.environ.pop("SJ_LIVE_DIR", None)
+
 
     print("\n" + ("all checks passed" if not FAILS else f"{len(FAILS)} FAILED"))
     return 1 if FAILS else 0

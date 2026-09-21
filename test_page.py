@@ -10,6 +10,8 @@ Page checks, run headless against site/index.html:
   6. keyboard: Tab reaches the nav and the first game link; focus is visible; skip nothing
   7. no market blend in the page code; reduced-motion rules exist; every image has alt text
   8. contrast of ink on ivory and the accent on ivory clears WCAG AA
+  9. a game that has kicked off shows the pick the tracker graded, and the verdict on the
+     card agrees with that pick against the final score (the 2026-09-20 CIN/LV/PIT fault)
 """
 import asyncio, json, math, re, sys
 from playwright.async_api import async_playwright
@@ -90,7 +92,7 @@ async def main():
             if abs(ph + pa - 100) > 1: bad.append((g["game_id"], "sum"))
             # order: band, probability, score, then strip, then facts
             body = await pg.inner_text("#matchView")
-            i_prob, i_score, i_strip, i_fact = body.find("%"), body.find("EXPECTED SCORE, MODEL MEAN"), body.find("FORECAST"), body.find("WIN PROBABILITY, OUR MODEL")
+            i_prob, i_score, i_strip, i_fact = body.find("%"), body.find("EXPECTED SCORE, MODEL MEAN"), max(body.find("FORECAST"), body.find("LOCKED")), body.find("WIN PROBABILITY, OUR MODEL")
             if not (0 <= i_prob < i_score < i_strip < i_fact): order_ok = False
         check(not bad, f"every game page shows exactly its forecast record: probabilities, rounded expected score, margin, market ({bad[:4]})")
         check(order_ok, "game page order: matchup, standalone probability, labelled expected score, forecast status, then analysis")
@@ -104,6 +106,36 @@ async def main():
         jm = jd["forecast"]["margin_home"]
         check(f"JAX by {abs(jm):.1f}" in facts and "toward JAX" in facts and jm < 0 and jd["forecast"]["market"]["margin_edge_home"] < 0,
               "JAX-DEN reproduction: margin and edge both point to JAX in words, and both are negative on the home side in the record")
+
+        # 3b: a settled game shows the forecast it was graded on, and says so
+        await pg.goto(URL + "#/home"); await pg.wait_for_timeout(250)
+        T = payload["tracker"]["by_season"][str(payload["tracker"]["season"])]["games"]
+        graded = {(r["a"], r["h"]): r for r in T["rows"] if r.get("w") == payload["week"]}
+        clash = []
+        for g in payload["games"]:
+            r = graded.get((g["away_team"], g["home_team"]))
+            if not r:
+                continue
+            shown = g["home_team"] if g["p_home"] >= 0.5 else g["away_team"]
+            row = await pg.inner_text(f'a.slate-row[href$="{g["game_id"]}"]')
+            verdict_hit = "hit" in row.lower()
+            home_won = r["hs"] > r["as"]
+            winner = g["home_team"] if home_won else g["away_team"]
+            # what the card claims, read back off the card itself
+            if shown != r["pick"]: clash.append((g["game_id"], "shown", shown, "graded", r["pick"]))
+            if f"{shown} " not in row.upper(): clash.append((g["game_id"], "row does not name the shown pick"))
+            if verdict_hit != (shown == winner): clash.append((g["game_id"], "verdict", row.replace("\n", " ")[:70]))
+        check(not clash, f"every settled game shows the graded pick and a verdict that matches it against the final score ({clash[:3]})")
+        cin = next((g for g in payload["games"] if g["game_id"].endswith("CIN_HOU")), None)
+        if cin:
+            await pg.goto(URL + f"#/games/{cin['game_id']}"); await pg.wait_for_timeout(200)
+            body = await pg.inner_text("#matchView")
+            lc = (cin["forecast"].get("lifecycle") or {})
+            check(lc.get("state") == "locked" and "LOCKED BEFORE KICKOFF" in body.upper()
+                  and str(round(cin["p_home"] * 100)) + "%" in body,
+                  "CIN-HOU reproduction: the page shows the locked number and says it was locked before kickoff")
+            check("not run for it again" in body or "not re-run" in body.lower(),
+                  "the page states that a kicked-off game is not re-forecast")
 
         # 4: mascot
         await pg.goto(URL + "#/home"); await pg.wait_for_timeout(200)

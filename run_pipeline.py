@@ -1354,25 +1354,118 @@ def data_source_stamps(datadir, cur):
     return (latest.strftime("%Y-%m-%dT%H:%M:%SZ") if latest else None), stamps
 
 
-def forecast_record(r, cur, week, forecast_at, data_cutoff, model_version_id, stamps, quality):
+def freeze_settled(up, hist, sched, cur, week, now=None, log=print):
+    """
+    A game that has kicked off keeps the forecast that was published before it started.
+
+    The site's promise is that a prediction is locked before kickoff and is never revised.
+    The model, though, is re-fitted on every run, and the inputs behind a finished game keep
+    moving after the whistle: that week's injury report becomes final, and a team that has
+    now played has a real ratings row where it had an estimated one. So re-running produces a
+    number nobody was ever shown, which is also not the number the tracker grades. On
+    2026-09-20 that published "CIN 54%" on a card whose verdict graded a HOU pick as a miss,
+    and the same for LV at LAC and PIT at NE.
+
+    For every game whose kickoff has passed, the locked row in history.json -- the row that
+    IS graded -- is therefore written back over the re-run, along with the method it was made
+    under, so the published number, the pick and the verdict are one number again. Expected
+    scores come from the locked row when it carries them, otherwise from the last prediction
+    version recorded at or before kickoff; rows predating both keep the re-run score and say
+    so. Nothing here overwrites a stored value: it restores one.
+    """
+    now = now or datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    try:
+        from learn.ledger import kickoffs
+        koff, _ = kickoffs(sched, int(cur), int(week))
+    except Exception as e:                                   # no kickoff times: change nothing
+        log(f"  freeze: kickoff times unavailable ({e}); every game left as re-run")
+        return {}
+    games = (hist or {}).get("games") or {}
+    out, restored, unlocked = {}, 0, 0
+    for i, r in up.iterrows():
+        gid = str(r.game_id)
+        k = koff.get(gid)
+        if not k or now < k:
+            continue                                         # not started: the live forecast stands
+        row = games.get(gid)
+        if not row or row.get("p") is None:
+            # kicked off with nothing locked: leave the numbers alone but never call them a
+            # pre-kickoff forecast
+            out[gid] = {"kickoff": k, "locked": False}
+            unlocked += 1
+            continue
+        # The published margin is the locked one (it is what the against-the-spread column is
+        # graded on), so both scores are derived from it and a total. The total comes from the
+        # lock when the row carries one, otherwise from the pre-kickoff version that matches
+        # the locked probability -- deriving rather than copying keeps home - away equal to the
+        # published margin instead of stitching two runs together.
+        mg = float(row["mg"])
+        total, src = None, None
+        if row.get("ehs") is not None and row.get("eas") is not None:
+            total, src = float(row["ehs"]) + float(row["eas"]), "locked with the forecast"
+        else:
+            cands = [v for v in live_versions.history(gid, limit=40)
+                     if v.get("at") and v["at"] <= k and v.get("homeScore") is not None]
+            match = next((v for v in cands if v.get("pHome") is not None
+                          and abs(float(v["pHome"]) - float(row["p"])) <= 5e-4), None)
+            v = match or (cands[0] if cands else None)
+            if v is not None:
+                total = float(v["homeScore"]) + float(v["awayScore"])
+                src = ("total from the prediction version recorded at " + v["at"]
+                       + ("" if match else ", the closest one before kickoff; scores derived from the locked margin"))
+        if total is None:
+            total, src = float(r.total_pred), "expected total was not recorded before kickoff; taken from a later run"
+        hs, as_ = (total + mg) / 2, (total - mg) / 2
+        up.at[i, "p_home"] = float(row["p"])
+        if row.get("pm") is not None:
+            up.at[i, "p_model"] = float(row["pm"])
+        up.at[i, "p_market"] = np.nan if row.get("pk") is None else float(row["pk"])
+        up.at[i, "margin_pred"] = mg
+        up.at[i, "predicted_home_score"] = float(hs)
+        up.at[i, "predicted_away_score"] = float(as_)
+        up.at[i, "total_pred"] = float(total)
+        up.at[i, "predicted_winner"] = row.get("pick") or (r.home_team if row["p"] > 0.5 else r.away_team)
+        out[gid] = {"kickoff": k, "locked": True, "locked_at": row.get("at"),
+                    "method": row.get("method", LEGACY_METHOD), "model_version": row.get("mv"),
+                    "p_model_at_lock": row.get("pm"), "score_source": src}
+        restored += 1
+    if restored or unlocked:
+        log(f"  frozen: {restored} game(s) restored to the forecast locked before kickoff"
+            + (f"; {unlocked} kicked off with nothing locked" if unlocked else ""))
+    return out
+
+
+def forecast_record(r, cur, week, forecast_at, data_cutoff, model_version_id, stamps, quality, frozen=None):
     """
     The one authoritative record for a game at this forecast cutoff. Every number the page
     shows for the game is derived from this record; nothing is recomputed elsewhere.
     Orientation is explicit: every quantity is from the HOME side unless named otherwise.
+
+    For a game that has kicked off, `frozen` carries the locked row that freeze_settled put
+    back, and the record describes THAT forecast: its method, the time it was locked, and
+    the fact that it has not been re-run since. The counterfactual is dropped there, because
+    it would be a property of today's re-fit rather than of the published forecast.
     """
     p_home = float(r.p_home)
     margin = float(r.margin_pred)
     total = float(r.total_pred)
+    f = frozen or {}
+    method, mv = METHOD, model_version_id
+    if f.get("locked"):
+        method = f.get("method") or LEGACY_METHOD
+        mv = f.get("model_version") or model_version_id
+        forecast_at = f.get("locked_at") or forecast_at
+        data_cutoff = f.get("locked_at") or data_cutoff
     return {
         "schema_version": SCHEMA_VERSION,
-        "method": METHOD,
-        "forecast_id": f"{r.game_id}:{forecast_at}:{model_version_id}",
+        "method": method,
+        "forecast_id": f"{r.game_id}:{forecast_at}:{mv}",
         "game_id": str(r.game_id), "season": int(cur), "week": int(week),
         "home_team": str(r.home_team), "away_team": str(r.away_team),
         "forecast_at": forecast_at,
         "data_cutoff": data_cutoff,
-        "source_timestamps": stamps,
-        "model_version": model_version_id,
+        "source_timestamps": {} if f.get("locked") else stamps,
+        "model_version": mv,
         "feature_version": feature_version(),
         "calibration_version": CALIBRATION_VERSION,
         # probabilities: home side; away = 1 - home under TIE_CONVENTION
@@ -1399,7 +1492,17 @@ def forecast_record(r, cur, week, forecast_at, data_cutoff, model_version_id, st
             "margin_mae_backtest": BACKTEST_FALLBACK["margin_mae"],
             "note": "walk-forward 2019-2025 mean absolute margin error; per-game intervals are not fitted",
         },
-        "counterfactual_healthy": {"p_home": round(float(r.p_home_healthy), 6), "margin_home": round(float(r.margin_healthy), 4)},
+        "counterfactual_healthy": None if f.get("locked") else
+            {"p_home": round(float(r.p_home_healthy), 6), "margin_home": round(float(r.margin_healthy), 4)},
+        # a kicked-off game states what it is: the forecast as locked, not a re-run
+        "lifecycle": ({"state": "locked", "kickoff": f.get("kickoff"), "locked_at": f.get("locked_at"),
+                       "standalone_p_home_at_lock": f.get("p_model_at_lock"),
+                       "expected_score_source": f.get("score_source"),
+                       "note": "locked before kickoff and not re-run; this is the forecast that is graded"}
+                      if f.get("locked") else
+                      {"state": "kicked_off_unlocked", "kickoff": f.get("kickoff"),
+                       "note": "this game had kicked off before any forecast was locked for it; the numbers shown are a later run and are not graded"}
+                      if f else {"state": "open", "note": "kickoff has not passed; this forecast is still being refreshed"}),
         "quality": quality,
     }
 
@@ -1452,6 +1555,11 @@ def main():
     df = add_adjusted_cols(df, team_adjusted(team, sched, cur, target_week))
     df = add_elo_cols(df)
     up, imp, live, contribs = fit_predict(df, cur, target_week)
+    # a game that has kicked off goes back to the forecast that was locked before it started,
+    # BEFORE anything downstream reads these columns
+    hist_path = os.path.join(a.outdir, "history.json")
+    hist = tracker.load(hist_path)
+    frozen = freeze_settled(up, hist, sched, cur, target_week, log=log)
     forecast_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     data_cutoff, source_stamps = data_source_stamps(a.datadir, cur)
     model_version_id = live_versions.model_version(XGB_PARAMS, FEATS, None, N_SEEDS, f"{cur}-w{target_week}")
@@ -1459,14 +1567,19 @@ def main():
 
     def quality_for(r):
         flags = []
+        fz = frozen.get(str(r.game_id)) or {}
+        if fz.get("locked"):
+            flags.append(f"locked before kickoff under {fz.get('method') or LEGACY_METHOD}; not re-run since")
+        elif fz:
+            flags.append("kicked off with no locked forecast; these numbers are a later run and are not graded")
         if pd.isna(r.p_market):
             flags.append("no market line on file (comparison unavailable)")
         for side in ("home", "away"):
             q = inj_quarantine.get((int(cur), int(target_week), r[f"{side}_team"]))
             if q:
                 flags.append(f"{len(q)} injury row(s) for {r[f'{side}_team']} not matched to that week's roster; excluded from the injury features")
-        return {"status": "ok" if not flags else "caveats", "flags": flags,
-                "features_complete": bool(all(pd.notna(r[f]) for f in FEATS))}
+        return {"status": "locked" if fz.get("locked") else "ok" if not flags else "caveats",
+                "flags": flags, "features_complete": bool(all(pd.notna(r[f]) for f in FEATS))}
 
     inj_map, inj_teams, inj_week = injury_status(inj, cur, target_week, espn=espn)
     since_kick = injuries_since_kickoff(sched, espn, cur, target_week)
@@ -1567,8 +1680,9 @@ def main():
             "predicted_winner": r.predicted_winner,
             "predicted_home_score": float(r.predicted_home_score),
             "predicted_away_score": float(r.predicted_away_score),
+            "settled": bool((frozen.get(str(r.game_id)) or {}).get("locked")),
             "forecast": forecast_record(r, cur, target_week, forecast_at, data_cutoff, model_version_id,
-                                        source_stamps, quality_for(r)),
+                                        source_stamps, quality_for(r), frozen.get(str(r.game_id))),
             "home_qb": r.get("home_qb_disp"), "away_qb": r.get("away_qb_disp"),
             "wind": wind, "temp": temp, "indoor": indoor,
             "roof": None if pd.isna(r.get("roof")) else str(r.get("roof")),
@@ -1582,8 +1696,9 @@ def main():
                 "since": since_kick.get(r.game_id, []),
                 "home": [p for p in inj_teams.get(r.home_team, []) if p["level"] != "rest"][:8],
                 "away": [p for p in inj_teams.get(r.away_team, []) if p["level"] != "rest"][:8],
-                # exact counterfactual: this model, same fit, both teams healthy
-                "impact": {
+                # exact counterfactual: this model, same fit, both teams healthy. A game that
+                # has kicked off is not re-run, so it gets no impact block at all.
+                "impact": None if (frozen.get(str(r.game_id)) or {}).get("locked") else {
                     "method": "controlled recomputation: the same fitted model with both injury features set to zero",
                     "p_now": round(float(r.p_home), 4),
                     "p_healthy": round(float(r.p_home_healthy), 4),
@@ -1595,7 +1710,11 @@ def main():
                     },
                 },
             },
-            "why": reasons[i],
+            # the factor breakdown is exact SHAP on TODAY's fit. For a game that has kicked
+            # off the published probability is the locked one, so the two describe different
+            # runs and the page has to say so rather than imply the locked number came from
+            # these factors.
+            "why": dict(reasons[i], recomputed=True) if (frozen.get(str(r.game_id)) or {}).get("locked") else reasons[i],
             "weather_note": explain.weather_note(indoor, temp, wind, r.get("roof"),
                                                  r.get("surface"), hs["pk_pass_rate"],
                                                  as_["pk_pass_rate"]),
@@ -1609,8 +1728,7 @@ def main():
         })
 
     # ---- season tracker: lock this week's calls, grade anything that has now been played ----
-    hist_path = os.path.join(a.outdir, "history.json")
-    hist = tracker.load(hist_path)
+    # (hist was loaded before the forecasts were frozen, above)
     gid_by_team = {}
     for _, r in up.iterrows():
         gid_by_team[r.home_team] = str(r.game_id)
