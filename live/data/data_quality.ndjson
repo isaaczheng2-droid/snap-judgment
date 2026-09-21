@@ -374,3 +374,7 @@
 {"kind":"unknown_player","detail":"Gabriel Rubio (PIT) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-09-21T11:08:46Z"}
 {"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-09-21T11:08:46Z"}
 {"kind":"unknown_player","detail":"Sean McKeon (IND) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-09-21T11:08:46Z"}
+{"kind":"unknown_player","detail":"Brandon Aiyuk (SF) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-09-21T17:12:54Z"}
+{"kind":"unknown_player","detail":"Gabriel Rubio (PIT) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-09-21T17:12:54Z"}
+{"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-09-21T17:12:54Z"}
+{"kind":"unknown_player","detail":"Sean McKeon (IND) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-09-21T17:12:54Z"}
