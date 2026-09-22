@@ -1,0 +1,33 @@
+{
+ "reasons": [
+  "Jordan Whittington: INACTIVE \u2192 QUESTIONABLE (Quadriceps)",
+  "Ashton Dulin: OUT \u2192 QUESTIONABLE (Ankle)",
+  "Nico Collins: OUT \u2192 QUESTIONABLE (Hamstring)",
+  "Marvin Mims Jr.: OUT \u2192 QUESTIONABLE (Foot)",
+  "Sam Darnold: OUT \u2192 QUESTIONABLE (Lower Body)",
+  "Kene Nwangwu: OUT \u2192 QUESTIONABLE (Back)",
+  "Zay Flowers: OUT \u2192 QUESTIONABLE (Hamstring)",
+  "Brian Robinson Jr.: QUESTIONABLE \u2192 ACTIVE",
+  "Puka Nacua: OUT \u2192 QUESTIONABLE (Groin)"
+ ],
+ "game_ids": [
+  "2026_03_ATL_GB",
+  "2026_03_BAL_DAL",
+  "2026_03_HOU_IND",
+  "2026_03_LA_DEN",
+  "2026_03_NYJ_DET",
+  "2026_03_SEA_WAS"
+ ],
+ "event_ids": [
+  "ev_1790115982_8dbdd42a",
+  "ev_1790115982_f483326b",
+  "ev_1790115982_1fe8e891",
+  "ev_1790115982_90af3635",
+  "ev_1790115982_aae35bb8",
+  "ev_1790115982_93449644",
+  "ev_1790115982_b46fdceb",
+  "ev_1790115982_1efa9494",
+  "ev_1790115982_a3ac446e"
+ ],
+ "requested_at": "2026-09-22T22:26:23Z"
+}
