@@ -75,6 +75,19 @@ def _espn_teams():
     return m
 
 
+def espn_get(url, timeout=40):
+    """ESPN's site API answers curl's own user agent from the runner (the NFL injury feed has
+    used exactly that for weeks); a browser UA without browser headers is what bot filters
+    reject. Try plain first, browser-like second, and report the code either way."""
+    code, body = curl(url, ["-H", "Accept: application/json"], timeout=timeout)
+    if code != "200":
+        code2, body2 = curl(url, ["-H", f"User-Agent: {UA}", "-H", "Accept: application/json"], timeout=timeout)
+        if code2 == "200":
+            return code2, body2
+        log(f"espn {url.split('/nba/')[-1][:60]}: HTTP {code} / {code2}")
+    return code, body
+
+
 def collect_rosters():
     """Current rosters. ESPN's site API first (same athlete/team ids as the box scores, so the
     identity match is exact, and it is reachable from the runner); stats.nba.com via nba_api as
@@ -82,7 +95,7 @@ def collect_rosters():
     teams = _espn_teams()
     out, ok = {}, 0
     for tid, abbr in sorted(teams.items()):
-        code, body = curl(f"{ESPN}/teams/{tid}/roster", ["-H", f"User-Agent: {UA}"], timeout=40)
+        code, body = espn_get(f"{ESPN}/teams/{tid}/roster")
         if code != "200":
             continue
         try:
@@ -105,13 +118,15 @@ def collect_rosters():
         log(f"rosters (espn): {ok} teams")
         return
     status.record("espn_site", False, f"only {ok}/30 rosters from ESPN")
-    collect_rosters_nba()
+    log(f"rosters (espn): only {ok}/30; trying stats.nba.com (expected to time out from a hosted runner)")
+    if os.environ.get("NBA_TRY_STATS_NBA") == "1":
+        collect_rosters_nba()
 
 
 def collect_injuries_espn():
     """ESPN's league injury feed (timestamped per entry). Appended as a snapshot with source=espn;
     the official NBA report, when it is published, is appended by collect_injuries and wins ties."""
-    code, body = curl(f"{ESPN}/injuries", ["-H", f"User-Agent: {UA}"], timeout=40)
+    code, body = espn_get(f"{ESPN}/injuries")
     if code != "200":
         status.record("espn_site", False, f"injuries HTTP {code}")
         return
@@ -271,7 +286,11 @@ def collect_lines():
 # ----------------------------------------------------------------------------- validation vs stats.nba.com
 def validate_boxscores(n_games=40):
     """Compare ESPN team totals for the most recent finished games with stats.nba.com league
-    game log. Any mismatch is recorded, not corrected silently."""
+    game log. Any mismatch is recorded, not corrected silently. stats.nba.com times out from
+    hosted runners (2026-09-23 probe), so this only runs when NBA_TRY_STATS_NBA=1."""
+    if os.environ.get("NBA_TRY_STATS_NBA") != "1":
+        status.record("stats_nba", False, "skipped: stats.nba.com times out from hosted runners (set NBA_TRY_STATS_NBA=1 to retry)")
+        return
     try:
         import pandas as pd
         from nba_api.stats.endpoints import leaguegamelog
