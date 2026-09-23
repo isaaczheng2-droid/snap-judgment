@@ -1,0 +1,90 @@
+name: NBA refresh
+
+# The NBA section is built by its own job so an NBA failure never blocks the NFL page, and
+# vice versa. It shares the `publish` concurrency group because both push to main.
+#   12:40 UTC daily: overnight box scores have landed in the SportsDataverse releases.
+#   every 3 hours in season (Oct-Jun) for the injury report (published 1pm/5pm ET and on game
+#   days) and line snapshots. Out of season the extra runs cost seconds and change nothing.
+on:
+  schedule:
+    - cron: "40 12 * * *"
+    - cron: "5 15,18,21,0,3 * 10,11,12,1,2,3,4,5,6 *"
+  workflow_dispatch:
+    inputs:
+      steps:
+        description: "collect steps (comma-separated: boxscores,rosters,injuries,pbpstats,lines,validate) or 'none'"
+        default: "boxscores,rosters,injuries,pbpstats,lines,validate"
+      days:
+        description: "days of slate to project"
+        default: "3"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  nba:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt -r nba/requirements.txt
+
+      # Historical box scores are release assets (no key). Everything else is best-effort and
+      # records its own outcome in nba/data/source_state.json, which the Data status tab shows.
+      # ODDS_API_KEY is read by nba/props.py only, on this runner only.
+      - name: Collect
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: |
+          STEPS="${{ inputs.steps || 'boxscores,rosters,injuries,pbpstats,lines,validate' }}"
+          if [ "$STEPS" != "none" ]; then python nba/collect.py --only "$STEPS"; fi
+
+      - name: Build the NBA payload
+        run: python nba/run.py --out nba_payload.json --days "${{ inputs.days || '3' }}"
+
+      - name: Sanity-check before publishing
+        run: |
+          python - <<'PY'
+          import json
+          def bad(c): raise ValueError(f"non-JSON constant {c} in payload")
+          p = json.load(open("nba_payload.json"), parse_constant=bad)
+          assert p["schema"] == "nba.v1", p["schema"]
+          assert p["games"] or p["phase"] == "preseason", "no games and not preseason"
+          for g in p["games"]:
+              assert g["p_home"] is None or 0 < g["p_home"] < 1
+              assert g["home"]["abbr"] != g["away"]["abbr"]
+          for pl in p["players"]:
+              assert pl["minutes"]["mean"] is None or 0 <= pl["minutes"]["mean"] <= 48
+          teams = {}
+          for pl in p["players"]:
+              teams.setdefault((pl["game_id"], pl["team"]), 0.0)
+              teams[(pl["game_id"], pl["team"])] += (pl["minutes"]["mean"] or 0) * (1 if pl["availability"]["p_play"] else 0)
+          bad = {k: round(v, 1) for k, v in teams.items() if not 200 <= v <= 280}
+          assert not bad, f"team minutes off: {bad}"
+          print("ok:", len(p["games"]), "games", len(p["players"]), "players", len(p["props"]), "props")
+          PY
+
+      - name: Commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add nba_payload.json nba/data
+          if git diff --staged --quiet; then echo "No change."; else
+            git commit -m "NBA refresh ($(date -u +'%Y-%m-%d %H:%M') UTC)"
+            for i in 1 2 3; do
+              git fetch origin main
+              if git rebase origin/main; then git push && break; fi
+              git rebase --abort || true
+              if git pull --no-rebase --no-edit origin main; then git push && break; fi
+              git merge --abort || true
+              sleep 30
+            done
+          fi
