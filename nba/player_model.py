@@ -152,9 +152,11 @@ def minutes_sd(model, mu):
     return pd.Series(b).map(model["sd_by_bin"]).fillna(6.0).values
 
 
-def predict_minutes(model, P, reconcile=True):
-    """Conditional-on-playing minutes with team reconciliation to 240 regulation minutes across
-    the players expected to play (P.playing flag, or played for historical rows)."""
+def predict_minutes(model, P, reconcile=True, weight_by_p_play=False):
+    """Conditional-on-playing minutes with team reconciliation to 240 regulation minutes.
+    Historical rows reconcile across the players who played (P.playing / played). Forward rows
+    (weight_by_p_play=True) reconcile in expectation: sum_i P(play_i) x E[min_i | play] = 240,
+    so an 18-man preseason roster's deep bench does not drain minutes from the rotation."""
     out = P.copy()
     # gradient boosting handles missing values natively; the only hard requirements are a
     # minutes history and the game-context inputs the model was trained with
@@ -172,7 +174,11 @@ def predict_minutes(model, P, reconcile=True):
         out.loc[oks, "p_start"] = model["p_start"].predict_proba(out.loc[oks, ["start_rate10", "min_ewm5", "min_ewm15", "absent_share"]])[:, 1]
     if reconcile:
         playing = out["playing"] if "playing" in out else out["played"]
-        s = out["min_mu"].where(playing, 0).groupby([out.game_id, out.team_id]).transform("sum")
+        if weight_by_p_play:
+            w = out["p_play"].fillna(0.5).where(playing, 0.0)
+        else:
+            w = playing.astype(float)
+        s = (out["min_mu"].fillna(0) * w).groupby([out.game_id, out.team_id]).transform("sum")
         scale = (240 / s.replace(0, np.nan)).clip(0.7, 1.3)
         out["min_mu"] = np.where(playing & out.min_mu.notna(), (out.min_mu * scale).clip(0, 48), out.min_mu)
         out["min_scale"] = scale

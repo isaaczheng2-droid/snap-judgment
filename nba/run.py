@@ -195,7 +195,7 @@ def build(out_path, days=3, now=None, sims=3000, refresh=False):
         mm = player_model.fit_minutes(train[train.abs_margin.notna()])
         F = Pf[Pf.game_id.isin(slate.game_id)].copy()
         F["playing"] = F.played
-        F = player_model.predict_minutes(mm, F)
+        F = player_model.predict_minutes(mm, F, weight_by_p_play=True)
         F = player_model.stat_means(F)
         # availability: injury status caps P(play); no report -> the model's own P(play)
         F["p_play_model"] = F.p_play
@@ -253,6 +253,8 @@ def build(out_path, days=3, now=None, sims=3000, refresh=False):
                     L = float(q["line"])
                     ss = dict(summ[st]); ss["p_over"] = float((sim[st] > L).mean()); ss["p_push"] = float((sim[st] == L).mean())
                     flags = []
+                    if not (P.season == cur_season).any():
+                        flags.append("preseason: no current-season games")   # forced to insufficient evidence below
                     if st in ("stl", "blk", "sb"):
                         flags.append("no baseline win")          # last-10 median beats the model's mean on these (see Results)
                     if r.n_prior < 10:
@@ -264,6 +266,8 @@ def build(out_path, days=3, now=None, sims=3000, refresh=False):
                     if r.absent_share > 0.15:
                         flags.append("key teammates absent: usage estimate less certain")
                     ev_ = props.evaluate(q, other, ss, r.p_play, flags=flags)
+                    if "preseason: no current-season games" in flags:
+                        ev_["verdict"], ev_["why"] = "insufficient evidence", "preseason: rates and minutes come from last season and new rosters; graded but not recommended until games are played"
                     ev_.update({"game_id": int(r.game_id), "team": r.team, "player_id": r.player_id})
                     prop_rows.append(ev_)
             players_out.append(row)
