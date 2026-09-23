@@ -186,9 +186,12 @@ def test_payload(path):
                 check(len({s["player_id"] for s in L["starters"]}) == len(L["starters"]) <= 5, "starting five distinct")
                 check("estimate" in L["label"], "projected lineup labelled estimate")
     for pl in p["players"]:
+        if pl.get("unavailable"):
+            check(pl["minutes"]["mean"] is None and pl["availability"]["p_play"] is None, "unprojected roster player carries nulls, not zeros")
+            continue
         c = pl["conditional"]
         check(abs(c["pra"]["mean"] - (c["pts"]["mean"] + c["reb"]["mean"] + c["ast"]["mean"])) < 0.35, "PRA ~ pts+reb+ast (per-sim rounding)")
-        check(pl["availability"]["status"] in ("unknown", "out", "questionable", "doubtful", "probable", "available"), "availability status vocabulary")
+        check(pl["availability"]["status"] in ("unknown", "out", "questionable", "doubtful", "day-to-day", "probable", "available"), "availability status vocabulary")
         check(pl["availability_adjusted"]["pts"] <= c["pts"]["mean"] + 1e-6, "availability-adjusted never exceeds conditional")
     check(all(r["grade"] is None or r["label"] == "descriptive summary" for r in p["grades"]["rows"]), "grades labelled")
     check("Not enough data" in {r["label"] for r in p["grades"]["rows"]} or True, "not-enough-data label available")

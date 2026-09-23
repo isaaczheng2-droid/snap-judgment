@@ -177,11 +177,19 @@ def build(out_path, days=3, now=None, sims=3000, refresh=False):
         gfe["margin_pred_pre"] = np.nan
         gfe = gfe.set_index("game_id")
         gfe.loc[gs.game_id, "margin_pred_pre"] = gs.set_index("game_id").margin_pred
-        # historical abs margin for training rows comes from the cached walk-forward features when present
-        cache = os.path.join(DATA, "player_features.parquet")
-        if os.path.exists(cache):
-            Pc = pd.read_parquet(cache)
-            gfe.loc[Pc.game_id.unique(), "margin_pred_pre"] = Pc.groupby("game_id").abs_margin.first()
+        # historical expected margins for the minutes model's training rows: the team model fitted
+        # on the seasons before each one (walk-forward, no look-ahead), computed here so the runner
+        # needs no cached features
+        for s_ in sorted(gt.season.unique()):
+            if s_ < last_done - 1 or s_ > last_done:
+                continue
+            tr_ = hist[hist.season < s_]
+            if len(tr_) < 500:
+                continue
+            m_ = team_model.fit(tr_, team_model.BLIND)
+            idx_ = gt.season == s_
+            pred_ = team_model.predict(m_, gt[idx_])
+            gfe.loc[gt.loc[idx_, "game_id"].values, "margin_pred_pre"] = pred_.margin_pred.values
         Pf = player_model.player_features({"player_games": Pall, "team_games": Tf}, gfe.reset_index())
         train = Pf[(Pf.season <= last_done) & Pf.min_ewm5.notna()]
         mm = player_model.fit_minutes(train[train.abs_margin.notna()])
@@ -202,6 +210,13 @@ def build(out_path, days=3, now=None, sims=3000, refresh=False):
         prop_rows = []
         for _, r in F.iterrows():
             if pd.isna(r.min_mu):
+                # no usable game history (rookie, long absence, or unmatched id): listed, not projected
+                players_out.append({"game_id": int(r.game_id), "player_id": r.player_id, "player": r.player, "team": r.team, "team_id": int(r.team_id), "opp": r.opp,
+                                    "home": bool(r.home), "position": r.position, "jersey": r.jersey, "headshot": r.headshot,
+                                    "availability": {"status": r.avail_status, "source": r.avail_source, "reason": r.reason, "p_play": None, "p_play_model": None},
+                                    "p_start": None, "minutes": {"mean": None, "sd": None, "p10": None, "p90": None, "trailing5": None, "trailing15": None, "reconcile_scale": None},
+                                    "conditional": {}, "availability_adjusted": {}, "fantasy": {"points": {}, "categories": {}}, "inputs": {},
+                                    "unavailable": "no NBA game history in the loaded seasons: not projected", "model_version": player_model.MODEL_VERSION})
                 continue
             sim = player_model.simulate(r, n=sims, rng=rng)
             # market lines for this player, if any: P(over) at each quoted line
@@ -276,7 +291,7 @@ def build(out_path, days=3, now=None, sims=3000, refresh=False):
                "home": {"id": int(g.home_id), "abbr": g.home_team}, "away": {"id": int(g.away_id), "abbr": g.away_team}, "neutral": bool(g.neutral),
                "p_home": _f(g.p_home), "margin_pred": _f(g.margin_pred, 1), "total_pred": _f(g.total_pred, 1),
                "home_pts_pred": _f((g.total_pred + g.margin_pred) / 2, 1), "away_pts_pred": _f((g.total_pred - g.margin_pred) / 2, 1),
-               "basis": "lineup-blind team model (availability model needs the injury report; none collected yet)" if not injuries else "availability-aware team model",
+               "basis": "lineup-blind team model (team strength, rest, schedule, home court); availability enters the player projections, not the game number",
                "model_version": tm["model_version"], "trained_through": tm["trained_through"], "forecast_at": t0,
                "factors": {"net_rating_diff": _f(g.d_net, 1), "off_rating_diff": _f(g.d_off, 1), "def_rating_diff": _f(g.d_def, 1), "elo_diff": _f(g.d_elo * 100, 0),
                            "rest_diff": _f(g.d_rest, 1), "b2b_diff": _f(g.d_b2b, 0), "expected_pace": _f(g.sum_pace / 2, 1), "sos_diff": _f(g.d_sos, 1)},
@@ -304,9 +319,10 @@ def build(out_path, days=3, now=None, sims=3000, refresh=False):
     # ---- fantasy rankings (season-long view from the projections when a slate exists, else last-season per-game)
     fant = {"formats": {k: {kk: vv for kk, vv in v.items() if not kk.startswith("_")} for k, v in fantasy.POINTS_FORMATS.items()},
             "categories": {"9cat": fantasy.CATEGORIES_9, "8cat": fantasy.CATEGORIES_8}, "note": "basketball scoring only; NFL PPR settings are never applied here"}
-    if players_out:
+    if players_out and any(not p.get("unavailable") for p in players_out):
         pool = [{"player_id": p["player_id"], "player": p["player"], "team": p["team"], "position": p["position"], "game_id": p["game_id"],
-                 "points": p["fantasy"]["points"], "cats": p["fantasy"]["categories"], "p_play": p["availability"]["p_play"], "minutes": p["minutes"]["mean"]} for p in players_out]
+                 "points": p["fantasy"]["points"], "cats": p["fantasy"]["categories"], "p_play": p["availability"]["p_play"], "minutes": p["minutes"]["mean"]}
+                for p in players_out if not p.get("unavailable")]
         z = fantasy.z_scores([{**c["cats"]} for c in pool])
         for c, zz in zip(pool, z):
             c["z9"] = _f(zz["z_total"], 2)
@@ -436,6 +452,8 @@ def archive(payload, manifest, injuries):
             f.write(json.dumps({"kind": "game", "game_id": g["game_id"], "tipoff_utc": g["tipoff_utc"], "forecast_at": payload["generated_at"], "inputs_available_at": avail,
                                 "model_version": g["model_version"], "p_home": g["p_home"], "margin_pred": g["margin_pred"], "total_pred": g["total_pred"], "basis": g["basis"]}) + "\n")
         for p in payload["players"]:
+            if p.get("unavailable"):
+                continue
             c = p["conditional"]
             f.write(json.dumps({"kind": "player", "game_id": p["game_id"], "player_id": p["player_id"], "forecast_at": payload["generated_at"], "inputs_available_at": avail,
                                 "model_version": p["model_version"], "p_play": p["availability"]["p_play"], "min": p["minutes"]["mean"],
