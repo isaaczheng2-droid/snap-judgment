@@ -52,8 +52,10 @@ def load_injuries():
     if not rows:
         return None
     latest = max(r["fetched_at"] for r in rows)
-    cur = [r for r in rows if r["fetched_at"] == latest]
-    return {"fetched_at": latest, "report_time": cur[0].get("report_time"), "rows": cur}
+    # one snapshot may hold both ESPN's feed and the official report; the official report is
+    # ordered last so it wins when both name a player
+    cur = sorted([r for r in rows if r["fetched_at"] == latest], key=lambda r: 0 if r.get("source") == "espn" else 1)
+    return {"fetched_at": latest, "report_time": cur[0].get("report_time"), "rows": cur, "sources": sorted({r.get("source") or "official" for r in cur})}
 
 
 def load_rosters():
@@ -64,7 +66,7 @@ def load_rosters():
     return json.load(open(p))
 
 
-STATUS_P = {"out": 0.0, "doubtful": 0.25, "questionable": 0.5, "probable": 0.85, "available": 1.0}
+STATUS_P = {"out": 0.0, "doubtful": 0.25, "questionable": 0.5, "day-to-day": 0.5, "probable": 0.85, "available": 1.0}
 
 
 # ----------------------------------------------------------------------------- slate
@@ -91,14 +93,15 @@ def future_rows(P, T, slate, injuries, rosters):
     inj_map = {}
     if injuries:
         for r in injuries["rows"]:
-            inj_map[(props.norm_name(r["player"]), r.get("team"))] = r
+            if r.get("player"):
+                inj_map[(props.norm_name(r["player"]), r.get("team"))] = r
     for g in slate.itertuples():
         for side, tid, abbr, opp_id, opp in (("home", g.home_id, g.home, g.away_id, g.away), ("away", g.away_id, g.away, g.home_id, g.home)):
             base = None
             src = None
             if rosters and abbr in rosters:
                 base = pd.DataFrame(rosters[abbr]["players"])
-                src = {"source": "stats.nba.com roster", "asof": rosters[abbr]["fetched_at"]}
+                src = {"source": f"{rosters[abbr].get('source', 'collected')} roster", "asof": rosters[abbr]["fetched_at"]}
             elif tid in last_by_team:
                 lb = last_by_team[tid]
                 base = lb[["player_id", "player", "position", "jersey", "headshot"]].copy()
@@ -108,7 +111,9 @@ def future_rows(P, T, slate, injuries, rosters):
                 continue
             for r in base.itertuples():
                 st = inj_map.get((props.norm_name(r.player), abbr)) or inj_map.get((props.norm_name(r.player), None))
-                status_txt = (st["status"].lower() if st else "unknown")
+                status_txt = ((st.get("status") or "unknown").lower() if st else ("available" if injuries else "unknown"))
+                if status_txt not in STATUS_P and status_txt != "unknown":
+                    status_txt = "questionable"
                 rows.append({"game_id": g.game_id, "season": g.season, "player_id": str(r.player_id), "player": r.player, "team_id": tid, "team": abbr,
                              "opp_id": opp_id, "opp": opp, "home": side == "home", "position": r.position, "jersey": getattr(r, "jersey", None),
                              "starter": False, "played": status_txt != "out", "dnp": False, "active": True, "reason": (st or {}).get("reason"),
@@ -322,7 +327,7 @@ def build(out_path, days=3, now=None, sims=3000, refresh=False):
         last_gid = grp.game_id.iloc[-1]
         lb = grp[grp.game_id == last_gid]
         if rosters and abbr in rosters:
-            plist = rosters[abbr]["players"]; src = {"source": "stats.nba.com roster", "asof": rosters[abbr]["fetched_at"]}
+            plist = rosters[abbr]["players"]; src = {"source": f"{rosters[abbr].get('source', 'collected')} roster", "asof": rosters[abbr]["fetched_at"]}
         else:
             plist = [{"player_id": x.player_id, "player": x.player, "position": x.position, "jersey": x.jersey, "headshot": x.headshot, "starter": bool(x.starter)} for x in lb.itertuples()]
             src = {"source": f"last box score {lb.game_date.iloc[0]}", "asof": lb.tipoff_utc.iloc[0].strftime("%Y-%m-%dT%H:%M:%SZ"), "note": "offseason moves not reflected until current rosters are collected"}
@@ -355,7 +360,7 @@ def build(out_path, days=3, now=None, sims=3000, refresh=False):
                           "updated_at": t0, "meta": grades.META, "methodology_version": grades.METHOD_VERSION, "validation": gval,
                           "definition": "Snap Grade is a percentile rank among the comparison group of a weighted, shrunk box-production summary; descriptive, not a probability"},
                "fantasy": fant, "rosters": rost, "results": results,
-               "data_status": {"sources": st, "manifest": manifest, "injury_report": None if not injuries else {"fetched_at": injuries["fetched_at"], "rows": len(injuries["rows"])},
+               "data_status": {"sources": st, "manifest": manifest, "injury_report": None if not injuries else {"fetched_at": injuries["fetched_at"], "rows": len(injuries["rows"]), "sources": injuries.get("sources")},
                                "rosters": "collected" if rosters else "last box score per team", "lines": prop_line_status(),
                                "models": {"team": {"version": tm["model_version"], "trained_through": tm["trained_through"], "features": team_model.BLIND},
                                           "player": {"version": player_model.MODEL_VERSION}}}}
@@ -405,9 +410,9 @@ def _json_default(o):
 def preseason_notes(cur_season, injuries, rosters, slate):
     n = []
     if not injuries:
-        n.append("No official injury report has been collected yet (the report is published in season). Availability is the model's own P(play) from last season's pattern, labelled 'no injury report'.")
+        n.append("No injury feed has been collected yet. Availability is the model's own P(play) from last season's pattern, labelled 'no injury report'.")
     if not rosters:
-        n.append("Rosters are each team's last box score of 2025-26; offseason trades and signings are not reflected until the runner collects current rosters from stats.nba.com.")
+        n.append("Rosters are the union of each team's last five box scores of 2025-26; offseason trades and signings are not reflected until the runner collects current rosters (ESPN site API).")
     if not os.path.exists(props.QUOTES):
         n.append("No lines collected yet. Prop evaluations appear once the runner's Odds API fetch returns NBA player props; there is no historical NBA line archive here.")
     if not slate.empty:

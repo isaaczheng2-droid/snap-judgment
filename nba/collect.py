@@ -59,8 +59,84 @@ def collect_boxscores():
         log(f"boxscores failed: {e!r}")
 
 
-# ----------------------------------------------------------------------------- stats.nba.com rosters + crosswalk
+# ----------------------------------------------------------------------------- rosters
+ESPN = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba"
+
+
+def _espn_teams():
+    """ESPN team id -> abbreviation, from the games table (same id namespace as the box scores)."""
+    import pandas as pd
+    G = pd.read_parquet(os.path.join(DATA, "games.parquet"))
+    m = {}
+    for a, b in (("home_id", "home"), ("away_id", "away")):
+        for tid, ab in G[[a, b]].dropna().drop_duplicates().itertuples(index=False):
+            if ab not in ("TBD",):
+                m[int(tid)] = ab
+    return m
+
+
 def collect_rosters():
+    """Current rosters. ESPN's site API first (same athlete/team ids as the box scores, so the
+    identity match is exact, and it is reachable from the runner); stats.nba.com via nba_api as
+    the fallback, which the 2026-09-23 runner probe showed timing out (datacenter block)."""
+    teams = _espn_teams()
+    out, ok = {}, 0
+    for tid, abbr in sorted(teams.items()):
+        code, body = curl(f"{ESPN}/teams/{tid}/roster", ["-H", f"User-Agent: {UA}"], timeout=40)
+        if code != "200":
+            continue
+        try:
+            d = json.loads(body)
+        except Exception:
+            continue
+        players = []
+        for a in d.get("athletes", []):
+            st = (a.get("status") or {}).get("name")
+            inj = a.get("injuries") or []
+            players.append({"player_id": str(a["id"]), "player": a.get("displayName") or a.get("fullName"), "position": ((a.get("position") or {}).get("abbreviation") or "")[:1] or None,
+                            "jersey": a.get("jersey"), "headshot": (a.get("headshot") or {}).get("href"), "roster_status": st,
+                            "injury": ({"status": inj[0].get("status"), "detail": (inj[0].get("details") or {}).get("type")} if inj else None), "id_match": "espn"})
+        out[abbr] = {"espn_team_id": tid, "season": (d.get("season") or {}).get("displayName"), "fetched_at": now_iso(), "source": "espn site api", "players": players}
+        ok += 1
+        time.sleep(0.3)
+    if ok >= 25:
+        json.dump(out, open(os.path.join(DATA, "rosters_current.json"), "w"), indent=0)
+        status.record("espn_site", True, f"{ok}/30 rosters, {sum(len(v['players']) for v in out.values())} players")
+        log(f"rosters (espn): {ok} teams")
+        return
+    status.record("espn_site", False, f"only {ok}/30 rosters from ESPN")
+    collect_rosters_nba()
+
+
+def collect_injuries_espn():
+    """ESPN's league injury feed (timestamped per entry). Appended as a snapshot with source=espn;
+    the official NBA report, when it is published, is appended by collect_injuries and wins ties."""
+    code, body = curl(f"{ESPN}/injuries", ["-H", f"User-Agent: {UA}"], timeout=40)
+    if code != "200":
+        status.record("espn_site", False, f"injuries HTTP {code}")
+        return
+    try:
+        d = json.loads(body)
+    except Exception as e:
+        status.record("espn_site", False, f"injuries unparseable: {e!r}")
+        return
+    teams = _espn_teams()
+    fetched, rows = now_iso(), []
+    for t in d.get("injuries", []):
+        abbr = teams.get(int(t.get("id", 0) or 0))
+        for i in t.get("injuries", []):
+            ath = i.get("athlete") or {}
+            rows.append({"team": abbr, "team_name": t.get("displayName"), "player": ath.get("displayName"), "player_id": str(ath.get("id")) if ath.get("id") else None,
+                         "status": i.get("status"), "reason": i.get("shortComment") or (i.get("details") or {}).get("type"), "detail": (i.get("details") or {}).get("type"),
+                         "report_time": i.get("date"), "fetched_at": fetched, "source": "espn"})
+    with open(os.path.join(DATA, "injury_snapshots.ndjson"), "a") as f:
+        for r in rows:
+            f.write(json.dumps(r) + "\n")
+    status.record("espn_site", True, f"{len(rows)} injury entries at {d.get('timestamp')}")
+    log(f"injuries (espn): {len(rows)} rows")
+
+
+def collect_rosters_nba():
     """CommonTeamRoster for all 30 teams via nba_api; writes rosters_current.json keyed by ESPN
     abbreviation with ESPN player ids attached by exact name match (unmatched keep nba id only)."""
     try:
@@ -229,7 +305,12 @@ def validate_boxscores(n_games=40):
     log(f"validation: {matched} matched, {len(mism)} mismatches")
 
 
-STEPS = {"boxscores": collect_boxscores, "rosters": collect_rosters, "injuries": collect_injuries, "pbpstats": collect_pbpstats,
+def collect_injuries_all():
+    collect_injuries_espn()
+    collect_injuries()
+
+
+STEPS = {"boxscores": collect_boxscores, "rosters": collect_rosters, "injuries": collect_injuries_all, "pbpstats": collect_pbpstats,
          "lines": collect_lines, "validate": validate_boxscores}
 
 if __name__ == "__main__":
@@ -245,5 +326,5 @@ if __name__ == "__main__":
                 STEPS[name]()
             except Exception as e:
                 log(f"{name} crashed: {e!r}")
-                status.record({"boxscores": "sdv_boxscores", "rosters": "stats_nba", "injuries": "official_injury", "pbpstats": "pbpstats",
+                status.record({"boxscores": "sdv_boxscores", "rosters": "espn_site", "injuries": "official_injury", "pbpstats": "pbpstats",
                                "lines": "odds_api", "validate": "stats_nba"}[name], False, f"crash: {e!r}")
