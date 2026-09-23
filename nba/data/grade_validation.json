@@ -1,0 +1,69 @@
+{
+ "methodology_version": "snap_grade_nba_v1",
+ "validation": [
+  {
+   "season": 2024,
+   "checkpoint_games": 20,
+   "n": 409,
+   "spearman_grade": 0.63,
+   "spearman_trailing_per36": 0.672
+  },
+  {
+   "season": 2024,
+   "checkpoint_games": 40,
+   "n": 445,
+   "spearman_grade": 0.616,
+   "spearman_trailing_per36": 0.599
+  },
+  {
+   "season": 2024,
+   "checkpoint_games": 60,
+   "n": 415,
+   "spearman_grade": 0.664,
+   "spearman_trailing_per36": 0.597
+  },
+  {
+   "season": 2025,
+   "checkpoint_games": 20,
+   "n": 394,
+   "spearman_grade": 0.724,
+   "spearman_trailing_per36": 0.647
+  },
+  {
+   "season": 2025,
+   "checkpoint_games": 40,
+   "n": 442,
+   "spearman_grade": 0.703,
+   "spearman_trailing_per36": 0.629
+  },
+  {
+   "season": 2025,
+   "checkpoint_games": 60,
+   "n": 423,
+   "spearman_grade": 0.668,
+   "spearman_trailing_per36": 0.584
+  },
+  {
+   "season": 2026,
+   "checkpoint_games": 20,
+   "n": 408,
+   "spearman_grade": 0.725,
+   "spearman_trailing_per36": 0.654
+  },
+  {
+   "season": 2026,
+   "checkpoint_games": 40,
+   "n": 437,
+   "spearman_grade": 0.761,
+   "spearman_trailing_per36": 0.685
+  },
+  {
+   "season": 2026,
+   "checkpoint_games": 60,
+   "n": 419,
+   "spearman_grade": 0.765,
+   "spearman_trailing_per36": 0.673
+  }
+ ],
+ "reading": "Spearman rank correlation with per-game production over the next 10 games, at three checkpoints per season; the grade is labelled a descriptive summary regardless, since this checks ranking of production, not prop or fantasy outcomes"
+}

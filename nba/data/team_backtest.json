@@ -1,0 +1,165 @@
+{
+ "model_version": "nba_team_v1",
+ "generated_at": "2026-09-23T19:05:04Z",
+ "features": {
+  "lineup_blind": [
+   "home",
+   "d_net",
+   "d_off",
+   "d_def",
+   "sum_pace",
+   "d_rest",
+   "d_b2b",
+   "d_last7",
+   "d_elo",
+   "d_sos",
+   "neutral"
+  ],
+  "availability": [
+   "home",
+   "d_net",
+   "d_off",
+   "d_def",
+   "sum_pace",
+   "d_rest",
+   "d_b2b",
+   "d_last7",
+   "d_elo",
+   "d_sos",
+   "neutral",
+   "d_avail"
+  ]
+ },
+ "seasons": [
+  {
+   "season": 2024,
+   "n_train": 2643,
+   "n_test": 1319,
+   "role": "validation",
+   "lineup_blind": {
+    "n": 1319,
+    "su": 0.6580742987111448,
+    "brier": 0.21188050221530458,
+    "logloss": 0.6147272376648425,
+    "margin_mae": 11.051407150728542,
+    "total_mae": 14.683103191055789
+   },
+   "availability": {
+    "n": 1319,
+    "su": 0.6580742987111448,
+    "brier": 0.21105348550298716,
+    "logloss": 0.6123701948673927,
+    "margin_mae": 11.024180338090607,
+    "total_mae": 14.705801304018518
+   },
+   "baseline_home_always": {
+    "n": 1319,
+    "su": 0.5473843821076573,
+    "brier": 0.24881849886277482,
+    "logloss": 0.6908194538200202
+   },
+   "baseline_net_rating": {
+    "n": 1319,
+    "su": 0.6482183472327521,
+    "brier": 0.21549180812869115,
+    "logloss": 0.6191940321428113
+   },
+   "baseline_elo": {
+    "n": 1319,
+    "su": 0.6512509476876421,
+    "brier": 0.21329326799540785,
+    "logloss": 0.6135717888486044
+   },
+   "baseline_rate_total": {
+    "total_mae": 15.025380158805985
+   }
+  },
+  {
+   "season": 2025,
+   "n_train": 3962,
+   "n_test": 1321,
+   "role": "validation",
+   "lineup_blind": {
+    "n": 1321,
+    "su": 0.663890991672975,
+    "brier": 0.21069897263722498,
+    "logloss": 0.6076952563598308,
+    "margin_mae": 11.077564340485408,
+    "total_mae": 14.762644469442174
+   },
+   "availability": {
+    "n": 1321,
+    "su": 0.6691900075700227,
+    "brier": 0.2087257675463359,
+    "logloss": 0.6030488338135209,
+    "margin_mae": 10.968235924622391,
+    "total_mae": 14.741022240141763
+   },
+   "baseline_home_always": {
+    "n": 1321,
+    "su": 0.5450416351249053,
+    "brier": 0.24919333838001512,
+    "logloss": 0.6915756302108571
+   },
+   "baseline_net_rating": {
+    "n": 1321,
+    "su": 0.6563209689629069,
+    "brier": 0.21555879352686394,
+    "logloss": 0.6193730539175124
+   },
+   "baseline_elo": {
+    "n": 1321,
+    "su": 0.6578349735049205,
+    "brier": 0.21408815704598563,
+    "logloss": 0.6159951061218905
+   },
+   "baseline_rate_total": {
+    "total_mae": 15.09303328039849
+   }
+  },
+  {
+   "season": 2026,
+   "n_train": 5283,
+   "n_test": 1322,
+   "role": "test",
+   "lineup_blind": {
+    "n": 1322,
+    "su": 0.6762481089258698,
+    "brier": 0.2074942992795841,
+    "logloss": 0.6022838748854652,
+    "margin_mae": 11.427018340358147,
+    "total_mae": 15.233356807768875
+   },
+   "availability": {
+    "n": 1322,
+    "su": 0.6830559757942511,
+    "brier": 0.2053877267267723,
+    "logloss": 0.5965367776018514,
+    "margin_mae": 11.286485864507002,
+    "total_mae": 15.229031323720962
+   },
+   "baseline_home_always": {
+    "n": 1322,
+    "su": 0.5552193645990923,
+    "brier": 0.24756490166414524,
+    "logloss": 0.6882905299429382
+   },
+   "baseline_net_rating": {
+    "n": 1322,
+    "su": 0.6785173978819969,
+    "brier": 0.20914186864622916,
+    "logloss": 0.6064150831357078
+   },
+   "baseline_elo": {
+    "n": 1322,
+    "su": 0.680786686838124,
+    "brier": 0.20774236710542662,
+    "logloss": 0.6042685889392879
+   },
+   "baseline_rate_total": {
+    "total_mae": 15.344767776811983
+   }
+  }
+ ],
+ "market_comparison": "none: no historical NBA closing lines are held; forward collection only"
+}
