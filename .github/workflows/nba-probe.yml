@@ -1,0 +1,49 @@
+name: NBA source probe
+on:
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Probe endpoints from the runner
+        run: |
+          probe () {
+            code=$(curl -s -o /tmp/body -w "%{http_code}" -m 25 -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36" -H "Referer: https://www.nba.com/" -H "Origin: https://www.nba.com" -H "Accept: application/json, text/plain, */*" -H "x-nba-stats-origin: stats" -H "x-nba-stats-token: true" "$1" || echo "ERR")
+            printf "%-4s %8s  %s\n" "$code" "$(wc -c < /tmp/body)" "$1"
+            head -c 160 /tmp/body | tr '\n' ' '; echo
+          }
+          probe "https://cdn.nba.com/static/json/staticData/scheduleLeagueV2_1.json"
+          probe "https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json"
+          probe "https://stats.nba.com/stats/leaguegamelog?Counter=1000&DateFrom=&DateTo=&Direction=DESC&LeagueID=00&PlayerOrTeam=P&Season=2025-26&SeasonType=Regular%20Season&Sorter=DATE"
+          probe "https://stats.nba.com/stats/commonteamroster?LeagueID=00&Season=2026-27&TeamID=1610612747"
+          probe "https://stats.nba.com/stats/playerindex?Historical=0&LeagueID=00&Season=2026-27"
+          probe "https://api.pbpstats.com/get-totals/nba?Season=2025-26&SeasonType=Regular%20Season&Type=Team"
+          probe "https://api.pbpstats.com/get-game-logs/nba?Season=2025-26&SeasonType=Regular%20Season&EntityId=1610612747&EntityType=Team"
+          probe "https://official.nba.com/nba-injury-report-2025-26-season/"
+          probe "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-04-12_05PM.pdf"
+          probe "https://cdn.nba.com/headshots/nba/latest/260x190/2544.png"
+          probe "https://api.balldontlie.io/v1/teams"
+          probe "https://api.the-odds-api.com/v4/sports/?all=true"
+          probe "https://raw.githubusercontent.com/shufinskiy/nba_data/main/README.md"
+          probe "https://www.basketball-reference.com/leagues/NBA_2026_games.html"
+      - name: nba_api from the runner
+        run: |
+          pip install -q nba_api==1.9.0 pandas 2>/dev/null || pip install -q nba_api pandas
+          python - <<'PY'
+          import time, json
+          from nba_api.stats.endpoints import leaguegamelog, commonteamroster, playerindex
+          from nba_api.live.nba.endpoints import scoreboard
+          t=time.time()
+          try:
+              df = leaguegamelog.LeagueGameLog(season="2025-26", player_or_team_abbreviation="P", timeout=40).get_data_frames()[0]
+              print("stats.nba.com playergamelog 2025-26 rows:", len(df), "cols:", list(df.columns)[:12], f"{time.time()-t:.1f}s")
+          except Exception as e: print("stats.nba.com FAILED:", repr(e)[:200])
+          try:
+              r = commonteamroster.CommonTeamRoster(team_id=1610612747, season="2026-27", timeout=40).get_data_frames()[0]
+              print("roster 2026-27 LAL rows:", len(r), list(r.columns)[:10])
+          except Exception as e: print("roster FAILED:", repr(e)[:200])
+          try:
+              s = scoreboard.ScoreBoard(timeout=40); d = s.get_dict(); print("live scoreboard keys:", list(d.keys()), "games:", len(d.get("scoreboard",{}).get("games",[])))
+          except Exception as e: print("live scoreboard FAILED:", repr(e)[:200])
+          PY
