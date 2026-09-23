@@ -108,11 +108,14 @@ def main():
                 continue
             shown = g["home_team"] if g["p_home"] >= 0.5 else g["away_team"]
             winner = r["h"] if r["hs"] > r["as"] else r["a"]
-            if shown != (r.get("mpick") or r["pick"]) or abs(g["p_home"] - (r["pm"] if r.get("pm") is not None else r["p"])) > 5e-4:
-                clash.append((g["game_id"], shown, r.get("mpick"), g["p_home"], r.get("pm")))
-            if r.get("okm") is not None and r["okm"] != (shown == winner):
+            pick = r.get("cpick") or r.get("mpick") or r["pick"]
+            prob = r["pc"] if r.get("pc") is not None else r["pm"] if r.get("pm") is not None else r["p"]
+            ok = r.get("okc") if r.get("okc") is not None else r.get("okm")
+            if shown != pick or abs(g["p_home"] - prob) > 5e-4:
+                clash.append((g["game_id"], shown, pick, g["p_home"], prob))
+            if ok is not None and ok != (shown == winner):
                 clash.append((g["game_id"], "verdict grades a different pick than the page shows"))
-        check(not clash, f"every graded game shows the standalone model's locked pick, and its verdict grades that same pick ({clash[:3]})")
+        check(not clash, f"every graded game shows the model's closing (last pre-kickoff) pick, and its verdict grades that same pick ({clash[:3]})")
     else:
         check(False, "a payload with forecast records is on disk (run the pipeline first)")
 
@@ -261,6 +264,28 @@ def main():
         check(rows == [], "no new prediction version is recorded for a game that has kicked off")
     os.environ.pop("SJ_LIVE_DIR", None)
 
+
+    # ---- 12. the closing forecast is the one shown and graded; the opening one is kept
+    closing = {"G_DONE": {"p_model": 0.4400, "at": "2026-09-20T05:19:10Z", "margin": -1.8,
+                          "home_score": 21.6, "away_score": 23.4, "model_version": "m_close"}}
+    up3 = up2.copy(deep=True)
+    fz2 = rp.freeze_settled(up3, h3, sched, 2026, 2, closing=closing, now="2026-09-21T03:00:00Z", log=lambda *a: None)
+    d2 = up3[up3.game_id == "G_DONE"].iloc[0]
+    check(abs(d2.p_home - 0.44) < 1e-9 and d2.predicted_winner == "CIN" and abs(d2.margin_pred + 1.8) < 1e-9,
+          "a kicked-off game shows the model's LAST pre-kickoff forecast, not the opening one it was locked with")
+    check(abs((d2.predicted_home_score - d2.predicted_away_score) - d2.margin_pred) < 1e-6,
+          "the closing score and the closing margin come from the same run, so they agree")
+    lc2 = rp.forecast_record(d2, 2026, 2, "x", "y", "m_new", {}, {"status": "locked", "flags": [], "features_complete": True}, fz2["G_DONE"])["lifecycle"]
+    check(lc2["basis"] == "closing" and lc2["opening_p_home"] == 0.5047 and lc2["opened_at"] == "2026-09-15T05:33Z",
+          "the record says it is the closing forecast and keeps the opening number with its date")
+    h5 = {"games": {"G_DONE": dict(h3["games"]["G_DONE"], act={"win": "CIN", "hs": 6.0, "as": 20.0, "ok": False, "okm": False})}}
+    n5 = tracker.apply_closing(h5, closing)
+    row5 = h5["games"]["G_DONE"]
+    check(n5 == 1 and row5["pc"] == 0.44 and row5["cpick"] == "CIN" and row5["act"]["okc"] is True,
+          "apply_closing adds the closing number and grades it")
+    check(row5["p"] == 0.5586 and row5["pm"] == 0.5047 and row5["pick"] == "HOU"
+          and row5["act"]["ok"] is False and row5["act"]["okm"] is False,
+          "and leaves the opening number, the published number and both earlier verdicts untouched")
 
     print("\n" + ("all checks passed" if not FAILS else f"{len(FAILS)} FAILED"))
     return 1 if FAILS else 0

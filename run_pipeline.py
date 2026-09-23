@@ -1354,7 +1354,48 @@ def data_source_stamps(datadir, cur):
     return (latest.strftime("%Y-%m-%dT%H:%M:%SZ") if latest else None), stamps
 
 
-def freeze_settled(up, hist, sched, cur, week, now=None, log=print):
+def closing_forecasts(hist, sched, cur, log=print):
+    """
+    The last forecast recorded at or before kickoff, per game -- the "closing" forecast.
+
+    The tracker locks the FIRST number it ever sees for a game and never touches it again,
+    which is the right way to keep an opening line but is not what the site showed anyone.
+    Predictions are refreshed all week as the injury report fills in, and the number on the
+    page at kickoff is the last of those. On 2026-09-20 the model opened PIT 53.2% for PIT at
+    NE, moved to NE 58.6% on the Friday and closed NE 54.5% on Sunday morning; NE won. Grading
+    the Monday number calls that a miss for a forecast the site had already revised.
+
+    So the forecast of record is the last version stamped at or before kickoff. It is still
+    strictly pre-kickoff -- nothing here can see a snap -- and it is the fair counterpart to
+    the closing market line we measure against. The opening number is kept beside it.
+    """
+    from learn.ledger import kickoffs
+    weeks = sorted({g["w"] for g in (hist or {}).get("games", {}).values() if g.get("s") == cur})
+    koff = {}
+    for w in weeks:
+        try:
+            k, _ = kickoffs(sched, int(cur), int(w))
+            koff.update({gid: t for gid, t in k.items() if t})
+        except Exception as e:
+            log(f"  closing: no kickoff times for week {w} ({e})")
+    out = {}
+    for gid, g in (hist or {}).get("games", {}).items():
+        if g.get("s") != cur:
+            continue
+        k = koff.get(gid)
+        if not k:
+            continue
+        for v in live_versions.history(gid, limit=400):          # newest first
+            if v.get("created_at") and v["created_at"] <= k and v.get("p_model") is not None:
+                out[gid] = {"p_model": float(v["p_model"]), "at": v["created_at"],
+                            "margin": v.get("margin"), "home_score": v.get("homeScore", v.get("home_score")),
+                            "away_score": v.get("awayScore", v.get("away_score")),
+                            "p_market": v.get("p_market"), "model_version": v.get("model_version")}
+                break
+    return out, koff
+
+
+def freeze_settled(up, hist, sched, cur, week, closing=None, now=None, log=print):
     """
     A game that has kicked off keeps the forecast that was published before it started.
 
@@ -1427,10 +1468,17 @@ def freeze_settled(up, hist, sched, cur, week, now=None, log=print):
         if total is None:
             total, src = float(r.total_pred), "expected total was not recorded before kickoff; taken from a later run"
         hs, as_ = (total + mg) / 2, (total - mg) / 2
-        # the headline is the standalone model's locked number; the blend only survives as a
-        # labelled record of what was published at the time
+        # the headline is the CLOSING forecast -- the model's last word before kickoff. The
+        # opening lock and the blend published at the time are both kept, and named.
         p_pub = float(row["p"])
-        p_model = float(row["pm"]) if row.get("pm") is not None else p_pub
+        p_open = float(row["pm"]) if row.get("pm") is not None else p_pub
+        cl = (closing or {}).get(gid)
+        p_model = float(cl["p_model"]) if cl else p_open
+        if cl and cl.get("margin") is not None:
+            mg = round(float(cl["margin"]), 2)
+        if cl and cl.get("home_score") is not None and cl.get("away_score") is not None:
+            total, src = float(cl["home_score"]) + float(cl["away_score"]), "closing forecast at " + cl["at"]
+            hs, as_ = (total + mg) / 2, (total - mg) / 2
         up.at[i, "p_home"] = p_model
         up.at[i, "p_model"] = p_model
         up.at[i, "p_market"] = np.nan if row.get("pk") is None else float(row["pk"])
@@ -1440,8 +1488,11 @@ def freeze_settled(up, hist, sched, cur, week, now=None, log=print):
         up.at[i, "total_pred"] = float(total)
         up.at[i, "predicted_winner"] = r.home_team if p_model >= 0.5 else r.away_team
         pub_method = row.get("method", LEGACY_METHOD)
-        out[gid] = {"kickoff": k, "locked": True, "locked_at": row.get("at"),
-                    "method": METHOD, "model_version": row.get("mv"), "score_source": src,
+        out[gid] = {"kickoff": k, "locked": True, "locked_at": (cl["at"] if cl else row.get("at")),
+                    "method": METHOD, "model_version": (cl.get("model_version") if cl else None) or row.get("mv"),
+                    "score_source": src, "closing": bool(cl),
+                    "opened_at": row.get("at"),
+                    "opening_p_home": None if abs(p_open - p_model) < 1e-9 else round(p_open, 4),
                     # what the site actually showed at the time, kept and named
                     "published_p_home_at_lock": None if abs(p_pub - p_model) < 1e-9 else round(p_pub, 4),
                     "published_method": None if abs(p_pub - p_model) < 1e-9 else pub_method,
@@ -1513,12 +1564,15 @@ def forecast_record(r, cur, week, forecast_at, data_cutoff, model_version_id, st
         "counterfactual_healthy": None if f.get("locked") else
             {"p_home": round(float(r.p_home_healthy), 6), "margin_home": round(float(r.margin_healthy), 4)},
         # a kicked-off game states what it is: the forecast as locked, not a re-run
-        "lifecycle": ({"state": "locked", "kickoff": f.get("kickoff"), "locked_at": f.get("locked_at"),
+        "lifecycle": ({"state": "locked", "kickoff": f.get("kickoff"),
+                       "locked_at": f.get("locked_at"),
+                       "basis": "closing" if f.get("closing") else "opening",
+                       "opened_at": f.get("opened_at"), "opening_p_home": f.get("opening_p_home"),
                        "published_p_home_at_lock": f.get("published_p_home_at_lock"),
                        "published_method": f.get("published_method"),
                        "published_pick": f.get("published_pick"),
                        "expected_score_source": f.get("score_source"),
-                       "note": "the standalone model's own forecast, locked before kickoff and not re-run; this is what the verdict grades"}
+                       "note": "the standalone model's last forecast before kickoff, frozen at kickoff and not re-run; this is what the verdict grades"}
                       if f.get("locked") else
                       {"state": "kicked_off_unlocked", "kickoff": f.get("kickoff"),
                        "note": "this game had kicked off before any forecast was locked for it; the numbers shown are a later run and are not graded"}
@@ -1579,7 +1633,11 @@ def main():
     # BEFORE anything downstream reads these columns
     hist_path = os.path.join(a.outdir, "history.json")
     hist = tracker.load(hist_path)
-    frozen = freeze_settled(up, hist, sched, cur, target_week, log=log)
+    closing, _koff = closing_forecasts(hist, sched, cur, log=log)
+    n_cl = tracker.apply_closing(hist, closing)
+    if n_cl:
+        log(f"  closing: {n_cl} row(s) given the last forecast recorded before kickoff")
+    frozen = freeze_settled(up, hist, sched, cur, target_week, closing=closing, log=log)
     forecast_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     data_cutoff, source_stamps = data_source_stamps(a.datadir, cur)
     model_version_id = live_versions.model_version(XGB_PARAMS, FEATS, None, N_SEEDS, f"{cur}-w{target_week}")
@@ -1589,9 +1647,7 @@ def main():
         flags = []
         fz = frozen.get(str(r.game_id)) or {}
         if fz.get("locked"):
-            flags.append("locked before kickoff; not re-run since"
-                         + (f" (the site published a {fz['published_method']} number that day)"
-                            if fz.get("published_method") else ""))
+            pass                      # a frozen forecast is a lifecycle state, not a data caveat
         elif fz:
             flags.append("kicked off with no locked forecast; these numbers are a later run and are not graded")
         if pd.isna(r.p_market):

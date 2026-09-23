@@ -10,8 +10,8 @@ Page checks, run headless against site/index.html:
   6. keyboard: Tab reaches the nav and the first game link; focus is visible; skip nothing
   7. no market blend in the page code; reduced-motion rules exist; every image has alt text
   8. contrast of ink on ivory and the accent on ivory clears WCAG AA
-  9. a game that has kicked off shows the standalone model's own locked pick, and the verdict
-     on the card grades THAT pick against the final score (the 2026-09-20 CIN/LV/PIT fault)
+  9. a game that has kicked off shows the model's CLOSING forecast (its last run before
+     kickoff), and the verdict on the card grades that pick against the final score
 """
 import asyncio, json, math, re, sys
 from playwright.async_api import async_playwright
@@ -121,22 +121,28 @@ async def main():
             verdict_hit = "hit" in row.lower()
             home_won = r["hs"] > r["as"]
             winner = g["home_team"] if home_won else g["away_team"]
-            # the page headlines the standalone model, so that is the pick it must grade
-            if shown != (r.get("mpick") or r["pick"]): clash.append((g["game_id"], "shown", shown, "graded", r.get("mpick")))
+            # the page headlines the closing forecast, so that is the pick it must grade
+            pick = r.get("cpick") or r.get("mpick") or r["pick"]
+            if shown != pick: clash.append((g["game_id"], "shown", shown, "graded", pick))
             if f"{shown} " not in row.upper(): clash.append((g["game_id"], "row does not name the shown pick"))
             if verdict_hit != (shown == winner): clash.append((g["game_id"], "verdict", row.replace("\n", " ")[:70]))
-        check(not clash, f"every settled game shows the standalone model's locked pick and a verdict matching it against the final score ({clash[:3]})")
-        # the game the user caught: the model said LV, LV won, and the page must say so while
-        # still naming the blend that was published that day
-        lv = next((g for g in payload["games"] if g["game_id"].endswith("LV_LAC")), None)
-        if lv:
-            r = graded.get(("LV", "LAC"))
-            await pg.goto(URL + f"#/games/{lv['game_id']}"); await pg.wait_for_timeout(200)
+        check(not clash, f"every settled game shows the model's closing pick and a verdict matching it against the final score ({clash[:3]})")
+        # the game the user caught: the model opened PIT on the Monday, moved to NE by the
+        # Friday and closed NE; NE won. The card must show the closing number, grade it, and
+        # still say where the forecast opened.
+        pn = next((g for g in payload["games"] if g["game_id"].endswith("PIT_NE")), None)
+        if pn:
+            r = graded.get(("PIT", "NE"))
+            await pg.goto(URL + f"#/games/{pn['game_id']}"); await pg.wait_for_timeout(200)
             body = await pg.inner_text("#matchView")
-            lc = lv["forecast"].get("lifecycle") or {}
-            check(lv["p_home"] < 0.5 and r and r.get("okm") is True and "MODEL PICK CORRECT" in body.upper(),
-                  "LV-LAC reproduction: the model picked LV, LV won, and the card marks the model pick correct")
-            check(lc.get("published_pick") == "LAC" and "LAC" in body and "published" in body.lower(),
+            lc = pn["forecast"].get("lifecycle") or {}
+            check(pn["p_home"] > 0.5 and r and r.get("cpick") == "NE" and r.get("okc") is True
+                  and "MODEL PICK CORRECT" in body.upper(),
+                  "PIT-NE reproduction: the model closed on NE, NE won, and the card marks the model pick correct")
+            check(lc.get("basis") == "closing" and lc.get("opening_p_home") is not None
+                  and "opened at" in body.lower(),
+                  "the card says it is the closing forecast and names where the week opened")
+            check(lc.get("published_pick") is not None and "published" in body.lower(),
                   "the retired blend that was published that day is still named on the page, not erased")
         cin = next((g for g in payload["games"] if g["game_id"].endswith("CIN_HOU")), None)
         if cin:

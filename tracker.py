@@ -159,6 +159,31 @@ def repair_phantom_dnp(h, plyr):
     return n
 
 
+def apply_closing(h, closing):
+    """
+    Attach the closing forecast -- the model's last word before kickoff -- to each row.
+
+    `p`/`pm` stay exactly as locked: they are the opening number and nothing rewrites them.
+    `pc` is a second, later pre-kickoff observation of the same game, and `okc` grades it.
+    Both are kept so the page can show the week's movement instead of hiding it.
+    """
+    n = 0
+    for gid, g in (h or {}).get("games", {}).items():
+        c = closing.get(gid)
+        if not c:
+            continue
+        pc = round(float(c["p_model"]), 4)
+        cpick = g["hm"] if pc >= 0.5 else g["a"]
+        if g.get("pc") == pc and g.get("cpick") == cpick:
+            continue
+        g["pc"], g["pca"], g["cpick"] = pc, c["at"], cpick
+        a = g.get("act")
+        if a:
+            a["okc"] = None if a.get("win") == "TIE" else bool(a.get("win") == cpick)
+        n += 1
+    return n
+
+
 def backfill_model_verdict(h):
     """
     Add the standalone model's verdict to rows graded before that column existed.
@@ -207,11 +232,13 @@ def grade(h, sched, plyr, per_game_scheme):
         # publishes the model now, so it grades the model -- and keeps the old verdict rather
         # than pretending the blend was never published.
         mpick = None if g.get("pm") is None else (g["hm"] if g["pm"] >= 0.5 else g["a"])
+        cpick = g.get("cpick") or mpick
         g["act"] = {
             "hs": hs, "as": as_, "mg": margin, "win": winner,
             "ok": None if winner == "TIE" else bool(winner == g["pick"]),
             "okm": None if winner == "TIE" or mpick is None else bool(winner == mpick),
             "mpick": mpick,
+            "okc": None if winner == "TIE" or cpick is None else bool(winner == cpick),
             "ats": ats, "err": round(abs(g["mg"] - margin), 2),
             "tot": None if g.get("tot") is None else bool((hs + as_) > g["tot"]),
         }
@@ -425,7 +452,11 @@ def summarize(h, cur, row_cap=400):
         } for g in sorted(pend, key=lambda g: (g["w"], g["a"]))[:64]]
         # the standalone model's own record, from the model probability stored on every row
         # whichever method was published at the time
-        pm_ok = [((g["pm"] > 0.5) == (g["act"]["win"] == g["hm"])) for g in gs if g.get("pm") is not None and g["act"]["ok"] is not None]
+        # the model's record is measured on its CLOSING forecast, falling back to the opening
+        # one for games that have no later pre-kickoff run on file
+        _mp = lambda g: g["pc"] if g.get("pc") is not None else g.get("pm")
+        pm_ok = [((_mp(g) > 0.5) == (g["act"]["win"] == g["hm"])) for g in gs if _mp(g) is not None and g["act"]["ok"] is not None]
+        pm_open_ok = [((g["pm"] > 0.5) == (g["act"]["win"] == g["hm"])) for g in gs if g.get("pm") is not None and g["act"]["ok"] is not None]
         methods = {}
         for g in gs + pend:
             methods[g.get("method", "blend_20_80_v1")] = methods.get(g.get("method", "blend_20_80_v1"), 0) + 1
@@ -433,8 +464,8 @@ def summarize(h, cur, row_cap=400):
             "games": {
                 "n": len(gs), "pending": len(pend),
                 "su": _mean(ok), "right": int(sum(ok)), "wrong": len(ok) - int(sum(ok)),
-                "model_su": _mean(pm_ok), "model_n": len(pm_ok),
-                "model_brier": _mean([(g["pm"] - (1.0 if g["act"]["win"] == g["hm"] else 0.0)) ** 2
+                "model_su": _mean(pm_ok), "model_n": len(pm_ok), "model_open_su": _mean(pm_open_ok),
+                "model_brier": _mean([(_mp(g) - (1.0 if g["act"]["win"] == g["hm"] else 0.0)) ** 2
                                       for g in gs if g.get("pm") is not None and g["act"]["ok"] is not None]),
                 "market_brier": _mean([(g["pk"] - (1.0 if g["act"]["win"] == g["hm"] else 0.0)) ** 2 for g in mk]),
                 "methods": methods,
@@ -450,6 +481,7 @@ def summarize(h, cur, row_cap=400):
                     "p": g["p"], "mg": g["mg"], "sp": g.get("sp"),
                     "as": g["act"]["as"], "hs": g["act"]["hs"],
                     "ok": g["act"]["ok"], "okm": g["act"].get("okm"), "mpick": g["act"].get("mpick"),
+                    "pc": g.get("pc"), "cpick": g.get("cpick"), "pca": g.get("pca"), "okc": g["act"].get("okc"),
                     "ats": g["act"]["ats"], "err": g["act"]["err"],
                     "src": g.get("src", "live"), "pm": g.get("pm"), "pk": g.get("pk"), "method": g.get("method", "blend_20_80_v1"),
                 } for g in rows],
