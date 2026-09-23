@@ -66,6 +66,13 @@ def load_rosters():
     return json.load(open(p))
 
 
+# The Odds API names teams in full; the box scores use ESPN abbreviations
+TEAM_ABBR = {"Atlanta Hawks": "ATL", "Boston Celtics": "BOS", "Brooklyn Nets": "BKN", "Charlotte Hornets": "CHA", "Chicago Bulls": "CHI", "Cleveland Cavaliers": "CLE",
+             "Dallas Mavericks": "DAL", "Denver Nuggets": "DEN", "Detroit Pistons": "DET", "Golden State Warriors": "GS", "Houston Rockets": "HOU", "Indiana Pacers": "IND",
+             "Los Angeles Clippers": "LAC", "LA Clippers": "LAC", "Los Angeles Lakers": "LAL", "Memphis Grizzlies": "MEM", "Miami Heat": "MIA", "Milwaukee Bucks": "MIL",
+             "Minnesota Timberwolves": "MIN", "New Orleans Pelicans": "NO", "New York Knicks": "NY", "Oklahoma City Thunder": "OKC", "Orlando Magic": "ORL",
+             "Philadelphia 76ers": "PHI", "Phoenix Suns": "PHX", "Portland Trail Blazers": "POR", "Sacramento Kings": "SAC", "San Antonio Spurs": "SA",
+             "Toronto Raptors": "TOR", "Utah Jazz": "UTAH", "Washington Wizards": "WSH"}
 STATUS_P = {"out": 0.0, "doubtful": 0.25, "questionable": 0.5, "day-to-day": 0.5, "probable": 0.85, "available": 1.0}
 
 
@@ -310,9 +317,23 @@ def build(out_path, days=3, now=None, sims=3000, refresh=False):
         latest = max((r["fetched_at"] for r in gl), default=None)
         cur = [r for r in gl if r["fetched_at"] == latest]
         for row in games:
-            hits = [r for r in cur if r.get("home") and r["home"].split()[-1].upper()[:3] == row["home"]["abbr"][:3]]
+            hits = [r for r in cur if TEAM_ABBR.get(r.get("home")) == row["home"]["abbr"] and TEAM_ABBR.get(r.get("away")) == row["away"]["abbr"]]
             if hits:
                 row["market"] = {"fetched_at": latest, "quotes": [{k: r.get(k) for k in ("book", "market", "name", "point", "price", "quoted_at")} for r in hits]}
+                # comparison only: no-vig home probability from the first book with both h2h sides,
+                # plus that book's home spread and total. Nothing here feeds the model.
+                by_book = {}
+                for r in hits:
+                    by_book.setdefault(r["book"], []).append(r)
+                for book, qs in by_book.items():
+                    h2h = {TEAM_ABBR.get(q["name"]): q["price"] for q in qs if q["market"] == "h2h" and q.get("price") is not None}
+                    if row["home"]["abbr"] in h2h and row["away"]["abbr"] in h2h:
+                        ph, _, method = props.no_vig(h2h[row["home"]["abbr"]], h2h[row["away"]["abbr"]])
+                        sp = next((q["point"] for q in qs if q["market"] == "spreads" and TEAM_ABBR.get(q["name"]) == row["home"]["abbr"]), None)
+                        tot = next((q["point"] for q in qs if q["market"] == "totals" and str(q["name"]).lower() == "over"), None)
+                        row["market"]["summary"] = {"book": book, "p_home_novig": _f(ph), "devig": method, "spread_home": sp, "total": tot,
+                                                    "quoted_at": max((q.get("quoted_at") or "" for q in qs), default=None)}
+                        break
 
     # ---- grades (current season if it has games, else last finished season, labelled)
     gseason = cur_season if (P.season == cur_season).any() else last_done
