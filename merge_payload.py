@@ -20,7 +20,8 @@ import json, re, sys, argparse
 FRESH_KEYS = ["generated", "season", "week", "games", "players", "feature_importance",
                "backtest", "live", "scheme_league", "tracker",
                "props_meta", "prop_audit", "prop_range", "live_meta", "paper_test", "prop_audit_v2", "real_backtest",
-               "upsets", "fantasy", "health", "learning", "fantasy_history", "coaching", "standalone_eval", "method"]
+               "upsets", "fantasy", "health", "learning", "fantasy_history", "coaching", "standalone_eval", "method",
+               "rosters", "grades"]
 START, END = "/*PAYLOAD_START*/", "/*PAYLOAD_END*/"
 
 

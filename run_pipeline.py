@@ -25,6 +25,7 @@ from live import store as live_store, versions as live_versions, context as live
 import explain
 import odds_api
 import prop_value
+import player_grades
 import tracker
 from adjusted_ratings import ADJ_FEATS, add_adjusted_cols, team_adjusted
 from elo import ELO_FEATS, add_elo_cols
@@ -1854,6 +1855,18 @@ def main():
         "scheme_league": {x: float(sch_lg[x]) for x in SCHEME},
         "tracker": tracker.summarize(hist, cur),
     }
+    # ---- roster & lineup block and Snap Grades (additive; both descriptive, neither feeds a model)
+    try:
+        rosters_block = player_grades.depth_block(depth, rost, inj, cur, target_week)
+        keep = {r["gsis_id"] for t, v in rosters_block.items() if t != "_meta" for rows in v["groups"].values() for r in rows}
+        keep |= {p.get("player_key") for p in players if p.get("player_key")}
+        grade_rows, grade_meta = player_grades.compute(plyr, cur, target_week, keep_ids=keep)
+        payload["rosters"] = rosters_block
+        payload["grades"] = {"rows": grade_rows, "meta": grade_meta, "season": cur, "through_week": target_week - 1}
+        log(f"  rosters: {len(rosters_block) - 1} teams; grades: {sum(1 for g in grade_rows.values() if g['grade'] is not None)} graded of {len(grade_rows)}")
+    except Exception as e:
+        log(f"  rosters/grades skipped: {e!r}")
+        payload["rosters"], payload["grades"] = {}, {"rows": {}, "meta": {"error": repr(e)[:200]}}
     # ---- live layer: attach the live context to every game and record a prediction version.
     # The engine above never read anything from the live store; this only annotates and
     # records what it produced. See live/README.md.

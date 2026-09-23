@@ -96,16 +96,22 @@ async def main():
             if not (0 <= i_prob < i_score < i_strip < i_fact): order_ok = False
         check(not bad, f"every game page shows exactly its forecast record: probabilities, rounded expected score, margin, market ({bad[:4]})")
         check(order_ok, "game page order: matchup, standalone probability, labelled expected score, forecast status, then analysis")
-        await pg.goto(URL + "#/games/2026_02_JAX_DEN"); await pg.wait_for_timeout(150)
+        # reproduction game: the first on the slate where the model margin and the market edge both
+        # favour the away side (originally 2026_02_JAX_DEN; the slate moves on each week)
+        jd = next((g for g in payload["games"] if abs(g["forecast"]["margin_home"]) >= 0.5 and abs(g["forecast"]["market"].get("margin_edge_home") or 0) >= 0.5), payload["games"][0])
+        REPRO = jd["game_id"]
+        AWAY = jd["away_team"]
+        MSIDE = jd["home_team"] if jd["forecast"]["margin_home"] > 0 else jd["away_team"]
+        ESIDE = jd["home_team"] if (jd["forecast"]["market"].get("margin_edge_home") or 0) > 0 else jd["away_team"]
+        await pg.goto(URL + f"#/games/{REPRO}"); await pg.wait_for_timeout(150)
         facts = await pg.inner_text(".facts")
         check("MARKET, FOR COMPARISON ONLY" in facts and "WIN PROBABILITY, OUR MODEL" in facts, "market panel is labelled as comparison only, next to the model's own number")
         mk_font = await pg.evaluate("getComputedStyle(document.querySelector('.fact.market .v')).fontSize")
         md_font = await pg.evaluate("getComputedStyle(document.querySelector('.facts .fact .v')).fontSize")
         check(float(mk_font[:-2]) < float(md_font[:-2]), f"market number is visually secondary ({mk_font} vs {md_font})")
-        jd = [g for g in payload["games"] if g["game_id"] == "2026_02_JAX_DEN"][0]
         jm = jd["forecast"]["margin_home"]
-        check(f"JAX by {abs(jm):.1f}" in facts and "toward JAX" in facts and jm < 0 and jd["forecast"]["market"]["margin_edge_home"] < 0,
-              "JAX-DEN reproduction: margin and edge both point to JAX in words, and both are negative on the home side in the record")
+        check(f"{MSIDE} by {abs(jm):.1f}" in facts and f"toward {ESIDE}" in facts,
+              f"{REPRO} reproduction: the margin names {MSIDE} and the edge names {ESIDE}, matching the signs in the record")
 
         # 3b: a settled game shows the forecast it was graded on, and says so
         await pg.goto(URL + "#/home"); await pg.wait_for_timeout(250)
@@ -165,8 +171,8 @@ async def main():
         check("does not beat the market" in home or "does NOT beat" in home, "home page states the market comparison plainly")
 
         # 5: routes
-        routes = ["#/home", "#/games", "#/games/picks", "#/games/coaches", "#/games/2026_02_JAX_DEN/analytics", "#/games/2026_02_JAX_DEN/coaching",
-                  "#/games/2026_02_JAX_DEN/players", "#/games/2026_02_JAX_DEN/props", "#/games/2026_02_JAX_DEN/injuries", "#/fantasy", "#/players", "#/props",
+        routes = ["#/home", "#/games", "#/games/picks", "#/games/coaches", f"#/games/{REPRO}/analytics", f"#/games/{REPRO}/coaching", f"#/games/{REPRO}/lineups",
+                  f"#/games/{REPRO}/players", f"#/games/{REPRO}/props", f"#/games/{REPRO}/injuries", "#/fantasy", "#/players", "#/props",
                   "#/performance", "#/performance/history", "#/performance/props", "#/performance/health", "#/about", "#/about/method", "#/about/definitions", "#/nonsense"]
         for r in routes:
             await pg.goto(URL + r); await pg.wait_for_timeout(120)
@@ -174,11 +180,14 @@ async def main():
             if vis != 1: errs.append(f"{r}: {vis} panels visible")
         check(not errs, f"every route renders one panel with no JavaScript errors on desktop ({errs[:3]})")
         # tabs preserved
-        await pg.goto(URL + "#/games/2026_02_JAX_DEN"); await pg.wait_for_timeout(120)
+        await pg.goto(URL + f"#/games/{REPRO}"); await pg.wait_for_timeout(120)
         tabs = await pg.eval_on_selector_all(".mtabs a", "els => els.map(e => e.textContent.replace(/\\d+$/, '').trim())")
-        check(tabs == ["Overview", "Team analytics", "Coaching", "Player projections", "Props", "Injuries"], f"matchup tabs kept: {tabs}")
-        nav = await pg.eval_on_selector_all(".nav a", "els => els.map(e => e.textContent.trim())")
+        # the Roster & lineup tab is the one additive change to the matchup tabs (NBA expansion)
+        check(tabs == ["Overview", "Team analytics", "Coaching", "Player projections", "Roster & lineup", "Props", "Injuries"], f"matchup tabs kept: {tabs}")
+        nav = await pg.eval_on_selector_all(".nav.nfl-nav a", "els => els.map(e => e.textContent.trim())")
         check(nav == ["Home", "Games", "Fantasy", "Players", "Props", "Model Performance", "About"], f"top navigation: {nav}")
+        nba_nav_shown = await pg.evaluate("getComputedStyle(document.querySelector('.nav.nba-nav')).display")
+        check(nba_nav_shown == "none", "NBA navigation is hidden while the NFL section is open")
 
         # 6: keyboard
         await pg.goto(URL + "#/games"); await pg.wait_for_timeout(120)
@@ -201,11 +210,11 @@ async def main():
         ctx = await b.new_context(viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True)
         pg = await ctx.new_page(); pg.on("pageerror", lambda e: errs2.append(str(e)))
         wide = []
-        for r in ["#/home", "#/games", "#/games/2026_02_JAX_DEN", "#/performance/history", "#/games/coaches", "#/props"]:
+        for r in ["#/home", "#/games", f"#/games/{REPRO}", "#/performance/history", "#/games/coaches", "#/props"]:
             await pg.goto(URL + r); await pg.wait_for_timeout(200)
             sw = await pg.evaluate("document.documentElement.scrollWidth")
             if sw > 392: wide.append((r, sw))
-            bn = await pg.evaluate("getComputedStyle(document.querySelector('.bottomnav')).display")
+            bn = await pg.evaluate("getComputedStyle(document.querySelector('.bottomnav.nfl-nav')).display")
             if bn == "none": errs2.append(f"{r}: no bottom nav")
         check(not errs2 and not wide, f"phone: every route renders, bottom nav present, no horizontal overflow ({errs2[:2]} {wide[:3]})")
         await ctx.close(); await b.close()

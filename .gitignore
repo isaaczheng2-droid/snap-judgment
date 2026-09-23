@@ -5,3 +5,9 @@ __pycache__/
 *.pyc
 .DS_Store
 !learn/data/
+# NBA: cached release assets and derived parquet are rebuilt on every run; the append-only
+# forecast archive, source state and collected snapshots under nba/data are tracked.
+nba/cache/
+!nba/data/
+nba/data/*.parquet
+nba/data/*.pdf

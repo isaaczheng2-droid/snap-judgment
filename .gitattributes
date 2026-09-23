@@ -2,3 +2,4 @@
 # a concurrent commit must never turn into a merge conflict, only a union of lines.
 learn/data/*.ndjson merge=union
 live/data/*.ndjson merge=union
+nba/data/*.ndjson merge=union
