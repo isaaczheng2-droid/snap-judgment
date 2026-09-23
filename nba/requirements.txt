@@ -1,0 +1,4 @@
+pyreadr>=0.5
+nba_api>=1.9
+scipy>=1.10
+pdfplumber>=0.11
