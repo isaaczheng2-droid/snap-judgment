@@ -63,11 +63,14 @@ jobs:
               assert g["home"]["abbr"] != g["away"]["abbr"]
           for pl in p["players"]:
               assert pl["minutes"]["mean"] is None or 0 <= pl["minutes"]["mean"] <= 48
+          # expected team minutes: sum of P(play) x conditional minutes, which the minutes model
+          # reconciles toward 240 (the scale is clipped, so a thin or crowded roster can sit a
+          # little under; anything outside this band means the reconciliation broke)
           teams = {}
           for pl in p["players"]:
               teams.setdefault((pl["game_id"], pl["team"]), 0.0)
-              teams[(pl["game_id"], pl["team"])] += (pl["minutes"]["mean"] or 0) * (1 if pl["availability"]["p_play"] else 0)
-          bad = {k: round(v, 1) for k, v in teams.items() if not 200 <= v <= 280}
+              teams[(pl["game_id"], pl["team"])] += (pl["minutes"]["mean"] or 0) * (pl["availability"]["p_play"] or 0)
+          bad = {k: round(v, 1) for k, v in teams.items() if not 190 <= v <= 262}
           assert not bad, f"team minutes off: {bad}"
           print("ok:", len(p["games"]), "games", len(p["players"]), "players", len(p["props"]), "props")
           PY
