@@ -9,6 +9,7 @@ Clean objects for the frontend. Vendor shapes stop here; the page only ever sees
 from datetime import datetime, timezone
 
 from . import store, stadiums, weather as wx, events as ev, versions as pv, impact, normalize
+from .identity import norm_name as impact_norm
 
 # how old a source may be before the page must say so, by hours to kickoff
 STALE_HOURS = {"injuries": [(6, 0.75), (24, 3), (72, 8), (None, 24)],
@@ -41,24 +42,84 @@ def _stale(kind, last_iso, kick_iso, now):
     return {"stale": True, "expected_within_h": None, "age_h": age}
 
 
-def game_context(g, state, now=None):
+def _find_roster_row(pid, team, rosters):
+    ch = (rosters or {}).get(team) or {}
+    for rows in (ch.get("groups") or {}).values():
+        for r in rows:
+            if r.get("gsis_id") == pid:
+                return r
+    return None
+
+
+def _replacement(pid, team, rosters, grades):
+    """The next man at the injured player's depth slot, with his Model Grade if one exists."""
+    me = _find_roster_row(pid, team, rosters)
+    if not me:
+        return None, None
+    ch = rosters.get(team) or {}
+    cands = [r for rows in (ch.get("groups") or {}).values() for r in rows
+             if r.get("pos") == me.get("pos") and r.get("rank", 9) > me.get("rank", 0)]
+    if not cands:
+        return None, me
+    nxt = min(cands, key=lambda r: r.get("rank", 9))
+    gr = (grades or {}).get(nxt.get("gsis_id")) or {}
+    return {"id": nxt.get("gsis_id"), "name": nxt.get("name"), "pos": nxt.get("pos"),
+            "rank": nxt.get("rank"), "grade": gr.get("grade")}, me
+
+
+def game_context(g, state, now=None, grades=None, rosters=None):
     now = now or datetime.now(timezone.utc)
     gid = g["game_id"]
     st = state or {}
     kick = (st.get("kickoffs") or {}).get(gid)
-    # ---- injuries: who is unavailable and how much it matters
-    players = [r for r in (st.get("players") or {}).values() if r.get("game_id") == gid]
-    unavailable = [r for r in players if r.get("normalized_status") in normalize.UNAVAILABLE | {"DOUBTFUL"}
-                   and not (r.get("source") == "nflverse:rosters" and r.get("depth_order") != 1)]
+    teams_in_game = {g["home_team"], g["away_team"]}
+    qb_names = {impact_norm(g.get("home_qb")): g["home_team"], impact_norm(g.get("away_qb")): g["away_team"]}
+    # ---- injuries: who is unavailable and how much it matters.
+    # Every row is validated against THIS game twice: it must carry this game_id AND its
+    # team must be one of the two teams playing. A row that fails the second check is a bad
+    # join upstream; it is logged as a data-quality problem and never rendered.
+    players = []
+    for r in (st.get("players") or {}).values():
+        if r.get("game_id") != gid:
+            continue
+        if r.get("team") not in teams_in_game:
+            store.quality("player_game_mismatch",
+                          f"{r.get('player_name')} ({r.get('team')}) attached to {gid} ({g['away_team']} at {g['home_team']}); suppressed",
+                          player_id=r.get("internal_player_id"), source=r.get("source"))
+            continue
+        players.append(r)
+    shown = normalize.UNAVAILABLE | {"DOUBTFUL", "QUESTIONABLE"}
+    candidates = [r for r in players if r.get("normalized_status") in shown
+                  and not (r.get("source") == "nflverse:rosters" and r.get("depth_order") != 1)]
     rows = []
-    worst = "LOW"
-    for r in sorted(unavailable, key=lambda r: r.get("player_name") or ""):
-        tier, why = impact.classify({**r, **((st.get("usage") or {}).get(r["internal_player_id"]) or {})})
-        if impact.TIERS.index(tier) > impact.TIERS.index(worst):
-            worst = tier
-        rows.append({"player": r.get("player_name"), "id": r.get("internal_player_id"), "team": r.get("team"), "position": r.get("position"),
-                     "status": r.get("normalized_status"), "original": r.get("original_status"), "tier": tier, "why": why[:2],
+    rejected = 0
+    for r in candidates:
+        pid = r["internal_player_id"]
+        u = dict((st.get("usage") or {}).get(pid) or {})
+        # the game model's projected starting QB counts as a starter whatever the chart says
+        if str(r.get("position") or "").upper() == "QB" and impact_norm(r.get("player_name")) in qb_names:
+            u["is_projected_starter"] = True
+        repl, me = _replacement(pid, r.get("team"), rosters, grades)
+        own = (grades or {}).get(pid) or {}
+        gap = None
+        if own.get("grade") is not None and repl and repl.get("grade") is not None:
+            gap = (own["grade"] - repl["grade"]) / 100.0
+        if me and me.get("rank") == 1:
+            u.setdefault("is_projected_starter", True)
+        sc = impact.score({**r, "replacement_gap": gap}, u)
+        # a QUESTIONABLE non-starter is report noise at card level; the Injuries tab has it
+        if r.get("normalized_status") == "QUESTIONABLE" and sc["score"] < 25:
+            rejected += 1
+            continue
+        rows.append({"player": r.get("player_name"), "id": pid, "team": r.get("team"), "position": r.get("position"),
+                     "role": sc["role"], "status": r.get("normalized_status"), "original": r.get("original_status"),
+                     "tier": sc["tier"], "score": sc["score"], "why": sc["reasons"][:3],
+                     "replacement": repl if (repl and r.get("normalized_status") in impact.GONE and sc["role"] == "STARTER") else None,
+                     "grade": own.get("grade"),
                      "source": r.get("source"), "sourceUpdatedAt": r.get("source_updated_at")})
+    rows.sort(key=lambda x: (-x["score"], x["player"] or ""))
+    worst = rows[0]["tier"] if rows else "LOW"
+    driven = rows[0] if rows and impact.TIERS.index(rows[0]["tier"]) >= 2 else None
     inj_sync = (st.get("last_sync") or {}).get("injuries")
     # ---- weather
     stadium = stadiums.get(g.get("stadium_id")) or stadiums.for_team(g["home_team"])
@@ -93,7 +154,13 @@ def game_context(g, state, now=None):
     changed = bool(vers and vers[0].get("previous_version_id") and (_age_h(vers[0].get("created_at"), now) or 99) < 48)
     wsync = (fc.get("openmeteo") or fc.get("nws") or {}).get("fetched_at")
     return {
-        "injuryImpact": {"tier": worst if rows else "NONE", "players": rows, "count": len(rows)},
+        "injuryImpact": {"tier": worst if rows else "NONE", "players": rows, "count": len(rows),
+                         "drivenBy": (driven and {"player": driven["player"], "position": driven["position"],
+                                                  "team": driven["team"], "role": driven["role"],
+                                                  "status": driven["status"], "tier": driven["tier"]}),
+                         "keyAvailability": [{k: r[k] for k in ("player", "id", "team", "position", "role", "status", "tier", "score")}
+                                             for r in rows if r["score"] >= 50][:3],
+                         "validation": {"suppressedLowNoise": rejected}},
         "weather": weather,
         "alerts": [{k: a.get(k) for k in ("event", "severity", "headline", "onset", "ends", "sender")} for a in alerts],
         "recentEvents": [{"id": e["event_id"], "type": e["event_type"], "severity": e.get("severity"), "detail": e.get("detail"),
