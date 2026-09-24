@@ -138,7 +138,9 @@ def main():
 
     print("\nIMPACT")
     check("starting QB -> CRITICAL", impact.classify({"position": "QB", "depth_order": 1, "is_starting_qb": True})[0] == "CRITICAL")
-    check("backup QB -> LOW", impact.classify({"position": "QB", "depth_order": 2})[0] == "LOW")
+    # v2: a backup quarterback fully lost is MODERATE, not LOW — losing the only depth
+    # behind the starter is not nothing (v1 called this LOW and the brief disagreed)
+    check("backup QB -> MODERATE", impact.classify({"position": "QB", "depth_order": 2})[0] == "MODERATE")
     check("WR1 with 28% targets -> HIGH (never CRITICAL)", impact.classify({"position": "WR", "depth_order": 1, "tgt_share": 0.28})[0] == "HIGH")
     check("WR3 with 5% targets -> LOW", impact.classify({"position": "WR", "depth_order": 3, "tgt_share": 0.05})[0] == "LOW")
     check("punter -> LOW", impact.classify({"position": "P", "depth_order": 1})[0] == "LOW")

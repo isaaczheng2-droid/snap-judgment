@@ -1855,12 +1855,54 @@ def main():
         "scheme_league": {x: float(sch_lg[x]) for x in SCHEME},
         "tracker": tracker.summarize(hist, cur),
     }
-    # ---- roster & lineup block and Snap Grades (additive; both descriptive, neither feeds a model)
+    # NOTE: the coaching block runs BEFORE the grades block on purpose: it downloads the
+    # play-by-play files the OL penalty component reads. Reversed, a fresh checkout would
+    # silently grade OL without penalties every run.
+    # ---- scheme & coaching context (shown, never modelled; see audit/nfl-coaching-scheme-test.md)
+    try:
+        import coaching
+        payload["coaching"] = coaching.build(a.datadir, sched, team, cur, coaches_path=os.path.join(a.outdir, "coaches.json")
+                                             if os.path.exists(os.path.join(a.outdir, "coaches.json")) else "coaches.json", log=log)
+        nt = len(payload["coaching"]["teams"])
+        log(f"  coaching: {nt} teams, staff as of {payload['coaching'].get('staff_as_of')}, "
+            f"{sum(1 for t in payload['coaching']['teams'].values() if t['alerts'])} staff alerts")
+    except Exception as e:
+        log(f"  coaching block skipped: {e}")
+        payload["coaching"] = None
+
+
+    # ---- roster & lineup block and Model Grades (additive; both descriptive, neither feeds a model)
     try:
         rosters_block = player_grades.depth_block(depth, rost, inj, cur, target_week)
         keep = {r["gsis_id"] for t, v in rosters_block.items() if t != "_meta" for rows in v["groups"].values() for r in rows}
         keep |= {p.get("player_key") for p in players if p.get("player_key")}
-        grade_rows, grade_meta = player_grades.compute(plyr, cur, target_week, keep_ids=keep)
+        # extra licensed inputs turn on the pools the box score alone cannot grade
+        # (OL, CB/S, pressure-based DL/LB); each is optional and compute says which were on
+        pfr_def_df = player_grades.fetch_pfr_def(a.datadir, list(range(max(FIRST_SEASON, cur - 2), cur + 1)), log=log)
+        pbp_df = None
+        try:
+            pbp_frames = []
+            for y in (cur - 1, cur):
+                pth = os.path.join(a.datadir, "pbp", f"play_by_play_{y}.parquet")
+                if os.path.exists(pth):
+                    pbp_frames.append(pd.read_parquet(pth, columns=["season", "week", "season_type", "penalty", "penalty_player_id"]))
+            pbp_df = pd.concat(pbp_frames, ignore_index=True) if pbp_frames else None
+        except Exception as e:
+            log(f"  grades: pbp penalties unavailable ({e})")
+        pfr_pass_df = None
+        try:
+            pf = []
+            for y in (cur - 1, cur):
+                pth = os.path.join(a.datadir, "pfr", f"pass_{y}.parquet")
+                if os.path.exists(pth):
+                    pf.append(pd.read_parquet(pth))
+            pfr_pass_df = pd.concat(pf, ignore_index=True) if pf else None
+        except Exception:
+            pass
+        grade_rows, grade_meta = player_grades.compute(plyr, cur, target_week, keep_ids=keep,
+                                                       snap=snap, rost=rost, pfr_def=pfr_def_df,
+                                                       pfr_pass=pfr_pass_df, pbp=pbp_df, team=team,
+                                                       depth=depth, log=log)
         payload["rosters"] = rosters_block
         payload["grades"] = {"rows": grade_rows, "meta": grade_meta, "season": cur, "through_week": target_week - 1}
         log(f"  rosters: {len(rosters_block) - 1} teams; grades: {sum(1 for g in grade_rows.values() if g['grade'] is not None)} graded of {len(grade_rows)}")
@@ -1890,7 +1932,8 @@ def main():
         if os.path.exists(req_path):
             os.remove(req_path)
         for g in games_out:                      # after recording, so the page sees the new version
-            g["live"] = live_context.game_context(g, lstate)
+            g["live"] = live_context.game_context(g, lstate, grades=(payload.get("grades") or {}).get("rows"),
+                                                  rosters=payload.get("rosters"))
         # forward paper test: grade what has settled, record any game at its decision time,
         # and publish the running tally. The model version travels with every row.
         try:
@@ -1954,18 +1997,6 @@ def main():
     payload["standalone_eval"] = load_json_any("standalone_eval.json", a.datadir, require="verdict")
     payload["method"] = {"published": METHOD, "legacy": LEGACY_METHOD, "cutover": "2026-09-20",
                          "tie_convention": TIE_CONVENTION, "score_kind": SCORE_KIND, "schema_version": SCHEMA_VERSION}
-
-    # ---- scheme & coaching context (shown, never modelled; see audit/nfl-coaching-scheme-test.md)
-    try:
-        import coaching
-        payload["coaching"] = coaching.build(a.datadir, sched, team, cur, coaches_path=os.path.join(a.outdir, "coaches.json")
-                                             if os.path.exists(os.path.join(a.outdir, "coaches.json")) else "coaches.json", log=log)
-        nt = len(payload["coaching"]["teams"])
-        log(f"  coaching: {nt} teams, staff as of {payload['coaching'].get('staff_as_of')}, "
-            f"{sum(1 for t in payload['coaching']['teams'].values() if t['alerts'])} staff alerts")
-    except Exception as e:
-        log(f"  coaching block skipped: {e}")
-        payload["coaching"] = None
 
     # Full float repr costs ~40% of the payload for digits nothing renders. Four places is
     # more than any display uses and still exact enough for the charts.

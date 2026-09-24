@@ -329,7 +329,21 @@ def main():
             usage[p["player_key"]]["is_starting_qb"] = p.get("position") == "QB"
         state["usage"] = usage
         prev_players = state.get("players") or {}
-        meta = {pid: {**usage.get(pid, {}), "depth_order": (r.get("depth_order"))} for pid, r in merged.items()}
+        # the projected starting QB the game model used, and the chart's rank-1 QBs: either
+        # marks a quarterback as a starter for impact even if the chart has since demoted him
+        qb_of_record = set()
+        for g in payload.get("games") or []:
+            for side in ("home_qb", "away_qb"):
+                if g.get(side):
+                    qb_of_record.add(identity.norm_name(g[side]))
+        rank1_qbs = {ids[0] for (tm, slot), ids in depth_slots.items() if slot == "QB" and ids}
+        meta = {}
+        for pid, r in merged.items():
+            m = {**usage.get(pid, {}), "depth_order": r.get("depth_order")}
+            if str(r.get("position") or "").upper() == "QB" and (
+                    pid in rank1_qbs or identity.norm_name(r.get("player_name")) in qb_of_record):
+                m["is_projected_starter"] = True
+            meta[pid] = m
         ev, hist = events.player_changes(prev_players, merged, meta)
         prev_depth = {tuple(k.split("|")): v for k, v in (state.get("depth") or {}).items()}
         dev = events.depth_changes(prev_depth, depth_slots, names) if prev_depth else []
@@ -387,7 +401,8 @@ def main():
 
     # ---- frontend objects
     for g in payload["games"]:
-        g["live"] = context.game_context(g, state)
+        g["live"] = context.game_context(g, state, grades=(payload.get("grades") or {}).get("rows"),
+                                         rosters=payload.get("rosters"))
     # Sportsbook lines, kept on the same clock as everything else. The projections are the
     # published ones in payload.json and are not touched; only the comparison is redone.
     # Cadence: every 3h normally, hourly inside 6h of a kickoff (odds_api.refresh_hours_for),
