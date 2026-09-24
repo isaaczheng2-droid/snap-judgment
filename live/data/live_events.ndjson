@@ -7729,3 +7729,20 @@
 {"event_id":"ev_1790271308_fbd4dc06","event_type":"WEATHER_CHANGE_EVENT","game_id":"2026_03_LA_DEN","player_id":null,"team_id":null,"severity":"MEDIUM","previous_value":10.8,"new_value":19.4,"detail":"Wind forecast 11 mph \u2192 19 mph","source":"openmeteo","occurred_at":"2026-09-24T17:35:08Z","received_at":"2026-09-24T17:35:08Z","processed":false,"prediction_recalculated":false,"field":"max_window_wind","system_received_at":"2026-09-24T17:35:08Z"}
 {"event_id":"ev_1790271308_1df262c1","event_type":"WEATHER_CHANGE_EVENT","game_id":"2026_03_LA_DEN","player_id":null,"team_id":null,"severity":"HIGH","previous_value":12.1,"new_value":25.1,"detail":"Gusts forecast 12 mph \u2192 25 mph","source":"openmeteo","occurred_at":"2026-09-24T17:35:08Z","received_at":"2026-09-24T17:35:08Z","processed":false,"prediction_recalculated":false,"field":"max_window_gust","system_received_at":"2026-09-24T17:35:08Z"}
 {"event_id":"ev_1790271308_080befee","event_type":"WEATHER_CHANGE_EVENT","game_id":"2026_03_LA_DEN","player_id":null,"team_id":null,"severity":"MEDIUM","previous_value":"LOW","new_value":"MODERATE","detail":"Weather impact LOW \u2192 MODERATE (worsening)","source":"openmeteo","occurred_at":"2026-09-24T17:35:08Z","received_at":"2026-09-24T17:35:08Z","processed":false,"prediction_recalculated":false,"field":"impact","system_received_at":"2026-09-24T17:35:08Z"}
+{"event_id":"ev_1790271294_8c8360d6","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-24T17:44:18Z"}
+{"event_id":"ev_1790271294_1ee0c620","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-24T17:44:18Z"}
+{"event_id":"ev_1790271294_9d16f2f9","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-24T17:44:18Z"}
+{"event_id":"ev_1790271294_46585537","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-24T17:44:18Z"}
+{"event_id":"ev_1790271294_fcf36d53","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-24T17:44:18Z"}
+{"event_id":"ev_1790271299_2eab6b95","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-24T17:44:18Z"}
+{"event_id":"ev_1790271299_b2000f36","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-24T17:44:18Z"}
+{"event_id":"ev_1790271299_dc00282e","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-24T17:44:18Z"}
+{"event_id":"ev_1790271294_1ef63a1a","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-24T17:44:18Z"}
+{"event_id":"ev_1790271294_bb780c7f","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-24T17:44:18Z"}
+{"event_id":"ev_1790271301_3b928aa9","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-24T17:44:18Z"}
+{"event_id":"ev_1790271294_d02ff69c","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-24T17:44:18Z"}
+{"event_id":"ev_1790271294_ef9d4815","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-24T17:44:18Z"}
+{"event_id":"ev_1790271294_9b5d0b53","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-24T17:44:18Z"}
+{"event_id":"ev_1790271308_fbd4dc06","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-24T17:44:18Z"}
+{"event_id":"ev_1790271308_1df262c1","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-24T17:44:18Z"}
+{"event_id":"ev_1790271308_080befee","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-24T17:44:18Z"}
