@@ -2,7 +2,7 @@
 "ATL": {
 "espn_team_id": 1,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:32:55Z",
+"fetched_at": "2026-09-25T17:32:28Z",
 "source": "espn site api",
 "players": [
 {
@@ -115,16 +115,6 @@
 "id_match": "espn"
 },
 {
-"player_id": "4432192",
-"player": "Keon Johnson",
-"position": "G",
-"jersey": null,
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4432192.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
 "player_id": "4280151",
 "player": "Corey Kispert",
 "position": "F",
@@ -212,7 +202,7 @@
 "BOS": {
 "espn_team_id": 2,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:32:56Z",
+"fetched_at": "2026-09-25T17:32:29Z",
 "source": "espn site api",
 "players": [
 {
@@ -342,10 +332,7 @@
 "jersey": "0",
 "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4065648.png",
 "roster_status": "Active",
-"injury": {
-"status": "Day-To-Day",
-"detail": null
-},
+"injury": null,
 "id_match": "espn"
 },
 {
@@ -383,7 +370,7 @@
 "NO": {
 "espn_team_id": 3,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:32:56Z",
+"fetched_at": "2026-09-25T17:32:29Z",
 "source": "espn site api",
 "players": [
 {
@@ -547,6 +534,16 @@
 "id_match": "espn"
 },
 {
+"player_id": "4683742",
+"player": "Julian Reese",
+"position": "F",
+"jersey": null,
+"headshot": null,
+"roster_status": "Active",
+"injury": null,
+"id_match": "espn"
+},
+{
 "player_id": "4431675",
 "player": "Trendon Watford",
 "position": "F",
@@ -571,7 +568,7 @@
 "CHI": {
 "espn_team_id": 4,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:32:56Z",
+"fetched_at": "2026-09-25T17:32:30Z",
 "source": "espn site api",
 "players": [
 {
@@ -755,7 +752,7 @@
 "CLE": {
 "espn_team_id": 5,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:32:57Z",
+"fetched_at": "2026-09-25T17:32:30Z",
 "source": "espn site api",
 "players": [
 {
@@ -946,7 +943,7 @@
 "DAL": {
 "espn_team_id": 6,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:32:57Z",
+"fetched_at": "2026-09-25T17:32:30Z",
 "source": "espn site api",
 "players": [
 {
@@ -1119,6 +1116,16 @@
 "id_match": "espn"
 },
 {
+"player_id": "2531367",
+"player": "Dwight Powell",
+"position": "F",
+"jersey": "7",
+"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/2531367.png",
+"roster_status": "Active",
+"injury": null,
+"id_match": "espn"
+},
+{
 "player_id": "5211175",
 "player": "Zaccharie Risacher",
 "position": "F",
@@ -1153,7 +1160,7 @@
 "DEN": {
 "espn_team_id": 7,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:32:58Z",
+"fetched_at": "2026-09-25T17:32:31Z",
 "source": "espn site api",
 "players": [
 {
@@ -1354,7 +1361,7 @@
 "DET": {
 "espn_team_id": 8,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:32:58Z",
+"fetched_at": "2026-09-25T17:32:31Z",
 "source": "espn site api",
 "players": [
 {
@@ -1562,7 +1569,7 @@
 "GS": {
 "espn_team_id": 9,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:32:58Z",
+"fetched_at": "2026-09-25T17:32:32Z",
 "source": "espn site api",
 "players": [
 {
@@ -1763,7 +1770,7 @@
 "HOU": {
 "espn_team_id": 10,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:32:59Z",
+"fetched_at": "2026-09-25T17:32:32Z",
 "source": "espn site api",
 "players": [
 {
@@ -1944,7 +1951,7 @@
 "IND": {
 "espn_team_id": 11,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:32:59Z",
+"fetched_at": "2026-09-25T17:32:33Z",
 "source": "espn site api",
 "players": [
 {
@@ -1974,10 +1981,7 @@
 "jersey": "0",
 "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4396993.png",
 "roster_status": "Active",
-"injury": {
-"status": "Day-To-Day",
-"detail": null
-},
+"injury": null,
 "id_match": "espn"
 },
 {
@@ -2125,7 +2129,7 @@
 "LAC": {
 "espn_team_id": 12,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:33:00Z",
+"fetched_at": "2026-09-25T17:32:33Z",
 "source": "espn site api",
 "players": [
 {
@@ -2139,16 +2143,6 @@
 "status": "Day-To-Day",
 "detail": null
 },
-"id_match": "espn"
-},
-{
-"player_id": "4433569",
-"player": "Johni Broome",
-"position": "F",
-"jersey": null,
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4433569.png",
-"roster_status": "Active",
-"injury": null,
 "id_match": "espn"
 },
 {
@@ -2362,7 +2356,7 @@
 "LAL": {
 "espn_team_id": 13,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:33:00Z",
+"fetched_at": "2026-09-25T17:32:34Z",
 "source": "espn site api",
 "players": [
 {
@@ -2570,7 +2564,7 @@
 "MIA": {
 "espn_team_id": 14,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:33:00Z",
+"fetched_at": "2026-09-25T17:32:34Z",
 "source": "espn site api",
 "players": [
 {
@@ -2803,7 +2797,7 @@
 "MIL": {
 "espn_team_id": 15,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:33:01Z",
+"fetched_at": "2026-09-25T17:32:34Z",
 "source": "espn site api",
 "players": [
 {
@@ -3011,7 +3005,7 @@
 "MIN": {
 "espn_team_id": 16,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:33:01Z",
+"fetched_at": "2026-09-25T17:32:35Z",
 "source": "espn site api",
 "players": [
 {
@@ -3219,7 +3213,7 @@
 "BKN": {
 "espn_team_id": 17,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:33:02Z",
+"fetched_at": "2026-09-25T17:32:35Z",
 "source": "espn site api",
 "players": [
 {
@@ -3420,7 +3414,7 @@
 "NY": {
 "espn_team_id": 18,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:33:02Z",
+"fetched_at": "2026-09-25T17:32:36Z",
 "source": "espn site api",
 "players": [
 {
@@ -3460,10 +3454,7 @@
 "jersey": "11",
 "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/3934672.png",
 "roster_status": "Active",
-"injury": {
-"status": "Day-To-Day",
-"detail": null
-},
+"injury": null,
 "id_match": "espn"
 },
 {
@@ -3594,7 +3585,7 @@
 "ORL": {
 "espn_team_id": 19,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:33:03Z",
+"fetched_at": "2026-09-25T17:32:36Z",
 "source": "espn site api",
 "players": [
 {
@@ -3811,7 +3802,7 @@
 "PHI": {
 "espn_team_id": 20,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:33:03Z",
+"fetched_at": "2026-09-25T17:32:36Z",
 "source": "espn site api",
 "players": [
 {
@@ -4025,7 +4016,7 @@
 "PHX": {
 "espn_team_id": 21,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:33:03Z",
+"fetched_at": "2026-09-25T17:32:37Z",
 "source": "espn site api",
 "players": [
 {
@@ -4242,7 +4233,7 @@
 "POR": {
 "espn_team_id": 22,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:33:04Z",
+"fetched_at": "2026-09-25T17:32:37Z",
 "source": "espn site api",
 "players": [
 {
@@ -4436,7 +4427,7 @@
 "SAC": {
 "espn_team_id": 23,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:33:04Z",
+"fetched_at": "2026-09-25T17:32:38Z",
 "source": "espn site api",
 "players": [
 {
@@ -4610,7 +4601,7 @@
 "SA": {
 "espn_team_id": 24,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:33:05Z",
+"fetched_at": "2026-09-25T17:32:38Z",
 "source": "espn site api",
 "players": [
 {
@@ -4814,7 +4805,7 @@
 "OKC": {
 "espn_team_id": 25,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:33:05Z",
+"fetched_at": "2026-09-25T17:32:38Z",
 "source": "espn site api",
 "players": [
 {
@@ -4979,10 +4970,7 @@
 "jersey": "8",
 "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4593803.png",
 "roster_status": "Active",
-"injury": {
-"status": "Day-To-Day",
-"detail": null
-},
+"injury": null,
 "id_match": "espn"
 },
 {
@@ -5010,7 +4998,7 @@
 "UTAH": {
 "espn_team_id": 26,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:33:05Z",
+"fetched_at": "2026-09-25T17:32:39Z",
 "source": "espn site api",
 "players": [
 {
@@ -5204,7 +5192,7 @@
 "WSH": {
 "espn_team_id": 27,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:33:06Z",
+"fetched_at": "2026-09-25T17:32:39Z",
 "source": "espn site api",
 "players": [
 {
@@ -5264,7 +5252,10 @@
 "jersey": "23",
 "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/6583.png",
 "roster_status": "Active",
-"injury": null,
+"injury": {
+"status": "Day-To-Day",
+"detail": null
+},
 "id_match": "espn"
 },
 {
@@ -5401,7 +5392,7 @@
 "TOR": {
 "espn_team_id": 28,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:33:06Z",
+"fetched_at": "2026-09-25T17:32:40Z",
 "source": "espn site api",
 "players": [
 {
@@ -5611,7 +5602,7 @@
 "MEM": {
 "espn_team_id": 29,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:33:07Z",
+"fetched_at": "2026-09-25T17:32:40Z",
 "source": "espn site api",
 "players": [
 {
@@ -5848,7 +5839,7 @@
 "CHA": {
 "espn_team_id": 30,
 "season": "2026-27",
-"fetched_at": "2026-09-24T17:33:07Z",
+"fetched_at": "2026-09-25T17:32:41Z",
 "source": "espn site api",
 "players": [
 {
