@@ -1,0 +1,46 @@
+{
+ "reasons": [
+  "Aaron Jones Sr.: QUESTIONABLE \u2192 ACTIVE (Knee)",
+  "Travis Etienne Jr.: QUESTIONABLE \u2192 ACTIVE (Hamstring)",
+  "T.J. Sanders: QUESTIONABLE \u2192 OUT (Illness)",
+  "Elijah Molden: QUESTIONABLE \u2192 OUT (Hamstring)",
+  "Dalvin Tomlinson: DOUBTFUL \u2192 OUT (Hamstring)",
+  "Puka Nacua: QUESTIONABLE \u2192 DOUBTFUL (Hip)",
+  "Nico Collins: QUESTIONABLE \u2192 DOUBTFUL (Hamstring)",
+  "Nick Bosa: QUESTIONABLE \u2192 DOUBTFUL (Calf)",
+  "Ashton Dulin: QUESTIONABLE \u2192 OUT (Ankle)",
+  "Bo Melton: ACTIVE \u2192 UNKNOWN (Neck)",
+  "Ladd McConkey: ACTIVE \u2192 UNKNOWN (Rib)",
+  "Chris Johnson: ACTIVE \u2192 UNKNOWN (Shoulder)"
+ ],
+ "game_ids": [
+  "2026_03_ARI_SF",
+  "2026_03_ATL_GB",
+  "2026_03_CIN_PIT",
+  "2026_03_HOU_IND",
+  "2026_03_KC_MIA",
+  "2026_03_LAC_BUF",
+  "2026_03_LA_DEN",
+  "2026_03_LV_NO",
+  "2026_03_MIN_TB",
+  "2026_03_TEN_NYG"
+ ],
+ "event_ids": [
+  "ev_1790364905_2702f85a",
+  "ev_1790364905_22d25735",
+  "ev_1790364905_cdc91d3d",
+  "ev_1790364905_1bf2be60",
+  "ev_1790364905_db94a3b9",
+  "ev_1790364905_03e156d2",
+  "ev_1790364905_4fa39b3c",
+  "ev_1790364905_0e20183b",
+  "ev_1790364905_51d50a07",
+  "ev_1790364905_7b039247",
+  "ev_1790364905_17e89d7e",
+  "ev_1790364905_b3ec4bc1",
+  "ev_1790364905_d75563b4",
+  "ev_1790364905_e8cd7381",
+  "ev_1790364905_9d37bcdf"
+ ],
+ "requested_at": "2026-09-25T19:35:06Z"
+}
