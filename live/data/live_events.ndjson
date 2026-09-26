@@ -9002,3 +9002,37 @@
 {"event_id":"ev_1790453460_79a19702","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_03_CAR_CLE","player_id":"00-0036915","team_id":"CLE","severity":"LOW","previous_value":"OUT","new_value":"IR","detail":"Jeremiah Owusu-Koramoah: OUT \u2192 IR","source":"nflverse:rosters","occurred_at":"2026-09-26T20:11:00Z","received_at":"2026-09-26T20:11:00Z","processed":false,"prediction_recalculated":false,"impact_tier":"LOW","impact_reasons":["depth rank 3"],"player_name":"Jeremiah Owusu-Koramoah","system_received_at":"2026-09-26T20:11:10Z"}
 {"event_id":"ev_1790453460_5a3eb80a","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_03_KC_MIA","player_id":"00-0040748","team_id":"KC","severity":"LOW","previous_value":"OUT","new_value":"IR","detail":"Omarr Norman-Lott: OUT \u2192 IR","source":"nflverse:rosters","occurred_at":"2026-09-26T20:11:00Z","received_at":"2026-09-26T20:11:00Z","processed":false,"prediction_recalculated":false,"impact_tier":"LOW","impact_reasons":["depth rank 3"],"player_name":"Omarr Norman-Lott","system_received_at":"2026-09-26T20:11:10Z"}
 {"event_id":"ev_1790453465_3e3b6dd0","event_type":"SEVERE_WEATHER_ALERT","game_id":"2026_03_TEN_NYG","player_id":null,"team_id":null,"severity":"MEDIUM","previous_value":null,"new_value":"Wind Advisory","detail":"Wind Advisory issued September 26 at 1:47PM EDT until September 27 at 12:00PM EDT by NWS Upton NY","source":"nws","occurred_at":"2026-09-26T13:47:00-04:00","received_at":"2026-09-26T20:11:05Z","processed":false,"prediction_recalculated":false,"alert":{"alert_id":"urn:oid:2.49.0.1.840.0.f7a3ddf92c192906a15c84cc522f4cbffe1e47d2.003.1","event":"Wind Advisory","severity":"Moderate","certainty":"Likely","urgency":"Expected","headline":"Wind Advisory issued September 26 at 1:47PM EDT until September 27 at 12:00PM EDT by NWS Upton NY","onset":"2026-09-26T13:47:00-04:00","ends":"2026-09-27T12:00:00-04:00","expires":"2026-09-27T06:15:00-04:00","sender":"NWS Upton NY","area":"Northern Fairfield; Northern New Haven; Eastern Passaic; Hudson; Western Bergen; Eastern Bergen; Western Essex; Eastern Essex; Western Union; Eastern Union; Rockland; Northern Westchester","game_id":"2026_03_TEN_NYG","stadium_id":"NYC01","source":"nws","fetched_at":"2026-09-26T20:11:05Z","system_received_at":"2026-09-26T20:11:05Z"},"system_received_at":"2026-09-26T20:11:10Z"}
+{"event_id":"ev_1790453460_1f294d93","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_a50d9f93","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_c244728a","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_7fa6feba","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_b51a6285","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_e2b79d4b","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_d420f999","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_0c504403","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_c790fc10","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_56740eb2","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_222e5423","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_52e61fd7","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_b323bf5f","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_79a19702","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_3ee98a77","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_7d9b4ecb","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_d4ce061c","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_70369163","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_bd40155b","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_29c91971","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_54ef2ad3","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_68021936","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_f4492be8","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_5a3eb80a","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_cae69461","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_a864e49a","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453465_3e3b6dd0","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_c8e23411","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_f5667fa9","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_279d5f6b","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_f94e8b27","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_bd98aa0a","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_f13158e1","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-26T20:17:21Z"}
+{"event_id":"ev_1790453460_ed7e7347","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-26T20:17:21Z"}
