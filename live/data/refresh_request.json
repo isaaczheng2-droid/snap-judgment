@@ -1,0 +1,26 @@
+{
+ "reasons": [
+  "Sauce Gardner: ACTIVE \u2192 UNKNOWN (Rib)",
+  "Ladd McConkey: ACTIVE \u2192 UNKNOWN (Rib)",
+  "Chris Johnson: ACTIVE \u2192 UNKNOWN (Shoulder)",
+  "Greg Newsome II: ACTIVE \u2192 UNKNOWN (Rib)",
+  "Francis Mauigoa: ACTIVE \u2192 UNKNOWN (Neck)",
+  "Jalen Ramsey: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_03_CIN_PIT",
+  "2026_03_HOU_IND",
+  "2026_03_KC_MIA",
+  "2026_03_LAC_BUF",
+  "2026_03_TEN_NYG"
+ ],
+ "event_ids": [
+  "ev_1790473967_d018b9ca",
+  "ev_1790473967_6186c443",
+  "ev_1790473967_a568ea46",
+  "ev_1790473967_31f2052d",
+  "ev_1790473967_00e99091",
+  "ev_1790473967_39144c00"
+ ],
+ "requested_at": "2026-09-27T01:52:55Z"
+}
