@@ -9657,3 +9657,36 @@
 {"event_id":"ev_1790534429_2007fbf0","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_03_KC_MIA","player_id":"00-0040748","team_id":"KC","severity":"LOW","previous_value":"OUT","new_value":"IR","detail":"Omarr Norman-Lott: OUT \u2192 IR","source":"nflverse:rosters","occurred_at":"2026-09-27T18:40:29Z","received_at":"2026-09-27T18:40:29Z","processed":false,"prediction_recalculated":false,"impact_tier":"LOW","impact_reasons":["depth rank 3"],"player_name":"Omarr Norman-Lott","system_received_at":"2026-09-27T18:40:39Z"}
 {"event_id":"ev_1790534434_041b9db2","event_type":"WEATHER_CHANGE_EVENT","game_id":"2026_03_KC_MIA","player_id":null,"team_id":null,"severity":"MEDIUM","previous_value":"NONE","new_value":"LOW","detail":"Weather impact NONE \u2192 LOW (worsening)","source":"openmeteo","occurred_at":"2026-09-27T18:40:34Z","received_at":"2026-09-27T18:40:34Z","processed":false,"prediction_recalculated":false,"field":"impact","system_received_at":"2026-09-27T18:40:39Z"}
 {"event_id":"ev_1790534439_ec2e9f5e","event_type":"WEATHER_CHANGE_EVENT","game_id":"2026_03_LA_DEN","player_id":null,"team_id":null,"severity":"MEDIUM","previous_value":"MODERATE","new_value":"LOW","detail":"Weather impact MODERATE \u2192 LOW (improving)","source":"openmeteo","occurred_at":"2026-09-27T18:40:39Z","received_at":"2026-09-27T18:40:39Z","processed":false,"prediction_recalculated":false,"field":"impact","system_received_at":"2026-09-27T18:40:39Z"}
+{"event_id":"ev_1790534429_f2a13b0c","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_47f222d3","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_7d65b41b","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_023148ad","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_63714ee4","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_87af0642","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_29645905","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_569d61c9","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_1c4ecf9b","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_d5bfe33a","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_1b4c5207","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_2bec888c","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_34100d77","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_d6102e5b","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_a72f7ad7","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_28e170c4","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_44d970e9","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534434_041b9db2","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_af54978a","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_2007fbf0","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_5a14efaa","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_268c13cd","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_608a35ba","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_01176129","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_481368bd","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_cd95557f","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_3134cb69","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_acfc91a0","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_8c72eb5d","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534439_ec2e9f5e","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_38c4f67c","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_8518332c","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
+{"event_id":"ev_1790534429_c065386c","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-09-27T18:46:04Z"}
