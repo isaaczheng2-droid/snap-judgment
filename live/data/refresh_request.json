@@ -1,0 +1,45 @@
+{
+ "reasons": [
+  "Donte Jackson: no report \u2192 QUESTIONABLE (Head)",
+  "Christian Barmore: no report \u2192 QUESTIONABLE (Shoulder)",
+  "Mike Jackson: no report \u2192 QUESTIONABLE (Groin)",
+  "Laiatu Latu: no report \u2192 QUESTIONABLE (Chest)",
+  "Tyson Bagent: QUESTIONABLE \u2192 ACTIVE (Concussion)",
+  "Anthony Belton: ACTIVE \u2192 UNKNOWN (Elbow)",
+  "Brandon Cisse: ACTIVE \u2192 UNKNOWN (Teeth)",
+  "Sauce Gardner: ACTIVE \u2192 UNKNOWN (Rib)",
+  "Aaron Donald: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Ladd McConkey: ACTIVE \u2192 UNKNOWN (Rib)",
+  "Chris Johnson: ACTIVE \u2192 UNKNOWN (Shoulder)",
+  "Greg Newsome II: ACTIVE \u2192 UNKNOWN (Rib)"
+ ],
+ "game_ids": [
+  "2026_03_ATL_GB",
+  "2026_03_CAR_CLE",
+  "2026_03_CIN_PIT",
+  "2026_03_HOU_IND",
+  "2026_03_KC_MIA",
+  "2026_03_LAC_BUF",
+  "2026_03_LA_DEN",
+  "2026_03_NE_JAX",
+  "2026_03_PHI_CHI",
+  "2026_03_TEN_NYG"
+ ],
+ "event_ids": [
+  "ev_1790534429_87af0642",
+  "ev_1790534429_44d970e9",
+  "ev_1790534429_1c4ecf9b",
+  "ev_1790534429_a72f7ad7",
+  "ev_1790534429_c065386c",
+  "ev_1790534429_7d65b41b",
+  "ev_1790534429_023148ad",
+  "ev_1790534429_2bec888c",
+  "ev_1790534429_38c4f67c",
+  "ev_1790534429_63714ee4",
+  "ev_1790534429_af54978a",
+  "ev_1790534429_5a14efaa",
+  "ev_1790534429_268c13cd",
+  "ev_1790534429_481368bd"
+ ],
+ "requested_at": "2026-09-27T18:40:40Z"
+}
