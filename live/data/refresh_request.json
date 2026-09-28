@@ -1,0 +1,34 @@
+{
+ "reasons": [
+  "Box scores updated: player results and the paper test can be graded",
+  "Anthony Belton: ACTIVE \u2192 UNKNOWN (Elbow)",
+  "Brandon Cisse: ACTIVE \u2192 UNKNOWN (Teeth)",
+  "Sauce Gardner: ACTIVE \u2192 UNKNOWN (Rib)",
+  "Aaron Donald: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Chris Johnson: ACTIVE \u2192 UNKNOWN (Shoulder)",
+  "Greg Newsome II: ACTIVE \u2192 UNKNOWN (Rib)",
+  "Francis Mauigoa: ACTIVE \u2192 UNKNOWN (Neck)",
+  "Jalen Ramsey: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "PIT RT: Dylan Cook \u2192 Max Iheanachor as the starter"
+ ],
+ "game_ids": [
+  "2026_03_ATL_GB",
+  "2026_03_CIN_PIT",
+  "2026_03_HOU_IND",
+  "2026_03_KC_MIA",
+  "2026_03_LA_DEN",
+  "2026_03_TEN_NYG"
+ ],
+ "event_ids": [
+  "ev_1790595362_994a38c6",
+  "ev_1790595362_285e5f14",
+  "ev_1790595362_7d1866aa",
+  "ev_1790595362_e0bcf6a9",
+  "ev_1790595362_0e8fa1f2",
+  "ev_1790595362_899e67da",
+  "ev_1790595362_5cf00ad7",
+  "ev_1790595362_3006bb9c",
+  "ev_1790595362_0a612fd3"
+ ],
+ "requested_at": "2026-09-28T11:36:04Z"
+}
