@@ -1,0 +1,41 @@
+{
+ "reasons": [
+  "Window finished: Sunday 4:05 PM ET games (4 final)",
+  "Mike Evans: OUT \u2192 QUESTIONABLE (Ribs)",
+  "Baker Mayfield: ACTIVE \u2192 QUESTIONABLE (Thumb)",
+  "Justin Jefferson: OUT \u2192 QUESTIONABLE (Ankle)",
+  "Anthony Belton: ACTIVE \u2192 UNKNOWN (Elbow)",
+  "Brandon Cisse: ACTIVE \u2192 UNKNOWN (Teeth)",
+  "Sauce Gardner: ACTIVE \u2192 UNKNOWN (Rib)",
+  "Aaron Donald: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Chris Johnson: ACTIVE \u2192 UNKNOWN (Shoulder)",
+  "Greg Newsome II: ACTIVE \u2192 UNKNOWN (Rib)",
+  "Francis Mauigoa: ACTIVE \u2192 UNKNOWN (Neck)",
+  "Jalen Ramsey: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_03_ARI_SF",
+  "2026_03_ATL_GB",
+  "2026_03_CIN_PIT",
+  "2026_03_HOU_IND",
+  "2026_03_KC_MIA",
+  "2026_03_LA_DEN",
+  "2026_03_MIN_TB",
+  "2026_03_TEN_NYG"
+ ],
+ "event_ids": [
+  "ev_1790553624_2de74771",
+  "ev_1790553624_24f7cb85",
+  "ev_1790553624_5ecefc4a",
+  "ev_1790553624_1b2fe8ec",
+  "ev_1790553624_aa014b2e",
+  "ev_1790553624_a09bba52",
+  "ev_1790553624_8f65fc88",
+  "ev_1790553624_7357595f",
+  "ev_1790553624_10c22620",
+  "ev_1790553624_e35ff2eb",
+  "ev_1790553624_bb1c4405",
+  "ev_1790553624_83ad209d"
+ ],
+ "requested_at": "2026-09-28T00:00:57Z"
+}
