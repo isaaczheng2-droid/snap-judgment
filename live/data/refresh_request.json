@@ -1,0 +1,32 @@
+{
+ "reasons": [
+  "Box scores updated: player results and the paper test can be graded",
+  "Anthony Belton: ACTIVE \u2192 UNKNOWN (Elbow)",
+  "Brandon Cisse: ACTIVE \u2192 UNKNOWN (Teeth)",
+  "Sauce Gardner: ACTIVE \u2192 UNKNOWN (Rib)",
+  "Aaron Donald: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Chris Johnson: ACTIVE \u2192 UNKNOWN (Shoulder)",
+  "Greg Newsome II: ACTIVE \u2192 UNKNOWN (Rib)",
+  "Francis Mauigoa: ACTIVE \u2192 UNKNOWN (Neck)",
+  "Jalen Ramsey: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_03_ATL_GB",
+  "2026_03_CIN_PIT",
+  "2026_03_HOU_IND",
+  "2026_03_KC_MIA",
+  "2026_03_LA_DEN",
+  "2026_03_TEN_NYG"
+ ],
+ "event_ids": [
+  "ev_1790605990_e6efeb70",
+  "ev_1790605990_d26a737d",
+  "ev_1790605990_aeb5d48c",
+  "ev_1790605990_e5417773",
+  "ev_1790605990_ced8b84c",
+  "ev_1790605990_534804e9",
+  "ev_1790605990_d89cfc51",
+  "ev_1790605990_4fadf6b7"
+ ],
+ "requested_at": "2026-09-28T14:33:12Z"
+}
