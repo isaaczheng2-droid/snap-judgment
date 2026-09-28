@@ -1,0 +1,35 @@
+{
+ "reasons": [
+  "Window finished: Sunday 8:20 PM ET game (1 final)",
+  "Box scores updated: player results and the paper test can be graded",
+  "Jaylen Watson: ACTIVE \u2192 QUESTIONABLE (Shoulder)",
+  "Anthony Belton: ACTIVE \u2192 UNKNOWN (Elbow)",
+  "Brandon Cisse: ACTIVE \u2192 UNKNOWN (Teeth)",
+  "Sauce Gardner: ACTIVE \u2192 UNKNOWN (Rib)",
+  "Aaron Donald: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Chris Johnson: ACTIVE \u2192 UNKNOWN (Shoulder)",
+  "Greg Newsome II: ACTIVE \u2192 UNKNOWN (Rib)",
+  "Francis Mauigoa: ACTIVE \u2192 UNKNOWN (Neck)",
+  "Jalen Ramsey: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_03_ATL_GB",
+  "2026_03_CIN_PIT",
+  "2026_03_HOU_IND",
+  "2026_03_KC_MIA",
+  "2026_03_LA_DEN",
+  "2026_03_TEN_NYG"
+ ],
+ "event_ids": [
+  "ev_1790571270_64f9c653",
+  "ev_1790571270_a87e54dc",
+  "ev_1790571270_d26b192b",
+  "ev_1790571270_7ceee7ed",
+  "ev_1790571270_1be015d4",
+  "ev_1790571270_8deed4e2",
+  "ev_1790571270_9b3d9b42",
+  "ev_1790571270_5233e172",
+  "ev_1790571270_c9813540"
+ ],
+ "requested_at": "2026-09-28T04:54:32Z"
+}
