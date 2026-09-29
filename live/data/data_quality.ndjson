@@ -567,3 +567,7 @@
 {"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-09-29T07:32:36Z"}
 {"kind":"team_mismatch","detail":"00-0039923: report says NYG, roster says MIN","player_id":"00-0039923","source":"espn","system_received_at":"2026-09-29T07:32:36Z"}
 {"kind":"unknown_player","detail":"Laken Tomlinson (GB) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-09-29T07:32:36Z"}
+{"kind":"unknown_player","detail":"Gabriel Rubio (PIT) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-09-29T10:00:48Z"}
+{"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-09-29T10:00:48Z"}
+{"kind":"team_mismatch","detail":"00-0039923: report says NYG, roster says MIN","player_id":"00-0039923","source":"espn","system_received_at":"2026-09-29T10:00:48Z"}
+{"kind":"unknown_player","detail":"Laken Tomlinson (GB) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-09-29T10:00:48Z"}
