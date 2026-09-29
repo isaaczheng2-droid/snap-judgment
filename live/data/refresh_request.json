@@ -1,0 +1,50 @@
+{
+ "reasons": [
+  "Jalen Davis: QUESTIONABLE \u2192 IR (Hamstring)",
+  "Ashton Dulin: OUT \u2192 QUESTIONABLE (Ankle)",
+  "Marvin Mims Jr.: OUT \u2192 QUESTIONABLE (Foot)",
+  "Elijah Molden: OUT \u2192 QUESTIONABLE (Hamstring)",
+  "Cobie Durant: OUT \u2192 DOUBTFUL (Hamstring)",
+  "Caleb Williams: OUT \u2192 DOUBTFUL (Hamstring)",
+  "Kene Nwangwu: OUT \u2192 QUESTIONABLE (Back)",
+  "Deonte Banks: OUT \u2192 QUESTIONABLE (Calf)",
+  "Barion Brown: OUT \u2192 QUESTIONABLE (Hamstring)",
+  "Dre'Mont Jones: OUT \u2192 QUESTIONABLE (Shoulder)",
+  "T.J. Sanders: OUT \u2192 DOUBTFUL",
+  "Samson Ebukam: OUT \u2192 QUESTIONABLE (Hamstring)"
+ ],
+ "game_ids": [
+  "2026_04_ARI_NYG",
+  "2026_04_ATL_NO",
+  "2026_04_DAL_HOU",
+  "2026_04_DEN_SF",
+  "2026_04_IND_WAS",
+  "2026_04_JAX_CIN",
+  "2026_04_LAC_SEA",
+  "2026_04_LA_PHI",
+  "2026_04_MIA_MIN",
+  "2026_04_NE_BUF",
+  "2026_04_NYJ_CHI",
+  "2026_04_PIT_CLE"
+ ],
+ "event_ids": [
+  "ev_1790710858_0471a2a7",
+  "ev_1790710858_89bba6a9",
+  "ev_1790710858_8a81c276",
+  "ev_1790710858_5154dd09",
+  "ev_1790710858_55c2af70",
+  "ev_1790710858_142892fb",
+  "ev_1790710858_bbfccde0",
+  "ev_1790710858_b0110d15",
+  "ev_1790710858_c1561d30",
+  "ev_1790710858_de365a40",
+  "ev_1790710858_beebce42",
+  "ev_1790710858_44135b05",
+  "ev_1790710858_7180a9a2",
+  "ev_1790710858_57bf80be",
+  "ev_1790710858_82134666",
+  "ev_1790710858_7ddb36cb",
+  "ev_1790710858_76b95b07"
+ ],
+ "requested_at": "2026-09-29T19:43:56Z"
+}
