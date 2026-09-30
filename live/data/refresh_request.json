@@ -1,0 +1,44 @@
+{
+ "reasons": [
+  "Jaylen Waddle: QUESTIONABLE \u2192 ACTIVE",
+  "Bucky Irving: ACTIVE \u2192 QUESTIONABLE (Lower Body)",
+  "Zay Flowers: ACTIVE \u2192 QUESTIONABLE (Hamstring)",
+  "Marlon Humphrey: no report \u2192 QUESTIONABLE (Hamstring)",
+  "Lamar Jackson: ACTIVE \u2192 QUESTIONABLE (Back)",
+  "DaVon Hamilton: ACTIVE \u2192 QUESTIONABLE (Back)",
+  "D.J. Reed: no report \u2192 QUESTIONABLE (Ribs)",
+  "Montaric Brown: no report \u2192 QUESTIONABLE (Hamstring)",
+  "Tony Pollard: ACTIVE \u2192 QUESTIONABLE (Foot)",
+  "Amik Robertson: no report \u2192 QUESTIONABLE (Knee)",
+  "Javon Kinlaw: ACTIVE \u2192 QUESTIONABLE (Shoulder)",
+  "John Franklin-Myers: no report \u2192 QUESTIONABLE (Back)"
+ ],
+ "game_ids": [
+  "2026_04_DEN_SF",
+  "2026_04_DET_CAR",
+  "2026_04_GB_TB",
+  "2026_04_IND_WAS",
+  "2026_04_JAX_CIN",
+  "2026_04_NYJ_CHI",
+  "2026_04_PIT_CLE",
+  "2026_04_TEN_BAL"
+ ],
+ "event_ids": [
+  "ev_1790802169_14211fcd",
+  "ev_1790802169_e5bf3fc3",
+  "ev_1790802169_9372b352",
+  "ev_1790802169_28d83671",
+  "ev_1790802169_8e9f3736",
+  "ev_1790802169_058110c4",
+  "ev_1790802169_e4ca2938",
+  "ev_1790802169_203daf76",
+  "ev_1790802169_28fdb04b",
+  "ev_1790802169_07c7c870",
+  "ev_1790802169_abe51750",
+  "ev_1790802169_2c356081",
+  "ev_1790802169_d7e0b41f",
+  "ev_1790802169_c5ba863e",
+  "ev_1790802169_b90fb73d"
+ ],
+ "requested_at": "2026-09-30T21:02:57Z"
+}
