@@ -1,40 +1,40 @@
 {
  "sdv_boxscores": {
-  "last_attempt": "2026-09-30T18:08:20Z",
-  "last_success": "2026-09-30T18:08:20Z",
+  "last_attempt": "2026-10-01T05:41:47Z",
+  "last_success": "2026-10-01T05:41:47Z",
   "last_error": null,
   "last_detail": "7834 games, 172902 player-games"
  },
  "sdv_schedule_next": {
-  "last_attempt": "2026-09-30T18:08:20Z",
-  "last_success": "2026-09-30T18:08:20Z",
+  "last_attempt": "2026-10-01T05:41:47Z",
+  "last_success": "2026-10-01T05:41:47Z",
   "last_error": null,
   "last_detail": "1206 games in the latest schedule"
  },
  "espn_site": {
-  "last_attempt": "2026-09-30T18:08:33Z",
-  "last_success": "2026-09-30T18:08:33Z",
+  "last_attempt": "2026-10-01T05:42:00Z",
+  "last_success": "2026-10-01T05:42:00Z",
   "last_error": null,
-  "last_detail": "66 injury entries at 2026-09-30T18:08:28Z"
+  "last_detail": "65 injury entries at 2026-10-01T05:41:50Z"
  },
  "official_injury": {
-  "last_attempt": "2026-09-30T18:08:34Z",
+  "last_attempt": "2026-10-01T05:42:11Z",
   "last_error": "no report PDF linked (expected out of season)"
  },
  "pbpstats": {
-  "last_attempt": "2026-09-30T18:08:34Z",
-  "last_success": "2026-09-30T18:08:34Z",
+  "last_attempt": "2026-10-01T05:42:12Z",
+  "last_success": "2026-10-01T05:42:12Z",
   "last_error": null,
   "last_detail": "0 lineup rows for 2026-27"
  },
  "odds_api": {
-  "last_attempt": "2026-09-30T18:08:41Z",
-  "last_success": "2026-09-30T18:08:41Z",
+  "last_attempt": "2026-10-01T05:42:16Z",
+  "last_success": "2026-10-01T05:42:16Z",
   "last_error": null,
-  "last_detail": "props: 82 quotes from ['fanduel'], 19064 credits left"
+  "last_detail": "props: 82 quotes from ['fanduel'], 19969 credits left"
  },
  "stats_nba": {
-  "last_attempt": "2026-09-30T18:08:41Z",
+  "last_attempt": "2026-10-01T05:42:16Z",
   "last_error": "skipped: stats.nba.com times out from hosted runners (set NBA_TRY_STATS_NBA=1 to retry)"
  }
 }
