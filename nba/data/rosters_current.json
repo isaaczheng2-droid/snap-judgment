@@ -2,7 +2,7 @@
 "ATL": {
 "espn_team_id": 1,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:34:50Z",
+"fetched_at": "2026-10-01T20:19:45Z",
 "source": "espn site api",
 "players": [
 {
@@ -222,7 +222,7 @@
 "BOS": {
 "espn_team_id": 2,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:34:51Z",
+"fetched_at": "2026-10-01T20:19:45Z",
 "source": "espn site api",
 "players": [
 {
@@ -440,7 +440,7 @@
 "NO": {
 "espn_team_id": 3,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:34:51Z",
+"fetched_at": "2026-10-01T20:19:46Z",
 "source": "espn site api",
 "players": [
 {
@@ -658,7 +658,7 @@
 "CHI": {
 "espn_team_id": 4,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:34:51Z",
+"fetched_at": "2026-10-01T20:19:46Z",
 "source": "espn site api",
 "players": [
 {
@@ -879,7 +879,7 @@
 "CLE": {
 "espn_team_id": 5,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:34:52Z",
+"fetched_at": "2026-10-01T20:19:46Z",
 "source": "espn site api",
 "players": [
 {
@@ -1100,7 +1100,7 @@
 "DAL": {
 "espn_team_id": 6,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:34:52Z",
+"fetched_at": "2026-10-01T20:19:47Z",
 "source": "espn site api",
 "players": [
 {
@@ -1320,7 +1320,7 @@
 "DEN": {
 "espn_team_id": 7,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:34:53Z",
+"fetched_at": "2026-10-01T20:19:47Z",
 "source": "espn site api",
 "players": [
 {
@@ -1531,7 +1531,7 @@
 "DET": {
 "espn_team_id": 8,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:34:53Z",
+"fetched_at": "2026-10-01T20:19:48Z",
 "source": "espn site api",
 "players": [
 {
@@ -1732,7 +1732,7 @@
 "GS": {
 "espn_team_id": 9,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:34:54Z",
+"fetched_at": "2026-10-01T20:19:49Z",
 "source": "espn site api",
 "players": [
 {
@@ -1962,7 +1962,7 @@
 "HOU": {
 "espn_team_id": 10,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:34:54Z",
+"fetched_at": "2026-10-01T20:19:49Z",
 "source": "espn site api",
 "players": [
 {
@@ -2160,7 +2160,7 @@
 "IND": {
 "espn_team_id": 11,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:34:55Z",
+"fetched_at": "2026-10-01T20:19:49Z",
 "source": "espn site api",
 "players": [
 {
@@ -2351,7 +2351,7 @@
 "LAC": {
 "espn_team_id": 12,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:34:55Z",
+"fetched_at": "2026-10-01T20:19:50Z",
 "source": "espn site api",
 "players": [
 {
@@ -2581,7 +2581,7 @@
 "LAL": {
 "espn_team_id": 13,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:34:55Z",
+"fetched_at": "2026-10-01T20:19:50Z",
 "source": "espn site api",
 "players": [
 {
@@ -2799,7 +2799,7 @@
 "MIA": {
 "espn_team_id": 14,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:34:56Z",
+"fetched_at": "2026-10-01T20:19:51Z",
 "source": "espn site api",
 "players": [
 {
@@ -3013,7 +3013,7 @@
 "MIL": {
 "espn_team_id": 15,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:34:56Z",
+"fetched_at": "2026-10-01T20:19:51Z",
 "source": "espn site api",
 "players": [
 {
@@ -3231,7 +3231,7 @@
 "MIN": {
 "espn_team_id": 16,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:34:57Z",
+"fetched_at": "2026-10-01T20:19:51Z",
 "source": "espn site api",
 "players": [
 {
@@ -3452,7 +3452,7 @@
 "BKN": {
 "espn_team_id": 17,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:34:57Z",
+"fetched_at": "2026-10-01T20:19:52Z",
 "source": "espn site api",
 "players": [
 {
@@ -3653,7 +3653,7 @@
 "NY": {
 "espn_team_id": 18,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:34:57Z",
+"fetched_at": "2026-10-01T20:19:52Z",
 "source": "espn site api",
 "players": [
 {
@@ -3857,7 +3857,7 @@
 "ORL": {
 "espn_team_id": 19,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:34:58Z",
+"fetched_at": "2026-10-01T20:19:53Z",
 "source": "espn site api",
 "players": [
 {
@@ -4077,7 +4077,7 @@
 "PHI": {
 "espn_team_id": 20,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:34:58Z",
+"fetched_at": "2026-10-01T20:19:53Z",
 "source": "espn site api",
 "players": [
 {
@@ -4301,7 +4301,7 @@
 "PHX": {
 "espn_team_id": 21,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:34:59Z",
+"fetched_at": "2026-10-01T20:19:54Z",
 "source": "espn site api",
 "players": [
 {
@@ -4528,7 +4528,7 @@
 "POR": {
 "espn_team_id": 22,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:34:59Z",
+"fetched_at": "2026-10-01T20:19:54Z",
 "source": "espn site api",
 "players": [
 {
@@ -4719,7 +4719,7 @@
 "SAC": {
 "espn_team_id": 23,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:34:59Z",
+"fetched_at": "2026-10-01T20:19:54Z",
 "source": "espn site api",
 "players": [
 {
@@ -4917,7 +4917,7 @@
 "SA": {
 "espn_team_id": 24,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:35:00Z",
+"fetched_at": "2026-10-01T20:19:55Z",
 "source": "espn site api",
 "players": [
 {
@@ -5141,7 +5141,7 @@
 "OKC": {
 "espn_team_id": 25,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:35:00Z",
+"fetched_at": "2026-10-01T20:19:56Z",
 "source": "espn site api",
 "players": [
 {
@@ -5368,7 +5368,7 @@
 "UTAH": {
 "espn_team_id": 26,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:35:01Z",
+"fetched_at": "2026-10-01T20:19:56Z",
 "source": "espn site api",
 "players": [
 {
@@ -5569,7 +5569,7 @@
 "WSH": {
 "espn_team_id": 27,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:35:01Z",
+"fetched_at": "2026-10-01T20:19:57Z",
 "source": "espn site api",
 "players": [
 {
@@ -5762,7 +5762,10 @@
 "jersey": "00",
 "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4997537.png",
 "roster_status": "Active",
-"injury": null,
+"injury": {
+"status": "Out",
+"detail": null
+},
 "id_match": "espn"
 },
 {
@@ -5793,7 +5796,7 @@
 "TOR": {
 "espn_team_id": 28,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:35:01Z",
+"fetched_at": "2026-10-01T20:19:57Z",
 "source": "espn site api",
 "players": [
 {
@@ -6010,7 +6013,7 @@
 "MEM": {
 "espn_team_id": 29,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:35:02Z",
+"fetched_at": "2026-10-01T20:19:57Z",
 "source": "espn site api",
 "players": [
 {
@@ -6237,7 +6240,7 @@
 "CHA": {
 "espn_team_id": 30,
 "season": "2026-27",
-"fetched_at": "2026-10-01T18:35:02Z",
+"fetched_at": "2026-10-01T20:19:58Z",
 "source": "espn site api",
 "players": [
 {
