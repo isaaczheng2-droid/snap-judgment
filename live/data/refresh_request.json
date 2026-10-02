@@ -1,0 +1,18 @@
+{
+ "reasons": [
+  "Window finished: Thursday 8:15 PM ET game (1 final)",
+  "Box scores updated: player results and the paper test can be graded",
+  "Jonathan Allen: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "CHI LT: Braxton Jones \u2192 Theo Benedet as the starter",
+  "NO RB: Travis Etienne Jr. \u2192 Alvin Kamara as the starter"
+ ],
+ "game_ids": [
+  "2026_04_JAX_CIN"
+ ],
+ "event_ids": [
+  "ev_1790921844_bb26aea9",
+  "ev_1790921844_96f1a341",
+  "ev_1790921844_0ace37ff"
+ ],
+ "requested_at": "2026-10-02T06:17:59Z"
+}
