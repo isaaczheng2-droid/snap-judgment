@@ -1,0 +1,38 @@
+{
+ "reasons": [
+  "Box scores updated: player results and the paper test can be graded",
+  "Justin Jefferson: QUESTIONABLE \u2192 OUT (Ankle)",
+  "Benjamin Morrison: QUESTIONABLE \u2192 OUT (Quadriceps)",
+  "Christian Gonzalez: QUESTIONABLE \u2192 OUT (Shoulder)",
+  "Christian Barmore: QUESTIONABLE \u2192 OUT (Shoulder)",
+  "Javon Kinlaw: QUESTIONABLE \u2192 ACTIVE (Shoulder)",
+  "Terry McLaurin: ACTIVE \u2192 QUESTIONABLE (Hamstring)",
+  "Caleb Williams: DOUBTFUL \u2192 OUT (Hamstring)",
+  "Breece Hall: DOUBTFUL \u2192 OUT (Quadriceps)",
+  "Jayden Daniels: QUESTIONABLE \u2192 OUT (Elbow)",
+  "T.J. Sanders: QUESTIONABLE \u2192 DOUBTFUL (Illness)",
+  "Jonathan Allen: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_04_GB_TB",
+  "2026_04_IND_WAS",
+  "2026_04_JAX_CIN",
+  "2026_04_MIA_MIN",
+  "2026_04_NE_BUF",
+  "2026_04_NYJ_CHI"
+ ],
+ "event_ids": [
+  "ev_1790966633_426e0fd7",
+  "ev_1790966633_07d995f6",
+  "ev_1790966633_62d44b19",
+  "ev_1790966633_30ae2e47",
+  "ev_1790966633_46130c75",
+  "ev_1790966633_c4b607af",
+  "ev_1790966633_772456ed",
+  "ev_1790966633_f7b9a04c",
+  "ev_1790966633_de26ba54",
+  "ev_1790966633_2f8743c6",
+  "ev_1790966633_18273158"
+ ],
+ "requested_at": "2026-10-02T18:43:54Z"
+}
