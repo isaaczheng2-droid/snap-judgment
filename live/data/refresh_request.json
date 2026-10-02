@@ -1,0 +1,49 @@
+{
+ "reasons": [
+  "Jarran Reed: QUESTIONABLE \u2192 ACTIVE (Foot)",
+  "Will Anderson Jr.: QUESTIONABLE \u2192 ACTIVE (Ankle)",
+  "Drew Allar: ACTIVE \u2192 INACTIVE",
+  "T.J. Sanders: DOUBTFUL \u2192 QUESTIONABLE (Illness)",
+  "Will Howard: ACTIVE \u2192 INACTIVE",
+  "Taylen Green: ACTIVE \u2192 INACTIVE",
+  "Eli Heidenreich: ACTIVE \u2192 INACTIVE",
+  "Kevin Jobity Jr.: ACTIVE \u2192 INACTIVE",
+  "Justin Jefferson: ACTIVE \u2192 INACTIVE",
+  "Carl Granderson: ACTIVE \u2192 QUESTIONABLE (Ankle)",
+  "Benjamin Morrison: no report \u2192 QUESTIONABLE (Quadriceps)",
+  "Jaylen Wright: QUESTIONABLE \u2192 ACTIVE (Foot)"
+ ],
+ "game_ids": [
+  "2026_04_ATL_NO",
+  "2026_04_DAL_HOU",
+  "2026_04_GB_TB",
+  "2026_04_JAX_CIN",
+  "2026_04_LAC_SEA",
+  "2026_04_MIA_MIN",
+  "2026_04_NE_BUF",
+  "2026_04_PIT_CLE",
+  "2026_04_TEN_BAL"
+ ],
+ "event_ids": [
+  "ev_1790900186_c0870a65",
+  "ev_1790900186_58c4affa",
+  "ev_1790900186_ade2b9f2",
+  "ev_1790900186_5214e88d",
+  "ev_1790900186_92cd3ce3",
+  "ev_1790900186_499342e9",
+  "ev_1790900186_3f014b12",
+  "ev_1790900186_c472d7d1",
+  "ev_1790900186_9f28cd7e",
+  "ev_1790900186_f7999a9c",
+  "ev_1790900186_8d725cbe",
+  "ev_1790900186_84bd260c",
+  "ev_1790900186_cab45581",
+  "ev_1790900186_dfd14df3",
+  "ev_1790900186_23b59238",
+  "ev_1790900186_d1ade35f",
+  "ev_1790900186_fd86a469",
+  "ev_1790900186_6d9d27b8",
+  "ev_1790900186_6202038a"
+ ],
+ "requested_at": "2026-10-02T00:16:41Z"
+}
