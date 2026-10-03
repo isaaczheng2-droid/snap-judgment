@@ -6,31 +6,35 @@
   html.intro-open, html.intro-open body { overflow: hidden; }
   #intro {
     --i-paper: #f8f4ea; --i-ink: #0b0f1a;
-    position: fixed; inset: 0; z-index: 1000; overflow: hidden; isolation: isolate; cursor: pointer;
-    display: grid; align-items: end; justify-items: center; padding: clamp(18px, 4dvh, 40px) 16px;
+    position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 1000; overflow: hidden; isolation: isolate; cursor: pointer;
+    display: grid; align-items: end; justify-items: center; padding: 28px 16px; padding: clamp(18px, 4vh, 40px) 16px;
     background: var(--i-ink); color: var(--i-paper);
     transition: transform .5s cubic-bezier(.7, 0, .84, 0) .2s;
   }
   #intro.leaving { transform: translateY(-101%); pointer-events: none; }
 
   /* ---- the picture ---- */
-  .intro-bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
-  #introStage { position: absolute; inset: 0; filter: sepia(.28) saturate(.9) contrast(1.12) brightness(.95) blur(.6px); }
+  .intro-bg { position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: -1; overflow: hidden; }
+  #introStage { position: absolute; top: 0; right: 0; bottom: 0; left: 0; filter: sepia(.28) saturate(.9) contrast(1.12) brightness(.95) blur(.6px); }
   /* cover the window whatever the clip's shape; never interactive */
   #introStage > * { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 0; pointer-events: none; background: #000;
-    width: max(100vw, 177.78dvh); aspect-ratio: 16 / 9; }
-  #introStage > video { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; }
-  #introStatic { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
-  .intro-crt { position: absolute; inset: 0; pointer-events: none;
+    width: 177.78vh; height: 100vh; min-width: 100vw; min-height: 56.25vw; }
+  @supports (height: 100dvh) { #introStage > * { width: 177.78dvh; height: 100dvh; } }
+  /* many of these films are widescreen with black bars baked in; on a tall screen that leaves a
+     band of picture in the middle, so zoom past the bars (which also crops the captions in them) */
+  @media (orientation: portrait) { #introStage > iframe { transform: translate(-50%, -50%) scale(1.38); } }
+  #introStage > video { width: 100%; height: 100%; min-width: 0; min-height: 0; object-fit: cover; }
+  #introStatic { position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%; image-rendering: pixelated; }
+  .intro-crt { position: absolute; top: 0; right: 0; bottom: 0; left: 0; pointer-events: none;
     background:
       repeating-linear-gradient(to bottom, rgba(0, 0, 0, .46) 0 2px, rgba(255, 255, 255, .06) 2px 4px),
       radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, .5) 100%),
       linear-gradient(to top, rgba(11, 15, 26, .6) 0, transparent 18%);
   }
-  .intro-crt::before { content: ""; position: absolute; inset: 0; opacity: .5; mix-blend-mode: overlay;
+  .intro-crt::before { content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; opacity: .5; mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='.55'/></svg>"); }
   .intro-crt::after { content: ""; position: absolute; left: 0; right: 0; top: -20%; height: 16%; background: linear-gradient(transparent, rgba(255, 255, 255, .07), transparent); }
-  .intro-card { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; gap: 8px; padding: 24px;
+  .intro-card { position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: grid; place-content: center; text-align: center; gap: 8px; padding: 24px;
     font-family: var(--display); text-transform: uppercase; text-shadow: 0 2px 0 #000, 0 0 18px rgba(0, 0, 0, .85); }
   .intro-card b { font-size: clamp(30px, 6vw, 72px); font-weight: 800; letter-spacing: .08em; line-height: 1; }
   .intro-card span { font-family: var(--mono); font-size: 13px; letter-spacing: .14em; }
@@ -81,7 +85,8 @@
   const stage = $("introStage"), canvas = $("introStatic"), card = $("introCard"), enterBtn = $("introEnter");
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const YT = "https://www.youtube-nocookie.com";
-  const CHROME_MS = 1600;
+  /* the phone player keeps its title and buttons up longer than the desktop one */
+  const CHROME_MS = matchMedia("(pointer: coarse)").matches || /Mobi|Android|iPhone/.test(navigator.userAgent) ? 3600 : 1600;
   const CLIP_MS = 30000;                 /* how long any one video stays on before the reel moves on */
   /* a highlight video is minutes long: come in somewhere different each time, clear of the titles at either end */
   const startAt = x => x.seconds > 90 ? 12 + Math.floor(Math.random() * (x.seconds - 60)) : 0;
@@ -168,7 +173,7 @@
     frame = makeFrame(reel[0]);
     /* if the player never reports in, show whatever it is showing rather than static forever */
     frame.addEventListener("load", () => setTimeout(() => { if (frame && !card.hidden) staticOff(); }, reduce ? 800 : 6000));
-    stage.replaceChildren(frame);
+    stage.textContent = ""; stage.appendChild(frame);
     playing = !reduce; shownAt = Date.now();
     arm();
   }
@@ -213,7 +218,7 @@
     video.addEventListener("pause", () => { playing = false; });
     video.addEventListener("ended", () => playFile(fileIdx + 1));
     video.addEventListener("error", () => { if (++fails >= files.length) { video.remove(); video = null; standBy(); } else playFile(fileIdx + 1); });
-    stage.replaceChildren(video);
+    stage.textContent = ""; stage.appendChild(video);
     playFile(0);
     if (reduce) staticOff();
   }
@@ -236,7 +241,7 @@
   function stopReel() {
     clearTimeout(clipTimer); cancelAnimationFrame(raf);
     if (next) clearTimeout(next.giveUp);
-    stage.replaceChildren(); frame = null; next = null; video = null; reel = []; fails = 0; playing = false;
+    stage.textContent = ""; frame = null; next = null; video = null; reel = []; fails = 0; playing = false;
   }
 
   /* ---- open and close ---- */

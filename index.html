@@ -1755,31 +1755,35 @@ body.modal-open { overflow: hidden; }
   html.intro-open, html.intro-open body { overflow: hidden; }
   #intro {
     --i-paper: #f8f4ea; --i-ink: #0b0f1a;
-    position: fixed; inset: 0; z-index: 1000; overflow: hidden; isolation: isolate; cursor: pointer;
-    display: grid; align-items: end; justify-items: center; padding: clamp(18px, 4dvh, 40px) 16px;
+    position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 1000; overflow: hidden; isolation: isolate; cursor: pointer;
+    display: grid; align-items: end; justify-items: center; padding: 28px 16px; padding: clamp(18px, 4vh, 40px) 16px;
     background: var(--i-ink); color: var(--i-paper);
     transition: transform .5s cubic-bezier(.7, 0, .84, 0) .2s;
   }
   #intro.leaving { transform: translateY(-101%); pointer-events: none; }
 
   /* ---- the picture ---- */
-  .intro-bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
-  #introStage { position: absolute; inset: 0; filter: sepia(.28) saturate(.9) contrast(1.12) brightness(.95) blur(.6px); }
+  .intro-bg { position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: -1; overflow: hidden; }
+  #introStage { position: absolute; top: 0; right: 0; bottom: 0; left: 0; filter: sepia(.28) saturate(.9) contrast(1.12) brightness(.95) blur(.6px); }
   /* cover the window whatever the clip's shape; never interactive */
   #introStage > * { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 0; pointer-events: none; background: #000;
-    width: max(100vw, 177.78dvh); aspect-ratio: 16 / 9; }
-  #introStage > video { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; }
-  #introStatic { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
-  .intro-crt { position: absolute; inset: 0; pointer-events: none;
+    width: 177.78vh; height: 100vh; min-width: 100vw; min-height: 56.25vw; }
+  @supports (height: 100dvh) { #introStage > * { width: 177.78dvh; height: 100dvh; } }
+  /* many of these films are widescreen with black bars baked in; on a tall screen that leaves a
+     band of picture in the middle, so zoom past the bars (which also crops the captions in them) */
+  @media (orientation: portrait) { #introStage > iframe { transform: translate(-50%, -50%) scale(1.38); } }
+  #introStage > video { width: 100%; height: 100%; min-width: 0; min-height: 0; object-fit: cover; }
+  #introStatic { position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%; image-rendering: pixelated; }
+  .intro-crt { position: absolute; top: 0; right: 0; bottom: 0; left: 0; pointer-events: none;
     background:
       repeating-linear-gradient(to bottom, rgba(0, 0, 0, .46) 0 2px, rgba(255, 255, 255, .06) 2px 4px),
       radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, .5) 100%),
       linear-gradient(to top, rgba(11, 15, 26, .6) 0, transparent 18%);
   }
-  .intro-crt::before { content: ""; position: absolute; inset: 0; opacity: .5; mix-blend-mode: overlay;
+  .intro-crt::before { content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; opacity: .5; mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='.55'/></svg>"); }
   .intro-crt::after { content: ""; position: absolute; left: 0; right: 0; top: -20%; height: 16%; background: linear-gradient(transparent, rgba(255, 255, 255, .07), transparent); }
-  .intro-card { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; gap: 8px; padding: 24px;
+  .intro-card { position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: grid; place-content: center; text-align: center; gap: 8px; padding: 24px;
     font-family: var(--display); text-transform: uppercase; text-shadow: 0 2px 0 #000, 0 0 18px rgba(0, 0, 0, .85); }
   .intro-card b { font-size: clamp(30px, 6vw, 72px); font-weight: 800; letter-spacing: .08em; line-height: 1; }
   .intro-card span { font-family: var(--mono); font-size: 13px; letter-spacing: .14em; }
@@ -1830,7 +1834,8 @@ body.modal-open { overflow: hidden; }
   const stage = $("introStage"), canvas = $("introStatic"), card = $("introCard"), enterBtn = $("introEnter");
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const YT = "https://www.youtube-nocookie.com";
-  const CHROME_MS = 1600;
+  /* the phone player keeps its title and buttons up longer than the desktop one */
+  const CHROME_MS = matchMedia("(pointer: coarse)").matches || /Mobi|Android|iPhone/.test(navigator.userAgent) ? 3600 : 1600;
   const CLIP_MS = 30000;                 /* how long any one video stays on before the reel moves on */
   /* a highlight video is minutes long: come in somewhere different each time, clear of the titles at either end */
   const startAt = x => x.seconds > 90 ? 12 + Math.floor(Math.random() * (x.seconds - 60)) : 0;
@@ -1917,7 +1922,7 @@ body.modal-open { overflow: hidden; }
     frame = makeFrame(reel[0]);
     /* if the player never reports in, show whatever it is showing rather than static forever */
     frame.addEventListener("load", () => setTimeout(() => { if (frame && !card.hidden) staticOff(); }, reduce ? 800 : 6000));
-    stage.replaceChildren(frame);
+    stage.textContent = ""; stage.appendChild(frame);
     playing = !reduce; shownAt = Date.now();
     arm();
   }
@@ -1962,7 +1967,7 @@ body.modal-open { overflow: hidden; }
     video.addEventListener("pause", () => { playing = false; });
     video.addEventListener("ended", () => playFile(fileIdx + 1));
     video.addEventListener("error", () => { if (++fails >= files.length) { video.remove(); video = null; standBy(); } else playFile(fileIdx + 1); });
-    stage.replaceChildren(video);
+    stage.textContent = ""; stage.appendChild(video);
     playFile(0);
     if (reduce) staticOff();
   }
@@ -1985,7 +1990,7 @@ body.modal-open { overflow: hidden; }
   function stopReel() {
     clearTimeout(clipTimer); cancelAnimationFrame(raf);
     if (next) clearTimeout(next.giveUp);
-    stage.replaceChildren(); frame = null; next = null; video = null; reel = []; fails = 0; playing = false;
+    stage.textContent = ""; frame = null; next = null; video = null; reel = []; fails = 0; playing = false;
   }
 
   /* ---- open and close ---- */
@@ -7153,7 +7158,7 @@ function viewAbout(r) {
   :focus-visible { outline-color: var(--accent) !important; }
 
   /* ---- players bursting out of the top of the page ---- */
-  .tb-banner { position: relative; height: clamp(180px, 30vw, 340px); margin: 4px 0 2px; isolation: isolate; pointer-events: none;
+  .tb-banner { position: relative; height: clamp(180px, 30vw, 340px); margin: 4px 0 2px; isolation: isolate; pointer-events: none; overflow-x: clip;
     clip-path: inset(-80px 0 0 0); /* cutouts may rise above the box, never spill below or sideways onto the page */ }
   .tb-banner .shapes { position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; }
   .tb-banner .pl { position: absolute; bottom: 0; left: var(--x); height: var(--h); width: auto; max-width: none; z-index: var(--z);
@@ -7205,6 +7210,115 @@ function viewAbout(r) {
   .mprob { background: #101c5a !important; border: 2px solid #dfe6ff; }
   .mprob, .mprob * { color: #fff !important; }
   .mprob .score { color: var(--accent) !important; }
+
+  /* ---- every inner page in the same broadcast dress ----
+     The section pages (Games, Fantasy, Players, Props, Model Performance, About and the NBA
+     tabs) are built from a handful of shared pieces. Each gets the forecast-card treatment:
+     a square box with a light rule and a hard shadow on a blue gradient, a dark title strip
+     with yellow terminal type, and square controls. Boxes inside boxes go flat and dark so
+     the frame is only drawn once. */
+  :root:root:root { --radius: 0px; --radius-lg: 0px; }
+  :is(.card, .cbox, .gcard, .pcard, .propcard, .tile, .fact, .box, .pb, .pick, .state, .purpose, .ustrip, .slate, .ftable, .fstrip, .whybox, .tip, .note, .warn, .perfbox, .upd, .topedge, details.more, details.filterbar) {
+    border: 2px solid #dfe6ff !important; border-radius: 0 !important;
+    background: linear-gradient(180deg, #3a5fd2 0%, #2a45ab 55%, #1b3193 100%) !important;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, .45) !important;
+  }
+  :is(.card, .cbox, .gcard, .pcard, .propcard, .tile, .pick, .state, .purpose, .ustrip, .slate, .ftable, .whybox, .perfbox, details.more, details.filterbar)
+    :is(.card, .cbox, .tile, .fact, .box, .pb, .pick, .state, .tip, .note, .warn, .upd, .whybox, details.more) {
+    border-width: 1px !important; background: #14226a !important; box-shadow: none !important;
+  }
+  .warn, .note { border-left: 6px solid var(--amber) !important; }
+  a:is(.gcard, .pcard, .propcard, .topedge), .gcard, .pcard { transition: transform .12s ease-out, box-shadow .12s ease-out; }
+  a:is(.gcard, .pcard, .propcard, .topedge):hover, .gcard:hover, .pcard:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 rgba(0, 0, 0, .45) !important; }
+
+  /* title strips and tab rows */
+  .card h3, .cbox h4, .whybox h4, .hsec h2, details.more > summary {
+    font-family: var(--display); color: var(--accent); text-transform: uppercase; letter-spacing: .04em; }
+  .cbox h4, .whybox h4, .card h3 { margin: -1px -1px 12px !important; padding: 2px 10px 3px !important; background: #101c5a; border-bottom: 2px solid #dfe6ff !important; }
+  .page-head .sub, .page-head .stamp { text-shadow: 1px 1px 0 rgba(0, 0, 0, .5); }
+  .subnav { border-bottom: 2px solid #fff !important; }
+  .subnav a { font-family: var(--display) !important; font-size: 21px !important; font-weight: 400 !important; text-transform: uppercase; letter-spacing: .03em; color: #fff !important; text-shadow: 1px 1px 0 #000; }
+  .subnav a[aria-current] { color: var(--accent) !important; border-bottom-color: var(--accent) !important; }
+
+  /* controls */
+  .segmented, .sportsel { border: 2px solid #dfe6ff !important; border-radius: 0 !important; background: #101c5a !important; padding: 0 !important; overflow: hidden; }
+  .seg, .sportsel a { font-family: var(--display) !important; font-size: 20px !important; font-weight: 400 !important; border-radius: 0 !important; color: #fff !important; letter-spacing: .04em; }
+  .seg[aria-pressed="true"], .sportsel a[aria-current] { background: var(--accent) !important; color: #14215c !important; text-shadow: none; }
+  .btn, .fbtn, .pf, .chk, .teamtab, .iconbtn, .week-badge, .uchip, select, .sel, .sortsel, input[type="search"], input[type="text"], input[type="number"], label.search, .search {
+    border-radius: 0 !important; border: 2px solid #dfe6ff !important; background-color: #101c5a !important; color: #fff !important; }
+  label.search input, .search input { border: 0 !important; background: transparent !important; }
+  .btn.primary, :is(.pf, .chk, .teamtab, .fbtn)[aria-pressed="true"] { background: var(--accent) !important; color: #14215c !important; }
+  .week-badge { font-family: var(--display) !important; font-size: 19px !important; letter-spacing: .05em; text-shadow: 1px 1px 0 #000; }
+  .control-label { font-family: var(--display) !important; font-size: 18px !important; color: var(--accent) !important; }
+
+  /* tables: a dark header band with yellow column names, light rules between rows */
+  main table { border: 2px solid #dfe6ff; border-collapse: collapse; background: #1b3193; box-shadow: 4px 4px 0 rgba(0, 0, 0, .45); }
+  :is(.card, .cbox, .ftable, details.more) table { box-shadow: none; }
+  main th { background: #101c5a !important; color: var(--accent) !important; font-family: var(--display) !important; font-size: 19px !important; font-weight: 400 !important;
+    text-transform: uppercase; letter-spacing: .04em; border-bottom: 2px solid #dfe6ff !important; }
+  main tbody th { color: #fff !important; font-size: 18px !important; }
+  main td { border-color: rgba(223, 230, 255, .3) !important; }
+  main tbody tr:hover > * { background-color: rgba(255, 255, 255, .07); }
+
+  /* chips and the big numbers */
+  .badge, .gtag, .gbadge, .mbadge, .stat-badge, .fbadge, .fs, .fq { border-radius: 0 !important; font-family: var(--display) !important; font-size: 16px !important; line-height: 1.05 !important; letter-spacing: .05em; font-weight: 400 !important; }
+  :is(.tile, .fact, .pb, .perfrow, .box) :is(.v, .val), .pv, .gp, .spick, .mprob .num { font-family: var(--display) !important; font-weight: 400 !important; text-shadow: 2px 2px 0 rgba(0, 0, 0, .55); }
+  .rfoot { border-top: 2px solid #fff !important; }
+
+  /* ---- one typeface everywhere ----
+     Names, labels, table cells and prose all go to the terminal face, the way a real weather
+     channel page was set. It draws small for its point size, so font-size-adjust scales it
+     up to the x-height the old text face had and nothing needs re-measuring. Elements whose
+     size was already chosen for this face opt back out. */
+  :root:root:root { --body: var(--display); --mono: var(--display); }
+  body { font-size-adjust: 0.5; letter-spacing: .01em; }
+  h1, h2, h3, h4, .wordmark, .navlink, .week-badge, .subnav a, .seg, .sportsel a, .control-label, main th,
+  .badge, .gtag, .gbadge, .mbadge, .stat-badge, .fbadge, .fs, .fq, .wx-bar, .wx-card, .intro-card, .intro-enter { font-size-adjust: none; }
+  .intro-enter { font-size: 19px !important; }
+  b, strong { font-weight: 400; color: #fff; text-shadow: 1px 0 0 currentColor; }   /* bold as a double strike, not a smeared synthetic weight */
+  main p, main li, .fdetail, .sub { line-height: 1.35; }
+  .week-badge { font-size: 17px !important; padding: 2px 8px !important; }
+  .bottomnav a { font-size-adjust: none; font-size: 15px !important; }
+  /* on a phone the NFL / NBA switch matters more than the week stamp */
+  @media (max-width: 620px) { .week-badge { display: none !important; } }
+
+  /* ---- roster & lineup: pixel players instead of photo cards ----
+     Each spot on the field or court is a little sprite in the team's colours with the name
+     ("D. Maye") under it, then the position and the Model Grade. No box behind them: the
+     turf shows through, and a dark plate under the text keeps it readable on any stripe. */
+  .pm { background: none !important; border: 0 !important; box-shadow: none !important; padding: 0 !important; border-radius: 0 !important;
+    display: flex !important; flex-wrap: wrap; justify-content: center; align-items: center; gap: 2px 5px; width: 98px; min-height: 44px; cursor: pointer; }
+  .pm .avatar.pix { order: 1; flex: 0 0 100% !important; display: block !important; width: 100% !important; height: 120px !important; min-width: 0; max-width: none; margin: 0; padding: 0; border: 0 !important; border-radius: 0 !important;
+    background: none !important; box-shadow: none !important; overflow: visible; }
+  .pm .avatar.pix svg { display: block; position: static; height: 120px; width: 60px; margin: 0 auto; shape-rendering: crispEdges; overflow: visible;
+    filter: drop-shadow(1px 0 0 #000) drop-shadow(-1px 0 0 #000) drop-shadow(0 -1px 0 #000) drop-shadow(2px 3px 0 rgba(0, 0, 0, .5)); transition: transform .12s ease-out; }
+  .pm:hover .avatar.pix svg, .pm:focus-visible .avatar.pix svg { transform: translateY(-4px); }
+  .pm:focus-visible { outline: 3px solid var(--accent) !important; outline-offset: 2px; }
+  .pm.role-backup .avatar.pix { opacity: .8; }
+  .pm .pm-name { order: 2; flex: 0 0 auto; max-width: 100%; padding: 0 5px 1px; background: #101c5a; border: 1px solid #dfe6ff; color: #fff !important;
+    font-family: var(--display) !important; font-size: 15px !important; font-size-adjust: none; line-height: 1.05; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pm .pm-pos { order: 3; flex: 0 0 auto; color: var(--accent) !important; font-family: var(--display) !important; font-size: 15px !important; font-size-adjust: none; line-height: 1;
+    text-shadow: 1px 1px 0 #000, -1px 0 0 #000, 0 -1px 0 #000; }
+  .pm .pm-grade { order: 4; position: static !important; transform: none !important; flex: 0 0 auto; min-width: 0; height: auto; padding: 0 4px 1px; border-radius: 0 !important; border: 1px solid #fff;
+    font-family: var(--display) !important; font-size: 16px !important; font-size-adjust: none; line-height: 1.05; box-shadow: 1px 1px 0 #000; }
+  .pm .pm-grade::before { content: "GR "; opacity: .85; }
+  .pm::after { content: ""; order: 2; flex: 0 0 100%; height: 0; }                 /* line break after the name */
+  .pm .pm-pos, .pm .pm-grade { display: inline-block !important; width: auto !important; margin: 0 !important; }
+  .pm .pm-grade.na::before { content: ""; }
+  /* on a phone the field and court are narrower, so every player is drawn smaller to keep them apart */
+  @media (max-width: 700px) {
+    .pm { width: 72px !important; gap: 1px 3px !important; }
+    .pm:not([data-sport="nba"]) .avatar.pix { height: 58px !important; }
+    .pm:not([data-sport="nba"]) .avatar.pix svg { height: 58px !important; width: 38px !important; }
+    .pm[data-sport="nba"] .avatar.pix { height: 92px !important; }
+    .pm[data-sport="nba"] .avatar.pix svg { height: 92px !important; width: 46px !important; }
+    .pm .pm-name { font-size: 13px !important; padding: 0 3px 1px !important; }
+    .pm .pm-pos { font-size: 12px !important; }
+    .pm .pm-grade { font-size: 13px !important; padding: 0 3px 1px !important; }
+  }
+  /* the helmeted football sprite is shorter than a basketball bobblehead */
+  .pm:not([data-sport="nba"]) .avatar.pix { height: 84px !important; }
+  .pm:not([data-sport="nba"]) .avatar.pix svg { height: 84px; width: 54px; }
 </style>
 <script>
 /* ====================== THEME: home forecast and the player banners ======================
@@ -7365,6 +7479,361 @@ function viewAbout(r) {
     nbaForecast();
     if (NBA.data) banner(slot(document.getElementById("panel-nba"), "nbaBanner", "nba"), "nba", nbaStars(NBA.data));
   };
+
+  /* ---- pixel players ----
+     One bobblehead per spot: the player's own headshot, pixelated, on a small body in the stance
+     for his position and his team's real kit (colour at home, white on the road) with the
+     team's initials on the chest.
+     Each character of a row is one pixel: H helmet, T trim, M facemask, S skin, J jersey,
+     P pants, K socks, B boots, R hair, O ball. `n` is the row the chest logo starts on. */
+  const HEAD = ["......HHHH......", ".....HHHHHH.....", "....HHHTTHHH....", "....HHSSSSHH....", "....HMMMMMMH....", ".....MMMMMM....."];
+  const BLANK = "................";
+  const LEGS = ["....PPPPPPPP....", "....PPPPPPPP....", "....PPP..PPP....", "....PPP..PPP....", "....PPP..PPP....", "....KKK..KKK....", "....KKK..KKK....", "...BBBB..BBBB..."];
+  const STANCE = {
+    /* upright, arms at the sides */
+    stand: { n: 8, rows: [...HEAD, "......SSSS......", "..JJJJJJJJJJJJ..", ".JJJJJJJJJJJJJJ.", ".JJJJJJJJJJJJJJ.", ".JJ.JJJJJJJJ.JJ.", ".SS.JJJJJJJJ.SS.", ".SS.JJJJJJJJ.SS.", "....JJJJJJJJ....", ...LEGS] },
+    /* quarterback: ball cocked by the ear */
+    qb: { n: 8, rows: [...HEAD.slice(0, 4), "....HMMMMMMH.OO.", ".....MMMMMM..OO.", "......SSSS...SS.", "..JJJJJJJJJJJJS.", ".JJJJJJJJJJJJJJ.", ".JJJJJJJJJJJJ...", ".JJ.JJJJJJJJ....", ".SS.JJJJJJJJ....", ".SS.JJJJJJJJ....", "....JJJJJJJJ....", ...LEGS] },
+    /* lineman: down in a three-point stance, one hand on the turf */
+    line: { n: 10, rows: [BLANK, BLANK, BLANK, ...HEAD.slice(0, 5), ".JJJJJMMMMJJJJJ.", "JJJJJJJJJJJJJJJJ", "JJJJJJJJJJJJJJJJ", "JJ..JJJJJJJJ..JJ", "SS..JJJJJJJJ..SS", "SS..JJJJJJJJ..SS", "SS..JJJJJJJJ....", "SS.PPPPPPPPPP...", "SS.PPPP..PPPP...", "..PPPP....PPPP..", "..KKK......KKK..", "..KKK......KKK..", ".BBBB......BBBB.", BLANK] },
+    /* receiver or tight end: leaning into the release, feet staggered */
+    wr: { n: 8, rows: [...HEAD, "......SSSS......", "..JJJJJJJJJJJJ..", ".JJJJJJJJJJJJJJ.", "SJJ.JJJJJJJJ.JJ.", "SS..JJJJJJJJ.JJS", "....JJJJJJJJ..SS", "....JJJJJJJJ....", "....JJJJJJJJ....", "....PPPPPPPP....", "...PPPP.PPPP....", "..PPPP...PPPP...", "..PPP.....PPP...", ".KKK.......KKK..", ".KKK.......KKK..", "BBBB.......BBBB.", BLANK] },
+    /* running back: crouched, hands on the knees */
+    rb: { n: 10, rows: [BLANK, BLANK, ...HEAD, "......SSSS......", "..JJJJJJJJJJJJ..", ".JJJJJJJJJJJJJJ.", ".JJ.JJJJJJJJ.JJ.", ".JJ.JJJJJJJJ.JJ.", ".SS.JJJJJJJJ.SS.", "..SSJJJJJJJJSS..", "...PPPPPPPPPP...", "...PPPP..PPPP...", "...PPP....PPP...", "...KKK....KKK...", "...KKK....KKK...", "..BBBB....BBBB..", BLANK] },
+    /* linebacker or defensive back: arms wide, knees bent */
+    def: { n: 9, rows: [BLANK, ...HEAD, "......SSSS......", "..JJJJJJJJJJJJ..", "JJJJJJJJJJJJJJJJ", "JJS.JJJJJJJJ.SJJ", "SS..JJJJJJJJ..SS", "....JJJJJJJJ....", "....JJJJJJJJ....", "....PPPPPPPP....", "...PPPPPPPPPP...", "...PPPP..PPPP...", "..PPPP....PPPP..", "..KKK......KKK..", "..KKK......KKK..", ".BBBB......BBBB.", BLANK] },
+    /* kicker or punter: leg through the ball */
+    kick: { n: 8, rows: [...HEAD, "......SSSS......", "..JJJJJJJJJJJJ..", ".JJJJJJJJJJJJJJ.", ".JJJJJJJJJJJJJJ.", ".JJ.JJJJJJJJ.JJ.", ".SS.JJJJJJJJ.SS.", ".SS.JJJJJJJJ.SS.", "....JJJJJJJJ....", "....PPPPPPPP....", "....PPPPPPPP....", "....PPP..PPPP...", "....PPP...PPPP..", "....PPP....KKKK.", "....KKK.....BBBO", "....KKK.........", "...BBBB........."] },
+    /* basketball bodies: the head is drawn separately, from the hair style */
+    guard: { n: 8, rows: [BLANK, BLANK, BLANK, BLANK, BLANK, BLANK, BLANK, "...SJJJ..JJJS...", "..SSJJJJJJJJSS..", "..SSJJJJJJJJSS..", "..SSJJJJJJJJSS..", "..SSJJJJJJJJ.SS.", "..SSJJJJJJJJ.SS.", "....TTTTTTTT..OO", "....JJJJJJJJ..OO", "....JJJJJJJJ....", "....JJJ..JJJ....", "....SSS..SSS....", "....SSS..SSS....", "....KKK..KKK....", "....KKK..KKK....", "...BBBB..BBBB..."] },
+    wing: { n: 8, rows: [BLANK, BLANK, BLANK, BLANK, BLANK, BLANK, BLANK, "...SJJJ..JJJS...", "..SSJJJJJJJJSS..", "..SSJJJJJJJJSS..", "..SSJJJJJJJJSS..", "..SSJJJJJJJJSS..", "..SSJJJJJJJJSS..", "....TTTTTTTT....", "....JJJJJJJJ....", "....JJJJJJJJ....", "....JJJ..JJJ....", "....SSS..SSS....", "....SSS..SSS....", "....KKK..KKK....", "....KKK..KKK....", "...BBBB..BBBB..."] },
+    big: { n: 8, rows: [".SS..........SS.", ".SS..........SS.", ".SS..........SS.", ".SS..........SS.", ".SS..........SS.", ".SS..........SS.", ".SS..........SS.", ".SSSJJJ..JJJSSS.", "..SSJJJJJJJJSS..", "....JJJJJJJJ....", "....JJJJJJJJ....", "....JJJJJJJJ....", "....JJJJJJJJ....", "....TTTTTTTT....", "....JJJJJJJJ....", "....JJJJJJJJ....", "....JJJ..JJJ....", "....SSS..SSS....", "....SSS..SSS....", "....KKK..KKK....", "....KKK..KKK....", "...BBBB..BBBB..."] },
+  };
+  const LETTER = { A: "010101111101101", B: "110101110101110", C: "011100100100011", D: "110101101101110", E: "111100110100111", F: "111100110100100", G: "011100101101011",
+    H: "101101111101101", I: "111010010010111", J: "001001001101010", K: "101101110101101", L: "100100100100111", M: "101111111101101", N: "111101101101101",
+    O: "010101101101010", P: "110101110100100", Q: "010101101111011", R: "110101110101101", S: "011100010001110", T: "111010010010010", U: "101101101101111",
+    V: "101101101101010", W: "101101111111101", X: "101101010101101", Y: "101101010010010", Z: "111001010100111" };
+  const PAINT = { H: "var(--pix-helmet)", T: "var(--pix-trim)", J: "var(--pix-jersey)", P: "var(--pix-pants)", K: "var(--pix-sock)", S: "var(--pix-skin, #c68e63)",
+    R: "var(--pix-hair, #1c130d)", M: "#c9ced8", B: "#15151c", O: "#b5651d" };
+  function paintRows(rows, y0) {
+    let out = "";
+    rows.forEach((row, i) => {
+      for (let x = 0; x < row.length; x++) {
+        const c = row[x]; if (c === ".") continue;
+        let w = 1; while (row[x + w] === c) w++;             /* one rect per run of the same colour */
+        out += `<rect x="${x}" y="${y0 + i}" width="${w}" height="1" fill="${PAINT[c]}"/>`;
+        x += w - 1;
+      }
+    });
+    return out;
+  }
+  function sprite(stance, look) {
+    const st = STANCE[stance]; let body = st.rows;
+    /* shoulders start on the first row with any jersey in it; a photo head replaces everything above */
+    const neck = body.findIndex(row => row.includes("J"));
+    if (look.head && !look.hair) body = body.map((row, y) => y < neck ? row.replace(/[^O.]/g, ".") : row);
+    let g = paintRows(body, 0);
+    const dot = (x, y, fill) => `<rect x="${x}" y="${y}" width="1" height="1" fill="${fill}"/>`;
+    /* the team's initials on the chest, in the same pixels as everything else */
+    const mark = String(look.mark || "").toUpperCase(); let mx = mark.length === 2 ? 4 : 6;
+    for (const ch of mark) {
+      const bits = LETTER[ch] || "";
+      for (let i = 0; i < bits.length; i++) if (bits[i] === "1") g += dot(mx + i % 3, st.n + (i / 3 | 0), "var(--pix-num)");
+      mx += 4;
+    }
+    if (look.head) {
+      /* a bobblehead: the body at little more than half size, feet on the floor of a 16 x 24 box, and
+         the head, at full size, sitting on its shoulders */
+      const k = .6, bodyH = (22 - neck) * k, y0 = 24 - bodyH - look.rows;
+      let head = "";
+      for (const h of look.head) head += dot(2 + h[0], y0 + h[1], `rgb(${h[2].join(",")})`);
+      return `<svg class="bobble" viewBox="0 -8 16 32" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><g transform="translate(${(16 - 16 * k) / 2} ${24 - 22 * k}) scale(${k})">${g}</g>${head}</svg>`;
+    } else if (look.hair) {                                 /* no photo: a plain drawn head */
+      const R = PAINT.R, S = PAINT.S, run = (x, y, w, fill) => `<rect x="${x}" y="${y}" width="${w}" height="1" fill="${fill}"/>`;
+      g += run(6, 1, 4, S) + run(5, 2, 6, S) + run(5, 3, 6, S) + run(5, 4, 6, S) + run(6, 5, 4, S) + run(7, 6, 2, S) + run(7, 7, 2, S);
+      g += dot(6, 3, "#15110f") + dot(9, 3, "#15110f");                                   /* eyes */
+      const h = look.hair;
+      if (h !== "bald") g += run(6, 0, 4, R) + run(5, 1, 6, R) + dot(5, 2, R) + dot(10, 2, R);
+      if (h === "medium" || h === "afro") g += run(6, -1, 4, R) + run(5, 0, 6, R);
+      if (h === "afro") g += run(5, -2, 6, R) + run(4, -1, 8, R) + run(3, 0, 10, R) + run(3, 1, 10, R) + run(3, 2, 2, R) + run(11, 2, 2, R) + dot(4, 3, R) + dot(11, 3, R);
+      if (h === "locs") { for (let y = 1; y <= 7; y++) g += dot(4, y, R) + dot(11, y, R); g += dot(3, 6, R) + dot(3, 7, R) + dot(12, 6, R) + dot(12, 7, R) + dot(4, 8, R) + dot(11, 8, R); }
+      if (look.band) g += run(5, 1, 6, "#f4f4f4");
+      if (look.beard) g += dot(5, 4, R) + dot(10, 4, R) + run(6, 5, 4, R);
+      if (look.beard === 2) g += dot(5, 3, R) + dot(10, 3, R) + run(5, 4, 2, R) + run(9, 4, 2, R) + run(5, 5, 6, R) + run(6, 6, 4, R) + run(6, 7, 4, R) + run(7, 8, 2, R);
+    }
+    return `<svg viewBox="0 -3 16 25" aria-hidden="true">${g}</svg>`;
+  }
+  const stanceFor = (sport, pos) => {
+    pos = String(pos || "").toUpperCase().trim();
+    if (sport === "nba") return /^(C|PF|F-C|C-F)\b/.test(pos) ? "big" : /^(PG|SG|G)\b/.test(pos) ? "guard" : "wing";
+    if (/^QB/.test(pos)) return "qb";
+    /* special teams spell the position out */
+    if (/^(KR|PR|KICK RETURN\w*|PUNT RETURN\w*)\b/.test(pos)) return "rb";
+    if (/^(LS|H|LONG SNAPPER|HOLDER)\b/.test(pos)) return "line";
+    if (/^(K|P|PK|KICKER|PUNTER)\b/.test(pos)) return "kick";
+    if (/^(C|G|T|LG|RG|LT|RT|OL|OG|OT|NT|DT|DE|LDE|RDE|LDT|RDT|DL)\b/.test(pos)) return "line";
+    if (/^(WR|X|Z|Y|SLOT|TE|F)\b/.test(pos)) return "wr";
+    if (/^(RB|FB|HB)\b/.test(pos)) return "rb";
+    return /LB|CB|FS|SS|^S\b|NB|DB|EDGE|NICKEL/.test(pos) ? "def" : "stand";
+  };
+
+  /* Real kits: [helmet, home jersey, pants, number on the home jersey, trim]. On the road the
+     jersey is white and the number takes the home jersey colour. NBA: [colour, trim]. */
+  const KIT = {
+    ARI: ["#ffffff", "#97233f", "#ffffff", "#ffffff", "#97233f"], ATL: ["#101820", "#101820", "#ffffff", "#ffffff", "#a71930"], BAL: ["#101820", "#241773", "#101820", "#ffffff", "#9e7c0c"],
+    BUF: ["#ffffff", "#00338d", "#ffffff", "#ffffff", "#c60c30"], CAR: ["#a5acaf", "#101820", "#a5acaf", "#ffffff", "#0085ca"], CHI: ["#0b162a", "#0b162a", "#ffffff", "#ffffff", "#c83803"],
+    CIN: ["#fb4f14", "#101820", "#ffffff", "#ffffff", "#101820"], CLE: ["#ff3c00", "#311d00", "#ffffff", "#ffffff", "#311d00"], DAL: ["#869397", "#041e42", "#869397", "#ffffff", "#041e42"],
+    DEN: ["#002244", "#fb4f14", "#ffffff", "#ffffff", "#fb4f14"], DET: ["#b0b7bc", "#0076b6", "#b0b7bc", "#ffffff", "#0076b6"], GB: ["#ffb612", "#203731", "#ffb612", "#ffffff", "#203731"],
+    HOU: ["#03202f", "#03202f", "#ffffff", "#ffffff", "#a71930"], IND: ["#ffffff", "#002c5f", "#ffffff", "#ffffff", "#002c5f"], JAX: ["#101820", "#006778", "#ffffff", "#ffffff", "#d7a22a"],
+    KC: ["#e31837", "#e31837", "#ffffff", "#ffffff", "#ffb81c"], LV: ["#a5acaf", "#101820", "#a5acaf", "#a5acaf", "#101820"], LAC: ["#ffffff", "#0080c6", "#ffffff", "#ffffff", "#ffc20e"],
+    LA: ["#003594", "#003594", "#ffd100", "#ffd100", "#ffd100"], MIA: ["#ffffff", "#008e97", "#ffffff", "#ffffff", "#fc4c02"], MIN: ["#4f2683", "#4f2683", "#ffffff", "#ffffff", "#ffc62f"],
+    NE: ["#b0b7bc", "#002244", "#002244", "#ffffff", "#c60c30"], NO: ["#d3bc8d", "#101820", "#d3bc8d", "#d3bc8d", "#101820"], NYG: ["#0b2265", "#0b2265", "#a5acaf", "#ffffff", "#a71930"],
+    NYJ: ["#125740", "#125740", "#ffffff", "#ffffff", "#ffffff"], PHI: ["#004c54", "#004c54", "#ffffff", "#ffffff", "#a5acaf"], PIT: ["#101820", "#101820", "#ffb612", "#ffffff", "#ffb612"],
+    SF: ["#b3995d", "#aa0000", "#b3995d", "#ffffff", "#aa0000"], SEA: ["#002244", "#002244", "#002244", "#ffffff", "#69be28"], TB: ["#34302b", "#d50a0a", "#34302b", "#ffffff", "#ff7900"],
+    TEN: ["#0c2340", "#0c2340", "#ffffff", "#ffffff", "#4b92db"], WAS: ["#5a1414", "#5a1414", "#ffb612", "#ffffff", "#ffb612"],
+  };
+  const NBA_KIT = {
+    ATL: ["#e03a3e", "#c1d32f"], BOS: ["#007a33", "#ba9653"], BKN: ["#101820", "#a5acaf"], CHA: ["#1d1160", "#00788c"], CHI: ["#ce1141", "#101820"], CLE: ["#860038", "#fdbb30"],
+    DAL: ["#00538c", "#b8c4ca"], DEN: ["#0e2240", "#fec524"], DET: ["#c8102e", "#1d42ba"], GS: ["#1d428a", "#ffc72c"], HOU: ["#ce1141", "#c4ced4"], IND: ["#002d62", "#fdbb30"],
+    LAC: ["#c8102e", "#1d428a"], LAL: ["#552583", "#fdb927"], MEM: ["#5d76a9", "#12173f"], MIA: ["#98002e", "#f9a01b"], MIL: ["#00471b", "#eee1c6"], MIN: ["#0c2340", "#78be20"],
+    NO: ["#0c2340", "#c8102e"], NY: ["#006bb6", "#f58426"], OKC: ["#007ac1", "#ef3b24"], ORL: ["#0077c0", "#c4ced4"], PHI: ["#006bb6", "#ed174c"], PHX: ["#1d1160", "#e56020"],
+    POR: ["#e03a3e", "#101820"], SAC: ["#5a2d81", "#63727a"], SA: ["#101820", "#c4ced4"], TOR: ["#ce1141", "#101820"], UTAH: ["#002b5c", "#f9a01b"], WSH: ["#002b5c", "#e31837"],
+  };
+  Object.assign(NBA_KIT, { NYK: NBA_KIT.NY, GSW: NBA_KIT.GS, NOP: NBA_KIT.NO, SAS: NBA_KIT.SA, UTA: NBA_KIT.UTAH, WAS: NBA_KIT.WSH, PHO: NBA_KIT.PHX, BRK: NBA_KIT.BKN });
+  function nflKit(team, home) {
+    const k = KIT[team] || [(TEAM_META[team] || {}).color2 || "#ffd94a", (TEAM_META[team] || {}).color || "#24338c", "#ffffff", "#ffffff", "#ffffff"];
+    const white = c => c.toLowerCase() === "#ffffff";
+    return home ? { helmet: k[0], jersey: k[1], pants: k[2], num: k[3], trim: k[4], sock: k[1] }
+      : { helmet: k[0], jersey: "#ffffff", pants: white(k[2]) ? k[1] : k[2], num: k[1], trim: k[4], sock: "#ffffff" };
+  }
+  function nbaKit(team, home) {
+    const k = NBA_KIT[team] || ["#1c3fd6", "#ffd94a"];
+    return home ? { helmet: k[0], jersey: k[0], pants: k[0], num: "#ffffff", trim: k[1], sock: "#ffffff" }
+      : { helmet: k[0], jersey: "#ffffff", pants: "#ffffff", num: k[0], trim: k[0], sock: "#ffffff" };
+  }
+
+  /* Bobbleheads. The head is the player's own headshot, cut off at the neck and shrunk to sixteen
+     sprite pixels across, so hair, beard, headband and skin are whatever the photo shows. Arms and
+     legs take the colour of the middle of the face so they match it. */
+  const HEAD_W = 12, lookCache = new Map();          /* chunky on purpose: a cartoon of the photo, not a copy */
+  function readLook(url) {
+    if (!url) return Promise.resolve(null);
+    if (!lookCache.has(url)) lookCache.set(url, new Promise(res => {
+      const im = new Image();
+      im.crossOrigin = "anonymous";
+      im.onerror = () => res(null);
+      im.onload = () => {
+        try {
+          /* work at about a tenth of the photo: enough to find the head, cheap to scan */
+          const W = 64, Hh = Math.max(24, Math.round(64 * im.naturalHeight / im.naturalWidth)), c = document.createElement("canvas"); c.width = W; c.height = Hh;
+          const x = c.getContext("2d", { willReadFrequently: true });
+          x.drawImage(im, 0, 0, W, Hh);
+          const d = x.getImageData(0, 0, W, Hh).data, at = (px, py) => { const i = (py * W + px) * 4; return [d[i], d[i + 1], d[i + 2], d[i + 3]]; };
+          const solid = (px, py) => px >= 0 && px < W && py >= 0 && py < Hh && d[(py * W + px) * 4 + 3] > 128;
+          const dist = (p, q) => Math.abs(p[0] - q[0]) + Math.abs(p[1] - q[1]) + Math.abs(p[2] - q[2]);
+          const lum = p => .3 * p[0] + .59 * p[1] + .11 * p[2];
+          /* the middle half by brightness: drops both the shine on a forehead and a shadow */
+          const mid = arr => { arr.sort((p, q) => lum(q) - lum(p)); const q = arr.length / 4 | 0, t = arr.slice(q, arr.length - q); return [0, 1, 2].map(k => t.reduce((sum, p) => sum + p[k], 0) / t.length); };
+          const cx = W >> 1;
+          let top = 0; while (top < Hh && !(solid(cx, top) && solid(cx - 1, top))) top++;
+          if (top > Hh * .6) return res(null);
+          /* the silhouette's outline around the centre line, row by row */
+          const edge = py => { let a = cx, b = cx; while (solid(a - 1, py)) a--; while (solid(b + 1, py)) b++; return [a, b]; };
+          /* skin: the middle of the face, a little below the top of the head */
+          const f0 = top + Math.round((Hh - top) * .3), face = [];
+          for (let py = f0; py < f0 + Math.round(Hh * .2); py++) for (let px = cx - 5; px <= cx + 5; px++) if (solid(px, py)) face.push(at(px, py));
+          if (face.length < 12) return res(null);
+          const skin = mid(face), isSkin = (px, py) => solid(px, py) && dist(at(px, py), skin) < 95;
+          /* ear to ear: the widest run of skin; the row it is on is about eye level */
+          let l = cx, r = cx, eye = f0;
+          for (let py = top; py < Math.min(Hh, top + Math.round((Hh - top) * .5)); py++) {       /* stop before the shoulders: bare ones are wider than any face */
+            let a = cx, b = cx, gap = 0;
+            for (let px = cx - 1; px >= 0; px--) { if (isSkin(px, py)) { a = px; gap = 0; } else if (++gap > 2) break; }
+            gap = 0;
+            for (let px = cx + 1; px < W; px++) { if (isSkin(px, py)) { b = px; gap = 0; } else if (++gap > 2) break; }
+            if (b - a > r - l) { l = a; r = b; eye = py; }
+          }
+          const faceW = Math.max(10, Math.min(Math.round(W * .42), r - l + 1)), mx = (l + r) / 2;
+          /* the neck is where the outline is narrowest below the face; a beard or long hair can hide it,
+             so it is never looked for further down than a face-and-a-bit below the eyes */
+          let neck = Math.min(Hh - 1, eye + Math.round(faceW * 1.0)), narrow = Infinity;
+          for (let py = eye + Math.round(faceW * .8); py <= Math.min(Hh - 1, eye + Math.round(faceW * 1.25)); py++) { const [a, b] = edge(py), w = b - a; if (w < narrow) { narrow = w; neck = py; } }
+          const beardRow = py => { let n = 0; for (let px = Math.round(mx) - 2; px <= Math.round(mx) + 2; px++) if (solid(px, py) && lum(at(px, py)) < lum(skin) * .62) n++; return n >= 4; };
+          while (neck < Math.min(Hh - 1, eye + Math.round(faceW * 1.9)) && beardRow(neck + 1)) neck++;
+          /* as wide as the hair goes, within reason */
+          let half = faceW * .6;
+          for (let py = top; py <= eye + Math.round(faceW * .3); py++) { const [a, b] = edge(py); half = Math.max(half, mx - a + 1, b - mx + 1); }
+          half = Math.min(half, faceW * 1.15);
+          const k = half * 2 / HEAD_W, rows = Math.min(23, Math.ceil((neck - top + 1) / k)), x0 = mx - half, sl = lum(skin), head = [];
+          for (let j = 0; j < rows; j++) for (let i = 0; i < HEAD_W; i++) {
+            const ya = Math.floor(top + j * k), yb = Math.max(ya + 1, Math.floor(top + (j + 1) * k)), xa = Math.floor(x0 + i * k), xb = Math.max(xa + 1, Math.floor(x0 + (i + 1) * k));
+            const blk = []; let area = 0;
+            for (let py = ya; py < yb; py++) for (let px = xa; px < xb; px++) { area++; if (solid(px, py)) blk.push(at(px, py)); }
+            if (blk.length * 2 < area) continue;
+            const col = [0, 1, 2].map(n => blk.reduce((t, q) => t + q[n], 0) / blk.length), y = (ya + yb) / 2, off = Math.abs((xa + xb) / 2 - mx);
+            /* below the cheeks, anything out to the side that is not hair is a shoulder or a collar */
+            if (y > eye + faceW * .6 && off > faceW * .52 && lum(col) > sl * .62) continue;
+            head.push([i, j, col.map(v => Math.min(255, Math.round(v / 36) * 36))]);
+          }
+          res({ head: head, rows: rows, skin: skin.map(v => Math.round(v * .94)) });
+        } catch (e) { res(null); }
+      };
+      im.src = url;
+    }));
+    return lookCache.get(url);
+  }
+
+  /* Basketball players are drawn, not photographed: a clean pixel head whose hair, beard, headband,
+     hair colour and skin are measured from the headshot. Skin is one of six steps, picked by how
+     light the face is, so it is never the washed-out pink a studio flash gives. */
+  const TONES = ["#f1c9a5", "#e0ac84", "#c68e63", "#a4704a", "#7d5237", "#563624"];
+  const toneFor = lum => lum > 178 ? 0 : lum > 160 ? 1 : lum > 142 ? 2 : lum >= 124 ? 3 : lum > 100 ? 4 : 5;
+  /* a few players whose headshot is lit so brightly that it reads too light: tone 1-6, by hand */
+  const KNOWN_TONE = { "Kawhi Leonard": 5, "Coby White": 3, "Jaylen Brown": 5, "Donovan Mitchell": 5, "Anthony Edwards": 5 };
+  /* football: how light the middle of the face is, on the same six steps; these headshots are lit
+     darker than the NBA's, so they get a lift first */
+  const toneCache = new Map();
+  function readTone(url) {
+    if (!url) return Promise.resolve(null);
+    if (!toneCache.has(url)) toneCache.set(url, new Promise(res => {
+      const im = new Image();
+      im.crossOrigin = "anonymous";
+      im.onerror = () => res(null);
+      im.onload = () => {
+        try {
+          const n = 32, c = document.createElement("canvas"); c.width = c.height = n;
+          const x = c.getContext("2d", { willReadFrequently: true });
+          x.drawImage(im, 0, 0, n, n);
+          const d = x.getImageData(11, 10, 10, 9).data, px = [];
+          for (let i = 0; i < d.length; i += 4) if (d[i + 3] > 200) px.push(.3 * d[i] + .59 * d[i + 1] + .11 * d[i + 2]);
+          if (px.length < 8) return res(null);
+          px.sort((p, q) => q - p);
+          const q = px.length / 4 | 0, t = px.slice(q, px.length - q);
+          res(toneFor(t.reduce((sum, v) => sum + v, 0) / t.length + 16));
+        } catch (e) { res(null); }
+      };
+      im.src = url;
+    }));
+    return toneCache.get(url);
+  }
+  const styleCache = new Map();
+  function readStyle(url) {
+    if (!url) return Promise.resolve(null);
+    if (!styleCache.has(url)) styleCache.set(url, new Promise(res => {
+      const im = new Image();
+      im.crossOrigin = "anonymous";
+      im.onerror = () => res(null);
+      im.onload = () => {
+        try {
+          const W = 60, Hh = 44, c = document.createElement("canvas"); c.width = W; c.height = Hh;
+          const x = c.getContext("2d", { willReadFrequently: true });
+          x.drawImage(im, 0, 0, W, Hh);
+          const d = x.getImageData(0, 0, W, Hh).data, at = (px, py) => { const i = (py * W + px) * 4; return [d[i], d[i + 1], d[i + 2], d[i + 3]]; };
+          const dist = (p, q) => Math.abs(p[0] - q[0]) + Math.abs(p[1] - q[1]) + Math.abs(p[2] - q[2]);
+          const lum = p => .3 * p[0] + .59 * p[1] + .11 * p[2];
+          /* the middle half by brightness: drops both the shine on a forehead and a shadow */
+          const mid = arr => { arr.sort((p, q) => lum(q) - lum(p)); const q = arr.length / 4 | 0, t = arr.slice(q, arr.length - q); return [0, 1, 2].map(k => t.reduce((sum, p) => sum + p[k], 0) / t.length); };
+          const face = [];
+          for (let py = 14; py < 23; py++) for (let px = 25; px < 35; px++) { const q = at(px, py); if (q[3] > 200) face.push(q); }
+          if (face.length < 8) return res(null);
+          const skin = mid(face), sl = lum(skin), out = { tone: toneFor(sl), hair: "short", beard: 0, band: false };
+          const cx = [28, 29, 30, 31]; let top = -1, fore = -1, run = 0;
+          for (let py = 0; py < 26; py++) {
+            const opaque = cx.map(px => at(px, py)).filter(q => q[3] > 200);
+            if (top < 0) { if (opaque.length >= 3) top = py; else continue; }
+            /* the hairline is where the middle of the head stops being dark; colour distance alone
+               cannot tell dark hair from dark skin */
+            if (opaque.filter(q => lum(q) > sl * .7 && dist(q, skin) < 120).length >= 3) { if (++run >= 2) { fore = py - 1; break; } } else run = 0;
+          }
+          if (top < 0 || fore < 0) return res(out);
+          /* The widest run of skin across the face is ear to ear, at about eye level. Every other
+             landmark is placed from that row and that width, so a full beard (which hides the chin)
+             is still measured properly. */
+          const isSkin = q => q[3] > 200 && dist(q, skin) < 90;
+          const span = py => {
+            let a = 29, b = 30, gap = 0;
+            for (let px = 28; px >= 12; px--) { if (isSkin(at(px, py))) { a = px; gap = 0; } else if (++gap > 2) break; }
+            gap = 0;
+            for (let px = 31; px <= 47; px++) { if (isSkin(at(px, py))) { b = px; gap = 0; } else if (++gap > 2) break; }
+            return [a, b];
+          };
+          let l = 29, r = 30, eye = fore + 4;
+          for (let py = fore; py <= Math.min(Hh - 1, fore + 16); py++) { const [a, b] = span(py); if (b - a > r - l) { l = a; r = b; eye = py; } }
+          const faceW = Math.max(10, Math.min(24, r - l + 1)), chin = Math.min(Hh - 1, eye + Math.round(faceW * .75)), jaw = eye + Math.round(faceW * .38);
+          /* "Dark" is anything much darker than the skin: hair, brows, beard. */
+          const isDark = q => q[3] > 200 && lum(q) < sl * .62, isPale = q => q[3] > 200 && lum(q) > sl * 1.2 && Math.max(q[0], q[1], q[2]) - Math.min(q[0], q[1], q[2]) < 55;
+          const share = (xa, xb, ya, yb, f) => { let n = 0, t = 0; for (let py = Math.max(0, ya); py <= Math.min(Hh - 1, yb); py++) for (let px = Math.max(0, xa); px <= Math.min(W - 1, xb); px++) { t++; if (f(at(px, py))) n++; } return t ? n / t : 0; };
+          const mx = Math.round((l + r) / 2), half = Math.round(faceW / 2), tall = (fore - top) / faceW, above = [];
+          for (let py = top; py < fore; py++) for (let px = mx - 2; px <= mx + 2; px++) { const q = at(px, py); if (isDark(q)) above.push(q); }
+          /* hair spreading past the face on each side, and hair hanging beside it from eyes to jaw */
+          const wide = share(l - Math.round(faceW * .45), l - 2, top, fore + 3, isDark) + share(r + 2, r + Math.round(faceW * .45), top, fore + 3, isDark);
+          const hang = share(l - Math.round(faceW * .4), l - 2, eye + 2, jaw, isDark) + share(r + 2, r + Math.round(faceW * .4), eye + 2, jaw, isDark);
+          /* bald only when the very top of the head is plainly skin; a close crop on dark skin is short hair */
+          const crown = [];
+          for (let py = top; py <= top + 1; py++) for (const px of cx) { const q = at(px, py); if (q[3] > 200) crown.push(q); }
+          const bare = crown.length >= 4 && tall < .08 && crown.every(q => dist(q, skin) < 50 && lum(q) > sl * .92);
+          out.hair = bare ? "bald" : hang > .9 ? "locs" : tall > .42 && wide > .7 ? "afro" : tall > .3 ? "medium" : "short";
+          /* a beard is dark from the cheeks to the chin; a big one keeps going below it */
+          const jawDark = share(mx - Math.round(faceW * .3), mx + Math.round(faceW * .3), jaw, chin, isDark), below = share(mx - Math.round(faceW * .25), mx + Math.round(faceW * .25), chin + 1, chin + 5, isDark);
+          out.beard = jawDark > .6 && below > .5 ? 2 : jawDark > .33 ? 1 : 0;
+          out.band = share(mx - half, mx + half, Math.max(top, fore - 5), fore, isPale) > .3;
+          /* hair colour, when there is enough of it to read; kept dark so glare never turns it grey */
+          const dk = above.length >= 8 ? mid(above) : null;
+          if (dk) { const f = Math.min(.85, 62 / Math.max(1, lum(dk))); out.color = `rgb(${dk.map(v => Math.max(16, Math.round(v * f))).join(",")})`; }
+          res(out);
+        } catch (e) { res(null); }
+      };
+      im.src = url;
+    }));
+    return styleCache.get(url);
+  }
+
+  function pixelPlayers() {
+    for (const pm of document.querySelectorAll("button.pm")) {
+      const av = pm.querySelector(".avatar");
+      if (!av || av.classList.contains("pix")) continue;
+      const nba = pm.dataset.sport === "nba", img = av.querySelector("img"), shot = img && img.src;
+      const pos = (pm.querySelector(".pm-pos") || {}).textContent, name = pm.getAttribute("title") || "";
+      let kit, logo;
+      if (nba) {
+        const g = NBA.data && (NBA.data.games || []).find(x => String(x.game_id) === String(NBA.arg));
+        const side = (document.querySelector('#nbaBody [data-nba-side][aria-pressed="true"]') || { dataset: {} }).dataset.v === "home" ? "home" : "away";
+        const who = NBA.data && (NBA.data.players || []).find(x => String(x.player_id) === String(pm.dataset.pcard));
+        const team = g ? g[side].abbr : who && who.team;
+        kit = nbaKit(team, side === "home"); logo = team;
+      } else {
+        const sec = pm.closest(".rostersec") || document, tab = sec.querySelector('.teamtab[data-k="team"][aria-pressed="true"]');
+        const team = tab && tab.dataset.v, g = tab && (DATA.games || []).find(x => x.game_id === tab.dataset.lu);
+        kit = nflKit(team, !g || g.home_team === team); logo = team;
+      }
+      for (const k in kit) pm.style.setProperty("--pix-" + k, kit[k]);
+      /* the offensive line sets up as a wedge: centre on the ball, guards a step back, tackles a step behind them */
+      if (!nba) {
+        const P = String(pos || "").toUpperCase().trim(), back = /^(LG|RG|G|OG)\b/.test(P) ? 3.5 : /^(LT|RT|T|OT)\b/.test(P) ? 7 : 0;
+        if (back && pm.style.top.endsWith("%")) pm.style.top = (parseFloat(pm.style.top) + back) + "%";
+      }
+      const stance = stanceFor(nba ? "nba" : "nfl", pos);
+      /* two-letter codes go on whole (NE, KC, NY); longer ones by their first letter */
+      const mark = !logo ? "" : logo.length <= 2 ? logo : logo[0];
+      av.className = "avatar pix";
+      if (nba) {
+        /* basketball: a bobblehead, the player's own head from the whole headshot */
+        const draw = seen => {
+          if (seen) pm.style.setProperty("--pix-skin", `rgb(${seen.skin.join(",")})`);
+          av.innerHTML = sprite(stance, seen ? { mark: mark, head: seen.head, rows: seen.rows } : { mark: mark, hair: "short" });
+        };
+        draw(null);
+        readLook(shot).then(seen => { if (seen && av.isConnected) draw(seen); });
+      } else {
+        /* football: the helmeted sprite; only the skin tone comes from the headshot */
+        av.innerHTML = sprite(stance, { mark: mark });
+        readTone(shot).then(tone => { if (tone != null) pm.style.setProperty("--pix-skin", TONES[tone]); });
+      }
+    }
+  }
+  let pixQueued = false;
+  new MutationObserver(() => { if (pixQueued) return; pixQueued = true; requestAnimationFrame(() => { pixQueued = false; pixelPlayers(); }); })
+    .observe(document.querySelector("main"), { childList: true, subtree: true });
   route();
 })();
 </script>
