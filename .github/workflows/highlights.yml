@@ -1,0 +1,40 @@
+name: Refresh highlights
+
+# Rewrites media/highlights.json, the reel the intro screen plays, from the 32 team channels'
+# highlight videos, keeping only the ones that really play when embedded. Once a day is
+# plenty, and a run that finds nothing new commits nothing.
+on:
+  schedule:
+    - cron: "23 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: highlights
+  cancel-in-progress: true
+
+jobs:
+  highlights:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build the reel
+        run: python highlights.py
+      - name: Commit and push if the reel changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add media/highlights.json
+          if git diff --staged --quiet; then
+            echo "No change."
+          else
+            git commit -m "Refresh highlights ($(date -u +'%Y-%m-%d %H:%M') UTC)"
+            git pull --rebase --autostash origin main || true
+            git push
+          fi

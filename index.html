@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Snap Judgment — NFL Predictions</title>
+<title>Tidbits — NFL Predictions</title>
 <meta name="description" content="Week-by-week NFL game and player projections built on nflverse play-by-play data, with a published accuracy audit against seven seasons of real results.">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%9F%EF%B8%8F%3C/text%3E%3C/svg%3E">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Snap Judgment — NFL Predictions">
+<meta property="og:title" content="Tidbits — NFL Predictions">
 <meta property="og:description" content="Week-by-week NFL game and player projections built on nflverse play-by-play data, with a published accuracy audit against seven seasons of real results.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Snap Judgment — NFL Predictions">
+<meta name="twitter:title" content="Tidbits — NFL Predictions">
 <meta name="twitter:description" content="Week-by-week NFL game and player projections built on nflverse play-by-play data, with a published accuracy audit against seven seasons of real results.">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
@@ -1746,11 +1746,297 @@ body.modal-open { overflow: hidden; }
 </style>
 </head>
 <body>
+<!-- INTRO_START -->
+<style>
+  /* ============ intro: last week's plays, full screen, on an old tube ============
+     A front door over the whole site, once per session. Nothing but the footage and one
+     quiet line telling you how to get in. Scanlines, grain and a warm cast make it read as
+     an old broadcast, which also forgives how far a clip is zoomed to fill the window. */
+  html.intro-open, html.intro-open body { overflow: hidden; }
+  #intro {
+    --i-paper: #f8f4ea; --i-ink: #0b0f1a;
+    position: fixed; inset: 0; z-index: 1000; overflow: hidden; isolation: isolate; cursor: pointer;
+    display: grid; align-items: end; justify-items: center; padding: clamp(18px, 4dvh, 40px) 16px;
+    background: var(--i-ink); color: var(--i-paper);
+    transition: transform .5s cubic-bezier(.7, 0, .84, 0) .2s;
+  }
+  #intro.leaving { transform: translateY(-101%); pointer-events: none; }
+
+  /* ---- the picture ---- */
+  .intro-bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+  #introStage { position: absolute; inset: 0; filter: sepia(.28) saturate(.9) contrast(1.12) brightness(.95) blur(.6px); }
+  /* cover the window whatever the clip's shape; never interactive */
+  #introStage > * { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 0; pointer-events: none; background: #000;
+    width: max(100vw, 177.78dvh); aspect-ratio: 16 / 9; }
+  #introStage > video { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; }
+  #introStatic { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
+  .intro-crt { position: absolute; inset: 0; pointer-events: none;
+    background:
+      repeating-linear-gradient(to bottom, rgba(0, 0, 0, .46) 0 2px, rgba(255, 255, 255, .06) 2px 4px),
+      radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, .5) 100%),
+      linear-gradient(to top, rgba(11, 15, 26, .6) 0, transparent 18%);
+  }
+  .intro-crt::before { content: ""; position: absolute; inset: 0; opacity: .5; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='.55'/></svg>"); }
+  .intro-crt::after { content: ""; position: absolute; left: 0; right: 0; top: -20%; height: 16%; background: linear-gradient(transparent, rgba(255, 255, 255, .07), transparent); }
+  .intro-card { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; gap: 8px; padding: 24px;
+    font-family: var(--display); text-transform: uppercase; text-shadow: 0 2px 0 #000, 0 0 18px rgba(0, 0, 0, .85); }
+  .intro-card b { font-size: clamp(30px, 6vw, 72px); font-weight: 800; letter-spacing: .08em; line-height: 1; }
+  .intro-card span { font-family: var(--mono); font-size: 13px; letter-spacing: .14em; }
+  @media (prefers-reduced-motion: no-preference) {
+    .intro-crt::after { animation: intro-roll 7s linear infinite; }
+    #intro.leaving .intro-bg { animation: intro-off .24s ease-in forwards; }
+    .intro-enter { animation: intro-breathe 3.2s ease-in-out infinite; }
+  }
+  @keyframes intro-roll { to { transform: translateY(800%); } }
+  @keyframes intro-off { 60% { transform: scale(1, .006); filter: brightness(4); } to { transform: scale(0, .006); filter: brightness(4); } }
+  @keyframes intro-breathe { 50% { opacity: .5; } }
+
+  /* ---- the one line on it: a real button, so the keyboard has a way in too ---- */
+  .intro-enter {
+    appearance: none; cursor: pointer; touch-action: manipulation; min-height: 44px; padding: 8px 18px; border: 0; border-radius: 4px; background: none;
+    font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--i-paper); opacity: .78; text-shadow: 0 1px 2px rgba(0, 0, 0, .9);
+  }
+  .intro-enter:hover, .intro-enter:focus-visible { opacity: 1; animation: none; }
+  .intro-enter:focus-visible { outline: 2px solid var(--i-paper); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { #intro { transition: none; } }
+</style>
+
+<div id="intro" role="dialog" aria-modal="true" aria-label="Tidbits: last week's highlights">
+  <div class="intro-bg" aria-hidden="true">
+    <div id="introStage"></div>
+    <canvas id="introStatic" width="160" height="90"></canvas>
+    <div class="intro-crt"></div>
+    <div class="intro-card" id="introCard"><b>Tuning in</b><span>one moment</span></div>
+  </div>
+  <button class="intro-enter" id="introEnter" type="button">Click anywhere to enter</button>
+</div>
+
+<script>
+/* ====================== INTRO ======================
+   Runs before the rest of the page is parsed, so a returning visitor never sees it flash.
+   The reel is media/highlights.json (written by highlights.py): YouTube ids that are known
+   to play when embedded, or the site owner's files in media/ when there are any. Nothing
+   here touches DATA or the router. */
+(function () {
+  const intro = document.getElementById("intro");
+  const KEY = "sj_intro_seen";
+  const seen = () => { try { return sessionStorage.getItem(KEY) === "1"; } catch (e) { return false; } };
+  const atHome = () => /^(#\/?(home\/?)?)?$/.test(location.hash);
+  if (seen() || !atHome()) intro.hidden = true;
+
+  const $ = id => document.getElementById(id);
+  const stage = $("introStage"), canvas = $("introStatic"), card = $("introCard"), enterBtn = $("introEnter");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const YT = "https://www.youtube-nocookie.com";
+  const CHROME_MS = 1600;
+  const CLIP_MS = 30000;                 /* how long any one video stays on before the reel moves on */
+  /* a highlight video is minutes long: come in somewhere different each time, clear of the titles at either end */
+  const startAt = x => x.seconds > 90 ? 12 + Math.floor(Math.random() * (x.seconds - 60)) : 0;
+  let isOpen = false, files = [], reel = [], reelIdx = 0, frame = null, video = null, fileIdx = 0;
+  let playing = false, next = null, shownAt = 0, clipTimer = 0, closeTimer = 0, fails = 0;
+
+  /* ---- static: drawn small and scaled up, only while it is on screen ---- */
+  const ctx = canvas.getContext("2d");
+  let raf = 0, lastDraw = 0;
+  function drawStatic() {
+    const img = ctx.createImageData(canvas.width, canvas.height), px = new Uint32Array(img.data.buffer);
+    for (let i = 0; i < px.length; i++) { const v = 30 + Math.random() * 190 | 0; px[i] = 0xff000000 | v << 16 | v << 8 | v; }
+    ctx.putImageData(img, 0, 0);
+  }
+  function staticOn(title, sub) {
+    canvas.hidden = false;
+    card.hidden = !title;
+    if (title) { card.firstElementChild.textContent = title; card.lastElementChild.textContent = sub || ""; }
+    cancelAnimationFrame(raf);
+    drawStatic();
+    if (reduce) return;
+    const tick = t => { if (t - lastDraw > 70) { drawStatic(); lastDraw = t; } raf = requestAnimationFrame(tick); };
+    raf = requestAnimationFrame(tick);
+  }
+  function staticOff() { cancelAnimationFrame(raf); canvas.hidden = true; card.hidden = true; }
+  const standBy = () => staticOn("Please stand by", "highlights return after kickoff");
+
+  /* ---- YouTube: the next clip loads in a second player underneath and is only brought to
+     the front once it is really playing, so one clip cuts straight to the next ---- */
+  const post = (f, msg) => { if (f && f.contentWindow) f.contentWindow.postMessage(JSON.stringify(msg), YT); };
+  const cmd = (func, args, f) => post(f || frame, { event: "command", func: func, args: args || [] });
+  /* the list arrives newest first: the newest open the reel, the rest is mixed; two clips a
+     team at most, and never the same team twice running */
+  function arrange(list) {
+    const count = {}, ok = list.filter(x => (count[x.source] = (count[x.source] || 0) + 1) <= 2);
+    const head = [], seen = new Set(), rest = [];
+    for (const x of ok) { if (head.length < 6 && !seen.has(x.source)) { head.push(x); seen.add(x.source); } else rest.push(x); }
+    for (let i = rest.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [rest[i], rest[j]] = [rest[j], rest[i]]; }
+    const out = head.concat(rest);
+    for (let pass = 0; pass < 3; pass++) for (let i = 1; i < out.length; i++) {
+      if (out[i].source !== out[i - 1].source) continue;
+      const j = out.findIndex((x, k) => k > i && x.source !== out[i].source);
+      if (j !== -1) [out[i], out[j]] = [out[j], out[i]];
+    }
+    return out;
+  }
+  function makeFrame(x) {
+    const q = new URLSearchParams({ autoplay: reduce ? 0 : 1, mute: 1, controls: 0, playsinline: 1, rel: 0, loop: 1, playlist: x.id, start: startAt(x), fs: 0, disablekb: 1, iv_load_policy: 3, cc_load_policy: 0, enablejsapi: 1 });
+    if (/^https?:/.test(location.origin)) q.set("origin", location.origin);
+    const f = document.createElement("iframe");
+    f.title = "NFL highlights";
+    f.allow = "autoplay; encrypted-media";
+    f.tabIndex = -1;
+    f.referrerPolicy = "strict-origin-when-cross-origin";
+    f.src = YT + "/embed/" + x.id + "?" + q;
+    f.addEventListener("load", () => {
+      let n = 0;
+      f.listen = setInterval(() => {
+        if (!f.isConnected || ++n > 12) return clearInterval(f.listen);
+        post(f, { event: "listening", id: "sjtv", channel: "widget" });
+      }, 500);
+    });
+    return f;
+  }
+  function arm() { clearTimeout(clipTimer); if (!reduce) clipTimer = setTimeout(() => { if (playing) advance(); else arm(); }, CLIP_MS); }
+  function advance() {
+    if (!frame || next || reel.length < 2) return;
+    reelIdx = (reelIdx + 1) % reel.length;
+    next = makeFrame(reel[reelIdx]);
+    stage.prepend(next);                 /* underneath the clip that is on */
+    /* a clip that will not start is skipped rather than waited on */
+    next.giveUp = setTimeout(() => { if (next) { clearInterval(next.listen); next.remove(); next = null; advance(); } }, 9000);
+  }
+  function swap() {
+    clearTimeout(next.giveUp);
+    const old = frame;
+    frame = next; next = null;
+    clearInterval(old.listen); old.remove();
+    shownAt = Date.now();
+    arm();
+  }
+  function startYouTube(list) {
+    reel = arrange(list); reelIdx = 0;
+    frame = makeFrame(reel[0]);
+    /* if the player never reports in, show whatever it is showing rather than static forever */
+    frame.addEventListener("load", () => setTimeout(() => { if (frame && !card.hidden) staticOff(); }, reduce ? 800 : 6000));
+    stage.replaceChildren(frame);
+    playing = !reduce; shownAt = Date.now();
+    arm();
+  }
+  window.addEventListener("message", e => {
+    if (e.origin !== YT) return;
+    const f = frame && e.source === frame.contentWindow ? frame : next && e.source === next.contentWindow ? next : null;
+    if (!f) return;
+    let d; try { d = JSON.parse(e.data); } catch (err) { return; }
+    const info = d && d.info; if (!info) return;
+    clearInterval(f.listen);
+    /* muted playback makes YouTube switch its auto-captions on; take them back off */
+    if (info.playerState === 1) { cmd("unloadModule", ["captions"], f); cmd("unloadModule", ["cc"], f); }
+    /* YouTube shows the video's title for a moment as it starts: wait that out before showing a clip */
+    if (f === next) { if (info.playerState === 1 && !f.due) f.due = setTimeout(() => { if (f === next) swap(); }, CHROME_MS); return; }
+    /* the end of a clip: reported outright, or seen coming a moment before it would loop */
+    if (typeof info.duration === "number" && info.duration > 0) f.dur = info.duration;
+    if (Date.now() - shownAt > 2500 && (info.playerState === 0 || (f.dur && typeof info.currentTime === "number" && info.currentTime >= f.dur - .4))) { advance(); return; }
+    if (info.playerState === 1) { if (!card.hidden && !f.due) f.due = setTimeout(staticOff, CHROME_MS); playing = true; }
+    else if (info.playerState === 2) playing = false;
+  });
+
+  /* ---- the owner's own files in media/, one after another ---- */
+  /* a clip may be a stretch of a longer film: "tail" plays its last N seconds, "start"/"end" a window */
+  function playFile(i) {
+    fileIdx = (i + files.length) % files.length;
+    video.src = files[fileIdx].src;
+    if (!reduce) video.play().catch(() => { playing = false; });
+  }
+  function startFiles() {
+    video = document.createElement("video");
+    video.muted = true; video.playsInline = true; video.preload = "auto";
+    video.addEventListener("loadedmetadata", () => {
+      const f = files[fileIdx], from = f.tail ? Math.max(0, video.duration - f.tail) : (f.start || 0);
+      if (from > 0) video.currentTime = from;
+    });
+    video.addEventListener("timeupdate", () => {
+      const f = files[fileIdx], from = f.tail ? Math.max(0, video.duration - f.tail) : (f.start || 0);
+      const end = Math.min(f.end || Infinity, f.length ? from + f.length : Infinity);
+      if (files.length > 1 && video.currentTime >= end) playFile(fileIdx + 1);
+    });
+    video.addEventListener("playing", () => { fails = 0; if (!card.hidden) staticOff(); playing = true; });
+    video.addEventListener("pause", () => { playing = false; });
+    video.addEventListener("ended", () => playFile(fileIdx + 1));
+    video.addEventListener("error", () => { if (++fails >= files.length) { video.remove(); video = null; standBy(); } else playFile(fileIdx + 1); });
+    stage.replaceChildren(video);
+    playFile(0);
+    if (reduce) staticOff();
+  }
+
+  async function loadReel() {
+    staticOn("Tuning in", "one moment");
+    try {
+      const r = await fetch("media/highlights.json", { cache: "no-cache" });
+      if (!r.ok) throw new Error(r.status);
+      const m = await r.json();
+      if (!isOpen) return;
+      const items = m.items || [];
+      files = items.filter(x => x.type === "file" && typeof x.src === "string");
+      const yts = items.filter(x => x.type === "youtube" && /^[\w-]{11}$/.test(x.id));
+      if (files.length) startFiles();
+      else if (yts.length) startYouTube(yts);
+      else standBy();
+    } catch (err) { if (isOpen) standBy(); }
+  }
+  function stopReel() {
+    clearTimeout(clipTimer); cancelAnimationFrame(raf);
+    if (next) clearTimeout(next.giveUp);
+    stage.replaceChildren(); frame = null; next = null; video = null; reel = []; fails = 0; playing = false;
+  }
+
+  /* ---- open and close ---- */
+  const setInert = on => { for (const el of document.body.children) if (el !== intro && el.tagName !== "SCRIPT" && el.tagName !== "STYLE") el.inert = on; };
+  function openIntro() {
+    clearTimeout(closeTimer);
+    isOpen = true;
+    intro.hidden = false;
+    intro.classList.remove("leaving");
+    document.documentElement.classList.add("intro-open");
+    setInert(true);
+    loadReel();
+    enterBtn.focus({ preventScroll: true });
+  }
+  function closeIntro() {
+    if (!isOpen) return;
+    isOpen = false;
+    try { sessionStorage.setItem(KEY, "1"); } catch (e) {}
+    document.documentElement.classList.remove("intro-open");
+    setInert(false);
+    intro.classList.add("leaving");
+    enterBtn.blur();
+    closeTimer = setTimeout(() => { intro.hidden = true; stopReel(); }, reduce ? 0 : 720);
+  }
+  intro.addEventListener("click", closeIntro);
+  intro.addEventListener("wheel", e => { if (e.deltaY > 6) closeIntro(); }, { passive: true });
+  let touchY = null;
+  intro.addEventListener("touchstart", e => { touchY = e.touches[0].clientY; }, { passive: true });
+  intro.addEventListener("touchmove", e => { if (touchY !== null && touchY - e.touches[0].clientY > 48) { touchY = null; closeIntro(); } }, { passive: true });
+  document.addEventListener("keydown", e => { if (isOpen && (e.key === "Escape" || e.key === "ArrowDown" || e.key === "PageDown")) { e.preventDefault(); closeIntro(); } });
+  /* the wordmark in the app bar brings the reel back */
+  document.addEventListener("click", e => { if (!isOpen && e.target.closest && e.target.closest(".appbar .wordmark")) openIntro(); });
+  /* a hidden tab does not keep streaming; it picks up again when you come back */
+  document.addEventListener("visibilitychange", () => {
+    if (!isOpen || reduce) return;
+    if (video) { document.hidden ? video.pause() : video.play().catch(() => {}); }
+    else cmd(document.hidden ? "pauseVideo" : "playVideo");
+  });
+
+  if (!intro.hidden) {
+    openIntro();
+    document.addEventListener("DOMContentLoaded", () => { if (isOpen) setInert(true); });
+  }
+})();
+</script>
+<!-- INTRO_END -->
 
 
 <header class="appbar">
   <div class="appbar-inner">
-    <a class="wordmark" href="#/home"><i aria-hidden="true"></i>Snap Judgment</a>
+    <a class="wordmark" href="#/home"><i aria-hidden="true"></i>Tidbits</a>
     <div class="sportsel" role="group" aria-label="Sport">
       <a href="#/home" data-sport="nfl" aria-current="true">NFL</a>
       <a href="#/nba" data-sport="nba">NBA</a>
@@ -2280,7 +2566,7 @@ body.modal-open { overflow: hidden; }
   <section id="panel-about" data-panel="about" hidden>
     <div class="page-head">
       <div>
-        <h1>About Snap Judgment</h1>
+        <h1>About Tidbits</h1>
         <p class="sub">How the predictions are made, what the words on this site mean, and what it does not claim.</p>
       </div>
     </div>
@@ -2368,7 +2654,7 @@ body.modal-open { overflow: hidden; }
     <div id="aboutDefs" hidden>
       <div class="defs" id="defList"></div>
     </div>
-    <div class="rfoot"><b>Responsible use.</b> Snap Judgment is analysis, not advice. Predictions are probabilities,
+    <div class="rfoot"><b>Responsible use.</b> Tidbits is analysis, not advice. Predictions are probabilities,
       not promises, and past performance is measured against historical or proxy lines. If gambling is a problem
       for you or someone you know, the National Problem Gambling Helpline is 1-800-GAMBLER.</div>
   </section>
@@ -2756,7 +3042,7 @@ function route() {
   else if (r.section === "props") renderProps();
   else if (r.section === "performance") viewPerformance(r);
   else if (r.section === "about") viewAbout(r);
-  document.title = "Snap Judgment" + ({ nba: " · NBA", home: "", games: " · Games", fantasy: " · Fantasy", players: " · Players", props: " · Props", performance: " · Model performance", about: " · About" }[r.section] || "");
+  document.title = "Tidbits" + ({ nba: " · NBA", home: "", games: " · Games", fantasy: " · Fantasy", players: " · Players", props: " · Props", performance: " · Model performance", about: " · About" }[r.section] || "");
 }
 window.addEventListener("hashchange", () => { route(); window.scrollTo({ top: 0, behavior: "instant" }); });
 const setSub = (host, key) => host.querySelectorAll("[data-sub]").forEach(a => {
@@ -6801,5 +7087,287 @@ function viewAbout(r) {
 
 </script>
 
+<!-- THEME_START -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap">
+<style>
+  /* ============ retro forecast theme ============
+     The whole site as a late-80s cable weather channel: a dusk gradient from deep blue down
+     to orange, boxed blue panels with a light rule, chunky terminal type with a hard black
+     shadow, yellow for headings and anything you can press. One fixed theme, light or dark
+     system setting alike. Loaded last, so it restyles through the existing tokens and leaves
+     every number-producing component alone. */
+  :root:root:root {
+    color-scheme: dark;
+    --bg: #1b2a72;
+    --surface: #263a86;
+    --surface-alt: #2f4698;
+    --surface-sunk: #1a2867;
+    --border: #5d74c4;
+    --border-strong: #9fb0ea;
+    --ink: #ffffff;
+    --ink-2: #e6eaff;
+    --ink-3: #c6cef5;
+    --ink-4: #b3bdec;
+    --on-ink: #14215c;
+    --accent: #ffd94a;
+    --accent-ink: #ffe27a;
+    --accent-soft: #46518f;
+    --link: #ffe27a;
+    --amber: #ffb44a;
+    --amber-soft: #5b4a72;
+    --pos: #7be495;
+    --pos-soft: #1f5b55;
+    --neg: #ff9a8a;
+    --neg-soft: #6b3058;
+    --warn: #ffd27a;
+    --warn-soft: #5b4a72;
+    --series-1: #ffd94a;
+    --series-2: #ff9a4a;
+    --series-3: #8fd3ff;
+    --seq-a: #34509a;
+    --seq-b: #4f7fc0;
+    --seq-c: #7fc0e0;
+    --seq-d: #e8f6ff;
+    --hairline: rgba(255, 255, 255, 0.14);
+    --rule: rgba(255, 255, 255, 0.6);
+    --shadow: 3px 3px 0 rgba(0, 0, 0, 0.4);
+    --display: "VT323", "Lucida Console", "Courier New", monospace;
+    --board-accent: #ffd94a;
+    --radius: 2px;
+    --radius-lg: 3px;
+  }
+  html body {
+    background: #1b2a72 linear-gradient(180deg, #14226a 0%, #24338c 32%, #4a3f96 58%, #9a5a7c 80%, #e08a3c 100%) fixed;
+    color: var(--ink);
+  }
+  body::before { opacity: .3 !important; }
+  .appbar { background: linear-gradient(90deg, #e08a3c 0%, #8a4f96 38%, #24338c 100%) !important; border-bottom: 2px solid #fff !important; }
+  .wordmark { font-size: 30px !important; font-weight: 400 !important; letter-spacing: .04em; color: #fff; text-shadow: 2px 2px 0 #000; }
+  .navlink { font-size: 18px !important; padding: 0 6px !important; font-weight: 400 !important; color: #fff !important; text-shadow: 1px 1px 0 #000; }
+  .navlink[aria-current] { color: var(--accent) !important; }
+  h1, h2, h3, h4 { text-shadow: 2px 2px 0 rgba(0, 0, 0, .55); font-weight: 400 !important; letter-spacing: .02em; }
+  .page-head h1 { font-size: 46px !important; color: var(--accent); }
+  .page-head { border-bottom-color: #fff !important; }
+  .hsec h2, .card h3, .cbox h4, .whybox h4 { color: var(--accent); font-size: 26px !important; }
+  .bottomnav { background: #14226a !important; border-top: 2px solid #fff !important; }
+  :focus-visible { outline-color: var(--accent) !important; }
+
+  /* ---- players bursting out of the top of the page ---- */
+  .tb-banner { position: relative; height: clamp(180px, 30vw, 340px); margin: 4px 0 2px; isolation: isolate; pointer-events: none;
+    clip-path: inset(-80px 0 0 0); /* cutouts may rise above the box, never spill below or sideways onto the page */ }
+  .tb-banner .shapes { position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; }
+  .tb-banner .pl { position: absolute; bottom: 0; left: var(--x); height: var(--h); width: auto; max-width: none; z-index: var(--z);
+    transform: translateX(-50%) rotate(var(--r)); transform-origin: 50% 100%; }
+  .tb-banner.nfl .pl { filter: saturate(1.25) contrast(1.1) drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 -2px 0 #fff); }
+  .tb-banner.nba .pl { filter: saturate(1.3) contrast(1.08) drop-shadow(4px 0 0 #36e0c6) drop-shadow(-4px 0 0 #ff3d7f); }
+  .tb-banner .art { position: absolute; left: 50%; bottom: 0; height: 112%; width: auto; max-width: 100%; object-fit: contain; object-position: 50% 100%;
+    transform: translateX(-50%); filter: drop-shadow(0 0 0 #000) drop-shadow(5px 6px 0 rgba(0, 0, 0, .4)); }
+  @media (max-width: 620px) { .tb-banner .pl:nth-of-type(n+6) { display: none; } }
+  @media (prefers-reduced-motion: no-preference) {
+    .tb-banner .pl { animation: tb-pop .55s cubic-bezier(.2, 1.5, .4, 1) both; animation-delay: var(--d); }
+    .tb-banner .art { animation: tb-rise .6s cubic-bezier(.2, 1.3, .4, 1) both; }
+    .tb-banner .shapes > * { animation: tb-burst .5s ease-out both; transform-origin: 500px 300px; }
+  }
+  @keyframes tb-pop { from { transform: translateX(-50%) translateY(35%) scale(.3) rotate(0deg); opacity: 0; } }
+  @keyframes tb-rise { from { transform: translateX(-50%) translateY(30%) scale(.7); opacity: 0; } }
+  @keyframes tb-burst { from { transform: scale(.2); opacity: 0; } }
+
+  /* ---- the forecast: a title bar with the clock, then one boxed card per game ---- */
+  .wx-bar { display: flex; justify-content: space-between; align-items: end; gap: 16px; padding: 6px 2px 10px; border-bottom: 2px solid #fff; margin-bottom: 14px;
+    font-family: var(--display); text-shadow: 2px 2px 0 #000; }
+  .wx-bar h1 { margin: 0; font-size: clamp(34px, 5vw, 48px) !important; line-height: .86; color: var(--accent); text-transform: none; }
+  .wx-clock { text-align: right; font-size: clamp(20px, 2.6vw, 26px); line-height: 1; color: #fff; text-transform: uppercase; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .wx-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(178px, 1fr)); gap: 12px; }
+  .wx-card { display: grid; justify-items: center; align-content: start; text-align: center; color: #fff; text-decoration: none; font-family: var(--display);
+    border: 2px solid #dfe6ff; background: linear-gradient(180deg, #4a74e6 0%, #2f4fc4 50%, #1b3193 100%); box-shadow: 4px 4px 0 rgba(0, 0, 0, .45);
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, .7); transition: transform .12s ease-out, box-shadow .12s ease-out; }
+  .wx-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 rgba(0, 0, 0, .45); }
+  .wx-card:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 rgba(0, 0, 0, .45); }
+  .wx-card:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .wx-day { width: 100%; padding: 1px 6px 2px; background: #14215c; color: var(--accent); font-size: 23px; letter-spacing: .04em; text-transform: uppercase; border-bottom: 2px solid #dfe6ff; }
+  .wx-card .tlogo { width: 66px; height: 66px; margin: 10px 0 0; filter: drop-shadow(3px 3px 0 rgba(0, 0, 0, .4)); }
+  .wx-pick { font-size: 28px; line-height: 1; margin-top: 2px; }
+  .wx-pct { font-size: 50px; line-height: .9; font-variant-numeric: tabular-nums; }
+  .wx-match { font-size: 20px; color: #dfe6ff; margin: 2px 0 6px; }
+  .wx-st { font-size: 19px; line-height: 1.05; padding: 0 6px 6px; min-height: 26px; }
+  .wx-st.ok { color: #9af0ac; } .wx-st.miss { color: #ffb3a6; } .wx-st.pend { color: #dfe6ff; }
+  .wx-lohi { width: 100%; display: grid; grid-template-columns: 1fr 1fr; margin-top: auto; background: #101c5a; border-top: 2px solid #dfe6ff; font-size: 22px; line-height: 1.05; padding: 3px 0 4px; font-variant-numeric: tabular-nums; }
+  .wx-lohi b { display: block; font-weight: 400; color: var(--accent); }
+  .wx-changes { margin-top: 26px; }
+  #panel-nba > .page-head { display: none; }
+  .intro-enter:focus-visible { outline-color: rgba(248, 244, 234, .45) !important; }
+  @media (max-width: 620px) {
+    .wx-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .wx-day { font-size: 19px; } .wx-pct { font-size: 42px; } .wx-card .tlogo { width: 54px; height: 54px; }
+  }
+  .badge.conf.high { color: var(--on-ink) !important; }
+  /* the matchup scoreboard was ink-on-paper; here it is a dark board with the score in yellow */
+  .mprob { background: #101c5a !important; border: 2px solid #dfe6ff; }
+  .mprob, .mprob * { color: #fff !important; }
+  .mprob .score { color: var(--accent) !important; }
+</style>
+<script>
+/* ====================== THEME: home forecast and the player banners ======================
+   Replaces the home page's contents (the numbers still come from the same DATA and the same
+   helpers) and puts a burst of player cutouts at the top of the NFL home page and the NBA
+   section. The cutouts are the official background-free headshots already in the data; an
+   image at media/banner/nfl.png or media/banner/nba.png (a transparent PNG) replaces them. */
+(function () {
+  const SLOTS = [[50, 108, 0, 7], [35, 94, -6, 6], [65, 94, 6, 6], [21, 80, -11, 5], [79, 80, 11, 5], [8, 66, -17, 4], [92, 66, 17, 4]];
+  const SHAPES = {
+    nfl: `<defs><pattern id="tbChk" width="16" height="16" patternUnits="userSpaceOnUse"><rect width="16" height="16" fill="#fff"/><rect width="8" height="8" fill="#111"/><rect x="8" y="8" width="8" height="8" fill="#111"/></pattern></defs>
+      <circle cx="500" cy="165" r="135" fill="#e0262d"/><path d="M250 300a120 120 0 0 1 240 0z" fill="#f6c21c"/><path d="M560 300a140 140 0 0 1 280 0z" fill="#f6c21c"/>
+      <rect x="110" y="120" width="120" height="120" fill="url(#tbChk)"/><rect x="760" y="90" width="150" height="110" fill="url(#tbChk)"/>
+      <rect x="300" y="40" width="46" height="150" fill="#e0262d"/><rect x="660" y="30" width="46" height="170" fill="#f6c21c"/>
+      <circle cx="170" cy="70" r="34" fill="#e0262d"/><circle cx="880" cy="250" r="50" fill="#e0262d"/><path d="M40 300a70 70 0 0 1 140 0z" fill="#111"/><rect x="930" y="150" width="50" height="50" fill="#111"/>`,
+    nba: `<defs><radialGradient id="tbGlow" cx="50%" cy="100%" r="60%"><stop offset="0" stop-color="#ffd23a"/><stop offset=".55" stop-color="#ff7a1a" stop-opacity=".75"/><stop offset="1" stop-color="#ff7a1a" stop-opacity="0"/></radialGradient></defs>
+      <ellipse cx="500" cy="300" rx="430" ry="250" fill="url(#tbGlow)"/>
+      <path d="M500 300L130 60l70 150z" fill="#1c3fd6"/><path d="M500 300L870 50l-60 170z" fill="#1c3fd6"/><path d="M500 300L20 250l120-70z" fill="#0f2aa8"/><path d="M500 300L980 240l-130-80z" fill="#0f2aa8"/>
+      <path d="M500 300L330 10l90 40z" fill="#2f5cff"/><path d="M500 300L680 0l-80 60z" fill="#2f5cff"/>
+      <g fill="#fff" opacity=".8"><rect x="60" y="40" width="90" height="3"/><rect x="170" y="52" width="40" height="3"/><rect x="760" y="30" width="120" height="3"/><rect x="820" y="46" width="50" height="3"/><rect x="420" y="18" width="70" height="3"/></g>`,
+  };
+  const artSeen = {};
+  /* draw a banner once per set of players; a re-render of the page underneath leaves it alone */
+  function banner(host, kind, players) {
+    if (!host) return;
+    const sig = kind + ":" + players.map(p => p.name).join("|");
+    if (host.dataset.sig === sig) return;
+    host.dataset.sig = sig;
+    const collage = () => {
+      if (host.dataset.sig !== sig) return;
+      host.setAttribute("aria-label", (players[0].week ? "Week " + players[0].week + " top PPR scorers: " : "Featured this week: ") + players.map(p => p.name).join(", "));
+      host.innerHTML = `<svg class="shapes" viewBox="0 0 1000 300" preserveAspectRatio="xMidYMax meet" aria-hidden="true">${SHAPES[kind]}</svg>` +
+        players.slice(0, SLOTS.length).map((p, i) => { const [x, h, r, z] = SLOTS[i]; return `<img class="pl" alt="" src="${escHtml(p.img)}" style="--x:${x}%;--h:${h}%;--r:${r}deg;--z:${z};--d:${i * 45}ms" onerror="this.remove()">`; }).join("");
+    };
+    const art = () => { host.setAttribute("aria-label", "Featured players"); host.innerHTML = `<img class="art" alt="" src="media/banner/${kind}.png">`; };
+    if (artSeen[kind] === true) return art();
+    if (artSeen[kind] === false) return collage();
+    const probe = new Image();
+    probe.onload = () => { artSeen[kind] = true; if (host.dataset.sig === sig) art(); };
+    probe.onerror = () => { artSeen[kind] = false; collage(); };
+    probe.src = `media/banner/${kind}.png`;
+  }
+  function slot(panel, id, kind) {
+    let el = document.getElementById(id);
+    if (!el) { el = document.createElement("div"); el.id = id; el.className = "tb-banner " + kind; el.setAttribute("role", "img"); panel.prepend(el); }
+    return el;
+  }
+
+  /* The banner is last week's best: the most recent graded week's top full-PPR scorers, the
+     best in the middle and the rest fanning out in order. The points are the actual ones the
+     fantasy tracker graded its projections against, so it changes when a new week is graded. */
+  const smallShot = u => String(u).replace("/upload/f_auto,q_auto/", "/upload/f_auto,q_auto,w_560/");
+  function lastWeekBest() {
+    const rows = ((DATA.fantasy_history || {}).rows || []).filter(r => r.played !== false && typeof r.act_pts === "number");
+    if (!rows.length) return [];
+    /* the latest week that is fully in: a week with only Thursday's game graded waits its turn */
+    const count = {};
+    for (const r of rows) count[r.week] = (count[r.week] || 0) + 1;
+    const full = Math.max(...Object.values(count)) * 0.6;
+    const week = Math.max(...Object.keys(count).filter(w => count[w] >= full).map(Number));
+    const shots = {};
+    for (const p of [...((DATA.fantasy || {}).players || []), ...(DATA.players || [])]) {
+      const name = p.name || p.player_display_name;
+      if (name && p.headshot && !shots[name]) shots[name] = p.headshot;
+    }
+    return rows.filter(r => r.week === week && shots[r.name]).sort((a, b) => b.act_pts - a.act_pts).slice(0, SLOTS.length)
+      .map(r => ({ name: `${r.name} (${r.act_pts.toFixed(1)})`, img: smallShot(shots[r.name]), week }));
+  }
+  /* before any week is graded: this week's biggest projected lines, one player a team */
+  function nflStars() {
+    const best = lastWeekBest();
+    if (best.length >= 3) return best;
+    const P = (DATA.players || []).filter(p => p.headshot), used = new Set();
+    const top = (pos, key, n) => {
+      const out = [];
+      for (const p of P.filter(p => pos.includes(p.position)).sort((a, b) => (b[key] || 0) - (a[key] || 0))) {
+        if (used.has(p.team)) continue;
+        used.add(p.team); out.push({ name: p.player_display_name, img: p.headshot.replace("/upload/f_auto,q_auto/", "/upload/f_auto,q_auto,w_560/") });
+        if (out.length >= n) break;
+      }
+      return out;
+    };
+    const qb = top(["QB"], "passing_yards", 3), wr = top(["WR", "TE"], "receiving_yards", 2), rb = top(["RB"], "rushing_yards", 2);
+    return [qb[0], wr[0], rb[0], qb[1], wr[1], rb[1], qb[2]].filter(Boolean);
+  }
+  function nbaStars(N) {
+    const num = v => typeof v === "number" ? v : v && typeof v === "object" ? (v.mean != null ? v.mean : v.p50 || 0) : 0;
+    const seen = new Set(), teams = new Set(), out = [];
+    const P = (N.players || []).filter(p => p.headshot).sort((a, b) => num((b.availability_adjusted || {}).pts) - num((a.availability_adjusted || {}).pts));
+    for (const p of P) {
+      if (seen.has(p.player_id) || teams.has(p.team)) continue;
+      seen.add(p.player_id); teams.add(p.team); out.push({ name: p.player, img: p.headshot });
+      if (out.length >= 5) break;
+    }
+    return out;
+  }
+
+  function card(g) {
+    const homeFav = g.p_home >= 0.5, fav = homeFav ? g.home_team : g.away_team, p = Math.max(g.p_home, 1 - g.p_home);
+    const fin = finalOf(g);
+    const st = fin ? `<span class="wx-st ${fin.correct ? "ok" : "miss"}">${fin.correct ? "Hit" : "Miss"}: ${fin.away} ${fin.away_score}&ndash;${fin.home_score} ${fin.home}</span>`
+      : `<span class="wx-st pend">${g.upset ? "Upset pick" : "Locked"}</span>`;
+    return `<a class="wx-card" href="#/games/${g.game_id}" aria-label="${g.away_team} at ${g.home_team}: model picks ${fav}, ${pct(p)}">
+      <span class="wx-day">${escHtml(String(g.gameday || "").split(" ")[0])} ${kickoffText(g)}</span>
+      ${logo(fav)}
+      <span class="wx-pick">${fav}</span>
+      <span class="wx-pct">${pct(p)}</span>
+      <span class="wx-match">${g.away_team} at ${g.home_team}</span>
+      ${st}
+      <span class="wx-lohi"><span><b>${g.away_team}</b>${pct(1 - g.p_home)}</span><span><b>${g.home_team}</b>${pct(g.p_home)}</span></span>
+    </a>`;
+  }
+  const clockText = () => {
+    const d = new Date();
+    return d.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", second: "2-digit" }) + "<br>" +
+      d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+  };
+  window.renderHome = function () {
+    const host = document.getElementById("homeBody"); if (!host) return;
+    banner(slot(document.getElementById("panel-home"), "nflBanner", "nfl"), "nfl", nflStars());
+    const games = [...(DATA.games || [])].sort((a, b) => String(a.gameday_iso || a.gameday).localeCompare(String(b.gameday_iso || b.gameday)) || String(a.kickoff).localeCompare(String(b.kickoff)));
+    const upd = recentUpdates();
+    host.innerHTML = `
+      <div class="wx-bar"><h1>Week ${DATA.week}<br>Forecast</h1><span class="wx-clock" id="wxClock">${clockText()}</span></div>
+      <div class="wx-grid">${games.map(card).join("") || `<div class="state quiet"><b>No games on the slate</b>The next week appears after the schedule is published.</div>`}</div>
+      <div class="hsec wx-changes">
+        <h2>What changed <small>versioned forecasts</small></h2>
+        <div class="updates">${upd.length ? upd.map(u => `<div class="upd"><span class="t">${fmtETDay(u.at)}</span><span class="d"><a href="#/games/${u.gid}"><b>${escHtml(u.text)}</b></a><small>${escHtml(u.sub)}</small></span></div>`).join("")
+          : `<div class="state quiet" style="text-align:left"><b>No prediction has moved since the initial forecasts</b>Changes appear here with their cause when a refresh moves a number.</div>`}</div>
+      </div>`;
+  };
+  setInterval(() => { for (const c of document.querySelectorAll(".wx-clock")) if (c.offsetParent) c.innerHTML = clockText(); }, 1000);
+
+  /* the NBA slate as the same forecast cards; the game pages behind them are untouched */
+  function nbaCard(g) {
+    const homeFav = g.p_home >= 0.5, fav = homeFav ? g.home.abbr : g.away.abbr, p = Math.max(g.p_home, 1 - g.p_home);
+    const t = new Date(g.tipoff_utc), ok = !isNaN(t);
+    const when = ok ? t.toLocaleDateString("en-US", { weekday: "short" }) + " " + t.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" }) : "";
+    const date = ok ? t.toLocaleDateString("en-US", { month: "short", day: "numeric" }) : "";
+    return `<a class="wx-card" href="#/nba/games/${g.game_id}" aria-label="${escHtml(g.away.abbr)} at ${escHtml(g.home.abbr)}: model picks ${escHtml(fav)}, ${pct(p)}">
+      <span class="wx-day">${escHtml(when)}</span>
+      ${nbaLogo(fav, "lg")}
+      <span class="wx-pick">${escHtml(fav)}</span>
+      <span class="wx-pct">${pct(p)}</span>
+      <span class="wx-match">${escHtml(g.away.abbr)} at ${escHtml(g.home.abbr)}</span>
+      <span class="wx-st pend">${escHtml(date)} &middot; by ${Math.abs(g.margin_pred).toFixed(1)}</span>
+      <span class="wx-lohi"><span><b>${escHtml(g.away.abbr)}</b>${pct(1 - g.p_home)}</span><span><b>${escHtml(g.home.abbr)}</b>${pct(g.p_home)}</span></span>
+    </a>`;
+  }
+  function nbaForecast() {
+    const N = NBA.data, grid = document.querySelector("#nbaBody .gamegrid");
+    if (!N || NBA.tab !== "games" || !grid || !grid.querySelector(".gcard.nba")) return;
+    grid.outerHTML = `<div class="wx-bar"><h1>NBA<br>Forecast</h1><span class="wx-clock">${clockText()}</span></div><div class="wx-grid">${(N.games || []).map(nbaCard).join("")}</div>`;
+  }
+  const renderNbaWas = window.renderNba;
+  window.renderNba = function () {
+    renderNbaWas();
+    nbaForecast();
+    if (NBA.data) banner(slot(document.getElementById("panel-nba"), "nbaBanner", "nba"), "nba", nbaStars(NBA.data));
+  };
+  route();
+})();
+</script>
+<!-- THEME_END -->
 </body>
 </html>

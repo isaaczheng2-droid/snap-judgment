@@ -1,0 +1,284 @@
+<style>
+  /* ============ intro: last week's plays, full screen, on an old tube ============
+     A front door over the whole site, once per session. Nothing but the footage and one
+     quiet line telling you how to get in. Scanlines, grain and a warm cast make it read as
+     an old broadcast, which also forgives how far a clip is zoomed to fill the window. */
+  html.intro-open, html.intro-open body { overflow: hidden; }
+  #intro {
+    --i-paper: #f8f4ea; --i-ink: #0b0f1a;
+    position: fixed; inset: 0; z-index: 1000; overflow: hidden; isolation: isolate; cursor: pointer;
+    display: grid; align-items: end; justify-items: center; padding: clamp(18px, 4dvh, 40px) 16px;
+    background: var(--i-ink); color: var(--i-paper);
+    transition: transform .5s cubic-bezier(.7, 0, .84, 0) .2s;
+  }
+  #intro.leaving { transform: translateY(-101%); pointer-events: none; }
+
+  /* ---- the picture ---- */
+  .intro-bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+  #introStage { position: absolute; inset: 0; filter: sepia(.28) saturate(.9) contrast(1.12) brightness(.95) blur(.6px); }
+  /* cover the window whatever the clip's shape; never interactive */
+  #introStage > * { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 0; pointer-events: none; background: #000;
+    width: max(100vw, 177.78dvh); aspect-ratio: 16 / 9; }
+  #introStage > video { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; }
+  #introStatic { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
+  .intro-crt { position: absolute; inset: 0; pointer-events: none;
+    background:
+      repeating-linear-gradient(to bottom, rgba(0, 0, 0, .46) 0 2px, rgba(255, 255, 255, .06) 2px 4px),
+      radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, .5) 100%),
+      linear-gradient(to top, rgba(11, 15, 26, .6) 0, transparent 18%);
+  }
+  .intro-crt::before { content: ""; position: absolute; inset: 0; opacity: .5; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='.55'/></svg>"); }
+  .intro-crt::after { content: ""; position: absolute; left: 0; right: 0; top: -20%; height: 16%; background: linear-gradient(transparent, rgba(255, 255, 255, .07), transparent); }
+  .intro-card { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; gap: 8px; padding: 24px;
+    font-family: var(--display); text-transform: uppercase; text-shadow: 0 2px 0 #000, 0 0 18px rgba(0, 0, 0, .85); }
+  .intro-card b { font-size: clamp(30px, 6vw, 72px); font-weight: 800; letter-spacing: .08em; line-height: 1; }
+  .intro-card span { font-family: var(--mono); font-size: 13px; letter-spacing: .14em; }
+  @media (prefers-reduced-motion: no-preference) {
+    .intro-crt::after { animation: intro-roll 7s linear infinite; }
+    #intro.leaving .intro-bg { animation: intro-off .24s ease-in forwards; }
+    .intro-enter { animation: intro-breathe 3.2s ease-in-out infinite; }
+  }
+  @keyframes intro-roll { to { transform: translateY(800%); } }
+  @keyframes intro-off { 60% { transform: scale(1, .006); filter: brightness(4); } to { transform: scale(0, .006); filter: brightness(4); } }
+  @keyframes intro-breathe { 50% { opacity: .5; } }
+
+  /* ---- the one line on it: a real button, so the keyboard has a way in too ---- */
+  .intro-enter {
+    appearance: none; cursor: pointer; touch-action: manipulation; min-height: 44px; padding: 8px 18px; border: 0; border-radius: 4px; background: none;
+    font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--i-paper); opacity: .78; text-shadow: 0 1px 2px rgba(0, 0, 0, .9);
+  }
+  .intro-enter:hover, .intro-enter:focus-visible { opacity: 1; animation: none; }
+  .intro-enter:focus-visible { outline: 2px solid var(--i-paper); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { #intro { transition: none; } }
+</style>
+
+<div id="intro" role="dialog" aria-modal="true" aria-label="Tidbits: last week's highlights">
+  <div class="intro-bg" aria-hidden="true">
+    <div id="introStage"></div>
+    <canvas id="introStatic" width="160" height="90"></canvas>
+    <div class="intro-crt"></div>
+    <div class="intro-card" id="introCard"><b>Tuning in</b><span>one moment</span></div>
+  </div>
+  <button class="intro-enter" id="introEnter" type="button">Click anywhere to enter</button>
+</div>
+
+<script>
+/* ====================== INTRO ======================
+   Runs before the rest of the page is parsed, so a returning visitor never sees it flash.
+   The reel is media/highlights.json (written by highlights.py): YouTube ids that are known
+   to play when embedded, or the site owner's files in media/ when there are any. Nothing
+   here touches DATA or the router. */
+(function () {
+  const intro = document.getElementById("intro");
+  const KEY = "sj_intro_seen";
+  const seen = () => { try { return sessionStorage.getItem(KEY) === "1"; } catch (e) { return false; } };
+  const atHome = () => /^(#\/?(home\/?)?)?$/.test(location.hash);
+  if (seen() || !atHome()) intro.hidden = true;
+
+  const $ = id => document.getElementById(id);
+  const stage = $("introStage"), canvas = $("introStatic"), card = $("introCard"), enterBtn = $("introEnter");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const YT = "https://www.youtube-nocookie.com";
+  const CHROME_MS = 1600;
+  const CLIP_MS = 30000;                 /* how long any one video stays on before the reel moves on */
+  /* a highlight video is minutes long: come in somewhere different each time, clear of the titles at either end */
+  const startAt = x => x.seconds > 90 ? 12 + Math.floor(Math.random() * (x.seconds - 60)) : 0;
+  let isOpen = false, files = [], reel = [], reelIdx = 0, frame = null, video = null, fileIdx = 0;
+  let playing = false, next = null, shownAt = 0, clipTimer = 0, closeTimer = 0, fails = 0;
+
+  /* ---- static: drawn small and scaled up, only while it is on screen ---- */
+  const ctx = canvas.getContext("2d");
+  let raf = 0, lastDraw = 0;
+  function drawStatic() {
+    const img = ctx.createImageData(canvas.width, canvas.height), px = new Uint32Array(img.data.buffer);
+    for (let i = 0; i < px.length; i++) { const v = 30 + Math.random() * 190 | 0; px[i] = 0xff000000 | v << 16 | v << 8 | v; }
+    ctx.putImageData(img, 0, 0);
+  }
+  function staticOn(title, sub) {
+    canvas.hidden = false;
+    card.hidden = !title;
+    if (title) { card.firstElementChild.textContent = title; card.lastElementChild.textContent = sub || ""; }
+    cancelAnimationFrame(raf);
+    drawStatic();
+    if (reduce) return;
+    const tick = t => { if (t - lastDraw > 70) { drawStatic(); lastDraw = t; } raf = requestAnimationFrame(tick); };
+    raf = requestAnimationFrame(tick);
+  }
+  function staticOff() { cancelAnimationFrame(raf); canvas.hidden = true; card.hidden = true; }
+  const standBy = () => staticOn("Please stand by", "highlights return after kickoff");
+
+  /* ---- YouTube: the next clip loads in a second player underneath and is only brought to
+     the front once it is really playing, so one clip cuts straight to the next ---- */
+  const post = (f, msg) => { if (f && f.contentWindow) f.contentWindow.postMessage(JSON.stringify(msg), YT); };
+  const cmd = (func, args, f) => post(f || frame, { event: "command", func: func, args: args || [] });
+  /* the list arrives newest first: the newest open the reel, the rest is mixed; two clips a
+     team at most, and never the same team twice running */
+  function arrange(list) {
+    const count = {}, ok = list.filter(x => (count[x.source] = (count[x.source] || 0) + 1) <= 2);
+    const head = [], seen = new Set(), rest = [];
+    for (const x of ok) { if (head.length < 6 && !seen.has(x.source)) { head.push(x); seen.add(x.source); } else rest.push(x); }
+    for (let i = rest.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [rest[i], rest[j]] = [rest[j], rest[i]]; }
+    const out = head.concat(rest);
+    for (let pass = 0; pass < 3; pass++) for (let i = 1; i < out.length; i++) {
+      if (out[i].source !== out[i - 1].source) continue;
+      const j = out.findIndex((x, k) => k > i && x.source !== out[i].source);
+      if (j !== -1) [out[i], out[j]] = [out[j], out[i]];
+    }
+    return out;
+  }
+  function makeFrame(x) {
+    const q = new URLSearchParams({ autoplay: reduce ? 0 : 1, mute: 1, controls: 0, playsinline: 1, rel: 0, loop: 1, playlist: x.id, start: startAt(x), fs: 0, disablekb: 1, iv_load_policy: 3, cc_load_policy: 0, enablejsapi: 1 });
+    if (/^https?:/.test(location.origin)) q.set("origin", location.origin);
+    const f = document.createElement("iframe");
+    f.title = "NFL highlights";
+    f.allow = "autoplay; encrypted-media";
+    f.tabIndex = -1;
+    f.referrerPolicy = "strict-origin-when-cross-origin";
+    f.src = YT + "/embed/" + x.id + "?" + q;
+    f.addEventListener("load", () => {
+      let n = 0;
+      f.listen = setInterval(() => {
+        if (!f.isConnected || ++n > 12) return clearInterval(f.listen);
+        post(f, { event: "listening", id: "sjtv", channel: "widget" });
+      }, 500);
+    });
+    return f;
+  }
+  function arm() { clearTimeout(clipTimer); if (!reduce) clipTimer = setTimeout(() => { if (playing) advance(); else arm(); }, CLIP_MS); }
+  function advance() {
+    if (!frame || next || reel.length < 2) return;
+    reelIdx = (reelIdx + 1) % reel.length;
+    next = makeFrame(reel[reelIdx]);
+    stage.prepend(next);                 /* underneath the clip that is on */
+    /* a clip that will not start is skipped rather than waited on */
+    next.giveUp = setTimeout(() => { if (next) { clearInterval(next.listen); next.remove(); next = null; advance(); } }, 9000);
+  }
+  function swap() {
+    clearTimeout(next.giveUp);
+    const old = frame;
+    frame = next; next = null;
+    clearInterval(old.listen); old.remove();
+    shownAt = Date.now();
+    arm();
+  }
+  function startYouTube(list) {
+    reel = arrange(list); reelIdx = 0;
+    frame = makeFrame(reel[0]);
+    /* if the player never reports in, show whatever it is showing rather than static forever */
+    frame.addEventListener("load", () => setTimeout(() => { if (frame && !card.hidden) staticOff(); }, reduce ? 800 : 6000));
+    stage.replaceChildren(frame);
+    playing = !reduce; shownAt = Date.now();
+    arm();
+  }
+  window.addEventListener("message", e => {
+    if (e.origin !== YT) return;
+    const f = frame && e.source === frame.contentWindow ? frame : next && e.source === next.contentWindow ? next : null;
+    if (!f) return;
+    let d; try { d = JSON.parse(e.data); } catch (err) { return; }
+    const info = d && d.info; if (!info) return;
+    clearInterval(f.listen);
+    /* muted playback makes YouTube switch its auto-captions on; take them back off */
+    if (info.playerState === 1) { cmd("unloadModule", ["captions"], f); cmd("unloadModule", ["cc"], f); }
+    /* YouTube shows the video's title for a moment as it starts: wait that out before showing a clip */
+    if (f === next) { if (info.playerState === 1 && !f.due) f.due = setTimeout(() => { if (f === next) swap(); }, CHROME_MS); return; }
+    /* the end of a clip: reported outright, or seen coming a moment before it would loop */
+    if (typeof info.duration === "number" && info.duration > 0) f.dur = info.duration;
+    if (Date.now() - shownAt > 2500 && (info.playerState === 0 || (f.dur && typeof info.currentTime === "number" && info.currentTime >= f.dur - .4))) { advance(); return; }
+    if (info.playerState === 1) { if (!card.hidden && !f.due) f.due = setTimeout(staticOff, CHROME_MS); playing = true; }
+    else if (info.playerState === 2) playing = false;
+  });
+
+  /* ---- the owner's own files in media/, one after another ---- */
+  /* a clip may be a stretch of a longer film: "tail" plays its last N seconds, "start"/"end" a window */
+  function playFile(i) {
+    fileIdx = (i + files.length) % files.length;
+    video.src = files[fileIdx].src;
+    if (!reduce) video.play().catch(() => { playing = false; });
+  }
+  function startFiles() {
+    video = document.createElement("video");
+    video.muted = true; video.playsInline = true; video.preload = "auto";
+    video.addEventListener("loadedmetadata", () => {
+      const f = files[fileIdx], from = f.tail ? Math.max(0, video.duration - f.tail) : (f.start || 0);
+      if (from > 0) video.currentTime = from;
+    });
+    video.addEventListener("timeupdate", () => {
+      const f = files[fileIdx], from = f.tail ? Math.max(0, video.duration - f.tail) : (f.start || 0);
+      const end = Math.min(f.end || Infinity, f.length ? from + f.length : Infinity);
+      if (files.length > 1 && video.currentTime >= end) playFile(fileIdx + 1);
+    });
+    video.addEventListener("playing", () => { fails = 0; if (!card.hidden) staticOff(); playing = true; });
+    video.addEventListener("pause", () => { playing = false; });
+    video.addEventListener("ended", () => playFile(fileIdx + 1));
+    video.addEventListener("error", () => { if (++fails >= files.length) { video.remove(); video = null; standBy(); } else playFile(fileIdx + 1); });
+    stage.replaceChildren(video);
+    playFile(0);
+    if (reduce) staticOff();
+  }
+
+  async function loadReel() {
+    staticOn("Tuning in", "one moment");
+    try {
+      const r = await fetch("media/highlights.json", { cache: "no-cache" });
+      if (!r.ok) throw new Error(r.status);
+      const m = await r.json();
+      if (!isOpen) return;
+      const items = m.items || [];
+      files = items.filter(x => x.type === "file" && typeof x.src === "string");
+      const yts = items.filter(x => x.type === "youtube" && /^[\w-]{11}$/.test(x.id));
+      if (files.length) startFiles();
+      else if (yts.length) startYouTube(yts);
+      else standBy();
+    } catch (err) { if (isOpen) standBy(); }
+  }
+  function stopReel() {
+    clearTimeout(clipTimer); cancelAnimationFrame(raf);
+    if (next) clearTimeout(next.giveUp);
+    stage.replaceChildren(); frame = null; next = null; video = null; reel = []; fails = 0; playing = false;
+  }
+
+  /* ---- open and close ---- */
+  const setInert = on => { for (const el of document.body.children) if (el !== intro && el.tagName !== "SCRIPT" && el.tagName !== "STYLE") el.inert = on; };
+  function openIntro() {
+    clearTimeout(closeTimer);
+    isOpen = true;
+    intro.hidden = false;
+    intro.classList.remove("leaving");
+    document.documentElement.classList.add("intro-open");
+    setInert(true);
+    loadReel();
+    enterBtn.focus({ preventScroll: true });
+  }
+  function closeIntro() {
+    if (!isOpen) return;
+    isOpen = false;
+    try { sessionStorage.setItem(KEY, "1"); } catch (e) {}
+    document.documentElement.classList.remove("intro-open");
+    setInert(false);
+    intro.classList.add("leaving");
+    enterBtn.blur();
+    closeTimer = setTimeout(() => { intro.hidden = true; stopReel(); }, reduce ? 0 : 720);
+  }
+  intro.addEventListener("click", closeIntro);
+  intro.addEventListener("wheel", e => { if (e.deltaY > 6) closeIntro(); }, { passive: true });
+  let touchY = null;
+  intro.addEventListener("touchstart", e => { touchY = e.touches[0].clientY; }, { passive: true });
+  intro.addEventListener("touchmove", e => { if (touchY !== null && touchY - e.touches[0].clientY > 48) { touchY = null; closeIntro(); } }, { passive: true });
+  document.addEventListener("keydown", e => { if (isOpen && (e.key === "Escape" || e.key === "ArrowDown" || e.key === "PageDown")) { e.preventDefault(); closeIntro(); } });
+  /* the wordmark in the app bar brings the reel back */
+  document.addEventListener("click", e => { if (!isOpen && e.target.closest && e.target.closest(".appbar .wordmark")) openIntro(); });
+  /* a hidden tab does not keep streaming; it picks up again when you come back */
+  document.addEventListener("visibilitychange", () => {
+    if (!isOpen || reduce) return;
+    if (video) { document.hidden ? video.pause() : video.play().catch(() => {}); }
+    else cmd(document.hidden ? "pauseVideo" : "playVideo");
+  });
+
+  if (!intro.hidden) {
+    openIntro();
+    document.addEventListener("DOMContentLoaded", () => { if (isOpen) setInert(true); });
+  }
+})();
+</script>
