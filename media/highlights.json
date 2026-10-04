@@ -2,6 +2,22 @@
  "items": [
   {
    "type": "youtube",
+   "id": "UMHBj1NfZl4",
+   "title": "\"Remind Them.\" | HYPE | Atlanta Falcons",
+   "source": "Falcons",
+   "seconds": 64,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
+   "id": "x7Tcm5PLwZI",
+   "title": "Buffalo Bills vs Patriots Hype Video featuring Kyle Williams! | Coming Soon Trailers",
+   "source": "Bills",
+   "seconds": 52,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
    "id": "YXEbFsRqg_s",
    "title": "The Perfect Storm. | Week 1 Game Day Trailer",
    "source": "Cardinals",
@@ -18,26 +34,10 @@
   },
   {
    "type": "youtube",
-   "id": "CXVvfw9vooA",
-   "title": "Back at Home | HYPE | Atlanta Falcons",
-   "source": "Falcons",
-   "seconds": 54,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
    "id": "5FUYpeuUsm0",
    "title": "2026 Buffalo Bills Season Hype Video With Ryan Fitzpatrick and Josh Allen!",
    "source": "Bills",
    "seconds": 141,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
-   "id": "5HUTrownASk",
-   "title": "Bills vs. Chargers | Game 3 Hype Trailer ft. Stevie Johnson",
-   "source": "Bills",
-   "seconds": 55,
    "uploaded": "2026-09"
   },
   {
@@ -98,14 +98,6 @@
   },
   {
    "type": "youtube",
-   "id": "aChK-tugNBQ",
-   "title": "Rams vs. 49ers: Melbourne, You're In For A Treat | Game Trailer",
-   "source": "Rams",
-   "seconds": 81,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
    "id": "0fbKm66MxLU",
    "title": "PATRIOTS 2026 SEASON HYPE SET TO DREAM ON BY AEROSMITH 🔥",
    "source": "Patriots",
@@ -138,10 +130,10 @@
   },
   {
    "type": "youtube",
-   "id": "DmrHw_aolMA",
-   "title": "Run It Forward | Seattle Seahawks 2026 Season Trailer",
-   "source": "Seahawks",
-   "seconds": 79,
+   "id": "RuJbHATlLXg",
+   "title": "2026 Season Trailer, Featuring Chris Godwin Jr. | Tampa Bay Buccaneers",
+   "source": "Buccaneers",
+   "seconds": 151,
    "uploaded": "2026-09"
   },
   {
@@ -170,18 +162,10 @@
   },
   {
    "type": "youtube",
-   "id": "cXr9ViT0dVk",
-   "title": "2025 Chicago Bears playoff hype narrated by Common",
-   "source": "Bears",
-   "seconds": 86,
-   "uploaded": "2026-02"
-  },
-  {
-   "type": "youtube",
-   "id": "oIAg7QvdIjs",
-   "title": "Climb Higher: The Broncos’ 2025 playoff hype video narrated by Aqib Talib",
+   "id": "-RXstH6NjhA",
+   "title": "The Broncos’ 2025 AFC Championship Game hype video narrated by Peyton Manning | Climb Higher",
    "source": "Broncos",
-   "seconds": 65,
+   "seconds": 74,
    "uploaded": "2026-02"
   },
   {
@@ -210,10 +194,18 @@
   },
   {
    "type": "youtube",
-   "id": "iiWP---sSTo",
-   "title": "PATRIOTS 2025 PLAYOFF HYPE 🔥 | WE ALL WE GOT WE ALL WE NEED",
+   "id": "oscR3ZiKO1k",
+   "title": "Rams vs. Seahawks: Two Rivals, One Champion | Game Trailer",
+   "source": "Rams",
+   "seconds": 94,
+   "uploaded": "2026-02"
+  },
+  {
+   "type": "youtube",
+   "id": "zc6wL-OFai4",
+   "title": "🔥 PATRIOTS AFC DIVISIONAL PLAYOFF HYPE🔥 | WE ALL WE GOT WE ALL WE NEED",
    "source": "Patriots",
-   "seconds": 49,
+   "seconds": 57,
    "uploaded": "2026-02"
   },
   {
@@ -242,14 +234,6 @@
   },
   {
    "type": "youtube",
-   "id": "Y6l6SEqzELY",
-   "title": "'Protect Our House' | Commanders vs. Bucs Wild Card Round Hype Video | Tampa Bay Buccaneers",
-   "source": "Buccaneers",
-   "seconds": 60,
-   "uploaded": "2025-10"
-  },
-  {
-   "type": "youtube",
    "id": "WHIqZhL0apI",
    "title": "Find a Way | Commanders vs. Lions Trailer | NFL Divisional Round",
    "source": "Commanders",
@@ -270,6 +254,14 @@
    "title": "Time to get HYPED | Detroit Lions team introduction video: Wild Card Round vs. Los Angeles Rams",
    "source": "Lions",
    "seconds": 82,
+   "uploaded": "2024-10"
+  },
+  {
+   "type": "youtube",
+   "id": "kb1aZc3CGDQ",
+   "title": "Sights and Sounds of the Season Part Two | Miami Dolphins",
+   "source": "Dolphins",
+   "seconds": 501,
    "uploaded": "2024-10"
   },
   {
@@ -314,30 +306,6 @@
   },
   {
    "type": "youtube",
-   "id": "11is_ndJ2eI",
-   "title": "Are You Afraid of the Dark? | Week 8 Hype Video",
-   "source": "Bengals",
-   "seconds": 82,
-   "uploaded": "2023-10"
-  },
-  {
-   "type": "youtube",
-   "id": "mBU2RPFwvTo",
-   "title": "WEEK 14 HYPE TAPE: MIAMI DOLPHINS AT LOS ANGELES CHARGERS",
-   "source": "Dolphins",
-   "seconds": 36,
-   "uploaded": "2023-10"
-  },
-  {
-   "type": "youtube",
-   "id": "veHSyA1KZvU",
-   "title": "WEEK 2 HYPE TAPE | MIAMI DOLPHINS",
-   "source": "Dolphins",
-   "seconds": 70,
-   "uploaded": "2023-10"
-  },
-  {
-   "type": "youtube",
    "id": "IMAGtvbMMPE",
    "title": "Minnesota Vikings 2022 Winter Whiteout Hype Video",
    "source": "Vikings",
@@ -351,6 +319,22 @@
    "source": "Eagles",
    "seconds": 62,
    "uploaded": "2023-10"
+  },
+  {
+   "type": "youtube",
+   "id": "yKhnC1fyFRc",
+   "title": "Chicago Bears 2022 Official Season Hype Video",
+   "source": "Bears",
+   "seconds": 66,
+   "uploaded": "2022-10"
+  },
+  {
+   "type": "youtube",
+   "id": "RJcH35SAzLk",
+   "title": "\"It's A Whole New Team This Year\" | Week 2 Hype",
+   "source": "Bengals",
+   "seconds": 61,
+   "uploaded": "2022-10"
   },
   {
    "type": "youtube",
@@ -417,5 +401,5 @@
    "uploaded": "2020-10"
   }
  ],
- "updated": "2026-10-03T17:03:17Z"
+ "updated": "2026-10-04T14:49:53Z"
 }
