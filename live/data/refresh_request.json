@@ -1,0 +1,46 @@
+{
+ "reasons": [
+  "Box scores updated: player results and the paper test can be graded",
+  "Riley Moss: no report \u2192 QUESTIONABLE (Ribs)",
+  "Pat Surtain II: no report \u2192 QUESTIONABLE (Ankle)",
+  "Rashee Rice: ACTIVE \u2192 QUESTIONABLE (Hamstring)",
+  "Donte Jackson: ACTIVE \u2192 QUESTIONABLE (Hamstring)",
+  "Jarvis Brownlee Jr.: QUESTIONABLE \u2192 OUT (Head)",
+  "Ja'Marr Chase: OUT \u2192 QUESTIONABLE (Concussion)",
+  "DJ Moore: DOUBTFUL \u2192 QUESTIONABLE (Shoulder)",
+  "Saquon Barkley: OUT \u2192 QUESTIONABLE (Hamstring)",
+  "Jonathan Allen: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Zach Allen: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Alaric Jackson: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_04_ATL_NO",
+  "2026_04_DEN_SF",
+  "2026_04_JAX_CIN",
+  "2026_04_KC_LV",
+  "2026_04_LAC_SEA",
+  "2026_04_LA_PHI",
+  "2026_04_MIA_MIN",
+  "2026_04_NE_BUF",
+  "2026_04_NYJ_CHI"
+ ],
+ "event_ids": [
+  "ev_1791153176_3f11c622",
+  "ev_1791153176_cea4df49",
+  "ev_1791153176_4de65342",
+  "ev_1791153176_bad5be7d",
+  "ev_1791153176_d1464918",
+  "ev_1791153176_d9d9161a",
+  "ev_1791153176_faf899cc",
+  "ev_1791153176_9d859f1c",
+  "ev_1791153176_c9cce2c2",
+  "ev_1791153176_b4dfe28f",
+  "ev_1791153176_7d940b76",
+  "ev_1791153176_22a6a000",
+  "ev_1791153176_9962ab3d",
+  "ev_1791153176_d6ea3fb8",
+  "ev_1791153176_cdbb1afa",
+  "ev_1791153176_ef962d70"
+ ],
+ "requested_at": "2026-10-04T22:33:00Z"
+}
