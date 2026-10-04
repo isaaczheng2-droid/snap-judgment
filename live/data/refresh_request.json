@@ -1,0 +1,47 @@
+{
+ "reasons": [
+  "Max Brosmer: ACTIVE \u2192 INACTIVE",
+  "Elijah Williams: ACTIVE \u2192 INACTIVE",
+  "Jakobe Thomas: ACTIVE \u2192 INACTIVE",
+  "Brady Cook: ACTIVE \u2192 INACTIVE",
+  "Chukwuebuka Godrick: ACTIVE \u2192 INACTIVE",
+  "DJ Campbell: ACTIVE \u2192 INACTIVE",
+  "Marcellas Dial Jr.: ACTIVE \u2192 INACTIVE",
+  "Justin Joly: ACTIVE \u2192 INACTIVE",
+  "Saquon Barkley: ACTIVE \u2192 OUT (Hamstring)",
+  "DJ Moore: ACTIVE \u2192 QUESTIONABLE (Shoulder)",
+  "Ja'Marr Chase: ACTIVE \u2192 QUESTIONABLE (Head)",
+  "Marlon Humphrey: ACTIVE \u2192 QUESTIONABLE (Calf)"
+ ],
+ "game_ids": [
+  "2026_04_ATL_NO",
+  "2026_04_DEN_SF",
+  "2026_04_IND_WAS",
+  "2026_04_JAX_CIN",
+  "2026_04_LA_PHI",
+  "2026_04_MIA_MIN",
+  "2026_04_NE_BUF",
+  "2026_04_TEN_BAL"
+ ],
+ "event_ids": [
+  "ev_1791139731_26e6621d",
+  "ev_1791139731_fa03d686",
+  "ev_1791139731_341aed7e",
+  "ev_1791139731_fc4ad9b3",
+  "ev_1791139731_8bcb0314",
+  "ev_1791139731_4ed74adc",
+  "ev_1791139731_b25451f8",
+  "ev_1791139731_8f15db9d",
+  "ev_1791139731_100a2f8f",
+  "ev_1791139731_9ea044d6",
+  "ev_1791139731_8c951db0",
+  "ev_1791139731_48b713cf",
+  "ev_1791139731_56a5a880",
+  "ev_1791139731_9f8466aa",
+  "ev_1791139731_4061a10d",
+  "ev_1791139731_3cae5934",
+  "ev_1791139731_b242909f",
+  "ev_1791139731_dab1d13c"
+ ],
+ "requested_at": "2026-10-04T18:49:00Z"
+}
