@@ -658,3 +658,7 @@
 {"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-04T18:48:51Z"}
 {"kind":"unknown_player","detail":"Cameron Robertson (ARI) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-04T18:48:51Z"}
 {"kind":"unknown_player","detail":"Gabriel Rubio (PIT) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-04T18:48:51Z"}
+{"kind":"team_mismatch","detail":"00-0039167: report says DAL, roster says PIT","player_id":"00-0039167","source":"espn","system_received_at":"2026-10-04T20:22:41Z"}
+{"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-04T20:22:41Z"}
+{"kind":"unknown_player","detail":"Cameron Robertson (ARI) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-04T20:22:41Z"}
+{"kind":"unknown_player","detail":"Gabriel Rubio (PIT) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-04T20:22:41Z"}
