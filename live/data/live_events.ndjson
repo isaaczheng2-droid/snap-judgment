@@ -14507,3 +14507,21 @@
 {"event_id":"ev_1791166845_2019eb83","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_04_LA_PHI","player_id":"00-0038386","team_id":"PHI","severity":"HIGH","previous_value":"ACTIVE","new_value":"UNKNOWN","detail":"Jalen Carter: ACTIVE \u2192 UNKNOWN (Wrist)","source":"nflverse:injuries","occurred_at":"2026-10-05T02:20:45Z","received_at":"2026-10-05T02:20:45Z","processed":false,"prediction_recalculated":false,"impact_tier":"HIGH","impact_reasons":["starter (depth chart rank 1)"],"player_name":"Jalen Carter","system_received_at":"2026-10-05T02:20:47Z"}
 {"event_id":"ev_1791166845_608a4888","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_04_PIT_CLE","player_id":"00-0036504","team_id":"PIT","severity":"MEDIUM","previous_value":"ACTIVE","new_value":"UNKNOWN","detail":"Brandin Echols: ACTIVE \u2192 UNKNOWN (Concussion)","source":"nflverse:injuries","occurred_at":"2026-10-05T02:20:45Z","received_at":"2026-10-05T02:20:45Z","processed":false,"prediction_recalculated":false,"impact_tier":"MODERATE","impact_reasons":["depth rank 2"],"player_name":"Brandin Echols","system_received_at":"2026-10-05T02:20:47Z"}
 {"event_id":"ev_1791166845_f9a5d3fc","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_04_DEN_SF","player_id":"00-0034854","team_id":"SF","severity":"MEDIUM","previous_value":"QUESTIONABLE","new_value":"UNKNOWN","detail":"KhaDarel Hodge: QUESTIONABLE \u2192 UNKNOWN (Knee)","source":"nflverse:injuries","occurred_at":"2026-10-05T02:20:45Z","received_at":"2026-10-05T02:20:45Z","processed":false,"prediction_recalculated":false,"impact_tier":"MODERATE","impact_reasons":["depth chart position unknown"],"player_name":"KhaDarel Hodge","system_received_at":"2026-10-05T02:20:47Z"}
+{"event_id":"ev_1791166845_608a4888","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-05T02:27:10Z"}
+{"event_id":"ev_1791166845_38abdbeb","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-05T02:27:10Z"}
+{"event_id":"ev_1791166845_e5bc4c77","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-05T02:27:10Z"}
+{"event_id":"ev_1791166845_d76a1ec9","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-05T02:27:10Z"}
+{"event_id":"ev_1791166845_7fbf8c61","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-05T02:27:10Z"}
+{"event_id":"ev_1791166845_71abf3e6","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-05T02:27:10Z"}
+{"event_id":"ev_1791166845_949d2e28","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-05T02:27:10Z"}
+{"event_id":"ev_1791166845_df3d99da","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-05T02:27:10Z"}
+{"event_id":"ev_1791166845_ba6d959b","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-05T02:27:10Z"}
+{"event_id":"ev_1791166845_2019eb83","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-05T02:27:10Z"}
+{"event_id":"ev_1791166845_1fe13d93","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-05T02:27:10Z"}
+{"event_id":"ev_1791166845_82d578f6","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-05T02:27:10Z"}
+{"event_id":"ev_1791166845_36a0d818","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-05T02:27:10Z"}
+{"event_id":"ev_1791166845_591ea39d","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-05T02:27:10Z"}
+{"event_id":"ev_1791166845_3ced970d","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-05T02:27:10Z"}
+{"event_id":"ev_1791166845_cfbfe84b","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-05T02:27:10Z"}
+{"event_id":"ev_1791166845_f9a5d3fc","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-05T02:27:10Z"}
+{"event_id":"ev_1791166845_6dcd6d4a","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-05T02:27:10Z"}
