@@ -1,0 +1,38 @@
+{
+ "reasons": [
+  "Window finished: Sunday 8:20 PM ET game (1 final)",
+  "Box scores updated: player results and the paper test can be graded",
+  "Pat Surtain II: OUT \u2192 QUESTIONABLE (Ankle)",
+  "Jarvis Brownlee Jr.: OUT \u2192 QUESTIONABLE (Head)",
+  "Riley Moss: OUT \u2192 QUESTIONABLE (Ribs)",
+  "Jonathan Allen: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Zach Allen: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Alaric Jackson: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Julius Brents: ACTIVE \u2192 UNKNOWN (Knee)",
+  "Nathan Shepherd: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Jalen Carter: ACTIVE \u2192 UNKNOWN (Wrist)",
+  "Amik Robertson: ACTIVE \u2192 UNKNOWN (Knee)"
+ ],
+ "game_ids": [
+  "2026_04_ATL_NO",
+  "2026_04_DEN_SF",
+  "2026_04_IND_WAS",
+  "2026_04_JAX_CIN",
+  "2026_04_LA_PHI",
+  "2026_04_MIA_MIN",
+  "2026_04_NYJ_CHI"
+ ],
+ "event_ids": [
+  "ev_1791176919_1db15ab4",
+  "ev_1791176919_5205dab9",
+  "ev_1791176919_32d8b65d",
+  "ev_1791176919_cf8b989a",
+  "ev_1791176919_dc0e95e9",
+  "ev_1791176919_cf64e90a",
+  "ev_1791176919_1e90b40e",
+  "ev_1791176919_f1ab0755",
+  "ev_1791176919_dd988f67",
+  "ev_1791176919_9bd6506f"
+ ],
+ "requested_at": "2026-10-05T05:08:40Z"
+}
