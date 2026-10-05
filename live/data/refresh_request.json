@@ -1,0 +1,48 @@
+{
+ "reasons": [
+  "Box scores updated: player results and the paper test can be graded",
+  "Christen Miller: ACTIVE \u2192 INACTIVE (Toe)",
+  "Zach Wilson: ACTIVE \u2192 INACTIVE",
+  "Decamerion Richardson: no report \u2192 INACTIVE",
+  "Jeremiyah Love: ACTIVE \u2192 QUESTIONABLE (Ankle)",
+  "Braxton Berrios: QUESTIONABLE \u2192 DOUBTFUL (Foot)",
+  "Derrick Harmon: DOUBTFUL \u2192 IR (Foot)",
+  "Jonah Laulu: INACTIVE \u2192 ACTIVE",
+  "James Lynch: INACTIVE \u2192 ACTIVE",
+  "Joey Porter Jr.: OUT \u2192 ACTIVE",
+  "Jonathan Allen: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Zach Allen: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_04_ARI_NYG",
+  "2026_04_ATL_NO",
+  "2026_04_DAL_HOU",
+  "2026_04_DEN_SF",
+  "2026_04_IND_WAS",
+  "2026_04_JAX_CIN",
+  "2026_04_KC_LV",
+  "2026_04_LA_PHI",
+  "2026_04_MIA_MIN",
+  "2026_04_NYJ_CHI",
+  "2026_04_PIT_CLE"
+ ],
+ "event_ids": [
+  "ev_1791240986_7b61450c",
+  "ev_1791240986_058246d8",
+  "ev_1791240986_f234bc30",
+  "ev_1791240986_e9ec3548",
+  "ev_1791240986_4edeeb5a",
+  "ev_1791240986_d53026a0",
+  "ev_1791240986_405b7ca1",
+  "ev_1791240986_1099ffdf",
+  "ev_1791240986_6443b6ae",
+  "ev_1791240986_30d6b6a4",
+  "ev_1791240986_ddf97902",
+  "ev_1791240986_a9fce14f",
+  "ev_1791240986_298872e6",
+  "ev_1791240986_a54f5677",
+  "ev_1791240986_6f372d4a",
+  "ev_1791240986_bcb65d15"
+ ],
+ "requested_at": "2026-10-05T22:56:26Z"
+}

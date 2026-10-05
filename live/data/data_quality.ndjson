@@ -694,3 +694,7 @@
 {"kind":"unknown_player","detail":"Cameron Robertson (ARI) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-05T16:26:05Z"}
 {"kind":"unknown_player","detail":"Gabriel Rubio (PIT) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-05T16:26:05Z"}
 {"kind":"team_mismatch","detail":"00-0039167: report says PIT, roster says DAL","player_id":"00-0039167","source":"nflverse:injuries","system_received_at":"2026-10-05T16:26:05Z"}
+{"kind":"unknown_player","detail":"Gabriel Rubio (PIT) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-05T22:56:26Z"}
+{"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-05T22:56:26Z"}
+{"kind":"unknown_player","detail":"Cameron Robertson (ARI) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-05T22:56:26Z"}
+{"kind":"team_mismatch","detail":"00-0039167: report says PIT, roster says DAL","player_id":"00-0039167","source":"nflverse:injuries","system_received_at":"2026-10-05T22:56:26Z"}
