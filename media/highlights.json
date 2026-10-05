@@ -2,14 +2,6 @@
  "items": [
   {
    "type": "youtube",
-   "id": "UMHBj1NfZl4",
-   "title": "\"Remind Them.\" | HYPE | Atlanta Falcons",
-   "source": "Falcons",
-   "seconds": 64,
-   "uploaded": "2026-10"
-  },
-  {
-   "type": "youtube",
    "id": "x7Tcm5PLwZI",
    "title": "Buffalo Bills vs Patriots Hype Video featuring Kyle Williams! | Coming Soon Trailers",
    "source": "Bills",
@@ -26,10 +18,10 @@
   },
   {
    "type": "youtube",
-   "id": "Iumv8hVy_uE",
-   "title": "Shaboozey - \"Let 'Em Know\" | HYPE | Atlanta Falcons",
+   "id": "CXVvfw9vooA",
+   "title": "Back at Home | HYPE | Atlanta Falcons",
    "source": "Falcons",
-   "seconds": 65,
+   "seconds": 54,
    "uploaded": "2026-09"
   },
   {
@@ -98,6 +90,14 @@
   },
   {
    "type": "youtube",
+   "id": "aChK-tugNBQ",
+   "title": "Rams vs. 49ers: Melbourne, You're In For A Treat | Game Trailer",
+   "source": "Rams",
+   "seconds": 81,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
    "id": "0fbKm66MxLU",
    "title": "PATRIOTS 2026 SEASON HYPE SET TO DREAM ON BY AEROSMITH 🔥",
    "source": "Patriots",
@@ -126,6 +126,14 @@
    "title": "Philadelphia Eagles 2026 Season Hype Video",
    "source": "Eagles",
    "seconds": 102,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
+   "id": "DmrHw_aolMA",
+   "title": "Run It Forward | Seattle Seahawks 2026 Season Trailer",
+   "source": "Seahawks",
+   "seconds": 79,
    "uploaded": "2026-09"
   },
   {
@@ -170,6 +178,14 @@
   },
   {
    "type": "youtube",
+   "id": "oIAg7QvdIjs",
+   "title": "Climb Higher: The Broncos’ 2025 playoff hype video narrated by Aqib Talib",
+   "source": "Broncos",
+   "seconds": 65,
+   "uploaded": "2026-02"
+  },
+  {
+   "type": "youtube",
    "id": "BSkiDbY6XYc",
    "title": "Playoff trailer | Packers 2025 postseason",
    "source": "Packers",
@@ -194,18 +210,10 @@
   },
   {
    "type": "youtube",
-   "id": "oscR3ZiKO1k",
-   "title": "Rams vs. Seahawks: Two Rivals, One Champion | Game Trailer",
-   "source": "Rams",
-   "seconds": 94,
-   "uploaded": "2026-02"
-  },
-  {
-   "type": "youtube",
-   "id": "zc6wL-OFai4",
-   "title": "🔥 PATRIOTS AFC DIVISIONAL PLAYOFF HYPE🔥 | WE ALL WE GOT WE ALL WE NEED",
+   "id": "iiWP---sSTo",
+   "title": "PATRIOTS 2025 PLAYOFF HYPE 🔥 | WE ALL WE GOT WE ALL WE NEED",
    "source": "Patriots",
-   "seconds": 57,
+   "seconds": 49,
    "uploaded": "2026-02"
   },
   {
@@ -215,6 +223,14 @@
    "source": "Titans",
    "seconds": 25,
    "uploaded": "2025-12"
+  },
+  {
+   "type": "youtube",
+   "id": "tMCMrft1pCY",
+   "title": "Atlanta Falcons x JID 'Glory' | 2025 Season Kickoff Hype ft. Michael Vick",
+   "source": "Falcons",
+   "seconds": 130,
+   "uploaded": "2025-10"
   },
   {
    "type": "youtube",
@@ -254,14 +270,6 @@
    "title": "Time to get HYPED | Detroit Lions team introduction video: Wild Card Round vs. Los Angeles Rams",
    "source": "Lions",
    "seconds": 82,
-   "uploaded": "2024-10"
-  },
-  {
-   "type": "youtube",
-   "id": "kb1aZc3CGDQ",
-   "title": "Sights and Sounds of the Season Part Two | Miami Dolphins",
-   "source": "Dolphins",
-   "seconds": 501,
    "uploaded": "2024-10"
   },
   {
@@ -306,6 +314,22 @@
   },
   {
    "type": "youtube",
+   "id": "9ZAUG2U5ZzQ",
+   "title": "WEEK 9 HYPE TAPE: MIAMI DOLPHINS AT CHICAGO BEARS",
+   "source": "Dolphins",
+   "seconds": 53,
+   "uploaded": "2023-10"
+  },
+  {
+   "type": "youtube",
+   "id": "mBU2RPFwvTo",
+   "title": "WEEK 14 HYPE TAPE: MIAMI DOLPHINS AT LOS ANGELES CHARGERS",
+   "source": "Dolphins",
+   "seconds": 36,
+   "uploaded": "2023-10"
+  },
+  {
+   "type": "youtube",
    "id": "IMAGtvbMMPE",
    "title": "Minnesota Vikings 2022 Winter Whiteout Hype Video",
    "source": "Vikings",
@@ -334,14 +358,6 @@
    "title": "\"It's A Whole New Team This Year\" | Week 2 Hype",
    "source": "Bengals",
    "seconds": 61,
-   "uploaded": "2022-10"
-  },
-  {
-   "type": "youtube",
-   "id": "tFlYyGvkR9U",
-   "title": "Browns vs. Packers Game Day Hype Video",
-   "source": "Browns",
-   "seconds": 47,
    "uploaded": "2022-10"
   },
   {
@@ -386,10 +402,10 @@
   },
   {
    "type": "youtube",
-   "id": "oxf-01ebf_8",
-   "title": "'You've trained your entire life for this moment': Shannon Sharpe narrates season hype video",
-   "source": "Broncos",
-   "seconds": 96,
+   "id": "nFwIbcMTfBY",
+   "title": "Browns at Steelers Hype Video | Cleveland Browns",
+   "source": "Browns",
+   "seconds": 48,
    "uploaded": "2020-10"
   },
   {
@@ -401,5 +417,5 @@
    "uploaded": "2020-10"
   }
  ],
- "updated": "2026-10-04T14:49:53Z"
+ "updated": "2026-10-05T18:34:03Z"
 }
