@@ -1,0 +1,33 @@
+{
+ "reasons": [
+  "Box scores updated: player results and the paper test can be graded",
+  "Joey Porter Jr.: OUT \u2192 ACTIVE",
+  "Jonathan Allen: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Zach Allen: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Alaric Jackson: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Julius Brents: ACTIVE \u2192 UNKNOWN (Knee)",
+  "Nathan Shepherd: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Jalen Carter: ACTIVE \u2192 UNKNOWN (Wrist)",
+  "Amik Robertson: ACTIVE \u2192 UNKNOWN (Knee)"
+ ],
+ "game_ids": [
+  "2026_04_ATL_NO",
+  "2026_04_DAL_HOU",
+  "2026_04_DEN_SF",
+  "2026_04_IND_WAS",
+  "2026_04_JAX_CIN",
+  "2026_04_LA_PHI",
+  "2026_04_MIA_MIN"
+ ],
+ "event_ids": [
+  "ev_1791202660_98b520c8",
+  "ev_1791202660_2ea835e9",
+  "ev_1791202660_1f3b4f5c",
+  "ev_1791202660_8b9eb6fe",
+  "ev_1791202660_527c7ac1",
+  "ev_1791202660_f1824b18",
+  "ev_1791202660_14e348c2",
+  "ev_1791202660_883b4f6e"
+ ],
+ "requested_at": "2026-10-05T12:17:40Z"
+}
