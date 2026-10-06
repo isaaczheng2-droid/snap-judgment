@@ -1,0 +1,46 @@
+{
+ "reasons": [
+  "Carl Granderson: OUT \u2192 QUESTIONABLE (Ankle)",
+  "Cam Lewis: OUT \u2192 QUESTIONABLE (Hip)",
+  "Montaric Brown: OUT \u2192 QUESTIONABLE (Hamstring)",
+  "Nick Bosa: OUT \u2192 DOUBTFUL (Calf)",
+  "Benjamin Morrison: OUT \u2192 QUESTIONABLE (Quadriceps)",
+  "Terry McLaurin: OUT \u2192 QUESTIONABLE (Hamstring)",
+  "Jayden Daniels: OUT \u2192 QUESTIONABLE (Elbow)",
+  "DeVonta Smith: OUT \u2192 QUESTIONABLE (Hamstring)",
+  "Jaylen Watson: OUT \u2192 QUESTIONABLE (Shoulder)",
+  "Breece Hall: OUT \u2192 DOUBTFUL (Quadriceps)",
+  "Aaron Donald: OUT \u2192 QUESTIONABLE (Back)",
+  "Justin Jefferson: OUT \u2192 QUESTIONABLE (Ankle)"
+ ],
+ "game_ids": [
+  "2026_05_BUF_LA",
+  "2026_05_CHI_GB",
+  "2026_05_CLE_NYJ",
+  "2026_05_LV_NE",
+  "2026_05_MIN_NO",
+  "2026_05_NYG_WAS",
+  "2026_05_PHI_JAX",
+  "2026_05_SF_SEA",
+  "2026_05_TB_DAL"
+ ],
+ "event_ids": [
+  "ev_1791323694_3aaab09c",
+  "ev_1791323694_f25af6a5",
+  "ev_1791323694_c27bd3b7",
+  "ev_1791323694_2e72edf1",
+  "ev_1791323694_e033d0ee",
+  "ev_1791323694_31f0f660",
+  "ev_1791323694_df70a47c",
+  "ev_1791323694_9df8a55d",
+  "ev_1791323694_73ecb936",
+  "ev_1791323694_bbe7786d",
+  "ev_1791323694_7924107c",
+  "ev_1791323694_2a9453fb",
+  "ev_1791323694_b1b43941",
+  "ev_1791323694_aa3111cf",
+  "ev_1791323694_6ae88680",
+  "ev_1791323694_6d631103"
+ ],
+ "requested_at": "2026-10-06T21:54:54Z"
+}
