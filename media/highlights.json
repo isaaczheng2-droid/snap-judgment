@@ -2,6 +2,14 @@
  "items": [
   {
    "type": "youtube",
+   "id": "UMHBj1NfZl4",
+   "title": "\"Remind Them.\" | HYPE | Atlanta Falcons",
+   "source": "Falcons",
+   "seconds": 64,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
    "id": "x7Tcm5PLwZI",
    "title": "Buffalo Bills vs Patriots Hype Video featuring Kyle Williams! | Coming Soon Trailers",
    "source": "Bills",
@@ -18,10 +26,10 @@
   },
   {
    "type": "youtube",
-   "id": "CXVvfw9vooA",
-   "title": "Back at Home | HYPE | Atlanta Falcons",
+   "id": "Iumv8hVy_uE",
+   "title": "Shaboozey - \"Let 'Em Know\" | HYPE | Atlanta Falcons",
    "source": "Falcons",
-   "seconds": 54,
+   "seconds": 65,
    "uploaded": "2026-09"
   },
   {
@@ -226,22 +234,6 @@
   },
   {
    "type": "youtube",
-   "id": "tMCMrft1pCY",
-   "title": "Atlanta Falcons x JID 'Glory' | 2025 Season Kickoff Hype ft. Michael Vick",
-   "source": "Falcons",
-   "seconds": 130,
-   "uploaded": "2025-10"
-  },
-  {
-   "type": "youtube",
-   "id": "M8I3QnmQook",
-   "title": "Welcome back | Packers 2025 season trailer",
-   "source": "Packers",
-   "seconds": 93,
-   "uploaded": "2025-10"
-  },
-  {
-   "type": "youtube",
    "id": "uGQcYEDQoe8",
    "title": "It's About Legacy | 2025 Tampa Bay Buccaneers Season Trailer",
    "source": "Buccaneers",
@@ -314,18 +306,18 @@
   },
   {
    "type": "youtube",
-   "id": "9ZAUG2U5ZzQ",
-   "title": "WEEK 9 HYPE TAPE: MIAMI DOLPHINS AT CHICAGO BEARS",
-   "source": "Dolphins",
-   "seconds": 53,
-   "uploaded": "2023-10"
-  },
-  {
-   "type": "youtube",
    "id": "mBU2RPFwvTo",
    "title": "WEEK 14 HYPE TAPE: MIAMI DOLPHINS AT LOS ANGELES CHARGERS",
    "source": "Dolphins",
    "seconds": 36,
+   "uploaded": "2023-10"
+  },
+  {
+   "type": "youtube",
+   "id": "9ZAUG2U5ZzQ",
+   "title": "WEEK 9 HYPE TAPE: MIAMI DOLPHINS AT CHICAGO BEARS",
+   "source": "Dolphins",
+   "seconds": 53,
    "uploaded": "2023-10"
   },
   {
@@ -358,6 +350,14 @@
    "title": "\"It's A Whole New Team This Year\" | Week 2 Hype",
    "source": "Bengals",
    "seconds": 61,
+   "uploaded": "2022-10"
+  },
+  {
+   "type": "youtube",
+   "id": "5ADp4CdkjlE",
+   "title": "HYPE VIDEO: David Bakhtiari Returns | Green Bay Packers",
+   "source": "Packers",
+   "seconds": 152,
    "uploaded": "2022-10"
   },
   {
@@ -417,5 +417,5 @@
    "uploaded": "2020-10"
   }
  ],
- "updated": "2026-10-05T18:34:03Z"
+ "updated": "2026-10-06T16:01:16Z"
 }
