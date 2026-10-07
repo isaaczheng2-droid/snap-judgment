@@ -90,14 +90,6 @@
   },
   {
    "type": "youtube",
-   "id": "Ue3TIowkHMc",
-   "title": "MINDSET 😤 | Kansas City Chiefs 2026 Preseason HYPE Video 🔥",
-   "source": "Chiefs",
-   "seconds": 67,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
    "id": "aChK-tugNBQ",
    "title": "Rams vs. 49ers: Melbourne, You're In For A Treat | Game Trailer",
    "source": "Rams",
@@ -218,10 +210,10 @@
   },
   {
    "type": "youtube",
-   "id": "iiWP---sSTo",
-   "title": "PATRIOTS 2025 PLAYOFF HYPE 🔥 | WE ALL WE GOT WE ALL WE NEED",
+   "id": "06wkfvvx2No",
+   "title": "🔥 PATRIOTS AFC CHAMPIONSHIP PLAYOFF HYPE🔥 | WE ALL WE GOT WE ALL WE NEED",
    "source": "Patriots",
-   "seconds": 49,
+   "seconds": 60,
    "uploaded": "2026-02"
   },
   {
@@ -231,6 +223,38 @@
    "source": "Titans",
    "seconds": 25,
    "uploaded": "2025-12"
+  },
+  {
+   "type": "youtube",
+   "id": "I5hS8MK0p-0",
+   "title": "Chargers vs Titans Week 9 | Hype Video",
+   "source": "Titans",
+   "seconds": 25,
+   "uploaded": "2025-11"
+  },
+  {
+   "type": "youtube",
+   "id": "M8I3QnmQook",
+   "title": "Welcome back | Packers 2025 season trailer",
+   "source": "Packers",
+   "seconds": 93,
+   "uploaded": "2025-10"
+  },
+  {
+   "type": "youtube",
+   "id": "eskllONh3pA",
+   "title": "NOISE 🗣️ 2025 Home HYPE Video | Kansas City Chiefs 🔴🟡",
+   "source": "Chiefs",
+   "seconds": 83,
+   "uploaded": "2025-10"
+  },
+  {
+   "type": "youtube",
+   "id": "IvJX0jczYD0",
+   "title": "2025 Eagles Hype Video",
+   "source": "Eagles",
+   "seconds": 344,
+   "uploaded": "2025-10"
   },
   {
    "type": "youtube",
@@ -330,14 +354,6 @@
   },
   {
    "type": "youtube",
-   "id": "ytMH0lCN0Cw",
-   "title": "Week 6 Dallas Cowboys vs Philadelphia Eagles Hype Video",
-   "source": "Eagles",
-   "seconds": 62,
-   "uploaded": "2023-10"
-  },
-  {
-   "type": "youtube",
    "id": "yKhnC1fyFRc",
    "title": "Chicago Bears 2022 Official Season Hype Video",
    "source": "Bears",
@@ -346,26 +362,18 @@
   },
   {
    "type": "youtube",
-   "id": "RJcH35SAzLk",
-   "title": "\"It's A Whole New Team This Year\" | Week 2 Hype",
+   "id": "OGCYzQ5bxAg",
+   "title": "IT IS US: AFC Championship Game Hype | Cincinnati Bengals",
    "source": "Bengals",
-   "seconds": 61,
+   "seconds": 106,
    "uploaded": "2022-10"
   },
   {
    "type": "youtube",
-   "id": "5ADp4CdkjlE",
-   "title": "HYPE VIDEO: David Bakhtiari Returns | Green Bay Packers",
-   "source": "Packers",
-   "seconds": 152,
-   "uploaded": "2022-10"
-  },
-  {
-   "type": "youtube",
-   "id": "S9Q4Ww7K8Og",
-   "title": "The Anatomy of a Statement Win – Hard Knocks In Season (Episode 2 Trailer)",
-   "source": "Colts",
-   "seconds": 31,
+   "id": "w3EE68SDp9c",
+   "title": "Browns vs. Lions Game Day Hype Video | Cleveland Browns",
+   "source": "Browns",
+   "seconds": 42,
    "uploaded": "2022-10"
   },
   {
@@ -386,27 +394,11 @@
   },
   {
    "type": "youtube",
-   "id": "vdD0G0docUw",
-   "title": "Tennessee Titans at Los Angeles Rams | Hype Videos",
-   "source": "Titans",
-   "seconds": 61,
-   "uploaded": "2022-10"
-  },
-  {
-   "type": "youtube",
    "id": "75Wsv7IUAV0",
    "title": "Browns vs. Bears Game Day Hype Video | Cleveland Browns",
    "source": "Browns",
    "seconds": 45,
    "uploaded": "2021-10"
-  },
-  {
-   "type": "youtube",
-   "id": "nFwIbcMTfBY",
-   "title": "Browns at Steelers Hype Video | Cleveland Browns",
-   "source": "Browns",
-   "seconds": 48,
-   "uploaded": "2020-10"
   },
   {
    "type": "youtube",
@@ -417,5 +409,5 @@
    "uploaded": "2020-10"
   }
  ],
- "updated": "2026-10-06T16:01:16Z"
+ "updated": "2026-10-07T16:37:14Z"
 }
