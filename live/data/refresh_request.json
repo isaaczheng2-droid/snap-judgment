@@ -1,0 +1,22 @@
+{
+ "reasons": [
+  "Chauncey Golston: QUESTIONABLE \u2192 OUT (Neck)",
+  "Cam Hart: no report \u2192 QUESTIONABLE (Knee)",
+  "Josh Hines-Allen: no report \u2192 QUESTIONABLE (Groin)",
+  "DaVon Hamilton: ACTIVE \u2192 QUESTIONABLE (Foot)",
+  "Jourdan Lewis: ACTIVE \u2192 QUESTIONABLE (Hamstring)"
+ ],
+ "game_ids": [
+  "2026_05_DEN_LAC",
+  "2026_05_NYG_WAS",
+  "2026_05_PHI_JAX"
+ ],
+ "event_ids": [
+  "ev_1791425876_4aa98342",
+  "ev_1791425876_9ab643e5",
+  "ev_1791425876_b5042000",
+  "ev_1791425876_49d757c7",
+  "ev_1791425876_154e4ddf"
+ ],
+ "requested_at": "2026-10-08T02:17:58Z"
+}
