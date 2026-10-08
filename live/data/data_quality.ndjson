@@ -736,3 +736,6 @@
 {"kind":"unknown_player","detail":"Jedrick Wills Jr. (ARI) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-08T02:17:56Z"}
 {"kind":"unknown_player","detail":"Gabriel Rubio (PIT) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-08T02:17:56Z"}
 {"kind":"unknown_player","detail":"Cameron Robertson (ARI) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-08T02:17:56Z"}
+{"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-08T09:31:46Z"}
+{"kind":"unknown_player","detail":"Gabriel Rubio (PIT) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-08T09:31:46Z"}
+{"kind":"unknown_player","detail":"Cameron Robertson (ARI) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-08T09:31:46Z"}
