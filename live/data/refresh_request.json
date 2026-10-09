@@ -1,0 +1,35 @@
+{
+ "reasons": [
+  "T.J. Sanders: QUESTIONABLE \u2192 ACTIVE",
+  "Walter Nolen III: ACTIVE \u2192 QUESTIONABLE (Calf)",
+  "Camden Brown: ACTIVE \u2192 INACTIVE",
+  "Ajani Cornelius: ACTIVE \u2192 INACTIVE",
+  "James Houston: ACTIVE \u2192 INACTIVE (Shoulder)",
+  "Luke Haggard: ACTIVE \u2192 INACTIVE",
+  "DeMonte Capehart: ACTIVE \u2192 INACTIVE",
+  "Billy Schrauth: ACTIVE \u2192 INACTIVE",
+  "Joey Porter Jr.: ACTIVE \u2192 OUT (Illness)",
+  "Trent Brown: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Nico Collins: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_05_BUF_LA",
+  "2026_05_DET_ARI",
+  "2026_05_HOU_TEN",
+  "2026_05_TB_DAL"
+ ],
+ "event_ids": [
+  "ev_1791510052_fabf4691",
+  "ev_1791510052_bee4cdd7",
+  "ev_1791510052_2ee24682",
+  "ev_1791510052_b67832f8",
+  "ev_1791510052_e57f5177",
+  "ev_1791510052_cef6fa89",
+  "ev_1791510052_d2c5e15e",
+  "ev_1791510052_7b27b675",
+  "ev_1791510052_81309d20",
+  "ev_1791510052_d8fb36df",
+  "ev_1791510052_d6978c91"
+ ],
+ "requested_at": "2026-10-09T01:41:05Z"
+}
