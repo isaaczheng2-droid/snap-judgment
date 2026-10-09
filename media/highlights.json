@@ -10,14 +10,6 @@
   },
   {
    "type": "youtube",
-   "id": "yxujdKUhqwc",
-   "title": "Rams vs. Eagles: Revenge Tour | Game Trailer",
-   "source": "Rams",
-   "seconds": 35,
-   "uploaded": "2026-10"
-  },
-  {
-   "type": "youtube",
    "id": "YXEbFsRqg_s",
    "title": "The Perfect Storm. | Week 1 Game Day Trailer",
    "source": "Cardinals",
@@ -30,6 +22,22 @@
    "title": "Shaboozey - \"Let 'Em Know\" | HYPE | Atlanta Falcons",
    "source": "Falcons",
    "seconds": 65,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
+   "id": "5FUYpeuUsm0",
+   "title": "2026 Buffalo Bills Season Hype Video With Ryan Fitzpatrick and Josh Allen!",
+   "source": "Bills",
+   "seconds": 141,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
+   "id": "5HUTrownASk",
+   "title": "Bills vs. Chargers | Game 3 Hype Trailer ft. Stevie Johnson",
+   "source": "Bills",
+   "seconds": 55,
    "uploaded": "2026-09"
   },
   {
@@ -162,34 +170,10 @@
   },
   {
    "type": "youtube",
-   "id": "-RXstH6NjhA",
-   "title": "The Broncos’ 2025 AFC Championship Game hype video narrated by Peyton Manning | Climb Higher",
+   "id": "DTFSRbNPLvM",
+   "title": "QB Bo Nix narrates Broncos' #NEvsDEN hype video | Climb Higher",
    "source": "Broncos",
-   "seconds": 74,
-   "uploaded": "2026-02"
-  },
-  {
-   "type": "youtube",
-   "id": "BSkiDbY6XYc",
-   "title": "Playoff trailer | Packers 2025 postseason",
-   "source": "Packers",
-   "seconds": 58,
-   "uploaded": "2026-02"
-  },
-  {
-   "type": "youtube",
-   "id": "P2RfuapthN8",
-   "title": "J.J. Watt's EPIC playoff message to H-Town 🔥 | Texans Hype",
-   "source": "Texans",
-   "seconds": 138,
-   "uploaded": "2026-02"
-  },
-  {
-   "type": "youtube",
-   "id": "liUr4KZlUqI",
-   "title": "Rams vs. Bears: It's Hunting Season | Game Trailer",
-   "source": "Rams",
-   "seconds": 84,
+   "seconds": 96,
    "uploaded": "2026-02"
   },
   {
@@ -202,18 +186,18 @@
   },
   {
    "type": "youtube",
-   "id": "cXr9ViT0dVk",
-   "title": "2025 Chicago Bears playoff hype narrated by Common",
-   "source": "Bears",
-   "seconds": 86,
+   "id": "BSkiDbY6XYc",
+   "title": "Playoff trailer | Packers 2025 postseason",
+   "source": "Packers",
+   "seconds": 58,
    "uploaded": "2026-01"
   },
   {
    "type": "youtube",
-   "id": "oIAg7QvdIjs",
-   "title": "Climb Higher: The Broncos’ 2025 playoff hype video narrated by Aqib Talib",
-   "source": "Broncos",
-   "seconds": 65,
+   "id": "P2RfuapthN8",
+   "title": "J.J. Watt's EPIC playoff message to H-Town 🔥 | Texans Hype",
+   "source": "Texans",
+   "seconds": 138,
    "uploaded": "2026-01"
   },
   {
@@ -250,10 +234,10 @@
   },
   {
    "type": "youtube",
-   "id": "Y6l6SEqzELY",
-   "title": "'Protect Our House' | Commanders vs. Bucs Wild Card Round Hype Video | Tampa Bay Buccaneers",
+   "id": "uGQcYEDQoe8",
+   "title": "It's About Legacy | 2025 Tampa Bay Buccaneers Season Trailer",
    "source": "Buccaneers",
-   "seconds": 60,
+   "seconds": 119,
    "uploaded": "2025-10"
   },
   {
@@ -290,14 +274,6 @@
   },
   {
    "type": "youtube",
-   "id": "iWFPuehwxDM",
-   "title": "New York Jets 2024 Season Hype Video",
-   "source": "Jets",
-   "seconds": 110,
-   "uploaded": "2024-10"
-  },
-  {
-   "type": "youtube",
    "id": "znK04uBbJuM",
    "title": "Netflix Releases 'Receiver' Official Trailer | Premieres July 10",
    "source": "49ers",
@@ -314,18 +290,26 @@
   },
   {
    "type": "youtube",
-   "id": "cGIh3etxzhE",
-   "title": "Sights and Sounds: Buffalo Bills Kids Day | 2023",
-   "source": "Bills",
-   "seconds": 58,
-   "uploaded": "2023-10"
-  },
-  {
-   "type": "youtube",
    "id": "SHilzIjoP64",
    "title": "Can't Stop Now, We're Better Than Ever | Week 15 Hype Video",
    "source": "Bengals",
    "seconds": 61,
+   "uploaded": "2023-10"
+  },
+  {
+   "type": "youtube",
+   "id": "FpY4WMWDgrw",
+   "title": "“The Sky Ain’t Even The Limit!” Best Sights & Sounds From Rams' 2022 Season",
+   "source": "Rams",
+   "seconds": 456,
+   "uploaded": "2023-10"
+  },
+  {
+   "type": "youtube",
+   "id": "9ZAUG2U5ZzQ",
+   "title": "WEEK 9 HYPE TAPE: MIAMI DOLPHINS AT CHICAGO BEARS",
+   "source": "Dolphins",
+   "seconds": 53,
    "uploaded": "2023-10"
   },
   {
@@ -346,10 +330,10 @@
   },
   {
    "type": "youtube",
-   "id": "gN3EtWVN6Uw",
-   "title": "Best Sights and Sounds from the 2021 Season | Buffalo Bills",
-   "source": "Bills",
-   "seconds": 364,
+   "id": "yKhnC1fyFRc",
+   "title": "Chicago Bears 2022 Official Season Hype Video",
+   "source": "Bears",
+   "seconds": 66,
    "uploaded": "2022-10"
   },
   {
@@ -370,18 +354,10 @@
   },
   {
    "type": "youtube",
-   "id": "S9Q4Ww7K8Og",
-   "title": "The Anatomy of a Statement Win – Hard Knocks In Season (Episode 2 Trailer)",
-   "source": "Colts",
-   "seconds": 31,
-   "uploaded": "2022-10"
-  },
-  {
-   "type": "youtube",
-   "id": "04eXwtr-HHk",
-   "title": "WEEK 5 HYPE TAPE: MIAMI DOLPHINS VS. NEW YORK JETS",
-   "source": "Dolphins",
-   "seconds": 63,
+   "id": "KC-XpcmctLI",
+   "title": "THE NEW YORK I KNOW... Narrated by Jadakiss | New York Jets 2022 Season Hype Video",
+   "source": "Jets",
+   "seconds": 111,
    "uploaded": "2022-10"
   },
   {
@@ -410,6 +386,22 @@
   },
   {
    "type": "youtube",
+   "id": "_cMpzp8qJFg",
+   "title": "Rams Face Patriots in Primetime Thursday Night Football Matchup! | Week 14 Game Trailer",
+   "source": "Rams",
+   "seconds": 53,
+   "uploaded": "2021-10"
+  },
+  {
+   "type": "youtube",
+   "id": "oxf-01ebf_8",
+   "title": "'You've trained your entire life for this moment': Shannon Sharpe narrates season hype video",
+   "source": "Broncos",
+   "seconds": 96,
+   "uploaded": "2020-10"
+  },
+  {
+   "type": "youtube",
    "id": "04LIbAlGjhI",
    "title": "Choppa & Louisiana Philharmonic Orchestra - Choppa Style | Saints-Vikings Hype",
    "source": "Saints",
@@ -417,5 +409,5 @@
    "uploaded": "2020-10"
   }
  ],
- "updated": "2026-10-08T16:35:59Z"
+ "updated": "2026-10-09T16:19:08Z"
 }
