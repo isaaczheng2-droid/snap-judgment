@@ -1,0 +1,42 @@
+{
+ "reasons": [
+  "Vernon Broughton: no report \u2192 QUESTIONABLE (Illness)",
+  "Jaylen Watson: QUESTIONABLE \u2192 ACTIVE (Shoulder)",
+  "Nathan Shepherd: no report \u2192 QUESTIONABLE (Illness)",
+  "Yahya Black: QUESTIONABLE \u2192 ACTIVE",
+  "Christian Benford: QUESTIONABLE \u2192 ACTIVE (Toe)",
+  "Chauncey Golston: OUT \u2192 IR (Neck)",
+  "Trey Lance: DOUBTFUL \u2192 IR (Groin)",
+  "Za'Darius Smith: QUESTIONABLE \u2192 OUT (Concussion)",
+  "Trent Brown: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Nico Collins: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Drake Maye: ACTIVE \u2192 UNKNOWN (Shoulder)",
+  "Jaxon Smith-Njigba: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_05_BAL_ATL",
+  "2026_05_BUF_LA",
+  "2026_05_DEN_LAC",
+  "2026_05_HOU_TEN",
+  "2026_05_IND_PIT",
+  "2026_05_LV_NE",
+  "2026_05_MIN_NO",
+  "2026_05_NYG_WAS",
+  "2026_05_SF_SEA"
+ ],
+ "event_ids": [
+  "ev_1791673115_9aff8d83",
+  "ev_1791673115_bb33ccc5",
+  "ev_1791673115_7c61c8dc",
+  "ev_1791673115_0fd1b1ce",
+  "ev_1791673115_cb155d02",
+  "ev_1791673115_ac394666",
+  "ev_1791673115_9c48a09a",
+  "ev_1791673115_8d974dc1",
+  "ev_1791673115_fe8d2a1c",
+  "ev_1791673115_03aef9e4",
+  "ev_1791673115_3ace9db2",
+  "ev_1791673115_d70c59ea"
+ ],
+ "requested_at": "2026-10-10T22:58:46Z"
+}
