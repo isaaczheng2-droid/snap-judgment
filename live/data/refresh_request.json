@@ -1,0 +1,26 @@
+{
+ "reasons": [
+  "Box scores updated: player results and the paper test can be graded",
+  "Ed Oliver: QUESTIONABLE \u2192 OUT (Knee)",
+  "Arden Key: OUT \u2192 IR (Hamstring)",
+  "Yahya Black: ACTIVE \u2192 QUESTIONABLE (Personal)",
+  "Trent Brown: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Nico Collins: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Jaxon Smith-Njigba: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_05_BUF_LA",
+  "2026_05_HOU_TEN",
+  "2026_05_IND_PIT",
+  "2026_05_SF_SEA"
+ ],
+ "event_ids": [
+  "ev_1791658484_5dc856f9",
+  "ev_1791658484_02fa6744",
+  "ev_1791658484_6a25d98f",
+  "ev_1791658484_19f2f09e",
+  "ev_1791658484_96c9aa16",
+  "ev_1791658484_e7b9bb2a"
+ ],
+ "requested_at": "2026-10-10T18:54:53Z"
+}
