@@ -1,0 +1,21 @@
+{
+ "reasons": [
+  "Trent Brown: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Nico Collins: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Jaxon Smith-Njigba: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "LAC LT: Rashawn Slater \u2192 Logan Taylor as the starter",
+  "LAC RT: Joe Alt \u2192 Travis Burke as the starter"
+ ],
+ "game_ids": [
+  "2026_05_HOU_TEN",
+  "2026_05_SF_SEA"
+ ],
+ "event_ids": [
+  "ev_1791618374_73d327a5",
+  "ev_1791618374_a2e520bd",
+  "ev_1791618374_52b8f003",
+  "ev_1791618374_7f173015",
+  "ev_1791618374_b573bd74"
+ ],
+ "requested_at": "2026-10-10T07:46:29Z"
+}
