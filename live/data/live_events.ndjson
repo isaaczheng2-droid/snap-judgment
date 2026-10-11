@@ -18515,3 +18515,20 @@
 {"event_id":"ev_1791684869_c83ef8d3","event_type":"WEATHER_CHANGE_EVENT","game_id":"2026_05_IND_PIT","player_id":null,"team_id":null,"severity":"MEDIUM","previous_value":19.0,"new_value":12.9,"detail":"Wind forecast 19 mph \u2192 13 mph","source":"openmeteo","occurred_at":"2026-10-11T02:14:29Z","received_at":"2026-10-11T02:14:29Z","processed":false,"prediction_recalculated":false,"field":"max_window_wind","system_received_at":"2026-10-11T02:14:35Z"}
 {"event_id":"ev_1791684869_63dc53a5","event_type":"WEATHER_CHANGE_EVENT","game_id":"2026_05_IND_PIT","player_id":null,"team_id":null,"severity":"HIGH","previous_value":36.5,"new_value":23.3,"detail":"Gusts forecast 36 mph \u2192 23 mph","source":"openmeteo","occurred_at":"2026-10-11T02:14:29Z","received_at":"2026-10-11T02:14:29Z","processed":false,"prediction_recalculated":false,"field":"max_window_gust","system_received_at":"2026-10-11T02:14:35Z"}
 {"event_id":"ev_1791684875_396c3b19","event_type":"WEATHER_CHANGE_EVENT","game_id":"2026_05_BAL_ATL","player_id":null,"team_id":null,"severity":"MEDIUM","previous_value":"LOW","new_value":"NONE","detail":"Weather impact LOW \u2192 NONE (improving)","source":"openmeteo","occurred_at":"2026-10-11T02:14:35Z","received_at":"2026-10-11T02:14:35Z","processed":false,"prediction_recalculated":false,"field":"impact","system_received_at":"2026-10-11T02:14:35Z"}
+{"event_id":"ev_1791684862_3a441600","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-10-11T02:23:24Z"}
+{"event_id":"ev_1791684862_80b2a2fb","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-10-11T02:23:24Z"}
+{"event_id":"ev_1791684862_3248ae11","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-11T02:23:24Z"}
+{"event_id":"ev_1791684863_ac9df96e","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-11T02:23:24Z"}
+{"event_id":"ev_1791684862_92c317b4","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-11T02:23:24Z"}
+{"event_id":"ev_1791684862_2061f353","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-11T02:23:24Z"}
+{"event_id":"ev_1791684862_a141e6e2","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-11T02:23:24Z"}
+{"event_id":"ev_1791684862_4dcc676f","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-11T02:23:24Z"}
+{"event_id":"ev_1791684869_c83ef8d3","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-11T02:23:24Z"}
+{"event_id":"ev_1791684869_63dc53a5","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-11T02:23:24Z"}
+{"event_id":"ev_1791684862_c69fe0f2","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-11T02:23:24Z"}
+{"event_id":"ev_1791684862_b513d2c5","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-11T02:23:24Z"}
+{"event_id":"ev_1791684862_6c6ea4a7","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-11T02:23:24Z"}
+{"event_id":"ev_1791684862_1a13a3d2","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-11T02:23:24Z"}
+{"event_id":"ev_1791684875_396c3b19","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-11T02:23:24Z"}
+{"event_id":"ev_1791684862_0af1dd39","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-11T02:23:24Z"}
+{"event_id":"ev_1791684862_99566d41","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-11T02:23:24Z"}
