@@ -2,18 +2,18 @@
  "items": [
   {
    "type": "youtube",
-   "id": "x7Tcm5PLwZI",
-   "title": "Buffalo Bills vs Patriots Hype Video featuring Kyle Williams! | Coming Soon Trailers",
-   "source": "Bills",
-   "seconds": 52,
-   "uploaded": "2026-10"
-  },
-  {
-   "type": "youtube",
    "id": "jbqt3OaOrQI",
    "title": "Bears-Packers hype trailer | Bears Buzz | Chicago Bears",
    "source": "Bears",
    "seconds": 131,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
+   "id": "1z8CqFNkjZ4",
+   "title": "Week 5 Game Trailer vs the Pittsburgh Steelers",
+   "source": "Colts",
+   "seconds": 49,
    "uploaded": "2026-10"
   },
   {
@@ -26,14 +26,6 @@
   },
   {
    "type": "youtube",
-   "id": "CXVvfw9vooA",
-   "title": "Back at Home | HYPE | Atlanta Falcons",
-   "source": "Falcons",
-   "seconds": 54,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
    "id": "Iumv8hVy_uE",
    "title": "Shaboozey - \"Let 'Em Know\" | HYPE | Atlanta Falcons",
    "source": "Falcons",
@@ -42,10 +34,26 @@
   },
   {
    "type": "youtube",
+   "id": "CXVvfw9vooA",
+   "title": "Back at Home | HYPE | Atlanta Falcons",
+   "source": "Falcons",
+   "seconds": 54,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
    "id": "5FUYpeuUsm0",
    "title": "2026 Buffalo Bills Season Hype Video With Ryan Fitzpatrick and Josh Allen!",
    "source": "Bills",
    "seconds": 141,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
+   "id": "5ook1Opv7M0",
+   "title": "2026 Season Trailer | Carolina Panthers",
+   "source": "Panthers",
+   "seconds": 78,
    "uploaded": "2026-09"
   },
   {
@@ -122,6 +130,14 @@
   },
   {
    "type": "youtube",
+   "id": "CgA_b5CzuPI",
+   "title": "BUILT FOR THIS | 2026 New York Jets Official Hype Video",
+   "source": "Jets",
+   "seconds": 116,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
    "id": "wOY1kvSKCmE",
    "title": "Philadelphia Eagles 2026 Season Hype Video",
    "source": "Eagles",
@@ -134,6 +150,14 @@
    "title": "Run It Forward | Seattle Seahawks 2026 Season Trailer",
    "source": "Seahawks",
    "seconds": 79,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
+   "id": "RuJbHATlLXg",
+   "title": "2026 Season Trailer, Featuring Chris Godwin Jr. | Tampa Bay Buccaneers",
+   "source": "Buccaneers",
+   "seconds": 151,
    "uploaded": "2026-09"
   },
   {
@@ -162,18 +186,18 @@
   },
   {
    "type": "youtube",
-   "id": "zc6wL-OFai4",
-   "title": "🔥 PATRIOTS AFC DIVISIONAL PLAYOFF HYPE🔥 | WE ALL WE GOT WE ALL WE NEED",
-   "source": "Patriots",
-   "seconds": 57,
-   "uploaded": "2026-02"
-  },
-  {
-   "type": "youtube",
    "id": "XHejZ8pBKyI",
    "title": "Sound the Drum | Panthers Wild Card Trailer ft. Stephen Curry",
    "source": "Panthers",
    "seconds": 99,
+   "uploaded": "2026-01"
+  },
+  {
+   "type": "youtube",
+   "id": "oIAg7QvdIjs",
+   "title": "Climb Higher: The Broncos’ 2025 playoff hype video narrated by Aqib Talib",
+   "source": "Broncos",
+   "seconds": 65,
    "uploaded": "2026-01"
   },
   {
@@ -186,10 +210,26 @@
   },
   {
    "type": "youtube",
+   "id": "P2RfuapthN8",
+   "title": "J.J. Watt's EPIC playoff message to H-Town 🔥 | Texans Hype",
+   "source": "Texans",
+   "seconds": 138,
+   "uploaded": "2026-01"
+  },
+  {
+   "type": "youtube",
    "id": "YeNBRUtv1sc",
    "title": "Work is Just Getting Started | Jaguars Wild Card Hype Video",
    "source": "Jaguars",
    "seconds": 71,
+   "uploaded": "2026-01"
+  },
+  {
+   "type": "youtube",
+   "id": "iiWP---sSTo",
+   "title": "PATRIOTS 2025 PLAYOFF HYPE 🔥 | WE ALL WE GOT WE ALL WE NEED",
+   "source": "Patriots",
+   "seconds": 49,
    "uploaded": "2026-01"
   },
   {
@@ -199,6 +239,14 @@
    "source": "Titans",
    "seconds": 25,
    "uploaded": "2025-12"
+  },
+  {
+   "type": "youtube",
+   "id": "-JR-OPtJ75s",
+   "title": "2025 Buffalo Bills Season Hype Video With Jim Kelly, Thurman Thomas, Andre Reed, and Steve Tasker!",
+   "source": "Bills",
+   "seconds": 121,
+   "uploaded": "2025-10"
   },
   {
    "type": "youtube",
@@ -222,14 +270,6 @@
    "title": "It's About Legacy | 2025 Tampa Bay Buccaneers Season Trailer",
    "source": "Buccaneers",
    "seconds": 119,
-   "uploaded": "2025-10"
-  },
-  {
-   "type": "youtube",
-   "id": "Y6l6SEqzELY",
-   "title": "'Protect Our House' | Commanders vs. Bucs Wild Card Round Hype Video | Tampa Bay Buccaneers",
-   "source": "Buccaneers",
-   "seconds": 60,
    "uploaded": "2025-10"
   },
   {
@@ -258,18 +298,18 @@
   },
   {
    "type": "youtube",
-   "id": "nDHVm6qxSsI",
-   "title": "H-Town READY for playoffs 🔥 | Texans Hype",
-   "source": "Texans",
-   "seconds": 120,
-   "uploaded": "2024-10"
-  },
-  {
-   "type": "youtube",
    "id": "6xsKy9xsx8U",
    "title": "Vikings Aura | Hype Video",
    "source": "Vikings",
    "seconds": 85,
+   "uploaded": "2024-10"
+  },
+  {
+   "type": "youtube",
+   "id": "iWFPuehwxDM",
+   "title": "New York Jets 2024 Season Hype Video",
+   "source": "Jets",
+   "seconds": 110,
    "uploaded": "2024-10"
   },
   {
@@ -354,14 +394,6 @@
   },
   {
    "type": "youtube",
-   "id": "eOZVrQk90p0",
-   "title": "📽️ Sights & Sounds From The Flight 2022 Premiere 📽️ | The New York Jets | NFL",
-   "source": "Jets",
-   "seconds": 27,
-   "uploaded": "2022-10"
-  },
-  {
-   "type": "youtube",
    "id": "galaAZ4Eqho",
    "title": "Bryant Young Narrates 49ers Playoff Hype Video | 49ers",
    "source": "49ers",
@@ -378,34 +410,10 @@
   },
   {
    "type": "youtube",
-   "id": "5FLvLJ5iC80",
-   "title": "BACK IN BLACK || Carolina Panthers NFL Hype Video",
-   "source": "Panthers",
-   "seconds": 71,
-   "uploaded": "2021-10"
-  },
-  {
-   "type": "youtube",
    "id": "75Wsv7IUAV0",
    "title": "Browns vs. Bears Game Day Hype Video | Cleveland Browns",
    "source": "Browns",
    "seconds": 45,
-   "uploaded": "2021-10"
-  },
-  {
-   "type": "youtube",
-   "id": "_a3C2ZiBEic",
-   "title": "The Denver Broncos' 2021 season hype video",
-   "source": "Broncos",
-   "seconds": 126,
-   "uploaded": "2021-10"
-  },
-  {
-   "type": "youtube",
-   "id": "R72ivt62j9I",
-   "title": "Everything From Jets vs. Titans In 99 Seconds | Sights & Sounds | New York Jets",
-   "source": "Jets",
-   "seconds": 99,
    "uploaded": "2021-10"
   },
   {
@@ -417,5 +425,5 @@
    "uploaded": "2020-10"
   }
  ],
- "updated": "2026-10-10T15:27:09Z"
+ "updated": "2026-10-11T15:47:57Z"
 }
