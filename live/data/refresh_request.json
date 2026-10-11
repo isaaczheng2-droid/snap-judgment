@@ -1,0 +1,20 @@
+{
+ "reasons": [
+  "Trent Brown: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Nico Collins: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Drake Maye: ACTIVE \u2192 UNKNOWN (Shoulder)",
+  "Jaxon Smith-Njigba: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_05_HOU_TEN",
+  "2026_05_LV_NE",
+  "2026_05_SF_SEA"
+ ],
+ "event_ids": [
+  "ev_1791684862_c69fe0f2",
+  "ev_1791684862_b513d2c5",
+  "ev_1791684862_4dcc676f",
+  "ev_1791684862_80b2a2fb"
+ ],
+ "requested_at": "2026-10-11T02:14:35Z"
+}
