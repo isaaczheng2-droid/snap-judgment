@@ -2,6 +2,14 @@
  "items": [
   {
    "type": "youtube",
+   "id": "7zoXqKuoAfQ",
+   "title": "Bills vs. Rams HYPE Video for Monday Night Football",
+   "source": "Bills",
+   "seconds": 65,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
    "id": "jbqt3OaOrQI",
    "title": "Bears-Packers hype trailer | Bears Buzz | Chicago Bears",
    "source": "Bears",
@@ -26,18 +34,18 @@
   },
   {
    "type": "youtube",
-   "id": "Iumv8hVy_uE",
-   "title": "Shaboozey - \"Let 'Em Know\" | HYPE | Atlanta Falcons",
-   "source": "Falcons",
-   "seconds": 65,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
    "id": "CXVvfw9vooA",
    "title": "Back at Home | HYPE | Atlanta Falcons",
    "source": "Falcons",
    "seconds": 54,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
+   "id": "Iumv8hVy_uE",
+   "title": "Shaboozey - \"Let 'Em Know\" | HYPE | Atlanta Falcons",
+   "source": "Falcons",
+   "seconds": 65,
    "uploaded": "2026-09"
   },
   {
@@ -174,7 +182,7 @@
    "title": "Building A Monster | Dallas Cowboys 2026 Hype Video",
    "source": "Cowboys",
    "seconds": 144,
-   "uploaded": "2026-04"
+   "uploaded": "2026-03"
   },
   {
    "type": "youtube",
@@ -218,14 +226,6 @@
   },
   {
    "type": "youtube",
-   "id": "YeNBRUtv1sc",
-   "title": "Work is Just Getting Started | Jaguars Wild Card Hype Video",
-   "source": "Jaguars",
-   "seconds": 71,
-   "uploaded": "2026-01"
-  },
-  {
-   "type": "youtube",
    "id": "iiWP---sSTo",
    "title": "PATRIOTS 2025 PLAYOFF HYPE 🔥 | WE ALL WE GOT WE ALL WE NEED",
    "source": "Patriots",
@@ -242,18 +242,10 @@
   },
   {
    "type": "youtube",
-   "id": "-JR-OPtJ75s",
-   "title": "2025 Buffalo Bills Season Hype Video With Jim Kelly, Thurman Thomas, Andre Reed, and Steve Tasker!",
-   "source": "Bills",
-   "seconds": 121,
-   "uploaded": "2025-10"
-  },
-  {
-   "type": "youtube",
-   "id": "M8I3QnmQook",
-   "title": "Welcome back | Packers 2025 season trailer",
-   "source": "Packers",
-   "seconds": 93,
+   "id": "T7LUwLZHfbo",
+   "title": "\"MNF Loading…\" #KCvsJAX Hype Video | Jacksonville Jaguars",
+   "source": "Jaguars",
+   "seconds": 59,
    "uploaded": "2025-10"
   },
   {
@@ -370,10 +362,10 @@
   },
   {
    "type": "youtube",
-   "id": "w3EE68SDp9c",
-   "title": "Browns vs. Lions Game Day Hype Video | Cleveland Browns",
-   "source": "Browns",
-   "seconds": 42,
+   "id": "5ADp4CdkjlE",
+   "title": "HYPE VIDEO: David Bakhtiari Returns | Green Bay Packers",
+   "source": "Packers",
+   "seconds": 152,
    "uploaded": "2022-10"
   },
   {
@@ -418,12 +410,12 @@
   },
   {
    "type": "youtube",
-   "id": "04LIbAlGjhI",
-   "title": "Choppa & Louisiana Philharmonic Orchestra - Choppa Style | Saints-Vikings Hype",
-   "source": "Saints",
-   "seconds": 109,
-   "uploaded": "2020-10"
+   "id": "wbn2OZ3OawE",
+   "title": "Browns vs. Steelers Hype Video (Week 17) | Cleveland Browns",
+   "source": "Browns",
+   "seconds": 42,
+   "uploaded": "2021-10"
   }
  ],
- "updated": "2026-10-11T15:47:57Z"
+ "updated": "2026-10-12T19:08:22Z"
 }
