@@ -1,0 +1,19 @@
+{
+ "reasons": [
+  "Window finished: Monday 8:15 PM ET game (1 final)",
+  "Trent Brown: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Quinyon Mitchell: ACTIVE \u2192 UNKNOWN (Knee)",
+  "Trent Williams: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_05_HOU_TEN",
+  "2026_05_PHI_JAX",
+  "2026_05_SF_SEA"
+ ],
+ "event_ids": [
+  "ev_1791863737_d1a5c75d",
+  "ev_1791863737_f27aa9e0",
+  "ev_1791863737_4b4fbe2d"
+ ],
+ "requested_at": "2026-10-13T03:55:37Z"
+}
