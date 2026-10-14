@@ -90,9 +90,9 @@
   },
   {
    "type": "youtube",
-   "id": "Ue3TIowkHMc",
-   "title": "MINDSET 😤 | Kansas City Chiefs 2026 Preseason HYPE Video 🔥",
-   "source": "Chiefs",
+   "id": "pP6hgP5k_gs",
+   "title": "Still About Us. #CLEvsJAX Hype Video | Jacksonville Jaguars",
+   "source": "Jaguars",
    "seconds": 67,
    "uploaded": "2026-09"
   },
@@ -102,6 +102,14 @@
    "title": "2026 Chiefs Season Hype Video",
    "source": "Chiefs",
    "seconds": 75,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
+   "id": "Ue3TIowkHMc",
+   "title": "MINDSET 😤 | Kansas City Chiefs 2026 Preseason HYPE Video 🔥",
+   "source": "Chiefs",
+   "seconds": 67,
    "uploaded": "2026-09"
   },
   {
@@ -210,6 +218,22 @@
   },
   {
    "type": "youtube",
+   "id": "P2RfuapthN8",
+   "title": "J.J. Watt's EPIC playoff message to H-Town 🔥 | Texans Hype",
+   "source": "Texans",
+   "seconds": 138,
+   "uploaded": "2026-01"
+  },
+  {
+   "type": "youtube",
+   "id": "YeNBRUtv1sc",
+   "title": "Work is Just Getting Started | Jaguars Wild Card Hype Video",
+   "source": "Jaguars",
+   "seconds": 71,
+   "uploaded": "2026-01"
+  },
+  {
+   "type": "youtube",
    "id": "iiWP---sSTo",
    "title": "PATRIOTS 2025 PLAYOFF HYPE 🔥 | WE ALL WE GOT WE ALL WE NEED",
    "source": "Patriots",
@@ -230,22 +254,6 @@
    "title": "Welcome back | Packers 2025 season trailer",
    "source": "Packers",
    "seconds": 93,
-   "uploaded": "2025-10"
-  },
-  {
-   "type": "youtube",
-   "id": "EpPnNNxEDD0",
-   "title": "IF THEY AIN'T WITH HOUSTON... 👀 | Lecrae's EPIC playoff hype",
-   "source": "Texans",
-   "seconds": 132,
-   "uploaded": "2025-10"
-  },
-  {
-   "type": "youtube",
-   "id": "aMK-QmEP9Ug",
-   "title": "\"Game on.\" | Jaguars 2025 Season Hype Video",
-   "source": "Jaguars",
-   "seconds": 110,
    "uploaded": "2025-10"
   },
   {
@@ -278,14 +286,6 @@
    "title": "Time to get HYPED | Detroit Lions team introduction video: Wild Card Round vs. Los Angeles Rams",
    "source": "Lions",
    "seconds": 82,
-   "uploaded": "2024-10"
-  },
-  {
-   "type": "youtube",
-   "id": "1yBIO8dbcNw",
-   "title": "Never Scared... | Titans vs. Jaguars Hype Video | Week 11 | Jacksonville Jaguars",
-   "source": "Jaguars",
-   "seconds": 90,
    "uploaded": "2024-10"
   },
   {
@@ -330,18 +330,18 @@
   },
   {
    "type": "youtube",
-   "id": "9ZAUG2U5ZzQ",
-   "title": "WEEK 9 HYPE TAPE: MIAMI DOLPHINS AT CHICAGO BEARS",
+   "id": "jfVypnms8Lo",
+   "title": "WEEK 17 HYPE TAPE | DOLPHINS AT PATRIOTS",
    "source": "Dolphins",
-   "seconds": 53,
+   "seconds": 71,
    "uploaded": "2023-10"
   },
   {
    "type": "youtube",
-   "id": "mBU2RPFwvTo",
-   "title": "WEEK 14 HYPE TAPE: MIAMI DOLPHINS AT LOS ANGELES CHARGERS",
+   "id": "YyU9P2qPv4A",
+   "title": "WEEK 15 HYPE TAPE | DOLPHINS VS. BILLS",
    "source": "Dolphins",
-   "seconds": 36,
+   "seconds": 53,
    "uploaded": "2023-10"
   },
   {
@@ -370,6 +370,22 @@
   },
   {
    "type": "youtube",
+   "id": "w3EE68SDp9c",
+   "title": "Browns vs. Lions Game Day Hype Video | Cleveland Browns",
+   "source": "Browns",
+   "seconds": 42,
+   "uploaded": "2022-10"
+  },
+  {
+   "type": "youtube",
+   "id": "S9Q4Ww7K8Og",
+   "title": "The Anatomy of a Statement Win – Hard Knocks In Season (Episode 2 Trailer)",
+   "source": "Colts",
+   "seconds": 31,
+   "uploaded": "2022-10"
+  },
+  {
+   "type": "youtube",
    "id": "weerRdCbCVo",
    "title": "This Is What It Feels Like To Bring It Home | Super Bowl LVI Hype Video",
    "source": "Rams",
@@ -391,7 +407,23 @@
    "source": "Titans",
    "seconds": 61,
    "uploaded": "2022-10"
+  },
+  {
+   "type": "youtube",
+   "id": "wbn2OZ3OawE",
+   "title": "Browns vs. Steelers Hype Video (Week 17) | Cleveland Browns",
+   "source": "Browns",
+   "seconds": 42,
+   "uploaded": "2021-10"
+  },
+  {
+   "type": "youtube",
+   "id": "04LIbAlGjhI",
+   "title": "Choppa & Louisiana Philharmonic Orchestra - Choppa Style | Saints-Vikings Hype",
+   "source": "Saints",
+   "seconds": 109,
+   "uploaded": "2020-10"
   }
  ],
- "updated": "2026-10-13T17:00:42Z"
+ "updated": "2026-10-14T14:34:27Z"
 }
