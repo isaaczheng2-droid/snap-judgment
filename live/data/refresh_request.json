@@ -1,0 +1,21 @@
+{
+ "reasons": [
+  "Dayo Odeyingbo: QUESTIONABLE \u2192 OUT (Quadriceps)",
+  "Tony Pollard: ACTIVE \u2192 QUESTIONABLE (Foot)",
+  "Breece Hall: QUESTIONABLE \u2192 DOUBTFUL (Quadriceps)",
+  "Baker Mayfield: OUT \u2192 DOUBTFUL (Thumb)"
+ ],
+ "game_ids": [
+  "2026_06_CHI_ATL",
+  "2026_06_NYJ_NE",
+  "2026_06_PIT_TB",
+  "2026_06_TEN_IND"
+ ],
+ "event_ids": [
+  "ev_1792004283_3dd1a9e3",
+  "ev_1792004283_ad1c65db",
+  "ev_1792004283_54f65f5b",
+  "ev_1792004283_450917cc"
+ ],
+ "requested_at": "2026-10-14T18:58:03Z"
+}
