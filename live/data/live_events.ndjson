@@ -20493,3 +20493,22 @@
 {"event_id":"ev_1792004283_450917cc","event_type":"STARTING_QB_CHANGE","game_id":"2026_06_PIT_TB","player_id":"00-0034855","team_id":"TB","severity":"CRITICAL","previous_value":"OUT","new_value":"DOUBTFUL","detail":"Baker Mayfield: OUT \u2192 DOUBTFUL (Thumb)","source":"espn","occurred_at":"2026-10-14T15:56:00Z","received_at":"2026-10-14T18:58:03Z","processed":false,"prediction_recalculated":false,"impact_tier":"CRITICAL","impact_reasons":["starter (projected starter in the game model)"],"player_name":"Baker Mayfield","system_received_at":"2026-10-14T18:58:03Z"}
 {"event_id":"ev_1792004283_72ba1bfd","event_type":"RETURN_DATE_CHANGE","game_id":"2026_06_PIT_TB","player_id":"00-0034855","team_id":"TB","severity":"LOW","previous_value":"2026-10-25","new_value":"2026-10-18","detail":"Baker Mayfield: estimated return 2026-10-25 \u2192 2026-10-18","source":"espn","occurred_at":"2026-10-14T15:56:00Z","received_at":"2026-10-14T18:58:03Z","processed":false,"prediction_recalculated":false,"player_name":"Baker Mayfield","system_received_at":"2026-10-14T18:58:03Z"}
 {"event_id":"ev_1792004283_4422105f","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_06_HOU_JAX","player_id":"00-0034836","team_id":"HOU","severity":"LOW","previous_value":"IR","new_value":"ACTIVE","detail":"Braden Smith: IR \u2192 ACTIVE","source":"espn","occurred_at":"2026-10-14T14:51:00Z","received_at":"2026-10-14T18:58:03Z","processed":false,"prediction_recalculated":false,"impact_tier":"LOW","impact_reasons":["depth rank 3"],"player_name":"Braden Smith","system_received_at":"2026-10-14T18:58:03Z"}
+{"event_id":"ev_1792004283_1fa1954e","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-14T19:03:36Z"}
+{"event_id":"ev_1792004283_db9f804d","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-14T19:03:36Z"}
+{"event_id":"ev_1792004283_4422105f","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-14T19:03:36Z"}
+{"event_id":"ev_1792004283_dec4ed8d","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-14T19:03:36Z"}
+{"event_id":"ev_1792004283_3dd1a9e3","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-14T19:03:36Z"}
+{"event_id":"ev_1792004283_08e14f61","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-14T19:03:36Z"}
+{"event_id":"ev_1792004283_6cae1801","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-14T19:03:36Z"}
+{"event_id":"ev_1792004283_80c17fe7","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-14T19:03:36Z"}
+{"event_id":"ev_1792004283_1696eb25","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-14T19:03:36Z"}
+{"event_id":"ev_1792004283_ad1c65db","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-14T19:03:36Z"}
+{"event_id":"ev_1792004283_98ff7e69","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-14T19:03:36Z"}
+{"event_id":"ev_1792004283_b54f343e","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-14T19:03:36Z"}
+{"event_id":"ev_1792004283_146e8b97","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-14T19:03:36Z"}
+{"event_id":"ev_1792004283_e3cf30c4","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-14T19:03:36Z"}
+{"event_id":"ev_1792004283_33df27ae","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-14T19:03:36Z"}
+{"event_id":"ev_1792004283_54f65f5b","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-14T19:03:36Z"}
+{"event_id":"ev_1792004283_59ee9f51","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-14T19:03:36Z"}
+{"event_id":"ev_1792004283_450917cc","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-14T19:03:36Z"}
+{"event_id":"ev_1792004283_72ba1bfd","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-14T19:03:36Z"}
