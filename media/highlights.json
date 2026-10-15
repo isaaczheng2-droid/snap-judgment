@@ -18,6 +18,14 @@
   },
   {
    "type": "youtube",
+   "id": "R8ev4yITt-M",
+   "title": "Trailer: Packers vs. Bears",
+   "source": "Packers",
+   "seconds": 51,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
    "id": "1z8CqFNkjZ4",
    "title": "Week 5 Game Trailer vs the Pittsburgh Steelers",
    "source": "Colts",
@@ -30,14 +38,6 @@
    "title": "The Perfect Storm. | Week 1 Game Day Trailer",
    "source": "Cardinals",
    "seconds": 56,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
-   "id": "CXVvfw9vooA",
-   "title": "Back at Home | HYPE | Atlanta Falcons",
-   "source": "Falcons",
-   "seconds": 54,
    "uploaded": "2026-09"
   },
   {
@@ -66,14 +66,6 @@
   },
   {
    "type": "youtube",
-   "id": "Pd3euunJiRo",
-   "title": "2026 Chicago Bears Season Hype",
-   "source": "Bears",
-   "seconds": 100,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
    "id": "1VdsHPILlaM",
    "title": "The Mission Begins | 2026 Dallas Cowboys Hype Video",
    "source": "Cowboys",
@@ -94,14 +86,6 @@
    "title": "Still About Us. #CLEvsJAX Hype Video | Jacksonville Jaguars",
    "source": "Jaguars",
    "seconds": 67,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
-   "id": "s1gZBVxrrvc",
-   "title": "2026 Chiefs Season Hype Video",
-   "source": "Chiefs",
-   "seconds": 75,
    "uploaded": "2026-09"
   },
   {
@@ -194,6 +178,22 @@
   },
   {
    "type": "youtube",
+   "id": "e4dGduoC8PQ",
+   "title": "Best Cinematic Shots of the 2025 Season | Miami Dolphins",
+   "source": "Dolphins",
+   "seconds": 160,
+   "uploaded": "2026-02"
+  },
+  {
+   "type": "youtube",
+   "id": "06wkfvvx2No",
+   "title": "🔥 PATRIOTS AFC CHAMPIONSHIP PLAYOFF HYPE🔥 | WE ALL WE GOT WE ALL WE NEED",
+   "source": "Patriots",
+   "seconds": 60,
+   "uploaded": "2026-02"
+  },
+  {
+   "type": "youtube",
    "id": "XHejZ8pBKyI",
    "title": "Sound the Drum | Panthers Wild Card Trailer ft. Stephen Curry",
    "source": "Panthers",
@@ -234,14 +234,6 @@
   },
   {
    "type": "youtube",
-   "id": "iiWP---sSTo",
-   "title": "PATRIOTS 2025 PLAYOFF HYPE 🔥 | WE ALL WE GOT WE ALL WE NEED",
-   "source": "Patriots",
-   "seconds": 49,
-   "uploaded": "2026-01"
-  },
-  {
-   "type": "youtube",
    "id": "Opam9vbrGlg",
    "title": "Seahawks vs Titans Week 12 | Hype Video",
    "source": "Titans",
@@ -250,10 +242,34 @@
   },
   {
    "type": "youtube",
-   "id": "M8I3QnmQook",
-   "title": "Welcome back | Packers 2025 season trailer",
-   "source": "Packers",
-   "seconds": 93,
+   "id": "I5hS8MK0p-0",
+   "title": "Chargers vs Titans Week 9 | Hype Video",
+   "source": "Titans",
+   "seconds": 25,
+   "uploaded": "2025-11"
+  },
+  {
+   "type": "youtube",
+   "id": "tMCMrft1pCY",
+   "title": "Atlanta Falcons x JID 'Glory' | 2025 Season Kickoff Hype ft. Michael Vick",
+   "source": "Falcons",
+   "seconds": 130,
+   "uploaded": "2025-10"
+  },
+  {
+   "type": "youtube",
+   "id": "eskllONh3pA",
+   "title": "NOISE 🗣️ 2025 Home HYPE Video | Kansas City Chiefs 🔴🟡",
+   "source": "Chiefs",
+   "seconds": 83,
+   "uploaded": "2025-10"
+  },
+  {
+   "type": "youtube",
+   "id": "IvJX0jczYD0",
+   "title": "2025 Eagles Hype Video",
+   "source": "Eagles",
+   "seconds": 344,
    "uploaded": "2025-10"
   },
   {
@@ -330,18 +346,10 @@
   },
   {
    "type": "youtube",
-   "id": "jfVypnms8Lo",
-   "title": "WEEK 17 HYPE TAPE | DOLPHINS AT PATRIOTS",
+   "id": "veHSyA1KZvU",
+   "title": "WEEK 2 HYPE TAPE | MIAMI DOLPHINS",
    "source": "Dolphins",
-   "seconds": 71,
-   "uploaded": "2023-10"
-  },
-  {
-   "type": "youtube",
-   "id": "YyU9P2qPv4A",
-   "title": "WEEK 15 HYPE TAPE | DOLPHINS VS. BILLS",
-   "source": "Dolphins",
-   "seconds": 53,
+   "seconds": 70,
    "uploaded": "2023-10"
   },
   {
@@ -350,14 +358,6 @@
    "title": "Minnesota Vikings 2022 Winter Whiteout Hype Video",
    "source": "Vikings",
    "seconds": 56,
-   "uploaded": "2023-10"
-  },
-  {
-   "type": "youtube",
-   "id": "ytMH0lCN0Cw",
-   "title": "Week 6 Dallas Cowboys vs Philadelphia Eagles Hype Video",
-   "source": "Eagles",
-   "seconds": 62,
    "uploaded": "2023-10"
   },
   {
@@ -402,11 +402,11 @@
   },
   {
    "type": "youtube",
-   "id": "vdD0G0docUw",
-   "title": "Tennessee Titans at Los Angeles Rams | Hype Videos",
-   "source": "Titans",
-   "seconds": 61,
-   "uploaded": "2022-10"
+   "id": "y3maTzbPqA8",
+   "title": "Bears vs Bengals Trailer | Bears Buzz | Chicago Bears",
+   "source": "Bears",
+   "seconds": 162,
+   "uploaded": "2021-10"
   },
   {
    "type": "youtube",
@@ -425,5 +425,5 @@
    "uploaded": "2020-10"
   }
  ],
- "updated": "2026-10-14T14:34:27Z"
+ "updated": "2026-10-15T14:14:43Z"
 }
