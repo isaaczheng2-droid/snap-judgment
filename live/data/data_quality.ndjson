@@ -866,3 +866,6 @@
 {"kind":"team_mismatch","detail":"00-0038728: report says MIA, roster says HOU","player_id":"00-0038728","source":"espn","system_received_at":"2026-10-15T06:31:08Z"}
 {"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-15T06:31:08Z"}
 {"kind":"unknown_player","detail":"Gabriel Rubio (PIT) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-15T06:31:08Z"}
+{"kind":"team_mismatch","detail":"00-0038728: report says MIA, roster says HOU","player_id":"00-0038728","source":"espn","system_received_at":"2026-10-15T12:10:20Z"}
+{"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-15T12:10:20Z"}
+{"kind":"unknown_player","detail":"Gabriel Rubio (PIT) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-15T12:10:20Z"}
