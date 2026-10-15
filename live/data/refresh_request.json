@@ -1,0 +1,24 @@
+{
+ "reasons": [
+  "Will Anderson Jr.: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Alex Bachman: ACTIVE \u2192 UNKNOWN (Wrist)",
+  "Drake Maye: ACTIVE \u2192 UNKNOWN (Shoulder)",
+  "HOU RT: Trent Brown \u2192 Braden Smith as the starter",
+  "LA LT: Alaric Jackson \u2192 David Quessenberry as the starter",
+  "NE LT: Caleb Lomu \u2192 Will Campbell as the starter"
+ ],
+ "game_ids": [
+  "2026_06_ARI_LA",
+  "2026_06_HOU_JAX",
+  "2026_06_NYJ_NE"
+ ],
+ "event_ids": [
+  "ev_1792045868_5e23bafe",
+  "ev_1792045868_cb173813",
+  "ev_1792045868_eacfcf6f",
+  "ev_1792045868_cb44da00",
+  "ev_1792045868_d0ffb3e8",
+  "ev_1792045868_b0c9af9f"
+ ],
+ "requested_at": "2026-10-15T06:31:10Z"
+}
