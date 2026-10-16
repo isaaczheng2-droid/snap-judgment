@@ -1,0 +1,47 @@
+{
+ "reasons": [
+  "DK Metcalf: ACTIVE \u2192 QUESTIONABLE (Illness)",
+  "Ladd McConkey: QUESTIONABLE \u2192 ACTIVE (Foot)",
+  "Benjamin Morrison: QUESTIONABLE \u2192 DOUBTFUL (Quadriceps)",
+  "Dayo Odeyingbo: DOUBTFUL \u2192 OUT (Quadriceps)",
+  "Vernon Broughton: QUESTIONABLE \u2192 ACTIVE (Illness)",
+  "Trent McDuffie: no report \u2192 QUESTIONABLE (Groin)",
+  "Montaric Brown: QUESTIONABLE \u2192 OUT (Hamstring)",
+  "Jourdan Lewis: QUESTIONABLE \u2192 ACTIVE (Hamstring)",
+  "Jeremiyah Love: QUESTIONABLE \u2192 OUT (Ankle)",
+  "KC Concepcion: QUESTIONABLE \u2192 ACTIVE (Concussion)",
+  "Rashee Rice: QUESTIONABLE \u2192 OUT (Hamstring)",
+  "Lamar Jackson: QUESTIONABLE \u2192 OUT (Ankle)"
+ ],
+ "game_ids": [
+  "2026_06_ARI_LA",
+  "2026_06_BAL_CLE",
+  "2026_06_CHI_ATL",
+  "2026_06_HOU_JAX",
+  "2026_06_LAC_KC",
+  "2026_06_NO_NYG",
+  "2026_06_NYJ_NE",
+  "2026_06_PIT_TB"
+ ],
+ "event_ids": [
+  "ev_1792181217_9ea59158",
+  "ev_1792181217_27668c21",
+  "ev_1792181217_48c3ad55",
+  "ev_1792181217_55b9ed9b",
+  "ev_1792181217_2864a301",
+  "ev_1792181217_d1d67000",
+  "ev_1792181217_11580b23",
+  "ev_1792181217_510e95d8",
+  "ev_1792181217_0063abd3",
+  "ev_1792181217_8d7316c7",
+  "ev_1792181217_23a7c613",
+  "ev_1792181217_dc3c66db",
+  "ev_1792181217_384c72da",
+  "ev_1792181217_fe05a090",
+  "ev_1792181217_9f97b749",
+  "ev_1792181217_2d05609f",
+  "ev_1792181217_64707cc2",
+  "ev_1792181217_40bd4a36"
+ ],
+ "requested_at": "2026-10-16T20:06:59Z"
+}
