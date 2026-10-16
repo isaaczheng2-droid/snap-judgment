@@ -1,0 +1,21 @@
+{
+ "reasons": [
+  "Box scores updated: player results and the paper test can be graded",
+  "Nico Collins: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Will Anderson Jr.: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Alex Bachman: ACTIVE \u2192 UNKNOWN (Wrist)",
+  "Drake Maye: ACTIVE \u2192 UNKNOWN (Shoulder)"
+ ],
+ "game_ids": [
+  "2026_06_ARI_LA",
+  "2026_06_HOU_JAX",
+  "2026_06_NYJ_NE"
+ ],
+ "event_ids": [
+  "ev_1792151782_0c9f9456",
+  "ev_1792151782_f19222cb",
+  "ev_1792151782_70bcb405",
+  "ev_1792151782_2a29f773"
+ ],
+ "requested_at": "2026-10-16T11:56:25Z"
+}
