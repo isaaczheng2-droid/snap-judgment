@@ -1,0 +1,31 @@
+{
+ "reasons": [
+  "Jacory Croskey-Merritt: QUESTIONABLE \u2192 OUT (Groin)",
+  "DK Metcalf: QUESTIONABLE \u2192 ACTIVE (Illness)",
+  "Nico Collins: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Will Anderson Jr.: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "DeForest Buckner: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Alex Bachman: ACTIVE \u2192 UNKNOWN (Wrist)",
+  "Drake Maye: ACTIVE \u2192 UNKNOWN (Shoulder)",
+  "Christian McCaffrey: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_06_ARI_LA",
+  "2026_06_HOU_JAX",
+  "2026_06_NYJ_NE",
+  "2026_06_PIT_TB",
+  "2026_06_TEN_IND",
+  "2026_06_WAS_SF"
+ ],
+ "event_ids": [
+  "ev_1792258439_55ac4b07",
+  "ev_1792258439_bdfa0171",
+  "ev_1792258439_dd8270ee",
+  "ev_1792258439_e3ebcf17",
+  "ev_1792258439_2f7f8149",
+  "ev_1792258439_ee423e5b",
+  "ev_1792258439_1b298a6e",
+  "ev_1792258439_564a60af"
+ ],
+ "requested_at": "2026-10-17T17:34:30Z"
+}
