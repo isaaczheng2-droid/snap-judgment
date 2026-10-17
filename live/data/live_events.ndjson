@@ -22645,3 +22645,20 @@
 {"event_id":"ev_1792200937_9ec19e26","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_06_WAS_SF","player_id":"00-0033280","team_id":"SF","severity":"HIGH","previous_value":"ACTIVE","new_value":"UNKNOWN","detail":"Christian McCaffrey: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)","source":"nflverse:injuries","occurred_at":"2026-10-17T01:35:37Z","received_at":"2026-10-17T01:35:37Z","processed":false,"prediction_recalculated":false,"impact_tier":"HIGH","impact_reasons":["starter (depth chart rank 1)"],"player_name":"Christian McCaffrey","system_received_at":"2026-10-17T01:35:38Z"}
 {"event_id":"ev_1792200937_c1713669","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_06_WAS_SF","player_id":"00-0033955","team_id":"WAS","severity":"LOW","previous_value":"IR","new_value":"UNKNOWN","detail":"Jeremy McNichols: IR \u2192 UNKNOWN (Quadricep)","source":"nflverse:injuries","occurred_at":"2026-10-17T01:35:37Z","received_at":"2026-10-17T01:35:37Z","processed":false,"prediction_recalculated":false,"impact_tier":"LOW","impact_reasons":["depth rank 4"],"player_name":"Jeremy McNichols","system_received_at":"2026-10-17T01:35:38Z"}
 {"event_id":"ev_1792200937_03ccff49","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_06_WAS_SF","player_id":"00-0040731","team_id":"WAS","severity":"MEDIUM","previous_value":"IR","new_value":"UNKNOWN","detail":"Trey Amos: IR \u2192 UNKNOWN (Ankle)","source":"nflverse:injuries","occurred_at":"2026-10-17T01:35:37Z","received_at":"2026-10-17T01:35:37Z","processed":false,"prediction_recalculated":false,"impact_tier":"MODERATE","impact_reasons":["depth rank 2"],"player_name":"Trey Amos","system_received_at":"2026-10-17T01:35:38Z"}
+{"event_id":"ev_1792200937_8e090d4c","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-17T01:44:35Z"}
+{"event_id":"ev_1792200937_533bef94","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-17T01:44:35Z"}
+{"event_id":"ev_1792200937_1055d44a","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-17T01:44:35Z"}
+{"event_id":"ev_1792200937_18876d59","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-17T01:44:35Z"}
+{"event_id":"ev_1792200937_1756663a","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-17T01:44:35Z"}
+{"event_id":"ev_1792200937_2b99fa6d","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-17T01:44:35Z"}
+{"event_id":"ev_1792200937_3c9fa026","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-17T01:44:35Z"}
+{"event_id":"ev_1792200937_141fe118","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-17T01:44:35Z"}
+{"event_id":"ev_1792200937_63f45907","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-17T01:44:35Z"}
+{"event_id":"ev_1792200937_1adb7190","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-17T01:44:35Z"}
+{"event_id":"ev_1792200937_103f3900","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-17T01:44:35Z"}
+{"event_id":"ev_1792200937_352524c0","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-17T01:44:35Z"}
+{"event_id":"ev_1792200937_6731a62b","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-17T01:44:35Z"}
+{"event_id":"ev_1792200937_fdfa146b","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-17T01:44:35Z"}
+{"event_id":"ev_1792200937_9ec19e26","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-17T01:44:35Z"}
+{"event_id":"ev_1792200937_c1713669","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-17T01:44:35Z"}
+{"event_id":"ev_1792200937_03ccff49","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-17T01:44:35Z"}
