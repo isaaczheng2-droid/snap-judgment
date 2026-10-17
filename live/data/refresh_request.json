@@ -1,0 +1,31 @@
+{
+ "reasons": [
+  "Tonka Hemingway: QUESTIONABLE \u2192 OUT (Concussion)",
+  "Nico Collins: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Will Anderson Jr.: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "DeForest Buckner: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Alex Bachman: ACTIVE \u2192 UNKNOWN (Wrist)",
+  "Drake Maye: ACTIVE \u2192 UNKNOWN (Shoulder)",
+  "Christian McCaffrey: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "CAR RT: Monroe Freeling \u2192 Taylor Moton as the starter"
+ ],
+ "game_ids": [
+  "2026_06_ARI_LA",
+  "2026_06_BUF_LV",
+  "2026_06_HOU_JAX",
+  "2026_06_NYJ_NE",
+  "2026_06_TEN_IND",
+  "2026_06_WAS_SF"
+ ],
+ "event_ids": [
+  "ev_1792217765_0ca860b5",
+  "ev_1792217765_766bb182",
+  "ev_1792217765_3e886ee3",
+  "ev_1792217765_0ea7ac74",
+  "ev_1792217765_fda5f1a7",
+  "ev_1792217765_82fd7221",
+  "ev_1792217765_30df061d",
+  "ev_1792217765_c36a5bc4"
+ ],
+ "requested_at": "2026-10-17T06:16:16Z"
+}
