@@ -1,42 +1,42 @@
 {
  "sdv_boxscores": {
-  "last_attempt": "2026-10-17T20:30:21Z",
-  "last_success": "2026-10-17T20:30:21Z",
+  "last_attempt": "2026-10-17T23:02:55Z",
+  "last_success": "2026-10-17T23:02:55Z",
   "last_error": null,
   "last_detail": "7834 games, 172902 player-games"
  },
  "sdv_schedule_next": {
-  "last_attempt": "2026-10-17T20:30:21Z",
-  "last_success": "2026-10-17T20:30:21Z",
+  "last_attempt": "2026-10-17T23:02:55Z",
+  "last_success": "2026-10-17T23:02:55Z",
   "last_error": null,
   "last_detail": "1206 games in the latest schedule"
  },
  "espn_site": {
-  "last_attempt": "2026-10-17T20:30:34Z",
-  "last_success": "2026-10-17T20:30:34Z",
+  "last_attempt": "2026-10-17T23:03:08Z",
+  "last_success": "2026-10-17T23:03:08Z",
   "last_error": null,
-  "last_detail": "94 injury entries at 2026-10-17T20:30:30Z"
+  "last_detail": "90 injury entries at 2026-10-17T23:03:05Z"
  },
  "official_injury": {
-  "last_attempt": "2026-10-17T20:30:51Z",
+  "last_attempt": "2026-10-17T23:03:23Z",
   "last_error": "no report PDF linked (expected out of season)",
   "last_success": "2026-10-03T00:25:37Z",
   "last_detail": "0 rows from Injury-Report_2026-10-01_12_45PM.pdf"
  },
  "pbpstats": {
-  "last_attempt": "2026-10-17T20:30:52Z",
-  "last_success": "2026-10-17T20:30:52Z",
+  "last_attempt": "2026-10-17T23:03:24Z",
+  "last_success": "2026-10-17T23:03:24Z",
   "last_error": null,
   "last_detail": "0 lineup rows for 2026-27"
  },
  "odds_api": {
-  "last_attempt": "2026-10-17T20:30:52Z",
+  "last_attempt": "2026-10-17T23:03:24Z",
   "last_success": "2026-10-05T05:27:19Z",
   "last_error": "events HTTP 401: API key is deactivated. This could be due to cancelation or a failed payment",
   "last_detail": "props: 82 quotes from ['fanduel'], 19473 credits left"
  },
  "stats_nba": {
-  "last_attempt": "2026-10-17T20:30:52Z",
+  "last_attempt": "2026-10-17T23:03:24Z",
   "last_error": "skipped: stats.nba.com times out from hosted runners (set NBA_TRY_STATS_NBA=1 to retry)"
  }
 }
