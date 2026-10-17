@@ -2,14 +2,6 @@
  "items": [
   {
    "type": "youtube",
-   "id": "UNWO1-5jaPw",
-   "title": "RED OUT | HYPE | Atlanta Falcons",
-   "source": "Falcons",
-   "seconds": 74,
-   "uploaded": "2026-10"
-  },
-  {
-   "type": "youtube",
    "id": "7zoXqKuoAfQ",
    "title": "Bills vs. Rams HYPE Video for Monday Night Football",
    "source": "Bills",
@@ -22,6 +14,14 @@
    "title": "Bears-Packers hype trailer | Bears Buzz | Chicago Bears",
    "source": "Bears",
    "seconds": 131,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
+   "id": "R8ev4yITt-M",
+   "title": "Trailer: Packers vs. Bears",
+   "source": "Packers",
+   "seconds": 51,
    "uploaded": "2026-10"
   },
   {
@@ -46,6 +46,14 @@
    "title": "Back at Home | HYPE | Atlanta Falcons",
    "source": "Falcons",
    "seconds": 54,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
+   "id": "Iumv8hVy_uE",
+   "title": "Shaboozey - \"Let 'Em Know\" | HYPE | Atlanta Falcons",
+   "source": "Falcons",
+   "seconds": 65,
    "uploaded": "2026-09"
   },
   {
@@ -102,14 +110,6 @@
    "title": "2026 Chiefs Season Hype Video",
    "source": "Chiefs",
    "seconds": 75,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
-   "id": "aChK-tugNBQ",
-   "title": "Rams vs. 49ers: Melbourne, You're In For A Treat | Game Trailer",
-   "source": "Rams",
-   "seconds": 81,
    "uploaded": "2026-09"
   },
   {
@@ -202,10 +202,10 @@
   },
   {
    "type": "youtube",
-   "id": "BSkiDbY6XYc",
-   "title": "Playoff trailer | Packers 2025 postseason",
-   "source": "Packers",
-   "seconds": 58,
+   "id": "P2RfuapthN8",
+   "title": "J.J. Watt's EPIC playoff message to H-Town 🔥 | Texans Hype",
+   "source": "Texans",
+   "seconds": 138,
    "uploaded": "2026-01"
   },
   {
@@ -226,14 +226,6 @@
   },
   {
    "type": "youtube",
-   "id": "Opam9vbrGlg",
-   "title": "Seahawks vs Titans Week 12 | Hype Video",
-   "source": "Titans",
-   "seconds": 25,
-   "uploaded": "2025-12"
-  },
-  {
-   "type": "youtube",
    "id": "M8I3QnmQook",
    "title": "Welcome back | Packers 2025 season trailer",
    "source": "Packers",
@@ -242,10 +234,18 @@
   },
   {
    "type": "youtube",
-   "id": "EpPnNNxEDD0",
-   "title": "IF THEY AIN'T WITH HOUSTON... 👀 | Lecrae's EPIC playoff hype",
-   "source": "Texans",
-   "seconds": 132,
+   "id": "THohdR9TUr0",
+   "title": "Not Done Yet. | Los Angeles Rams 2024 Playoff Trailer",
+   "source": "Rams",
+   "seconds": 113,
+   "uploaded": "2025-10"
+  },
+  {
+   "type": "youtube",
+   "id": "IvJX0jczYD0",
+   "title": "2025 Eagles Hype Video",
+   "source": "Eagles",
+   "seconds": 344,
    "uploaded": "2025-10"
   },
   {
@@ -298,26 +298,10 @@
   },
   {
    "type": "youtube",
-   "id": "znK04uBbJuM",
-   "title": "Netflix Releases 'Receiver' Official Trailer | Premieres July 10",
-   "source": "49ers",
-   "seconds": 156,
-   "uploaded": "2024-10"
-  },
-  {
-   "type": "youtube",
-   "id": "zf0gzycwS3g",
-   "title": "Arizona Cardinals vs. Washington Commanders Game Trailer | Week 1",
+   "id": "GaB0_u2r96M",
+   "title": "Game Trailer: Arizona Cardinals vs. New England Patriots | Week 14",
    "source": "Cardinals",
-   "seconds": 70,
-   "uploaded": "2023-10"
-  },
-  {
-   "type": "youtube",
-   "id": "SHilzIjoP64",
-   "title": "Can't Stop Now, We're Better Than Ever | Week 15 Hype Video",
-   "source": "Bengals",
-   "seconds": 61,
+   "seconds": 64,
    "uploaded": "2023-10"
   },
   {
@@ -354,6 +338,14 @@
   },
   {
    "type": "youtube",
+   "id": "eQq5s_dPg_U",
+   "title": "There Is A Fire Within Us | Week 1 Hype Video",
+   "source": "Bengals",
+   "seconds": 88,
+   "uploaded": "2022-10"
+  },
+  {
+   "type": "youtube",
    "id": "w3EE68SDp9c",
    "title": "Browns vs. Lions Game Day Hype Video | Cleveland Browns",
    "source": "Browns",
@@ -386,10 +378,10 @@
   },
   {
    "type": "youtube",
-   "id": "vdD0G0docUw",
-   "title": "Tennessee Titans at Los Angeles Rams | Hype Videos",
+   "id": "rbko_htN8yA",
+   "title": "New York Giants vs. Tennessee Titans | Hype Video",
    "source": "Titans",
-   "seconds": 61,
+   "seconds": 66,
    "uploaded": "2022-10"
   },
   {
@@ -399,7 +391,15 @@
    "source": "Browns",
    "seconds": 42,
    "uploaded": "2021-10"
+  },
+  {
+   "type": "youtube",
+   "id": "GlqCnWjYTR8",
+   "title": "Putting in the Work | Hype Videos",
+   "source": "Titans",
+   "seconds": 168,
+   "uploaded": "2021-10"
   }
  ],
- "updated": "2026-10-16T14:02:01Z"
+ "updated": "2026-10-17T13:01:55Z"
 }
