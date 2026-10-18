@@ -1,0 +1,40 @@
+{
+ "reasons": [
+  "Box scores updated: player results and the paper test can be graded",
+  "Ameer Abdullah: no report \u2192 QUESTIONABLE (Concussion)",
+  "Febechi Nwaiwu: ACTIVE \u2192 INACTIVE",
+  "Marlin Klein: ACTIVE \u2192 INACTIVE",
+  "Braden Smith: ACTIVE \u2192 INACTIVE",
+  "Sabastian Harsh: ACTIVE \u2192 INACTIVE",
+  "Albert Regis: ACTIVE \u2192 INACTIVE",
+  "Jalen Huskey: no report \u2192 INACTIVE",
+  "Wesley Williams: ACTIVE \u2192 INACTIVE",
+  "CJ Williams: ACTIVE \u2192 INACTIVE",
+  "Will Anderson Jr.: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "DeForest Buckner: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_06_ARI_LA",
+  "2026_06_HOU_JAX",
+  "2026_06_NYJ_NE",
+  "2026_06_TEN_IND",
+  "2026_06_WAS_SF"
+ ],
+ "event_ids": [
+  "ev_1792335202_eaaaaab7",
+  "ev_1792335202_25dc1afb",
+  "ev_1792335202_71450cc6",
+  "ev_1792335202_832b5f97",
+  "ev_1792335202_ff30b7f1",
+  "ev_1792335202_54aaa25b",
+  "ev_1792335202_ee96a8a2",
+  "ev_1792335202_ff06e411",
+  "ev_1792335202_32693f29",
+  "ev_1792335202_9020357f",
+  "ev_1792335202_6933d224",
+  "ev_1792335202_c824a6da",
+  "ev_1792335202_5cb31ed9",
+  "ev_1792335202_9dee59d9"
+ ],
+ "requested_at": "2026-10-18T14:53:35Z"
+}
