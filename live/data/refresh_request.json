@@ -1,0 +1,36 @@
+{
+ "reasons": [
+  "Window finished: Sunday 4:05 PM ET games (3 final)",
+  "Ronnie Stanley: ACTIVE \u2192 UNKNOWN (Ankle)",
+  "Will Anderson Jr.: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "DeForest Buckner: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Alex Bachman: ACTIVE \u2192 UNKNOWN (Wrist)",
+  "Drake Maye: ACTIVE \u2192 UNKNOWN (Shoulder)",
+  "Isaiah Likely: ACTIVE \u2192 UNKNOWN (Foot)",
+  "DeVonta Smith: ACTIVE \u2192 UNKNOWN (Hamstring)",
+  "Jalen Carter: ACTIVE \u2192 UNKNOWN (Wrist)",
+  "Christian McCaffrey: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_06_ARI_LA",
+  "2026_06_BAL_CLE",
+  "2026_06_CAR_PHI",
+  "2026_06_HOU_JAX",
+  "2026_06_NO_NYG",
+  "2026_06_NYJ_NE",
+  "2026_06_TEN_IND",
+  "2026_06_WAS_SF"
+ ],
+ "event_ids": [
+  "ev_1792366961_8456d4f3",
+  "ev_1792366961_70b3413b",
+  "ev_1792366961_0b3fb0a4",
+  "ev_1792366961_3f596563",
+  "ev_1792366961_89a7995d",
+  "ev_1792366961_1ae14afa",
+  "ev_1792366961_6aa2c165",
+  "ev_1792366961_733d7bde",
+  "ev_1792366961_4a013b72"
+ ],
+ "requested_at": "2026-10-18T23:42:43Z"
+}
