@@ -1,0 +1,48 @@
+{
+ "reasons": [
+  "Box scores updated: player results and the paper test can be graded",
+  "James Houston: ACTIVE \u2192 INACTIVE (Shoulder)",
+  "Camden Brown: ACTIVE \u2192 INACTIVE",
+  "Alijah Clark: ACTIVE \u2192 INACTIVE (Hamstring)",
+  "Emari Demercado: ACTIVE \u2192 INACTIVE",
+  "Donovan Jennings: ACTIVE \u2192 INACTIVE",
+  "Jager Burton: ACTIVE \u2192 INACTIVE",
+  "Ladd McConkey: ACTIVE \u2192 OUT (Concussion)",
+  "Quincy Riley: no report \u2192 QUESTIONABLE (Neck)",
+  "Ronnie Stanley: ACTIVE \u2192 UNKNOWN (Ankle)",
+  "Will Anderson Jr.: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "DeForest Buckner: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_06_ARI_LA",
+  "2026_06_BAL_CLE",
+  "2026_06_CAR_PHI",
+  "2026_06_DAL_GB",
+  "2026_06_HOU_JAX",
+  "2026_06_LAC_KC",
+  "2026_06_NO_NYG",
+  "2026_06_NYJ_NE",
+  "2026_06_TEN_IND",
+  "2026_06_WAS_SF"
+ ],
+ "event_ids": [
+  "ev_1792365115_df89f7fb",
+  "ev_1792365115_0b4267e8",
+  "ev_1792365115_b05cdf1a",
+  "ev_1792365115_1c742d41",
+  "ev_1792365115_8929087b",
+  "ev_1792365115_b7317635",
+  "ev_1792365115_c24e79e0",
+  "ev_1792365115_2ad698be",
+  "ev_1792365115_dcd64a86",
+  "ev_1792365115_481e8105",
+  "ev_1792365115_03870d9d",
+  "ev_1792365115_c6e4f617",
+  "ev_1792365115_b0f94d95",
+  "ev_1792365115_89ce8ae7",
+  "ev_1792365115_c274b164",
+  "ev_1792365115_3d154f2f",
+  "ev_1792365115_9ac157a9"
+ ],
+ "requested_at": "2026-10-18T23:11:58Z"
+}
