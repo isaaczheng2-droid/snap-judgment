@@ -2,7 +2,7 @@
 "ATL": {
 "espn_team_id": 1,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:02:55Z",
+"fetched_at": "2026-10-18T04:20:46Z",
 "source": "espn site api",
 "players": [
 {
@@ -11,16 +11,6 @@
 "position": "G",
 "jersey": "7",
 "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4278039.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
-"player_id": "4397003",
-"player": "Giorgi Bezhanishvili",
-"position": "F",
-"jersey": null,
-"headshot": null,
 "roster_status": "Active",
 "injury": null,
 "id_match": "espn"
@@ -149,16 +139,6 @@
 "id_match": "espn"
 },
 {
-"player_id": "4712845",
-"player": "Isaac McKneely",
-"position": "G",
-"jersey": "15",
-"headshot": null,
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
 "player_id": "4873201",
 "player": "Asa Newell",
 "position": "F",
@@ -216,7 +196,7 @@
 "BOS": {
 "espn_team_id": 2,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:02:56Z",
+"fetched_at": "2026-10-18T04:20:46Z",
 "source": "espn site api",
 "players": [
 {
@@ -226,7 +206,10 @@
 "jersey": "99",
 "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4433188.png",
 "roster_status": "Active",
-"injury": null,
+"injury": {
+"status": "Day-To-Day",
+"detail": null
+},
 "id_match": "espn"
 },
 {
@@ -394,7 +377,7 @@
 "NO": {
 "espn_team_id": 3,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:02:56Z",
+"fetched_at": "2026-10-18T04:20:47Z",
 "source": "espn site api",
 "players": [
 {
@@ -595,7 +578,7 @@
 "CHI": {
 "espn_team_id": 4,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:02:57Z",
+"fetched_at": "2026-10-18T04:20:47Z",
 "source": "espn site api",
 "players": [
 {
@@ -795,7 +778,7 @@
 "CLE": {
 "espn_team_id": 5,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:02:57Z",
+"fetched_at": "2026-10-18T04:20:48Z",
 "source": "espn site api",
 "players": [
 {
@@ -857,16 +840,6 @@
 "position": "F",
 "jersey": "33",
 "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/2995706.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
-"player_id": "4898369",
-"player": "Curtis Jones",
-"position": "G",
-"jersey": "14",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4898369.png",
 "roster_status": "Active",
 "injury": null,
 "id_match": "espn"
@@ -935,16 +908,6 @@
 "id_match": "espn"
 },
 {
-"player_id": "4701845",
-"player": "Kadary Richmond",
-"position": "G",
-"jersey": "16",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4701845.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
 "player_id": "5041951",
 "player": "Meleek Thomas",
 "position": "G",
@@ -1002,7 +965,7 @@
 "DAL": {
 "espn_team_id": 6,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:02:57Z",
+"fetched_at": "2026-10-18T04:20:48Z",
 "source": "espn site api",
 "players": [
 {
@@ -1212,7 +1175,7 @@
 "DEN": {
 "espn_team_id": 7,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:02:58Z",
+"fetched_at": "2026-10-18T04:20:49Z",
 "source": "espn site api",
 "players": [
 {
@@ -1241,16 +1204,6 @@
 "position": "F",
 "jersey": "7",
 "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4698719.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
-"player_id": "4588201",
-"player": "Steven Crowl",
-"position": "C",
-"jersey": null,
-"headshot": null,
 "roster_status": "Active",
 "injury": null,
 "id_match": "espn"
@@ -1392,16 +1345,6 @@
 "id_match": "espn"
 },
 {
-"player_id": "4277890",
-"player": "Lonnie Walker IV",
-"position": "G",
-"jersey": "4",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4277890.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
 "player_id": "5105592",
 "player": "Cam Whitmore",
 "position": "F",
@@ -1416,7 +1359,7 @@
 "DET": {
 "espn_team_id": 8,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:02:58Z",
+"fetched_at": "2026-10-18T04:20:49Z",
 "source": "espn site api",
 "players": [
 {
@@ -1604,7 +1547,7 @@
 "GS": {
 "espn_team_id": 9,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:02:59Z",
+"fetched_at": "2026-10-18T04:20:50Z",
 "source": "espn site api",
 "players": [
 {
@@ -1676,16 +1619,6 @@
 "position": "F",
 "jersey": null,
 "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4703396.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
-"player_id": "4696317",
-"player": "Miles Kelly",
-"position": "G",
-"jersey": "26",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4696317.png",
 "roster_status": "Active",
 "injury": null,
 "id_match": "espn"
@@ -1811,7 +1744,7 @@
 "HOU": {
 "espn_team_id": 10,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:02:59Z",
+"fetched_at": "2026-10-18T04:20:50Z",
 "source": "espn site api",
 "players": [
 {
@@ -2009,7 +1942,7 @@
 "IND": {
 "espn_team_id": 11,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:03:00Z",
+"fetched_at": "2026-10-18T04:20:50Z",
 "source": "espn site api",
 "players": [
 {
@@ -2196,7 +2129,7 @@
 "LAC": {
 "espn_team_id": 12,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:03:00Z",
+"fetched_at": "2026-10-18T04:20:51Z",
 "source": "espn site api",
 "players": [
 {
@@ -2296,31 +2229,11 @@
 "id_match": "espn"
 },
 {
-"player_id": "5159895",
-"player": "Yuki Kawamura",
-"position": "G",
-"jersey": "17",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/5159895.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
 "player_id": "3448",
 "player": "Brook Lopez",
 "position": "C",
 "jersey": "11",
 "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/3448.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
-"player_id": "5105853",
-"player": "Fletcher Loyer",
-"position": "G",
-"jersey": "26",
-"headshot": null,
 "roster_status": "Active",
 "injury": null,
 "id_match": "espn"
@@ -2413,23 +2326,13 @@
 "roster_status": "Active",
 "injury": null,
 "id_match": "espn"
-},
-{
-"player_id": "4397355",
-"player": "DeAndre Williams",
-"position": "F",
-"jersey": null,
-"headshot": null,
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
 }
 ]
 },
 "LAL": {
 "espn_team_id": 13,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:03:00Z",
+"fetched_at": "2026-10-18T04:20:51Z",
 "source": "espn site api",
 "players": [
 {
@@ -2511,16 +2414,6 @@
 "position": "F",
 "jersey": "4",
 "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4897943.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
-"player_id": "5107258",
-"player": "William Kyle III",
-"position": "F",
-"jersey": "45",
-"headshot": null,
 "roster_status": "Active",
 "injury": null,
 "id_match": "espn"
@@ -2649,7 +2542,7 @@
 "MIA": {
 "espn_team_id": 14,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:03:01Z",
+"fetched_at": "2026-10-18T04:20:52Z",
 "source": "espn site api",
 "players": [
 {
@@ -2819,16 +2712,6 @@
 "id_match": "espn"
 },
 {
-"player_id": "4693954",
-"player": "Ian Schieffelin",
-"position": "F",
-"jersey": "20",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4693954.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
 "player_id": "4066993",
 "player": "Dru Smith",
 "position": "G",
@@ -2876,7 +2759,7 @@
 "MIL": {
 "espn_team_id": 15,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:03:01Z",
+"fetched_at": "2026-10-18T04:20:52Z",
 "source": "espn site api",
 "players": [
 {
@@ -3080,7 +2963,7 @@
 "MIN": {
 "espn_team_id": 16,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:03:02Z",
+"fetched_at": "2026-10-18T04:20:53Z",
 "source": "espn site api",
 "players": [
 {
@@ -3254,7 +3137,7 @@
 "BKN": {
 "espn_team_id": 17,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:03:02Z",
+"fetched_at": "2026-10-18T04:20:53Z",
 "source": "espn site api",
 "players": [
 {
@@ -3445,19 +3328,9 @@
 "NY": {
 "espn_team_id": 18,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:03:02Z",
+"fetched_at": "2026-10-18T04:20:53Z",
 "source": "espn site api",
 "players": [
-{
-"player_id": "4397018",
-"player": "Ochai Agbaji",
-"position": "G",
-"jersey": "30",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4397018.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
 {
 "player_id": "4683730",
 "player": "Jaden Akins",
@@ -3484,16 +3357,6 @@
 "position": "F",
 "jersey": "8",
 "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/3934719.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
-"player_id": "4065673",
-"player": "Tony Bradley",
-"position": "C",
-"jersey": "18",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4065673.png",
 "roster_status": "Active",
 "injury": null,
 "id_match": "espn"
@@ -3556,19 +3419,6 @@
 "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/6585.png",
 "roster_status": "Active",
 "injury": null,
-"id_match": "espn"
-},
-{
-"player_id": "3914285",
-"player": "Drew Eubanks",
-"position": "F",
-"jersey": "19",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/3914285.png",
-"roster_status": "Active",
-"injury": {
-"status": "Out",
-"detail": null
-},
 "id_match": "espn"
 },
 {
@@ -3659,7 +3509,7 @@
 "ORL": {
 "espn_team_id": 19,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:03:03Z",
+"fetched_at": "2026-10-18T04:20:54Z",
 "source": "espn site api",
 "players": [
 {
@@ -3865,7 +3715,7 @@
 "PHI": {
 "espn_team_id": 20,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:03:03Z",
+"fetched_at": "2026-10-18T04:20:54Z",
 "source": "espn site api",
 "players": [
 {
@@ -4001,16 +3851,6 @@
 "id_match": "espn"
 },
 {
-"player_id": "4702049",
-"player": "Duke Miles",
-"position": "G",
-"jersey": "31",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4702049.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
 "player_id": "4873090",
 "player": "Labaron Philon Jr.",
 "position": "G",
@@ -4044,16 +3884,6 @@
 "id_match": "espn"
 },
 {
-"player_id": "4897471",
-"player": "Saint Thomas",
-"position": "F",
-"jersey": "19",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4897471.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
 "player_id": "3912848",
 "player": "Dean Wade",
 "position": "F",
@@ -4081,7 +3911,7 @@
 "PHX": {
 "espn_team_id": 21,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:03:04Z",
+"fetched_at": "2026-10-18T04:20:55Z",
 "source": "espn site api",
 "players": [
 {
@@ -4135,16 +3965,6 @@
 "id_match": "espn"
 },
 {
-"player_id": "4432646",
-"player": "Kennedy Chandler",
-"position": "G",
-"jersey": "2",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4432646.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
 "player_id": "4888725",
 "player": "Ryan Dunn",
 "position": "F",
@@ -4190,16 +4010,6 @@
 "position": "G",
 "jersey": "4",
 "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4437244.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
-"player_id": "4291678",
-"player": "Haywood Highsmith",
-"position": "F",
-"jersey": "19",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4291678.png",
 "roster_status": "Active",
 "injury": null,
 "id_match": "espn"
@@ -4281,16 +4091,6 @@
 "id_match": "espn"
 },
 {
-"player_id": "4909710",
-"player": "Phillip Wheeler",
-"position": "F",
-"jersey": null,
-"headshot": null,
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
 "player_id": "4701232",
 "player": "Mark Williams",
 "position": "C",
@@ -4308,7 +4108,7 @@
 "POR": {
 "espn_team_id": 22,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:03:04Z",
+"fetched_at": "2026-10-18T04:20:55Z",
 "source": "espn site api",
 "players": [
 {
@@ -4471,16 +4271,6 @@
 "id_match": "espn"
 },
 {
-"player_id": "4610139",
-"player": "Jeremy Sochan",
-"position": "F",
-"jersey": "4",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4610139.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
 "player_id": "4593043",
 "player": "John Tonje",
 "position": "F",
@@ -4518,7 +4308,7 @@
 "SAC": {
 "espn_team_id": 23,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:03:04Z",
+"fetched_at": "2026-10-18T04:20:56Z",
 "source": "espn site api",
 "players": [
 {
@@ -4605,16 +4395,6 @@
 "id_match": "espn"
 },
 {
-"player_id": "4701192",
-"player": "Viktor Lakhin",
-"position": "F",
-"jersey": null,
-"headshot": null,
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
 "player_id": "3064440",
 "player": "Zach LaVine",
 "position": "G",
@@ -4653,26 +4433,6 @@
 "position": "F",
 "jersey": "13",
 "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4594327.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
-"player_id": "4592965",
-"player": "Tristen Newton",
-"position": "G",
-"jersey": "00",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4592965.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
-"player_id": "2583639",
-"player": "Elfrid Payton",
-"position": "G",
-"jersey": "3",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/2583639.png",
 "roster_status": "Active",
 "injury": null,
 "id_match": "espn"
@@ -4735,7 +4495,7 @@
 "SA": {
 "espn_team_id": 24,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:03:05Z",
+"fetched_at": "2026-10-18T04:20:56Z",
 "source": "espn site api",
 "players": [
 {
@@ -4919,7 +4679,7 @@
 "OKC": {
 "espn_team_id": 25,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:03:05Z",
+"fetched_at": "2026-10-18T04:20:56Z",
 "source": "espn site api",
 "players": [
 {
@@ -5062,16 +4822,6 @@
 "id_match": "espn"
 },
 {
-"player_id": "5109790",
-"player": "Christoph Tilly",
-"position": "C",
-"jersey": "33",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/5109790.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
 "player_id": "5159925",
 "player": "Nikola Topic",
 "position": "G",
@@ -5135,19 +4885,9 @@
 "UTAH": {
 "espn_team_id": 26,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:03:06Z",
+"fetched_at": "2026-10-18T04:20:57Z",
 "source": "espn site api",
 "players": [
-{
-"player_id": "4684682",
-"player": "Jonas Aidoo",
-"position": "C",
-"jersey": "13",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4684682.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
 {
 "player_id": "4433268",
 "player": "Trey Alexander",
@@ -5182,11 +4922,11 @@
 "id_match": "espn"
 },
 {
-"player_id": "4683933",
-"player": "Tamar Bates",
-"position": "G",
-"jersey": "0",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4683933.png",
+"player_id": "4065673",
+"player": "Tony Bradley",
+"position": "C",
+"jersey": null,
+"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4065673.png",
 "roster_status": "Active",
 "injury": null,
 "id_match": "espn"
@@ -5222,16 +4962,6 @@
 "status": "Day-To-Day",
 "detail": null
 },
-"id_match": "espn"
-},
-{
-"player_id": "4278395",
-"player": "Taylor Funk",
-"position": "F",
-"jersey": "33",
-"headshot": null,
-"roster_status": "Active",
-"injury": null,
 "id_match": "espn"
 },
 {
@@ -5365,7 +5095,7 @@
 "WSH": {
 "espn_team_id": 27,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:03:06Z",
+"fetched_at": "2026-10-18T04:20:57Z",
 "source": "espn site api",
 "players": [
 {
@@ -5482,36 +5212,6 @@
 "id_match": "espn"
 },
 {
-"player_id": "4432645",
-"player": "Trevor Keels",
-"position": "G",
-"jersey": "13",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4432645.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
-"player_id": "3936296",
-"player": "Skal Labissiere",
-"position": "C",
-"jersey": "17",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/3936296.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
-"player_id": "4433622",
-"player": "Chris Livingston",
-"position": "F",
-"jersey": "24",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4433622.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
 "player_id": "4432819",
 "player": "Tre Mann",
 "position": "G",
@@ -5598,16 +5298,6 @@
 "id_match": "espn"
 },
 {
-"player_id": "4592216",
-"player": "Alondes Williams",
-"position": "G",
-"jersey": "31",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4592216.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
 "player_id": "4277905",
 "player": "Trae Young",
 "position": "G",
@@ -5622,7 +5312,7 @@
 "TOR": {
 "espn_team_id": 28,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:03:06Z",
+"fetched_at": "2026-10-18T04:20:58Z",
 "source": "espn site api",
 "players": [
 {
@@ -5689,26 +5379,6 @@
 "id_match": "espn"
 },
 {
-"player_id": "4433138",
-"player": "Nimari Burnett",
-"position": "G",
-"jersey": "25",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4433138.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
-"player_id": "4898260",
-"player": "Tyson Degenhart",
-"position": "F",
-"jersey": null,
-"headshot": null,
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
 "player_id": "5149115",
 "player": "Allen Graves",
 "position": "F",
@@ -5719,54 +5389,11 @@
 "id_match": "espn"
 },
 {
-"player_id": "4590360",
-"player": "Chucky Hepburn",
-"position": "G",
-"jersey": "24",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4590360.png",
-"roster_status": "Active",
-"injury": {
-"status": "Day-To-Day",
-"detail": null
-},
-"id_match": "espn"
-},
-{
-"player_id": "4432190",
-"player": "Andre Jackson Jr.",
-"position": "G",
-"jersey": "44",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4432190.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
 "player_id": "4431684",
 "player": "Trayce Jackson-Davis",
 "position": "F",
 "jersey": "32",
 "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4431684.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
-"player_id": "4395623",
-"player": "Trey Jemison III",
-"position": "C",
-"jersey": "50",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4395623.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
-"player_id": "4279143",
-"player": "Tyreke Key",
-"position": "G",
-"jersey": "11",
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4279143.png",
 "roster_status": "Active",
 "injury": null,
 "id_match": "espn"
@@ -5822,16 +5449,6 @@
 "id_match": "espn"
 },
 {
-"player_id": "4897696",
-"player": "Jamarion Sharp",
-"position": "C",
-"jersey": null,
-"headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4897696.png",
-"roster_status": "Active",
-"injury": null,
-"id_match": "espn"
-},
-{
 "player_id": "4432241",
 "player": "Jamal Shead",
 "position": "G",
@@ -5866,7 +5483,7 @@
 "MEM": {
 "espn_team_id": 29,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:03:07Z",
+"fetched_at": "2026-10-18T04:20:58Z",
 "source": "espn site api",
 "players": [
 {
@@ -6086,7 +5703,7 @@
 "CHA": {
 "espn_team_id": 30,
 "season": "2026-27",
-"fetched_at": "2026-10-17T23:03:07Z",
+"fetched_at": "2026-10-18T04:20:58Z",
 "source": "espn site api",
 "players": [
 {
@@ -6136,16 +5753,6 @@
 "status": "Day-To-Day",
 "detail": null
 },
-"id_match": "espn"
-},
-{
-"player_id": "4897504",
-"player": "Wyatt Fricks",
-"position": "F",
-"jersey": "23",
-"headshot": null,
-"roster_status": "Active",
-"injury": null,
 "id_match": "espn"
 },
 {
