@@ -18,10 +18,10 @@
   },
   {
    "type": "youtube",
-   "id": "R8ev4yITt-M",
-   "title": "Trailer: Packers vs. Bears",
-   "source": "Packers",
-   "seconds": 51,
+   "id": "AKP-ez2k1jI",
+   "title": "Game Trailer : Week 6 vs. The Tennessee Titans",
+   "source": "Colts",
+   "seconds": 54,
    "uploaded": "2026-10"
   },
   {
@@ -114,6 +114,14 @@
   },
   {
    "type": "youtube",
+   "id": "aChK-tugNBQ",
+   "title": "Rams vs. 49ers: Melbourne, You're In For A Treat | Game Trailer",
+   "source": "Rams",
+   "seconds": 81,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
    "id": "0fbKm66MxLU",
    "title": "PATRIOTS 2026 SEASON HYPE SET TO DREAM ON BY AEROSMITH 🔥",
    "source": "Patriots",
@@ -202,18 +210,18 @@
   },
   {
    "type": "youtube",
-   "id": "P2RfuapthN8",
-   "title": "J.J. Watt's EPIC playoff message to H-Town 🔥 | Texans Hype",
-   "source": "Texans",
-   "seconds": 138,
+   "id": "BSkiDbY6XYc",
+   "title": "Playoff trailer | Packers 2025 postseason",
+   "source": "Packers",
+   "seconds": 58,
    "uploaded": "2026-01"
   },
   {
    "type": "youtube",
-   "id": "YeNBRUtv1sc",
-   "title": "Work is Just Getting Started | Jaguars Wild Card Hype Video",
-   "source": "Jaguars",
-   "seconds": 71,
+   "id": "P2RfuapthN8",
+   "title": "J.J. Watt's EPIC playoff message to H-Town 🔥 | Texans Hype",
+   "source": "Texans",
+   "seconds": 138,
    "uploaded": "2026-01"
   },
   {
@@ -226,6 +234,14 @@
   },
   {
    "type": "youtube",
+   "id": "Opam9vbrGlg",
+   "title": "Seahawks vs Titans Week 12 | Hype Video",
+   "source": "Titans",
+   "seconds": 25,
+   "uploaded": "2025-12"
+  },
+  {
+   "type": "youtube",
    "id": "M8I3QnmQook",
    "title": "Welcome back | Packers 2025 season trailer",
    "source": "Packers",
@@ -234,10 +250,10 @@
   },
   {
    "type": "youtube",
-   "id": "THohdR9TUr0",
-   "title": "Not Done Yet. | Los Angeles Rams 2024 Playoff Trailer",
-   "source": "Rams",
-   "seconds": 113,
+   "id": "T7LUwLZHfbo",
+   "title": "\"MNF Loading…\" #KCvsJAX Hype Video | Jacksonville Jaguars",
+   "source": "Jaguars",
+   "seconds": 59,
    "uploaded": "2025-10"
   },
   {
@@ -298,10 +314,26 @@
   },
   {
    "type": "youtube",
+   "id": "znK04uBbJuM",
+   "title": "Netflix Releases 'Receiver' Official Trailer | Premieres July 10",
+   "source": "49ers",
+   "seconds": 156,
+   "uploaded": "2024-10"
+  },
+  {
+   "type": "youtube",
    "id": "GaB0_u2r96M",
    "title": "Game Trailer: Arizona Cardinals vs. New England Patriots | Week 14",
    "source": "Cardinals",
    "seconds": 64,
+   "uploaded": "2023-10"
+  },
+  {
+   "type": "youtube",
+   "id": "SHilzIjoP64",
+   "title": "Can't Stop Now, We're Better Than Ever | Week 15 Hype Video",
+   "source": "Bengals",
+   "seconds": 61,
    "uploaded": "2023-10"
   },
   {
@@ -338,26 +370,10 @@
   },
   {
    "type": "youtube",
-   "id": "eQq5s_dPg_U",
-   "title": "There Is A Fire Within Us | Week 1 Hype Video",
-   "source": "Bengals",
-   "seconds": 88,
-   "uploaded": "2022-10"
-  },
-  {
-   "type": "youtube",
    "id": "w3EE68SDp9c",
    "title": "Browns vs. Lions Game Day Hype Video | Cleveland Browns",
    "source": "Browns",
    "seconds": 42,
-   "uploaded": "2022-10"
-  },
-  {
-   "type": "youtube",
-   "id": "S9Q4Ww7K8Og",
-   "title": "The Anatomy of a Statement Win – Hard Knocks In Season (Episode 2 Trailer)",
-   "source": "Colts",
-   "seconds": 31,
    "uploaded": "2022-10"
   },
   {
@@ -378,14 +394,6 @@
   },
   {
    "type": "youtube",
-   "id": "rbko_htN8yA",
-   "title": "New York Giants vs. Tennessee Titans | Hype Video",
-   "source": "Titans",
-   "seconds": 66,
-   "uploaded": "2022-10"
-  },
-  {
-   "type": "youtube",
    "id": "wbn2OZ3OawE",
    "title": "Browns vs. Steelers Hype Video (Week 17) | Cleveland Browns",
    "source": "Browns",
@@ -394,12 +402,20 @@
   },
   {
    "type": "youtube",
-   "id": "GlqCnWjYTR8",
-   "title": "Putting in the Work | Hype Videos",
+   "id": "N-z9XYvekIk",
+   "title": "Tennessee Titans at Seattle Seahawks | Hype Videos",
    "source": "Titans",
-   "seconds": 168,
+   "seconds": 59,
    "uploaded": "2021-10"
+  },
+  {
+   "type": "youtube",
+   "id": "04LIbAlGjhI",
+   "title": "Choppa & Louisiana Philharmonic Orchestra - Choppa Style | Saints-Vikings Hype",
+   "source": "Saints",
+   "seconds": 109,
+   "uploaded": "2020-10"
   }
  ],
- "updated": "2026-10-17T13:01:55Z"
+ "updated": "2026-10-19T16:32:17Z"
 }
