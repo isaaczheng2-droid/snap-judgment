@@ -1,0 +1,37 @@
+{
+ "reasons": [
+  "Window finished: Monday 8:15 PM ET game (1 final)",
+  "Box scores updated: player results and the paper test can be graded",
+  "Mike Evans: OUT \u2192 DOUBTFUL (Achilles)",
+  "Ronnie Stanley: ACTIVE \u2192 UNKNOWN (Ankle)",
+  "Will Anderson Jr.: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "DeForest Buckner: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Alex Bachman: ACTIVE \u2192 UNKNOWN (Wrist)",
+  "Cory Durden: ACTIVE \u2192 UNKNOWN (Illness)",
+  "Christian Gonzalez: ACTIVE \u2192 UNKNOWN (Shoulder)",
+  "Jalen Carter: ACTIVE \u2192 UNKNOWN (Wrist)",
+  "Drew Lock: ACTIVE \u2192 UNKNOWN (Forearm)"
+ ],
+ "game_ids": [
+  "2026_06_ARI_LA",
+  "2026_06_BAL_CLE",
+  "2026_06_CAR_PHI",
+  "2026_06_HOU_JAX",
+  "2026_06_NYJ_NE",
+  "2026_06_SEA_DEN",
+  "2026_06_TEN_IND",
+  "2026_06_WAS_SF"
+ ],
+ "event_ids": [
+  "ev_1792473837_2d716d30",
+  "ev_1792473837_cf6b9c24",
+  "ev_1792473837_88b143bb",
+  "ev_1792473837_652e8c3f",
+  "ev_1792473837_b152b098",
+  "ev_1792473837_5d2407a2",
+  "ev_1792473837_5280760a",
+  "ev_1792473837_9e69ed39",
+  "ev_1792473837_30d95092"
+ ],
+ "requested_at": "2026-10-20T05:23:57Z"
+}
