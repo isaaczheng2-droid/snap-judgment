@@ -226,6 +226,14 @@
   },
   {
    "type": "youtube",
+   "id": "YeNBRUtv1sc",
+   "title": "Work is Just Getting Started | Jaguars Wild Card Hype Video",
+   "source": "Jaguars",
+   "seconds": 71,
+   "uploaded": "2026-01"
+  },
+  {
+   "type": "youtube",
    "id": "iiWP---sSTo",
    "title": "PATRIOTS 2025 PLAYOFF HYPE 🔥 | WE ALL WE GOT WE ALL WE NEED",
    "source": "Patriots",
@@ -246,14 +254,6 @@
    "title": "Welcome back | Packers 2025 season trailer",
    "source": "Packers",
    "seconds": 93,
-   "uploaded": "2025-10"
-  },
-  {
-   "type": "youtube",
-   "id": "T7LUwLZHfbo",
-   "title": "\"MNF Loading…\" #KCvsJAX Hype Video | Jacksonville Jaguars",
-   "source": "Jaguars",
-   "seconds": 59,
    "uploaded": "2025-10"
   },
   {
@@ -338,6 +338,14 @@
   },
   {
    "type": "youtube",
+   "id": "11is_ndJ2eI",
+   "title": "Are You Afraid of the Dark? | Week 8 Hype Video",
+   "source": "Bengals",
+   "seconds": 82,
+   "uploaded": "2023-10"
+  },
+  {
+   "type": "youtube",
    "id": "9ZAUG2U5ZzQ",
    "title": "WEEK 9 HYPE TAPE: MIAMI DOLPHINS AT CHICAGO BEARS",
    "source": "Dolphins",
@@ -359,14 +367,6 @@
    "source": "Vikings",
    "seconds": 56,
    "uploaded": "2023-10"
-  },
-  {
-   "type": "youtube",
-   "id": "OGCYzQ5bxAg",
-   "title": "IT IS US: AFC Championship Game Hype | Cincinnati Bengals",
-   "source": "Bengals",
-   "seconds": 106,
-   "uploaded": "2022-10"
   },
   {
    "type": "youtube",
@@ -417,5 +417,5 @@
    "uploaded": "2020-10"
   }
  ],
- "updated": "2026-10-19T16:32:17Z"
+ "updated": "2026-10-20T14:22:37Z"
 }
