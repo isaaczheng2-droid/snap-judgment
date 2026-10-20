@@ -995,3 +995,5 @@
 {"kind":"team_mismatch","detail":"00-0038728: report says MIA, roster says HOU","player_id":"00-0038728","source":"espn","system_received_at":"2026-10-20T10:27:24Z"}
 {"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-20T15:24:05Z"}
 {"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-20T19:38:42Z"}
+{"kind":"impossible_transition","detail":"00-0034982: IR -> ACTIVE","player_id":"00-0034982","source":"espn","system_received_at":"2026-10-20T22:43:21Z"}
+{"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-20T22:43:21Z"}
