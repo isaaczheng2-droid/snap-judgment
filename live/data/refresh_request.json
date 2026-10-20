@@ -1,0 +1,47 @@
+{
+ "reasons": [
+  "Tyrique Stevenson Sr.: OUT \u2192 ACTIVE (Hip)",
+  "A.J. Brown: ACTIVE \u2192 QUESTIONABLE (Ankle)",
+  "Kurtis Rourke: ACTIVE \u2192 INACTIVE",
+  "Naquan Jones: no report \u2192 INACTIVE",
+  "Enrique Cruz Jr.: ACTIVE \u2192 INACTIVE",
+  "Isaac Yiadom: no report \u2192 INACTIVE",
+  "Tanoa Togiai: ACTIVE \u2192 INACTIVE",
+  "T.J. Maguranyanga: no report \u2192 INACTIVE",
+  "Fabian Moreau: ACTIVE \u2192 INACTIVE (Knee)",
+  "Ronnie Stanley: ACTIVE \u2192 UNKNOWN (Ankle)",
+  "Will Anderson Jr.: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "DeForest Buckner: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_06_ARI_LA",
+  "2026_06_BAL_CLE",
+  "2026_06_CAR_PHI",
+  "2026_06_CHI_ATL",
+  "2026_06_HOU_JAX",
+  "2026_06_NYJ_NE",
+  "2026_06_SEA_DEN",
+  "2026_06_TEN_IND",
+  "2026_06_WAS_SF"
+ ],
+ "event_ids": [
+  "ev_1792457001_a408d18e",
+  "ev_1792457001_2d05c519",
+  "ev_1792457001_85d40f92",
+  "ev_1792457001_37e3bdf3",
+  "ev_1792457001_0ae57362",
+  "ev_1792457001_114e8412",
+  "ev_1792457001_5b2f33da",
+  "ev_1792457001_083ac341",
+  "ev_1792457001_f5099231",
+  "ev_1792457001_7bf4ea46",
+  "ev_1792457001_242cb05b",
+  "ev_1792457001_5526ed69",
+  "ev_1792457001_595ceb7e",
+  "ev_1792457001_ac4a50a6",
+  "ev_1792457001_3f55c55f",
+  "ev_1792457001_13d04d30",
+  "ev_1792457001_d6b6da6b"
+ ],
+ "requested_at": "2026-10-20T00:43:22Z"
+}

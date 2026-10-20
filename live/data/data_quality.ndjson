@@ -978,3 +978,6 @@
 {"kind":"impossible_transition","detail":"00-0040731: IR -> ACTIVE","player_id":"00-0040731","source":"espn","system_received_at":"2026-10-19T21:16:17Z"}
 {"kind":"team_mismatch","detail":"00-0027973: report says ATL, roster says PHI","player_id":"00-0027973","source":"espn","system_received_at":"2026-10-19T21:16:17Z"}
 {"kind":"team_mismatch","detail":"00-0038728: report says MIA, roster says HOU","player_id":"00-0038728","source":"espn","system_received_at":"2026-10-19T21:16:17Z"}
+{"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-20T00:43:21Z"}
+{"kind":"team_mismatch","detail":"00-0027973: report says ATL, roster says PHI","player_id":"00-0027973","source":"espn","system_received_at":"2026-10-20T00:43:21Z"}
+{"kind":"team_mismatch","detail":"00-0038728: report says MIA, roster says HOU","player_id":"00-0038728","source":"espn","system_received_at":"2026-10-20T00:43:21Z"}
