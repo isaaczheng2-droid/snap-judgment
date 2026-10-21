@@ -194,19 +194,11 @@
   },
   {
    "type": "youtube",
-   "id": "XHejZ8pBKyI",
-   "title": "Sound the Drum | Panthers Wild Card Trailer ft. Stephen Curry",
-   "source": "Panthers",
-   "seconds": 99,
-   "uploaded": "2026-01"
-  },
-  {
-   "type": "youtube",
-   "id": "oIAg7QvdIjs",
-   "title": "Climb Higher: The Broncos’ 2025 playoff hype video narrated by Aqib Talib",
+   "id": "-RXstH6NjhA",
+   "title": "The Broncos’ 2025 AFC Championship Game hype video narrated by Peyton Manning | Climb Higher",
    "source": "Broncos",
-   "seconds": 65,
-   "uploaded": "2026-01"
+   "seconds": 74,
+   "uploaded": "2026-02"
   },
   {
    "type": "youtube",
@@ -338,10 +330,10 @@
   },
   {
    "type": "youtube",
-   "id": "11is_ndJ2eI",
-   "title": "Are You Afraid of the Dark? | Week 8 Hype Video",
-   "source": "Bengals",
-   "seconds": 82,
+   "id": "mBU2RPFwvTo",
+   "title": "WEEK 14 HYPE TAPE: MIAMI DOLPHINS AT LOS ANGELES CHARGERS",
+   "source": "Dolphins",
+   "seconds": 36,
    "uploaded": "2023-10"
   },
   {
@@ -354,19 +346,19 @@
   },
   {
    "type": "youtube",
-   "id": "mBU2RPFwvTo",
-   "title": "WEEK 14 HYPE TAPE: MIAMI DOLPHINS AT LOS ANGELES CHARGERS",
-   "source": "Dolphins",
-   "seconds": 36,
-   "uploaded": "2023-10"
-  },
-  {
-   "type": "youtube",
    "id": "IMAGtvbMMPE",
    "title": "Minnesota Vikings 2022 Winter Whiteout Hype Video",
    "source": "Vikings",
    "seconds": 56,
    "uploaded": "2023-10"
+  },
+  {
+   "type": "youtube",
+   "id": "OGCYzQ5bxAg",
+   "title": "IT IS US: AFC Championship Game Hype | Cincinnati Bengals",
+   "source": "Bengals",
+   "seconds": 106,
+   "uploaded": "2022-10"
   },
   {
    "type": "youtube",
@@ -394,6 +386,14 @@
   },
   {
    "type": "youtube",
+   "id": "5FLvLJ5iC80",
+   "title": "BACK IN BLACK || Carolina Panthers NFL Hype Video",
+   "source": "Panthers",
+   "seconds": 71,
+   "uploaded": "2021-10"
+  },
+  {
+   "type": "youtube",
    "id": "wbn2OZ3OawE",
    "title": "Browns vs. Steelers Hype Video (Week 17) | Cleveland Browns",
    "source": "Browns",
@@ -417,5 +417,5 @@
    "uploaded": "2020-10"
   }
  ],
- "updated": "2026-10-20T14:22:37Z"
+ "updated": "2026-10-21T14:34:49Z"
 }
