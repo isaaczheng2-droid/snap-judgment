@@ -1,0 +1,49 @@
+{
+ "reasons": [
+  "Jaylen Wright: ACTIVE \u2192 QUESTIONABLE (Foot)",
+  "JuJu Brents: QUESTIONABLE \u2192 ACTIVE",
+  "Charlie Jones: no report \u2192 QUESTIONABLE (Achilles)",
+  "KC Concepcion: ACTIVE \u2192 QUESTIONABLE (Calf)",
+  "Matthew Golden: ACTIVE \u2192 QUESTIONABLE (Shoulder)",
+  "T'Vondre Sweat: no report \u2192 QUESTIONABLE (Elbow)",
+  "Christian Watson: ACTIVE \u2192 QUESTIONABLE (Ankle)",
+  "Kene Nwangwu: no report \u2192 QUESTIONABLE (Knee)",
+  "Jordan Love: ACTIVE \u2192 QUESTIONABLE (Back)",
+  "Denzel Boston: ACTIVE \u2192 QUESTIONABLE (Foot)",
+  "Bo Melton: no report \u2192 QUESTIONABLE (Back)",
+  "Brandon Cisse: ACTIVE \u2192 QUESTIONABLE (Shoulder)"
+ ],
+ "game_ids": [
+  "2026_07_CLE_TEN",
+  "2026_07_GB_DET",
+  "2026_07_IND_MIN",
+  "2026_07_MIA_NYJ",
+  "2026_07_NE_CHI",
+  "2026_07_NYG_HOU",
+  "2026_07_TB_CAR"
+ ],
+ "event_ids": [
+  "ev_1792616103_7aa224d4",
+  "ev_1792616103_d15b0f19",
+  "ev_1792616103_a8d1b5e6",
+  "ev_1792616103_aee14a24",
+  "ev_1792616103_d2cfe28a",
+  "ev_1792616103_8b68b35f",
+  "ev_1792616103_fabd85c9",
+  "ev_1792616103_79f473fc",
+  "ev_1792616103_afdeacf9",
+  "ev_1792616103_5dbc887f",
+  "ev_1792616103_4dcc4214",
+  "ev_1792616103_4e15b30e",
+  "ev_1792616103_ecb34669",
+  "ev_1792616103_1afdae05",
+  "ev_1792616103_35e482be",
+  "ev_1792616103_1f26430f",
+  "ev_1792616103_fe5e2b36",
+  "ev_1792616103_920f9786",
+  "ev_1792616103_b2dbdf55",
+  "ev_1792616103_4b7511bd",
+  "ev_1792616103_74707c23"
+ ],
+ "requested_at": "2026-10-21T20:55:04Z"
+}
