@@ -1011,3 +1011,6 @@
 {"kind":"team_mismatch","detail":"00-0036711: report says ATL, roster says WAS","player_id":"00-0036711","source":"espn","system_received_at":"2026-10-22T00:16:01Z"}
 {"kind":"unknown_player","detail":"Brandon McManus (LA) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-22T00:16:01Z"}
 {"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-22T00:16:01Z"}
+{"kind":"team_mismatch","detail":"00-0036711: report says ATL, roster says WAS","player_id":"00-0036711","source":"espn","system_received_at":"2026-10-22T05:26:08Z"}
+{"kind":"unknown_player","detail":"Brandon McManus (LA) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-22T05:26:08Z"}
+{"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-22T05:26:08Z"}
