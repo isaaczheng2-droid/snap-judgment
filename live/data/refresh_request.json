@@ -1,0 +1,42 @@
+{
+ "reasons": [
+  "Christian Gonzalez: no report \u2192 QUESTIONABLE (Illness)",
+  "Puka Nacua: ACTIVE \u2192 QUESTIONABLE (Calf)",
+  "Justin Jefferson: QUESTIONABLE \u2192 ACTIVE (Ankle)",
+  "James Pierre: QUESTIONABLE \u2192 ACTIVE (Foot)",
+  "Gervon Dexter Sr.: no report \u2192 QUESTIONABLE (Hamstring)",
+  "Cameron Thomas: ACTIVE \u2192 QUESTIONABLE (Ankle)",
+  "Jordan Love: QUESTIONABLE \u2192 ACTIVE (Back)",
+  "Lukas Van Ness: no report \u2192 QUESTIONABLE (Illness)",
+  "Maliek Collins: QUESTIONABLE \u2192 ACTIVE (Foot)",
+  "Calijah Kancey: QUESTIONABLE \u2192 ACTIVE (Illness)",
+  "Nico Collins: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Charvarius Ward: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_07_CLE_TEN",
+  "2026_07_GB_DET",
+  "2026_07_IND_MIN",
+  "2026_07_LA_LV",
+  "2026_07_NE_CHI",
+  "2026_07_NYG_HOU",
+  "2026_07_SF_ATL",
+  "2026_07_TB_CAR"
+ ],
+ "event_ids": [
+  "ev_1792709245_bf7bb152",
+  "ev_1792709245_0b1a3456",
+  "ev_1792709245_c936c0f5",
+  "ev_1792709245_eadc4c4b",
+  "ev_1792709245_33eff559",
+  "ev_1792709245_f72fa24d",
+  "ev_1792709245_86e9e304",
+  "ev_1792709245_7b5f8ccb",
+  "ev_1792709245_744380dc",
+  "ev_1792709245_8d95ca1e",
+  "ev_1792709245_84750dbe",
+  "ev_1792709245_0d7c9448",
+  "ev_1792709245_35390266"
+ ],
+ "requested_at": "2026-10-22T22:47:26Z"
+}
