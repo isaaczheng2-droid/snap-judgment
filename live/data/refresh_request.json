@@ -1,0 +1,21 @@
+{
+ "reasons": [
+  "Quincy Riley: QUESTIONABLE \u2192 ACTIVE",
+  "Nico Collins: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Charvarius Ward: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "John Franklin-Myers: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_07_CLE_TEN",
+  "2026_07_IND_MIN",
+  "2026_07_NYG_HOU",
+  "2026_07_PIT_NO"
+ ],
+ "event_ids": [
+  "ev_1792683687_d314e541",
+  "ev_1792683687_c7d2609c",
+  "ev_1792683687_6f310f9d",
+  "ev_1792683687_c447fb6a"
+ ],
+ "requested_at": "2026-10-22T15:41:29Z"
+}
