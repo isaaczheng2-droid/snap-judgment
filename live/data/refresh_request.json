@@ -1,0 +1,52 @@
+{
+ "reasons": [
+  "David Montgomery: DOUBTFUL \u2192 OUT (Groin)",
+  "Brandon Cisse: QUESTIONABLE \u2192 ACTIVE (Shoulder)",
+  "Matthew Golden: QUESTIONABLE \u2192 ACTIVE (Shoulder)",
+  "Christian Watson: QUESTIONABLE \u2192 ACTIVE (Ankle)",
+  "Tonka Hemingway: QUESTIONABLE \u2192 ACTIVE (Concussion)",
+  "T'Vondre Sweat: QUESTIONABLE \u2192 ACTIVE (Elbow)",
+  "Sauce Gardner: DOUBTFUL \u2192 OUT (Calf)",
+  "Mike Evans: QUESTIONABLE \u2192 OUT (Achilles)",
+  "Quinshon Judkins: QUESTIONABLE \u2192 ACTIVE (Ankle)",
+  "Denzel Boston: QUESTIONABLE \u2192 ACTIVE (Foot)",
+  "KC Concepcion: QUESTIONABLE \u2192 ACTIVE (Calf)",
+  "Mason Graham: QUESTIONABLE \u2192 ACTIVE (Knee)"
+ ],
+ "game_ids": [
+  "2026_07_CLE_TEN",
+  "2026_07_DEN_ARI",
+  "2026_07_GB_DET",
+  "2026_07_IND_MIN",
+  "2026_07_KC_SEA",
+  "2026_07_LA_LV",
+  "2026_07_MIA_NYJ",
+  "2026_07_NYG_HOU",
+  "2026_07_SF_ATL"
+ ],
+ "event_ids": [
+  "ev_1792788038_6ff1aee0",
+  "ev_1792788038_cca18be6",
+  "ev_1792788038_446418f1",
+  "ev_1792788038_229216c7",
+  "ev_1792788038_fc793650",
+  "ev_1792788038_335bb72d",
+  "ev_1792788038_02e07886",
+  "ev_1792788038_178e40d0",
+  "ev_1792788038_8b31fc4d",
+  "ev_1792788038_06097a07",
+  "ev_1792788038_05d24d0e",
+  "ev_1792788038_6799f775",
+  "ev_1792788038_504cf364",
+  "ev_1792788038_57428e8b",
+  "ev_1792788038_7e5ea926",
+  "ev_1792788038_258bf3c2",
+  "ev_1792788038_745f72cf",
+  "ev_1792788038_f19bc74d",
+  "ev_1792788038_409526b7",
+  "ev_1792788038_3f7ca165",
+  "ev_1792788038_4edf86f5",
+  "ev_1792788038_fe4ef154"
+ ],
+ "requested_at": "2026-10-23T20:40:49Z"
+}
