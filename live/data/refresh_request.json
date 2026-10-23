@@ -1,0 +1,41 @@
+{
+ "reasons": [
+  "Rashid Shaheed: QUESTIONABLE \u2192 ACTIVE (Hip)",
+  "Case Keenum: ACTIVE \u2192 INACTIVE",
+  "Behren Morton: ACTIVE \u2192 INACTIVE",
+  "DeVonta Smith: ACTIVE \u2192 QUESTIONABLE (Hamstring)",
+  "Brock Bowers: QUESTIONABLE \u2192 ACTIVE (Hamstring)",
+  "Moro Ojomo: no report \u2192 QUESTIONABLE (Abdomen)",
+  "Jayden Loving: ACTIVE \u2192 INACTIVE",
+  "Nick McCloud: no report \u2192 INACTIVE",
+  "Jordan McFadden: ACTIVE \u2192 INACTIVE",
+  "Joshua Farmer: UNKNOWN \u2192 INACTIVE (Not injury related - personal matter)",
+  "Nico Collins: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Charvarius Ward: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_07_CLE_TEN",
+  "2026_07_DAL_PHI",
+  "2026_07_IND_MIN",
+  "2026_07_KC_SEA",
+  "2026_07_LA_LV",
+  "2026_07_NE_CHI",
+  "2026_07_NYG_HOU"
+ ],
+ "event_ids": [
+  "ev_1792714892_99dea925",
+  "ev_1792714892_708d3d04",
+  "ev_1792714892_c1bb896e",
+  "ev_1792714892_29bf8fd0",
+  "ev_1792714892_55bf8129",
+  "ev_1792714892_f312a89c",
+  "ev_1792714892_6c8873c8",
+  "ev_1792714892_4d0a98cd",
+  "ev_1792714892_db2c382c",
+  "ev_1792714892_34914fd8",
+  "ev_1792714892_6d40d32e",
+  "ev_1792714892_638a7e36",
+  "ev_1792714892_a145be6c"
+ ],
+ "requested_at": "2026-10-23T00:21:33Z"
+}
