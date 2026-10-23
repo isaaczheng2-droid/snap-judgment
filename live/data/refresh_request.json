@@ -1,0 +1,26 @@
+{
+ "reasons": [
+  "Window finished: Thursday 8:15 PM ET game (1 final)",
+  "Box scores updated: player results and the paper test can be graded",
+  "Nico Collins: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Charvarius Ward: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "John Franklin-Myers: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "KC LT: Josh Simmons \u2192 Kahlil Benson as the starter",
+  "KC RT: Kahlil Benson \u2192 Jaylon Moore as the starter",
+  "LA TE: Colby Parkinson \u2192 Tyler Higbee as the starter"
+ ],
+ "game_ids": [
+  "2026_07_CLE_TEN",
+  "2026_07_IND_MIN",
+  "2026_07_NYG_HOU"
+ ],
+ "event_ids": [
+  "ev_1792737183_15f36c9c",
+  "ev_1792737183_63399125",
+  "ev_1792737183_cb748293",
+  "ev_1792737183_12ba0023",
+  "ev_1792737183_d51e582f",
+  "ev_1792737183_77451449"
+ ],
+ "requested_at": "2026-10-23T06:33:03Z"
+}
