@@ -1,94 +1,95 @@
 {
- "n": 1446,
+ "n": 1464,
  "weeks": [
   2,
   3,
   4,
   5,
-  6
+  6,
+  7
  ],
  "seasons": [
   2026
  ],
  "all": {
-  "n": 1446,
-  "mae": 6.164,
-  "bias": 1.649,
-  "naive_mae": 6.568,
-  "vs_naive": 0.0615,
+  "n": 1464,
+  "mae": 6.175,
+  "bias": 1.636,
+  "naive_mae": 6.58,
+  "vs_naive": 0.0617,
   "vs_naive_ci95_pts": [
-   0.314,
-   0.497
+   0.315,
+   0.493
   ],
-  "coverage_p10_p90": 0.7261,
-  "coverage_n": 1446
+  "coverage_p10_p90": 0.724,
+  "coverage_n": 1464
  },
  "played_only": {
-  "n": 1105,
-  "mae": 5.529,
-  "bias": -0.378,
-  "naive_mae": 5.765,
+  "n": 1118,
+  "mae": 5.534,
+  "bias": -0.409,
+  "naive_mae": 5.77,
   "vs_naive": 0.0409,
   "vs_naive_ci95_pts": [
-   0.13,
-   0.322
+   0.144,
+   0.321
   ],
-  "coverage_p10_p90": 0.7991,
-  "coverage_n": 1105
+  "coverage_p10_p90": 0.7979,
+  "coverage_n": 1118
  },
- "did_not_play": 341,
+ "did_not_play": 346,
  "by_position": {
   "QB": {
-   "n": 347,
-   "mae": 7.92,
-   "bias": 4.462,
-   "naive_mae": 8.57,
-   "vs_naive": 0.0759,
+   "n": 352,
+   "mae": 7.933,
+   "bias": 4.454,
+   "naive_mae": 8.587,
+   "vs_naive": 0.0761,
    "vs_naive_ci95_pts": [
-    0.495,
-    0.802
+    0.507,
+    0.834
    ],
-   "coverage_p10_p90": 0.6513,
-   "coverage_n": 347
+   "coverage_p10_p90": 0.6506,
+   "coverage_n": 352
   },
   "RB": {
-   "n": 361,
-   "mae": 5.499,
-   "bias": 1.299,
-   "naive_mae": 5.841,
-   "vs_naive": 0.0586,
+   "n": 365,
+   "mae": 5.512,
+   "bias": 1.271,
+   "naive_mae": 5.851,
+   "vs_naive": 0.058,
    "vs_naive_ci95_pts": [
-    0.136,
-    0.506
+    0.156,
+    0.499
    ],
-   "coverage_p10_p90": 0.8006,
-   "coverage_n": 361
+   "coverage_p10_p90": 0.7973,
+   "coverage_n": 365
   },
   "TE": {
-   "n": 221,
-   "mae": 5.469,
-   "bias": 0.356,
-   "naive_mae": 5.887,
+   "n": 223,
+   "mae": 5.497,
+   "bias": 0.275,
+   "naive_mae": 5.918,
    "vs_naive": 0.071,
    "vs_naive_ci95_pts": [
-    0.204,
-    0.631
+    0.201,
+    0.68
    ],
-   "coverage_p10_p90": 0.6923,
-   "coverage_n": 221
+   "coverage_p10_p90": 0.6906,
+   "coverage_n": 223
   },
   "WR": {
-   "n": 517,
-   "mae": 5.747,
-   "bias": 0.56,
+   "n": 524,
+   "mae": 5.743,
+   "bias": 0.576,
    "naive_mae": 6.023,
-   "vs_naive": 0.0459,
+   "vs_naive": 0.0465,
    "vs_naive_ci95_pts": [
-    0.13,
-    0.411
+    0.142,
+    0.426
    ],
-   "coverage_p10_p90": 0.7389,
-   "coverage_n": 517
+   "coverage_p10_p90": 0.7366,
+   "coverage_n": 524
   }
  },
  "by_week": {
@@ -156,6 +157,10 @@
    ],
    "coverage_p10_p90": 0.7195,
    "coverage_n": 246
+  },
+  "2026-07": {
+   "n": 18,
+   "note": "fewer than 30 graded rows"
   }
  },
  "by_status": {
@@ -168,30 +173,30 @@
    "note": "fewer than 30 graded rows"
   },
   "ok": {
-   "n": 1222,
-   "mae": 5.862,
-   "bias": 1.056,
-   "naive_mae": 6.314,
+   "n": 1238,
+   "mae": 5.875,
+   "bias": 1.037,
+   "naive_mae": 6.328,
    "vs_naive": 0.0717,
    "vs_naive_ci95_pts": [
-    0.361,
+    0.352,
     0.548
    ],
-   "coverage_p10_p90": 0.7692,
-   "coverage_n": 1222
+   "coverage_p10_p90": 0.7674,
+   "coverage_n": 1238
   },
   "out": {
-   "n": 106,
-   "mae": 9.894,
-   "bias": 9.894,
-   "naive_mae": 10.14,
-   "vs_naive": 0.0243,
+   "n": 108,
+   "mae": 9.866,
+   "bias": 9.866,
+   "naive_mae": 10.118,
+   "vs_naive": 0.0249,
    "vs_naive_ci95_pts": [
-    -0.056,
-    0.576
+    -0.035,
+    0.543
    ],
-   "coverage_p10_p90": 0.1698,
-   "coverage_n": 106
+   "coverage_p10_p90": 0.1667,
+   "coverage_n": 108
   },
   "questionable": {
    "n": 53,
@@ -223,17 +228,17 @@
  "corrections": 0,
  "by_model_version": {
   "v1-f67fc4d5fd6d": {
-   "n": 1446,
-   "mae": 6.164,
-   "bias": 1.649,
-   "naive_mae": 6.568,
-   "vs_naive": 0.0615,
+   "n": 1464,
+   "mae": 6.175,
+   "bias": 1.636,
+   "naive_mae": 6.58,
+   "vs_naive": 0.0617,
    "vs_naive_ci95_pts": [
-    0.314,
-    0.497
+    0.315,
+    0.493
    ],
-   "coverage_p10_p90": 0.7261,
-   "coverage_n": 1446
+   "coverage_p10_p90": 0.724,
+   "coverage_n": 1464
   }
  },
  "questionable_play_rate": {
