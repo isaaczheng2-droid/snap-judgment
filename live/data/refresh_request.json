@@ -1,0 +1,36 @@
+{
+ "reasons": [
+  "Box scores updated: player results and the paper test can be graded",
+  "Zyon McCollum: QUESTIONABLE \u2192 ACTIVE (Illness)",
+  "Bucky Irving: QUESTIONABLE \u2192 ACTIVE (Illness)",
+  "Emeka Egbuka: QUESTIONABLE \u2192 OUT (Concussion)",
+  "Nathan Shepherd: ACTIVE \u2192 QUESTIONABLE (Achilles)",
+  "Alvin Kamara: QUESTIONABLE \u2192 ACTIVE (Back)",
+  "Jalen Ramsey: QUESTIONABLE \u2192 ACTIVE (Wrist)",
+  "Brian Robinson Jr.: QUESTIONABLE \u2192 OUT (Hamstring)",
+  "Nico Collins: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Charvarius Ward: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "John Franklin-Myers: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_07_CLE_TEN",
+  "2026_07_IND_MIN",
+  "2026_07_NYG_HOU",
+  "2026_07_PIT_NO",
+  "2026_07_SF_ATL",
+  "2026_07_TB_CAR"
+ ],
+ "event_ids": [
+  "ev_1792776607_8a49bab5",
+  "ev_1792776607_55e6a75b",
+  "ev_1792776607_b127e493",
+  "ev_1792776607_fa521a4c",
+  "ev_1792776607_435280bf",
+  "ev_1792776607_228a5039",
+  "ev_1792776607_d3351b6c",
+  "ev_1792776607_1b5a92f1",
+  "ev_1792776607_c1224d7d",
+  "ev_1792776607_2e6abafd"
+ ],
+ "requested_at": "2026-10-23T17:30:07Z"
+}
