@@ -1,0 +1,41 @@
+{
+ "reasons": [
+  "Tyler Badie: OUT \u2192 IR (Thumb)",
+  "KaVontae Turpin: QUESTIONABLE \u2192 OUT (Ribs)",
+  "Moro Ojomo: QUESTIONABLE \u2192 ACTIVE (Abdomen)",
+  "DeVonta Smith: QUESTIONABLE \u2192 OUT (Hamstring)",
+  "Lamar Jackson: QUESTIONABLE \u2192 OUT (Ankle)",
+  "Devin Duvernay: ACTIVE \u2192 UNKNOWN (Not injury related - personal matter)",
+  "Jake Matthews: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Nico Collins: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Charvarius Ward: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Jonathan Taylor: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Will Campbell: ACTIVE \u2192 UNKNOWN (Knee)",
+  "John Franklin-Myers: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_07_CIN_BAL",
+  "2026_07_CLE_TEN",
+  "2026_07_DAL_PHI",
+  "2026_07_DEN_ARI",
+  "2026_07_IND_MIN",
+  "2026_07_NE_CHI",
+  "2026_07_NYG_HOU",
+  "2026_07_SF_ATL"
+ ],
+ "event_ids": [
+  "ev_1792879041_9c86a3e4",
+  "ev_1792879041_5f6881c3",
+  "ev_1792879041_8d9c973a",
+  "ev_1792879041_8ec766c3",
+  "ev_1792879041_1a216842",
+  "ev_1792879041_e60ff846",
+  "ev_1792879041_40bcfd25",
+  "ev_1792879041_5ecb9a5d",
+  "ev_1792879041_4e34a3ff",
+  "ev_1792879041_57cd389f",
+  "ev_1792879041_1a83535d",
+  "ev_1792879041_9f2958b5"
+ ],
+ "requested_at": "2026-10-24T21:57:26Z"
+}

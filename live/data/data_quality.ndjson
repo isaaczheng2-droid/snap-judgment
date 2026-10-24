@@ -1036,3 +1036,11 @@
 {"kind":"impossible_transition","detail":"00-0040118: IR -> ACTIVE","player_id":"00-0040118","source":"espn","system_received_at":"2026-10-24T19:04:12Z"}
 {"kind":"impossible_transition","detail":"00-0040162: IR -> ACTIVE","player_id":"00-0040162","source":"espn","system_received_at":"2026-10-24T19:04:12Z"}
 {"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-24T19:04:12Z"}
+{"kind":"impossible_transition","detail":"00-0039020: IR -> ACTIVE","player_id":"00-0039020","source":"espn","system_received_at":"2026-10-24T21:57:21Z"}
+{"kind":"impossible_transition","detail":"00-0034775: IR -> ACTIVE","player_id":"00-0034775","source":"espn","system_received_at":"2026-10-24T21:57:21Z"}
+{"kind":"impossible_transition","detail":"00-0037525: IR -> ACTIVE","player_id":"00-0037525","source":"espn","system_received_at":"2026-10-24T21:57:21Z"}
+{"kind":"impossible_transition","detail":"00-0038977: IR -> ACTIVE","player_id":"00-0038977","source":"espn","system_received_at":"2026-10-24T21:57:21Z"}
+{"kind":"impossible_transition","detail":"00-0036285: IR -> ACTIVE","player_id":"00-0036285","source":"espn","system_received_at":"2026-10-24T21:57:21Z"}
+{"kind":"impossible_transition","detail":"00-0040289: IR -> ACTIVE","player_id":"00-0040289","source":"espn","system_received_at":"2026-10-24T21:57:21Z"}
+{"kind":"impossible_transition","detail":"00-0037297: IR -> ACTIVE","player_id":"00-0037297","source":"espn","system_received_at":"2026-10-24T21:57:21Z"}
+{"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-24T21:57:21Z"}
