@@ -1045,3 +1045,4 @@
 {"kind":"impossible_transition","detail":"00-0037297: IR -> ACTIVE","player_id":"00-0037297","source":"espn","system_received_at":"2026-10-24T21:57:21Z"}
 {"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-24T21:57:21Z"}
 {"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-25T00:34:33Z"}
+{"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-25T05:22:52Z"}
