@@ -26,6 +26,14 @@
   },
   {
    "type": "youtube",
+   "id": "R8ev4yITt-M",
+   "title": "Trailer: Packers vs. Bears",
+   "source": "Packers",
+   "seconds": 51,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
    "id": "AKP-ez2k1jI",
    "title": "Game Trailer : Week 6 vs. The Tennessee Titans",
    "source": "Colts",
@@ -38,6 +46,14 @@
    "title": "Week 5 Game Trailer vs the Pittsburgh Steelers",
    "source": "Colts",
    "seconds": 49,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
+   "id": "6Vg8fpuiLkI",
+   "title": "Let It Rip | Trailer | Raiders vs. Rams",
+   "source": "Raiders",
+   "seconds": 38,
    "uploaded": "2026-10"
   },
   {
@@ -62,6 +78,14 @@
    "title": "2026 Buffalo Bills Season Hype Video With Ryan Fitzpatrick and Josh Allen!",
    "source": "Bills",
    "seconds": 141,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
+   "id": "5ook1Opv7M0",
+   "title": "2026 Season Trailer | Carolina Panthers",
+   "source": "Panthers",
+   "seconds": 78,
    "uploaded": "2026-09"
   },
   {
@@ -186,22 +210,6 @@
   },
   {
    "type": "youtube",
-   "id": "DTFSRbNPLvM",
-   "title": "QB Bo Nix narrates Broncos' #NEvsDEN hype video | Climb Higher",
-   "source": "Broncos",
-   "seconds": 96,
-   "uploaded": "2026-02"
-  },
-  {
-   "type": "youtube",
-   "id": "e4dGduoC8PQ",
-   "title": "Best Cinematic Shots of the 2025 Season | Miami Dolphins",
-   "source": "Dolphins",
-   "seconds": 160,
-   "uploaded": "2026-02"
-  },
-  {
-   "type": "youtube",
    "id": "XHejZ8pBKyI",
    "title": "Sound the Drum | Panthers Wild Card Trailer ft. Stephen Curry",
    "source": "Panthers",
@@ -218,10 +226,10 @@
   },
   {
    "type": "youtube",
-   "id": "BSkiDbY6XYc",
-   "title": "Playoff trailer | Packers 2025 postseason",
-   "source": "Packers",
-   "seconds": 58,
+   "id": "-RXstH6NjhA",
+   "title": "The Broncos’ 2025 AFC Championship Game hype video narrated by Peyton Manning | Climb Higher",
+   "source": "Broncos",
+   "seconds": 74,
    "uploaded": "2026-01"
   },
   {
@@ -242,10 +250,10 @@
   },
   {
    "type": "youtube",
-   "id": "iiWP---sSTo",
-   "title": "PATRIOTS 2025 PLAYOFF HYPE 🔥 | WE ALL WE GOT WE ALL WE NEED",
+   "id": "06wkfvvx2No",
+   "title": "🔥 PATRIOTS AFC CHAMPIONSHIP PLAYOFF HYPE🔥 | WE ALL WE GOT WE ALL WE NEED",
    "source": "Patriots",
-   "seconds": 49,
+   "seconds": 60,
    "uploaded": "2026-01"
   },
   {
@@ -274,10 +282,10 @@
   },
   {
    "type": "youtube",
-   "id": "Y6l6SEqzELY",
-   "title": "'Protect Our House' | Commanders vs. Bucs Wild Card Round Hype Video | Tampa Bay Buccaneers",
+   "id": "uGQcYEDQoe8",
+   "title": "It's About Legacy | 2025 Tampa Bay Buccaneers Season Trailer",
    "source": "Buccaneers",
-   "seconds": 60,
+   "seconds": 119,
    "uploaded": "2025-10"
   },
   {
@@ -346,18 +354,18 @@
   },
   {
    "type": "youtube",
-   "id": "11is_ndJ2eI",
-   "title": "Are You Afraid of the Dark? | Week 8 Hype Video",
-   "source": "Bengals",
-   "seconds": 82,
+   "id": "9ZAUG2U5ZzQ",
+   "title": "WEEK 9 HYPE TAPE: MIAMI DOLPHINS AT CHICAGO BEARS",
+   "source": "Dolphins",
+   "seconds": 53,
    "uploaded": "2023-10"
   },
   {
    "type": "youtube",
-   "id": "veHSyA1KZvU",
-   "title": "WEEK 2 HYPE TAPE | MIAMI DOLPHINS",
+   "id": "mBU2RPFwvTo",
+   "title": "WEEK 14 HYPE TAPE: MIAMI DOLPHINS AT LOS ANGELES CHARGERS",
    "source": "Dolphins",
-   "seconds": 70,
+   "seconds": 36,
    "uploaded": "2023-10"
   },
   {
@@ -367,6 +375,14 @@
    "source": "Vikings",
    "seconds": 56,
    "uploaded": "2023-10"
+  },
+  {
+   "type": "youtube",
+   "id": "OGCYzQ5bxAg",
+   "title": "IT IS US: AFC Championship Game Hype | Cincinnati Bengals",
+   "source": "Bengals",
+   "seconds": 106,
+   "uploaded": "2022-10"
   },
   {
    "type": "youtube",
@@ -394,14 +410,6 @@
   },
   {
    "type": "youtube",
-   "id": "5FLvLJ5iC80",
-   "title": "BACK IN BLACK || Carolina Panthers NFL Hype Video",
-   "source": "Panthers",
-   "seconds": 71,
-   "uploaded": "2021-10"
-  },
-  {
-   "type": "youtube",
    "id": "wbn2OZ3OawE",
    "title": "Browns vs. Steelers Hype Video (Week 17) | Cleveland Browns",
    "source": "Browns",
@@ -417,5 +425,5 @@
    "uploaded": "2021-10"
   }
  ],
- "updated": "2026-10-24T13:24:20Z"
+ "updated": "2026-10-25T13:46:05Z"
 }
