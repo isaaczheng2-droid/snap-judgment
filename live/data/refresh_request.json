@@ -1,0 +1,27 @@
+{
+ "reasons": [
+  "Box scores updated: player results and the paper test can be graded",
+  "Devin Duvernay: ACTIVE \u2192 UNKNOWN (Not injury related - personal matter)",
+  "Jake Matthews: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Charvarius Ward: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Will Campbell: ACTIVE \u2192 UNKNOWN (Knee)",
+  "John Franklin-Myers: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "CAR RT: Taylor Moton \u2192 Monroe Freeling as the starter"
+ ],
+ "game_ids": [
+  "2026_07_CLE_TEN",
+  "2026_07_DEN_ARI",
+  "2026_07_IND_MIN",
+  "2026_07_NE_CHI",
+  "2026_07_SF_ATL"
+ ],
+ "event_ids": [
+  "ev_1793002145_0257f8af",
+  "ev_1793002145_67303a5c",
+  "ev_1793002145_781dd81f",
+  "ev_1793002145_99208053",
+  "ev_1793002145_d82a44da",
+  "ev_1793002145_8a6ba272"
+ ],
+ "requested_at": "2026-10-26T08:09:07Z"
+}
