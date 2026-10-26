@@ -26,10 +26,10 @@
   },
   {
    "type": "youtube",
-   "id": "R8ev4yITt-M",
-   "title": "Trailer: Packers vs. Bears",
+   "id": "xh0Zh4Ve-Ng",
+   "title": "Trailer: Packers vs. Cowboys",
    "source": "Packers",
-   "seconds": 51,
+   "seconds": 75,
    "uploaded": "2026-10"
   },
   {
@@ -234,6 +234,14 @@
   },
   {
    "type": "youtube",
+   "id": "BSkiDbY6XYc",
+   "title": "Playoff trailer | Packers 2025 postseason",
+   "source": "Packers",
+   "seconds": 58,
+   "uploaded": "2026-01"
+  },
+  {
+   "type": "youtube",
    "id": "P2RfuapthN8",
    "title": "J.J. Watt's EPIC playoff message to H-Town 🔥 | Texans Hype",
    "source": "Texans",
@@ -250,10 +258,10 @@
   },
   {
    "type": "youtube",
-   "id": "06wkfvvx2No",
-   "title": "🔥 PATRIOTS AFC CHAMPIONSHIP PLAYOFF HYPE🔥 | WE ALL WE GOT WE ALL WE NEED",
+   "id": "iiWP---sSTo",
+   "title": "PATRIOTS 2025 PLAYOFF HYPE 🔥 | WE ALL WE GOT WE ALL WE NEED",
    "source": "Patriots",
-   "seconds": 60,
+   "seconds": 49,
    "uploaded": "2026-01"
   },
   {
@@ -263,14 +271,6 @@
    "source": "Titans",
    "seconds": 25,
    "uploaded": "2025-11"
-  },
-  {
-   "type": "youtube",
-   "id": "M8I3QnmQook",
-   "title": "Welcome back | Packers 2025 season trailer",
-   "source": "Packers",
-   "seconds": 93,
-   "uploaded": "2025-10"
   },
   {
    "type": "youtube",
@@ -362,10 +362,10 @@
   },
   {
    "type": "youtube",
-   "id": "mBU2RPFwvTo",
-   "title": "WEEK 14 HYPE TAPE: MIAMI DOLPHINS AT LOS ANGELES CHARGERS",
+   "id": "jfVypnms8Lo",
+   "title": "WEEK 17 HYPE TAPE | DOLPHINS AT PATRIOTS",
    "source": "Dolphins",
-   "seconds": 36,
+   "seconds": 71,
    "uploaded": "2023-10"
   },
   {
@@ -423,7 +423,15 @@
    "source": "Titans",
    "seconds": 59,
    "uploaded": "2021-10"
+  },
+  {
+   "type": "youtube",
+   "id": "04LIbAlGjhI",
+   "title": "Choppa & Louisiana Philharmonic Orchestra - Choppa Style | Saints-Vikings Hype",
+   "source": "Saints",
+   "seconds": 109,
+   "uploaded": "2020-10"
   }
  ],
- "updated": "2026-10-25T13:46:05Z"
+ "updated": "2026-10-26T16:11:56Z"
 }
