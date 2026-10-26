@@ -1061,3 +1061,7 @@
 {"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-26T10:18:42Z"}
 {"kind":"impossible_transition","detail":"00-0038610: IR -> ACTIVE","player_id":"00-0038610","source":"espn","system_received_at":"2026-10-26T15:30:21Z"}
 {"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-26T15:30:21Z"}
+{"kind":"impossible_transition","detail":"00-0041483: IR -> ACTIVE","player_id":"00-0041483","source":"espn","system_received_at":"2026-10-26T20:46:01Z"}
+{"kind":"impossible_transition","detail":"00-0037002: IR -> ACTIVE","player_id":"00-0037002","source":"espn","system_received_at":"2026-10-26T20:46:01Z"}
+{"kind":"impossible_transition","detail":"00-0037086: IR -> ACTIVE","player_id":"00-0037086","source":"espn","system_received_at":"2026-10-26T20:46:01Z"}
+{"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-26T20:46:01Z"}

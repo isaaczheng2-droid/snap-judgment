@@ -1,0 +1,34 @@
+{
+ "reasons": [
+  "Box scores updated: player results and the paper test can be graded",
+  "Amon-Ra St. Brown: ACTIVE \u2192 QUESTIONABLE (Ankle)",
+  "Jarvis Brownlee Jr.: INACTIVE \u2192 ACTIVE",
+  "Jonah Laulu: INACTIVE \u2192 ACTIVE",
+  "Devin Duvernay: ACTIVE \u2192 UNKNOWN (Not injury related - personal matter)",
+  "Jake Matthews: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Charvarius Ward: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Will Campbell: ACTIVE \u2192 UNKNOWN (Knee)",
+  "John Franklin-Myers: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_07_CLE_TEN",
+  "2026_07_DEN_ARI",
+  "2026_07_GB_DET",
+  "2026_07_IND_MIN",
+  "2026_07_LA_LV",
+  "2026_07_MIA_NYJ",
+  "2026_07_NE_CHI",
+  "2026_07_SF_ATL"
+ ],
+ "event_ids": [
+  "ev_1793047561_f3ad2efc",
+  "ev_1793047561_77356582",
+  "ev_1793047561_1eec30ea",
+  "ev_1793047561_3984a982",
+  "ev_1793047561_24176dd7",
+  "ev_1793047561_8c75bdd2",
+  "ev_1793047561_8a7b5452",
+  "ev_1793047561_abc8713b"
+ ],
+ "requested_at": "2026-10-26T20:46:03Z"
+}
