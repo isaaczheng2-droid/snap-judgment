@@ -1,0 +1,24 @@
+{
+ "reasons": [
+  "Devin Duvernay: ACTIVE \u2192 UNKNOWN (Not injury related - personal matter)",
+  "Jake Matthews: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Charvarius Ward: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Will Campbell: ACTIVE \u2192 UNKNOWN (Knee)",
+  "John Franklin-Myers: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_07_CLE_TEN",
+  "2026_07_DEN_ARI",
+  "2026_07_IND_MIN",
+  "2026_07_NE_CHI",
+  "2026_07_SF_ATL"
+ ],
+ "event_ids": [
+  "ev_1792979273_f21f0ab0",
+  "ev_1792979273_ae15444d",
+  "ev_1792979273_2ba57aac",
+  "ev_1792979273_473f52fc",
+  "ev_1792979273_26d5e0db"
+ ],
+ "requested_at": "2026-10-26T01:47:55Z"
+}
