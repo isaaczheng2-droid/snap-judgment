@@ -29838,3 +29838,30 @@
 {"event_id":"ev_1793009922_9d4348f1","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_07_CLE_TEN","player_id":"00-0034805","team_id":"TEN","severity":"HIGH","previous_value":"ACTIVE","new_value":"UNKNOWN","detail":"John Franklin-Myers: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)","source":"nflverse:injuries","occurred_at":"2026-10-26T10:18:42Z","received_at":"2026-10-26T10:18:42Z","processed":false,"prediction_recalculated":false,"impact_tier":"HIGH","impact_reasons":["starter (depth chart rank 1)"],"player_name":"John Franklin-Myers","system_received_at":"2026-10-26T10:18:43Z"}
 {"event_id":"ev_1793009922_3360c6f0","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_07_GB_DET","player_id":"00-0036932","team_id":"GB","severity":"LOW","previous_value":"OUT","new_value":"IR","detail":"Micah Parsons: OUT \u2192 IR","source":"nflverse:rosters","occurred_at":"2026-10-26T10:18:42Z","received_at":"2026-10-26T10:18:42Z","processed":false,"prediction_recalculated":false,"impact_tier":"LOW","impact_reasons":["depth rank 4"],"player_name":"Micah Parsons","system_received_at":"2026-10-26T10:18:43Z"}
 {"event_id":"ev_1793009922_8468f968","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_07_DAL_PHI","player_id":"00-0039325","team_id":"PHI","severity":"LOW","previous_value":"OUT","new_value":"IR","detail":"Carson Steele: OUT \u2192 IR","source":"nflverse:rosters","occurred_at":"2026-10-26T10:18:42Z","received_at":"2026-10-26T10:18:42Z","processed":false,"prediction_recalculated":false,"impact_tier":"LOW","impact_reasons":["depth rank 5"],"player_name":"Carson Steele","system_received_at":"2026-10-26T10:18:43Z"}
+{"event_id":"ev_1793009922_232fe8fe","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_29474c40","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_3f837522","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_12ffcec5","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_c143e051","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_8d3c4799","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_ae20c2d4","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_51744a60","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_79dbd11d","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_b8436ddb","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_ffc25b70","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_9679bfcd","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_99a83057","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_477868b2","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_ecbf3d2c","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_d9785d0b","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_3c19caf9","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_9d4348f1","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_a3db51d4","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_ff0e8552","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_3360c6f0","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_e117faa4","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_a1c9ceb0","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_a4272fd4","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_6bc96030","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_db7a946b","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
+{"event_id":"ev_1793009922_8468f968","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-26T10:24:03Z"}
