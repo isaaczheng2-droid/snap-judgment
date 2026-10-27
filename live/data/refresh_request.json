@@ -1,0 +1,36 @@
+{
+ "reasons": [
+  "Saquon Barkley: ACTIVE \u2192 QUESTIONABLE (Back)",
+  "Devin Duvernay: ACTIVE \u2192 UNKNOWN (Not injury related - personal matter)",
+  "Jake Matthews: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Cameron Thomas: ACTIVE \u2192 UNKNOWN (Groin)",
+  "Riley Moss: ACTIVE \u2192 UNKNOWN (Ribs)",
+  "Charvarius Ward: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Jalen Travis: ACTIVE \u2192 UNKNOWN (Foot)",
+  "Alaric Jackson: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Will Campbell: ACTIVE \u2192 UNKNOWN (Knee)",
+  "John Franklin-Myers: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_07_CLE_TEN",
+  "2026_07_DAL_PHI",
+  "2026_07_DEN_ARI",
+  "2026_07_IND_MIN",
+  "2026_07_LA_LV",
+  "2026_07_NE_CHI",
+  "2026_07_SF_ATL"
+ ],
+ "event_ids": [
+  "ev_1793069865_0e47cfad",
+  "ev_1793069865_7f3b82bf",
+  "ev_1793069865_b3d43531",
+  "ev_1793069865_2db88541",
+  "ev_1793069865_68c7e0d3",
+  "ev_1793069865_9c7d5461",
+  "ev_1793069865_b1c21d31",
+  "ev_1793069865_1eb1dcab",
+  "ev_1793069865_7a0859b0",
+  "ev_1793069865_ba3746d7"
+ ],
+ "requested_at": "2026-10-27T02:57:46Z"
+}
