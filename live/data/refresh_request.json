@@ -1,0 +1,38 @@
+{
+ "reasons": [
+  "Window finished: Monday 8:15 PM ET game (1 final)",
+  "Box scores updated: player results and the paper test can be graded",
+  "Devin Duvernay: ACTIVE \u2192 UNKNOWN (Not injury related - personal matter)",
+  "Jake Matthews: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Cameron Thomas: ACTIVE \u2192 UNKNOWN (Groin)",
+  "Riley Moss: ACTIVE \u2192 UNKNOWN (Ribs)",
+  "Charvarius Ward: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Jalen Travis: ACTIVE \u2192 UNKNOWN (Foot)",
+  "Alaric Jackson: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Will Campbell: ACTIVE \u2192 UNKNOWN (Knee)",
+  "Moro Ojomo: ACTIVE \u2192 UNKNOWN (Abdomen)",
+  "John Franklin-Myers: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_07_CLE_TEN",
+  "2026_07_DAL_PHI",
+  "2026_07_DEN_ARI",
+  "2026_07_IND_MIN",
+  "2026_07_LA_LV",
+  "2026_07_NE_CHI",
+  "2026_07_SF_ATL"
+ ],
+ "event_ids": [
+  "ev_1793079620_d33cfd01",
+  "ev_1793079620_0a7541ff",
+  "ev_1793079620_32a1da65",
+  "ev_1793079620_343aa2a9",
+  "ev_1793079620_f3a759b2",
+  "ev_1793079620_116d36a7",
+  "ev_1793079620_4191aeaa",
+  "ev_1793079620_8758c226",
+  "ev_1793079620_771dbdc8",
+  "ev_1793079620_c6889b59"
+ ],
+ "requested_at": "2026-10-27T05:40:20Z"
+}
