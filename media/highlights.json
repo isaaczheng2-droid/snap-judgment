@@ -2,14 +2,6 @@
  "items": [
   {
    "type": "youtube",
-   "id": "ooE9182VYiI",
-   "title": "Outkast - \"ATLiens\" | Hype | Atlanta Falcons | NFL",
-   "source": "Falcons",
-   "seconds": 94,
-   "uploaded": "2026-10"
-  },
-  {
-   "type": "youtube",
    "id": "7zoXqKuoAfQ",
    "title": "Bills vs. Rams HYPE Video for Monday Night Football",
    "source": "Bills",
@@ -270,7 +262,7 @@
    "title": "Seahawks vs Titans Week 12 | Hype Video",
    "source": "Titans",
    "seconds": 25,
-   "uploaded": "2025-11"
+   "uploaded": "2025-12"
   },
   {
    "type": "youtube",
@@ -322,14 +314,6 @@
   },
   {
    "type": "youtube",
-   "id": "iWFPuehwxDM",
-   "title": "New York Jets 2024 Season Hype Video",
-   "source": "Jets",
-   "seconds": 110,
-   "uploaded": "2024-10"
-  },
-  {
-   "type": "youtube",
    "id": "znK04uBbJuM",
    "title": "Netflix Releases 'Receiver' Official Trailer | Premieres July 10",
    "source": "49ers",
@@ -350,6 +334,14 @@
    "title": "Can't Stop Now, We're Better Than Ever | Week 15 Hype Video",
    "source": "Bengals",
    "seconds": 61,
+   "uploaded": "2023-10"
+  },
+  {
+   "type": "youtube",
+   "id": "11is_ndJ2eI",
+   "title": "Are You Afraid of the Dark? | Week 8 Hype Video",
+   "source": "Bengals",
+   "seconds": 82,
    "uploaded": "2023-10"
   },
   {
@@ -378,10 +370,18 @@
   },
   {
    "type": "youtube",
-   "id": "OGCYzQ5bxAg",
-   "title": "IT IS US: AFC Championship Game Hype | Cincinnati Bengals",
-   "source": "Bengals",
-   "seconds": 106,
+   "id": "zObT8J-61N4",
+   "title": "New York Jets 2023 Season Hype Video Ft. Method Man",
+   "source": "Jets",
+   "seconds": 159,
+   "uploaded": "2023-10"
+  },
+  {
+   "type": "youtube",
+   "id": "78TadYRaotQ",
+   "title": "It's GAME DAY in Atlanta! | New Orleans Saints vs. Atlanta Falcons Hype | NFL",
+   "source": "Falcons",
+   "seconds": 62,
    "uploaded": "2022-10"
   },
   {
@@ -423,15 +423,7 @@
    "source": "Titans",
    "seconds": 59,
    "uploaded": "2021-10"
-  },
-  {
-   "type": "youtube",
-   "id": "04LIbAlGjhI",
-   "title": "Choppa & Louisiana Philharmonic Orchestra - Choppa Style | Saints-Vikings Hype",
-   "source": "Saints",
-   "seconds": 109,
-   "uploaded": "2020-10"
   }
  ],
- "updated": "2026-10-26T16:11:56Z"
+ "updated": "2026-10-27T15:25:33Z"
 }
