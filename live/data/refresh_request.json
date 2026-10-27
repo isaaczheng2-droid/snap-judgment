@@ -1,0 +1,42 @@
+{
+ "reasons": [
+  "Devonte Wyatt: ACTIVE \u2192 QUESTIONABLE (Ankle)",
+  "Upton Stout: ACTIVE \u2192 QUESTIONABLE (Shoulder - AC Joint)",
+  "Cole Payton: ACTIVE \u2192 INACTIVE",
+  "Emari Demercado: ACTIVE \u2192 INACTIVE",
+  "Tyrus Wheat: no report \u2192 INACTIVE",
+  "Jake Majors: no report \u2192 INACTIVE",
+  "Christian McCaffrey: ACTIVE \u2192 QUESTIONABLE (Hamstring)",
+  "Akayleb Evans: ACTIVE \u2192 QUESTIONABLE (Triceps)",
+  "Devin Duvernay: ACTIVE \u2192 UNKNOWN (Not injury related - personal matter)",
+  "Jake Matthews: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Charvarius Ward: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Will Campbell: ACTIVE \u2192 UNKNOWN (Knee)"
+ ],
+ "game_ids": [
+  "2026_07_CLE_TEN",
+  "2026_07_DAL_PHI",
+  "2026_07_DEN_ARI",
+  "2026_07_GB_DET",
+  "2026_07_IND_MIN",
+  "2026_07_NE_CHI",
+  "2026_07_SF_ATL",
+  "2026_07_TB_CAR"
+ ],
+ "event_ids": [
+  "ev_1793059614_c211904e",
+  "ev_1793059614_7beae4a7",
+  "ev_1793059614_9b865f5e",
+  "ev_1793059614_5bea91b2",
+  "ev_1793059614_f226bdde",
+  "ev_1793059614_cfa484ef",
+  "ev_1793059614_2f63a7fc",
+  "ev_1793059614_5a4d8757",
+  "ev_1793059614_2a5f79cf",
+  "ev_1793059614_682ffd49",
+  "ev_1793059614_e62f25fe",
+  "ev_1793059614_b09ab698",
+  "ev_1793059614_e3fbbe34"
+ ],
+ "requested_at": "2026-10-27T00:06:55Z"
+}
