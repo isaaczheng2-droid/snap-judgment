@@ -2,6 +2,14 @@
  "items": [
   {
    "type": "youtube",
+   "id": "ooE9182VYiI",
+   "title": "Outkast - \"ATLiens\" | Hype | Atlanta Falcons | NFL",
+   "source": "Falcons",
+   "seconds": 94,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
    "id": "7zoXqKuoAfQ",
    "title": "Bills vs. Rams HYPE Video for Monday Night Football",
    "source": "Bills",
@@ -86,14 +94,6 @@
    "title": "2026 Chicago Bears Season Hype",
    "source": "Bears",
    "seconds": 100,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
-   "id": "1VdsHPILlaM",
-   "title": "The Mission Begins | 2026 Dallas Cowboys Hype Video",
-   "source": "Cowboys",
-   "seconds": 65,
    "uploaded": "2026-09"
   },
   {
@@ -186,22 +186,6 @@
   },
   {
    "type": "youtube",
-   "id": "Ue3TIowkHMc",
-   "title": "MINDSET 😤 | Kansas City Chiefs 2026 Preseason HYPE Video 🔥",
-   "source": "Chiefs",
-   "seconds": 67,
-   "uploaded": "2026-08"
-  },
-  {
-   "type": "youtube",
-   "id": "gsx5OLZhoQ0",
-   "title": "Building A Monster | Dallas Cowboys 2026 Hype Video",
-   "source": "Cowboys",
-   "seconds": 144,
-   "uploaded": "2026-03"
-  },
-  {
-   "type": "youtube",
    "id": "XHejZ8pBKyI",
    "title": "Sound the Drum | Panthers Wild Card Trailer ft. Stephen Curry",
    "source": "Panthers",
@@ -214,14 +198,6 @@
    "title": "Climb Higher: The Broncos’ 2025 playoff hype video narrated by Aqib Talib",
    "source": "Broncos",
    "seconds": 65,
-   "uploaded": "2026-01"
-  },
-  {
-   "type": "youtube",
-   "id": "-RXstH6NjhA",
-   "title": "The Broncos’ 2025 AFC Championship Game hype video narrated by Peyton Manning | Climb Higher",
-   "source": "Broncos",
-   "seconds": 74,
    "uploaded": "2026-01"
   },
   {
@@ -266,10 +242,10 @@
   },
   {
    "type": "youtube",
-   "id": "IvJX0jczYD0",
-   "title": "2025 Eagles Hype Video",
-   "source": "Eagles",
-   "seconds": 344,
+   "id": "eskllONh3pA",
+   "title": "NOISE 🗣️ 2025 Home HYPE Video | Kansas City Chiefs 🔴🟡",
+   "source": "Chiefs",
+   "seconds": 83,
    "uploaded": "2025-10"
   },
   {
@@ -314,6 +290,14 @@
   },
   {
    "type": "youtube",
+   "id": "iWFPuehwxDM",
+   "title": "New York Jets 2024 Season Hype Video",
+   "source": "Jets",
+   "seconds": 110,
+   "uploaded": "2024-10"
+  },
+  {
+   "type": "youtube",
    "id": "znK04uBbJuM",
    "title": "Netflix Releases 'Receiver' Official Trailer | Premieres July 10",
    "source": "49ers",
@@ -338,14 +322,6 @@
   },
   {
    "type": "youtube",
-   "id": "11is_ndJ2eI",
-   "title": "Are You Afraid of the Dark? | Week 8 Hype Video",
-   "source": "Bengals",
-   "seconds": 82,
-   "uploaded": "2023-10"
-  },
-  {
-   "type": "youtube",
    "id": "9ZAUG2U5ZzQ",
    "title": "WEEK 9 HYPE TAPE: MIAMI DOLPHINS AT CHICAGO BEARS",
    "source": "Dolphins",
@@ -354,10 +330,10 @@
   },
   {
    "type": "youtube",
-   "id": "jfVypnms8Lo",
-   "title": "WEEK 17 HYPE TAPE | DOLPHINS AT PATRIOTS",
+   "id": "mBU2RPFwvTo",
+   "title": "WEEK 14 HYPE TAPE: MIAMI DOLPHINS AT LOS ANGELES CHARGERS",
    "source": "Dolphins",
-   "seconds": 71,
+   "seconds": 36,
    "uploaded": "2023-10"
   },
   {
@@ -370,18 +346,10 @@
   },
   {
    "type": "youtube",
-   "id": "zObT8J-61N4",
-   "title": "New York Jets 2023 Season Hype Video Ft. Method Man",
-   "source": "Jets",
-   "seconds": 159,
-   "uploaded": "2023-10"
-  },
-  {
-   "type": "youtube",
-   "id": "78TadYRaotQ",
-   "title": "It's GAME DAY in Atlanta! | New Orleans Saints vs. Atlanta Falcons Hype | NFL",
-   "source": "Falcons",
-   "seconds": 62,
+   "id": "OGCYzQ5bxAg",
+   "title": "IT IS US: AFC Championship Game Hype | Cincinnati Bengals",
+   "source": "Bengals",
+   "seconds": 106,
    "uploaded": "2022-10"
   },
   {
@@ -390,6 +358,14 @@
    "title": "Browns vs. Lions Game Day Hype Video | Cleveland Browns",
    "source": "Browns",
    "seconds": 42,
+   "uploaded": "2022-10"
+  },
+  {
+   "type": "youtube",
+   "id": "IGK9U-hZQJ8",
+   "title": "Cowboys at Chiefs Hype | Dallas Cowboys 2021",
+   "source": "Cowboys",
+   "seconds": 39,
    "uploaded": "2022-10"
   },
   {
@@ -418,12 +394,36 @@
   },
   {
    "type": "youtube",
+   "id": "kYhr3oZB1rc",
+   "title": "Pepsi Hype Video: #DALvsLAC | Dallas Cowboys 2021",
+   "source": "Cowboys",
+   "seconds": 30,
+   "uploaded": "2021-10"
+  },
+  {
+   "type": "youtube",
    "id": "N-z9XYvekIk",
    "title": "Tennessee Titans at Seattle Seahawks | Hype Videos",
    "source": "Titans",
    "seconds": 59,
    "uploaded": "2021-10"
+  },
+  {
+   "type": "youtube",
+   "id": "oxf-01ebf_8",
+   "title": "'You've trained your entire life for this moment': Shannon Sharpe narrates season hype video",
+   "source": "Broncos",
+   "seconds": 96,
+   "uploaded": "2020-10"
+  },
+  {
+   "type": "youtube",
+   "id": "04LIbAlGjhI",
+   "title": "Choppa & Louisiana Philharmonic Orchestra - Choppa Style | Saints-Vikings Hype",
+   "source": "Saints",
+   "seconds": 109,
+   "uploaded": "2020-10"
   }
  ],
- "updated": "2026-10-27T15:25:33Z"
+ "updated": "2026-10-28T16:08:58Z"
 }
