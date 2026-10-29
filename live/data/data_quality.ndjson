@@ -1086,3 +1086,5 @@
 {"kind":"impossible_transition","detail":"00-0040504: IR -> ACTIVE","player_id":"00-0040504","source":"espn","system_received_at":"2026-10-28T23:37:18Z"}
 {"kind":"unknown_player","detail":"Greg Desrosiers Jr. (NYG) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-28T23:37:18Z"}
 {"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-28T23:37:18Z"}
+{"kind":"unknown_player","detail":"Greg Desrosiers Jr. (NYG) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-29T02:56:01Z"}
+{"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-10-29T02:56:01Z"}
