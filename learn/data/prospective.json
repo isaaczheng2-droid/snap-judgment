@@ -1,95 +1,96 @@
 {
- "n": 1694,
+ "n": 1710,
  "weeks": [
   2,
   3,
   4,
   5,
   6,
-  7
+  7,
+  8
  ],
  "seasons": [
   2026
  ],
  "all": {
-  "n": 1694,
-  "mae": 6.151,
-  "bias": 1.688,
-  "naive_mae": 6.548,
-  "vs_naive": 0.0606,
+  "n": 1710,
+  "mae": 6.144,
+  "bias": 1.675,
+  "naive_mae": 6.542,
+  "vs_naive": 0.0608,
   "vs_naive_ci95_pts": [
-   0.319,
-   0.484
+   0.308,
+   0.479
   ],
-  "coverage_p10_p90": 0.7255,
-  "coverage_n": 1694
+  "coverage_p10_p90": 0.7269,
+  "coverage_n": 1710
  },
  "played_only": {
-  "n": 1290,
-  "mae": 5.494,
-  "bias": -0.367,
-  "naive_mae": 5.707,
-  "vs_naive": 0.0374,
+  "n": 1304,
+  "mae": 5.491,
+  "bias": -0.369,
+  "naive_mae": 5.705,
+  "vs_naive": 0.0376,
   "vs_naive_ci95_pts": [
-   0.113,
-   0.311
+   0.134,
+   0.302
   ],
-  "coverage_p10_p90": 0.8008,
-  "coverage_n": 1290
+  "coverage_p10_p90": 0.8021,
+  "coverage_n": 1304
  },
- "did_not_play": 404,
+ "did_not_play": 406,
  "by_position": {
   "QB": {
-   "n": 410,
-   "mae": 7.799,
-   "bias": 4.444,
-   "naive_mae": 8.512,
-   "vs_naive": 0.0838,
+   "n": 414,
+   "mae": 7.779,
+   "bias": 4.435,
+   "naive_mae": 8.5,
+   "vs_naive": 0.0848,
    "vs_naive_ci95_pts": [
-    0.572,
-    0.865
+    0.594,
+    0.866
    ],
-   "coverage_p10_p90": 0.6561,
-   "coverage_n": 410
+   "coverage_p10_p90": 0.657,
+   "coverage_n": 414
   },
   "RB": {
-   "n": 426,
-   "mae": 5.545,
-   "bias": 1.157,
-   "naive_mae": 5.885,
-   "vs_naive": 0.0578,
+   "n": 430,
+   "mae": 5.573,
+   "bias": 1.139,
+   "naive_mae": 5.906,
+   "vs_naive": 0.0564,
    "vs_naive_ci95_pts": [
-    0.179,
-    0.504
+    0.164,
+    0.494
    ],
-   "coverage_p10_p90": 0.7887,
-   "coverage_n": 426
+   "coverage_p10_p90": 0.7884,
+   "coverage_n": 430
   },
   "TE": {
-   "n": 257,
-   "mae": 5.421,
-   "bias": 0.402,
+   "n": 260,
+   "mae": 5.41,
+   "bias": 0.398,
    "naive_mae": 5.827,
-   "vs_naive": 0.0697,
+   "vs_naive": 0.0716,
    "vs_naive_ci95_pts": [
-    0.218,
-    0.602
+    0.236,
+    0.612
    ],
-   "coverage_p10_p90": 0.7043,
-   "coverage_n": 257
+   "coverage_p10_p90": 0.7077,
+   "coverage_n": 260
   },
   "WR": {
-   "n": 601,
-   "mae": 5.769,
-   "bias": 0.733,
-   "naive_mae": 5.986,
-   "vs_naive": 0.0362,
+   "n": 606,
+   "mae": 5.746,
+   "bias": 0.718,
+   "naive_mae": 5.962,
+   "vs_naive": 0.0361,
    "vs_naive_ci95_pts": [
-    0.089,
-    0.348
+    0.084,
+    0.34
    ],
-   "coverage_p10_p90": 0.7371,
-   "coverage_n": 601
+   "coverage_p10_p90": 0.7393,
+   "coverage_n": 606
   }
  },
  "by_week": {
@@ -170,6 +171,10 @@
    ],
    "coverage_p10_p90": 0.7218,
    "coverage_n": 248
+  },
+  "2026-08": {
+   "n": 16,
+   "note": "fewer than 30 graded rows"
   }
  },
  "by_status": {
@@ -182,17 +187,17 @@
    "note": "fewer than 30 graded rows"
   },
   "ok": {
-   "n": 1433,
-   "mae": 5.843,
-   "bias": 1.093,
-   "naive_mae": 6.287,
-   "vs_naive": 0.0706,
+   "n": 1448,
+   "mae": 5.837,
+   "bias": 1.09,
+   "naive_mae": 6.282,
+   "vs_naive": 0.0709,
    "vs_naive_ci95_pts": [
-    0.359,
-    0.541
+    0.349,
+    0.526
    ],
-   "coverage_p10_p90": 0.7683,
-   "coverage_n": 1433
+   "coverage_p10_p90": 0.7693,
+   "coverage_n": 1448
   },
   "out": {
    "n": 124,
@@ -208,17 +213,17 @@
    "coverage_n": 124
   },
   "questionable": {
-   "n": 61,
-   "mae": 5.739,
-   "bias": 1.706,
-   "naive_mae": 5.647,
-   "vs_naive": -0.0164,
+   "n": 62,
+   "mae": 5.754,
+   "bias": 1.571,
+   "naive_mae": 5.668,
+   "vs_naive": -0.0152,
    "vs_naive_ci95_pts": [
-    -0.482,
-    0.27
+    -0.466,
+    0.248
    ],
-   "coverage_p10_p90": 0.7213,
-   "coverage_n": 61
+   "coverage_p10_p90": 0.7258,
+   "coverage_n": 62
   },
   "rest": {
    "n": 48,
@@ -237,22 +242,22 @@
  "corrections": 0,
  "by_model_version": {
   "v1-f67fc4d5fd6d": {
-   "n": 1694,
-   "mae": 6.151,
-   "bias": 1.688,
-   "naive_mae": 6.548,
-   "vs_naive": 0.0606,
+   "n": 1710,
+   "mae": 6.144,
+   "bias": 1.675,
+   "naive_mae": 6.542,
+   "vs_naive": 0.0608,
    "vs_naive_ci95_pts": [
-    0.319,
-    0.484
+    0.308,
+    0.479
    ],
-   "coverage_p10_p90": 0.7255,
-   "coverage_n": 1694
+   "coverage_p10_p90": 0.7269,
+   "coverage_n": 1710
   }
  },
  "questionable_play_rate": {
-  "n": 61,
-  "played": 0.803,
+  "n": 62,
+  "played": 0.806,
   "p_play_claimed": 0.587
  }
 }
