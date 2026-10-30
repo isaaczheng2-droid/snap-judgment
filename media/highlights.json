@@ -66,14 +66,6 @@
   },
   {
    "type": "youtube",
-   "id": "Iumv8hVy_uE",
-   "title": "Shaboozey - \"Let 'Em Know\" | HYPE | Atlanta Falcons",
-   "source": "Falcons",
-   "seconds": 65,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
    "id": "5FUYpeuUsm0",
    "title": "2026 Buffalo Bills Season Hype Video With Ryan Fitzpatrick and Josh Allen!",
    "source": "Bills",
@@ -170,14 +162,6 @@
   },
   {
    "type": "youtube",
-   "id": "DmrHw_aolMA",
-   "title": "Run It Forward | Seattle Seahawks 2026 Season Trailer",
-   "source": "Seahawks",
-   "seconds": 79,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
    "id": "RuJbHATlLXg",
    "title": "2026 Season Trailer, Featuring Chris Godwin Jr. | Tampa Bay Buccaneers",
    "source": "Buccaneers",
@@ -242,26 +226,10 @@
   },
   {
    "type": "youtube",
-   "id": "YeNBRUtv1sc",
-   "title": "Work is Just Getting Started | Jaguars Wild Card Hype Video",
-   "source": "Jaguars",
-   "seconds": 71,
-   "uploaded": "2026-02"
-  },
-  {
-   "type": "youtube",
-   "id": "e4dGduoC8PQ",
-   "title": "Best Cinematic Shots of the 2025 Season | Miami Dolphins",
-   "source": "Dolphins",
-   "seconds": 160,
-   "uploaded": "2026-02"
-  },
-  {
-   "type": "youtube",
-   "id": "06wkfvvx2No",
-   "title": "🔥 PATRIOTS AFC CHAMPIONSHIP PLAYOFF HYPE🔥 | WE ALL WE GOT WE ALL WE NEED",
+   "id": "iiWP---sSTo",
+   "title": "PATRIOTS 2025 PLAYOFF HYPE 🔥 | WE ALL WE GOT WE ALL WE NEED",
    "source": "Patriots",
-   "seconds": 60,
+   "seconds": 49,
    "uploaded": "2026-02"
   },
   {
@@ -271,6 +239,22 @@
    "source": "Titans",
    "seconds": 25,
    "uploaded": "2025-12"
+  },
+  {
+   "type": "youtube",
+   "id": "T7LUwLZHfbo",
+   "title": "\"MNF Loading…\" #KCvsJAX Hype Video | Jacksonville Jaguars",
+   "source": "Jaguars",
+   "seconds": 59,
+   "uploaded": "2025-10"
+  },
+  {
+   "type": "youtube",
+   "id": "IvJX0jczYD0",
+   "title": "2025 Eagles Hype Video",
+   "source": "Eagles",
+   "seconds": 344,
+   "uploaded": "2025-10"
   },
   {
    "type": "youtube",
@@ -290,18 +274,18 @@
   },
   {
    "type": "youtube",
-   "id": "d8lD2VHxIcg",
-   "title": "Detroit Lions Week 18 Hype Video | Ford Field scoreboard version",
-   "source": "Lions",
-   "seconds": 83,
-   "uploaded": "2024-10"
-  },
-  {
-   "type": "youtube",
    "id": "MCLJLbIdZQ0",
    "title": "Time to get HYPED | Detroit Lions team introduction video: Wild Card Round vs. Los Angeles Rams",
    "source": "Lions",
    "seconds": 82,
+   "uploaded": "2024-10"
+  },
+  {
+   "type": "youtube",
+   "id": "d8lD2VHxIcg",
+   "title": "Detroit Lions Week 18 Hype Video | Ford Field scoreboard version",
+   "source": "Lions",
+   "seconds": 83,
    "uploaded": "2024-10"
   },
   {
@@ -346,18 +330,18 @@
   },
   {
    "type": "youtube",
-   "id": "11is_ndJ2eI",
-   "title": "Are You Afraid of the Dark? | Week 8 Hype Video",
-   "source": "Bengals",
-   "seconds": 82,
+   "id": "9ZAUG2U5ZzQ",
+   "title": "WEEK 9 HYPE TAPE: MIAMI DOLPHINS AT CHICAGO BEARS",
+   "source": "Dolphins",
+   "seconds": 53,
    "uploaded": "2023-10"
   },
   {
    "type": "youtube",
-   "id": "veHSyA1KZvU",
-   "title": "WEEK 2 HYPE TAPE | MIAMI DOLPHINS",
+   "id": "jfVypnms8Lo",
+   "title": "WEEK 17 HYPE TAPE | DOLPHINS AT PATRIOTS",
    "source": "Dolphins",
-   "seconds": 70,
+   "seconds": 71,
    "uploaded": "2023-10"
   },
   {
@@ -367,6 +351,14 @@
    "source": "Vikings",
    "seconds": 56,
    "uploaded": "2023-10"
+  },
+  {
+   "type": "youtube",
+   "id": "OGCYzQ5bxAg",
+   "title": "IT IS US: AFC Championship Game Hype | Cincinnati Bengals",
+   "source": "Bengals",
+   "seconds": 106,
+   "uploaded": "2022-10"
   },
   {
    "type": "youtube",
@@ -391,6 +383,14 @@
    "source": "49ers",
    "seconds": 87,
    "uploaded": "2022-10"
+  },
+  {
+   "type": "youtube",
+   "id": "vj-1lljMrVw",
+   "title": "It's GAME DAY Atlanta! | Falcons vs. Giants Hype",
+   "source": "Falcons",
+   "seconds": 63,
+   "uploaded": "2021-10"
   },
   {
    "type": "youtube",
@@ -425,5 +425,5 @@
    "uploaded": "2020-10"
   }
  ],
- "updated": "2026-10-29T16:14:56Z"
+ "updated": "2026-10-30T16:00:19Z"
 }
