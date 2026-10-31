@@ -1,0 +1,28 @@
+{
+ "reasons": [
+  "Byron Murphy II: no report \u2192 QUESTIONABLE (Back)",
+  "Kenny Clark: no report \u2192 QUESTIONABLE (Back)",
+  "Daron Payne: no report \u2192 OUT (Foot)",
+  "Michael Wilson: QUESTIONABLE \u2192 ACTIVE (Ribs)",
+  "Jeremiyah Love: QUESTIONABLE \u2192 ACTIVE (Ankle)",
+  "Quinnen Williams: QUESTIONABLE \u2192 ACTIVE (Hamstring)",
+  "Leonard Williams: QUESTIONABLE \u2192 ACTIVE",
+  "Jayden Daniels: ACTIVE \u2192 UNKNOWN (Elbow)"
+ ],
+ "game_ids": [
+  "2026_08_ARI_DAL",
+  "2026_08_CHI_SEA",
+  "2026_08_PHI_WAS"
+ ],
+ "event_ids": [
+  "ev_1793408727_3981db91",
+  "ev_1793408727_0272b18f",
+  "ev_1793408727_7f7ca7cc",
+  "ev_1793408727_06159ec7",
+  "ev_1793408727_5445c83a",
+  "ev_1793408727_ef48608b",
+  "ev_1793408727_6be8fb96",
+  "ev_1793408727_c9a24e7d"
+ ],
+ "requested_at": "2026-10-31T01:05:41Z"
+}
