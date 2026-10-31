@@ -33068,3 +33068,25 @@
 {"event_id":"ev_1793454926_c13a47c4","event_type":"WEATHER_CHANGE_EVENT","game_id":"2026_08_NE_MIA","player_id":null,"team_id":null,"severity":"HIGH","previous_value":37.8,"new_value":26.8,"detail":"Gusts forecast 38 mph \u2192 27 mph","source":"openmeteo","occurred_at":"2026-10-31T13:55:26Z","received_at":"2026-10-31T13:55:26Z","processed":false,"prediction_recalculated":false,"field":"max_window_gust","system_received_at":"2026-10-31T13:55:29Z"}
 {"event_id":"ev_1793454926_4f2c8ba4","event_type":"WEATHER_CHANGE_EVENT","game_id":"2026_08_NE_MIA","player_id":null,"team_id":null,"severity":"MEDIUM","previous_value":91,"new_value":41,"detail":"Rain chance forecast 91% \u2192 41%","source":"openmeteo","occurred_at":"2026-10-31T13:55:26Z","received_at":"2026-10-31T13:55:26Z","processed":false,"prediction_recalculated":false,"field":"precipitation_probability","system_received_at":"2026-10-31T13:55:29Z"}
 {"event_id":"ev_1793454926_0ad404dd","event_type":"WEATHER_CHANGE_EVENT","game_id":"2026_08_NE_MIA","player_id":null,"team_id":null,"severity":"MEDIUM","previous_value":"HIGH","new_value":"LOW","detail":"Weather impact HIGH \u2192 LOW (improving)","source":"openmeteo","occurred_at":"2026-10-31T13:55:26Z","received_at":"2026-10-31T13:55:26Z","processed":false,"prediction_recalculated":false,"field":"impact","system_received_at":"2026-10-31T13:55:29Z"}
+{"event_id":"ev_1793454918_734d85d7","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-31T14:01:47Z"}
+{"event_id":"ev_1793454918_e423f39f","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-31T14:01:47Z"}
+{"event_id":"ev_1793454921_b9c5c23d","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-31T14:01:47Z"}
+{"event_id":"ev_1793454918_42dca89b","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-31T14:01:47Z"}
+{"event_id":"ev_1793454918_82584df2","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-31T14:01:47Z"}
+{"event_id":"ev_1793454925_c2a9b679","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-31T14:01:47Z"}
+{"event_id":"ev_1793454918_797f707f","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-31T14:01:47Z"}
+{"event_id":"ev_1793454926_caafe2b5","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-31T14:01:47Z"}
+{"event_id":"ev_1793454926_d9800ae6","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-31T14:01:47Z"}
+{"event_id":"ev_1793454926_c13a47c4","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-31T14:01:47Z"}
+{"event_id":"ev_1793454926_4f2c8ba4","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-31T14:01:47Z"}
+{"event_id":"ev_1793454926_0ad404dd","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-31T14:01:47Z"}
+{"event_id":"ev_1793454918_e0fa1c61","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-31T14:01:47Z"}
+{"event_id":"ev_1793454918_188f734e","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-31T14:01:47Z"}
+{"event_id":"ev_1793454918_43eae71d","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-31T14:01:47Z"}
+{"event_id":"ev_1793454918_2e3ab628","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-31T14:01:47Z"}
+{"event_id":"ev_1793454918_602fe214","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-31T14:01:47Z"}
+{"event_id":"ev_1793454918_23181b8a","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-31T14:01:47Z"}
+{"event_id":"ev_1793454918_77446b61","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-31T14:01:47Z"}
+{"event_id":"ev_1793454918_0e995d18","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-31T14:01:47Z"}
+{"event_id":"ev_1793454918_fe022ef9","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-31T14:01:47Z"}
+{"event_id":"ev_1793454918_2c4c3c33","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-10-31T14:01:47Z"}
