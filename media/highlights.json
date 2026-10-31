@@ -2,10 +2,50 @@
  "items": [
   {
    "type": "youtube",
+   "id": "YXEbFsRqg_s",
+   "title": "The Perfect Storm. | Week 1 Game Day Trailer",
+   "source": "Cardinals",
+   "seconds": 56,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
+   "id": "CXVvfw9vooA",
+   "title": "Back at Home | HYPE | Atlanta Falcons",
+   "source": "Falcons",
+   "seconds": 54,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
+   "id": "5FUYpeuUsm0",
+   "title": "2026 Buffalo Bills Season Hype Video With Ryan Fitzpatrick and Josh Allen!",
+   "source": "Bills",
+   "seconds": 141,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
    "id": "7zoXqKuoAfQ",
    "title": "Bills vs. Rams HYPE Video for Monday Night Football",
    "source": "Bills",
    "seconds": 65,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
+   "id": "5ook1Opv7M0",
+   "title": "2026 Season Trailer | Carolina Panthers",
+   "source": "Panthers",
+   "seconds": 78,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
+   "id": "Pd3euunJiRo",
+   "title": "2026 Chicago Bears Season Hype",
+   "source": "Bears",
+   "seconds": 100,
    "uploaded": "2026-10"
   },
   {
@@ -18,10 +58,26 @@
   },
   {
    "type": "youtube",
+   "id": "1VdsHPILlaM",
+   "title": "The Mission Begins | 2026 Dallas Cowboys Hype Video",
+   "source": "Cowboys",
+   "seconds": 65,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
    "id": "xh0Zh4Ve-Ng",
    "title": "Trailer: Packers vs. Cowboys",
    "source": "Packers",
    "seconds": 75,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
+   "id": "OT05-kPXi78",
+   "title": "2026 Texans Season Hype Video | ONE CITY. ONE FAMILY. ONE SWARM.",
+   "source": "Texans",
+   "seconds": 121,
    "uploaded": "2026-10"
   },
   {
@@ -42,6 +98,30 @@
   },
   {
    "type": "youtube",
+   "id": "bBOMaQb913Q",
+   "title": "#INDvsJAX Rivalries Hype Video | Jacksonville Jaguars",
+   "source": "Jaguars",
+   "seconds": 81,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
+   "id": "pP6hgP5k_gs",
+   "title": "Still About Us. #CLEvsJAX Hype Video | Jacksonville Jaguars",
+   "source": "Jaguars",
+   "seconds": 67,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
+   "id": "s1gZBVxrrvc",
+   "title": "2026 Chiefs Season Hype Video",
+   "source": "Chiefs",
+   "seconds": 75,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
    "id": "6Vg8fpuiLkI",
    "title": "Let It Rip | Trailer | Raiders vs. Rams",
    "source": "Raiders",
@@ -50,83 +130,11 @@
   },
   {
    "type": "youtube",
-   "id": "YXEbFsRqg_s",
-   "title": "The Perfect Storm. | Week 1 Game Day Trailer",
-   "source": "Cardinals",
-   "seconds": 56,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
-   "id": "CXVvfw9vooA",
-   "title": "Back at Home | HYPE | Atlanta Falcons",
-   "source": "Falcons",
-   "seconds": 54,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
-   "id": "5FUYpeuUsm0",
-   "title": "2026 Buffalo Bills Season Hype Video With Ryan Fitzpatrick and Josh Allen!",
-   "source": "Bills",
-   "seconds": 141,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
-   "id": "5ook1Opv7M0",
-   "title": "2026 Season Trailer | Carolina Panthers",
-   "source": "Panthers",
-   "seconds": 78,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
-   "id": "Pd3euunJiRo",
-   "title": "2026 Chicago Bears Season Hype",
-   "source": "Bears",
-   "seconds": 100,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
-   "id": "1VdsHPILlaM",
-   "title": "The Mission Begins | 2026 Dallas Cowboys Hype Video",
-   "source": "Cowboys",
-   "seconds": 65,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
-   "id": "OT05-kPXi78",
-   "title": "2026 Texans Season Hype Video | ONE CITY. ONE FAMILY. ONE SWARM.",
-   "source": "Texans",
-   "seconds": 121,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
-   "id": "pP6hgP5k_gs",
-   "title": "Still About Us. #CLEvsJAX Hype Video | Jacksonville Jaguars",
-   "source": "Jaguars",
-   "seconds": 67,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
-   "id": "s1gZBVxrrvc",
-   "title": "2026 Chiefs Season Hype Video",
-   "source": "Chiefs",
-   "seconds": 75,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
    "id": "aChK-tugNBQ",
    "title": "Rams vs. 49ers: Melbourne, You're In For A Treat | Game Trailer",
    "source": "Rams",
    "seconds": 81,
-   "uploaded": "2026-09"
+   "uploaded": "2026-10"
   },
   {
    "type": "youtube",
@@ -134,7 +142,7 @@
    "title": "PATRIOTS 2026 SEASON HYPE SET TO DREAM ON BY AEROSMITH 🔥",
    "source": "Patriots",
    "seconds": 117,
-   "uploaded": "2026-09"
+   "uploaded": "2026-10"
   },
   {
    "type": "youtube",
@@ -142,7 +150,7 @@
    "title": "2026 Season Hype Video  | New York Giants",
    "source": "Giants",
    "seconds": 77,
-   "uploaded": "2026-09"
+   "uploaded": "2026-10"
   },
   {
    "type": "youtube",
@@ -150,7 +158,7 @@
    "title": "BUILT FOR THIS | 2026 New York Jets Official Hype Video",
    "source": "Jets",
    "seconds": 116,
-   "uploaded": "2026-09"
+   "uploaded": "2026-10"
   },
   {
    "type": "youtube",
@@ -158,7 +166,15 @@
    "title": "Philadelphia Eagles 2026 Season Hype Video",
    "source": "Eagles",
    "seconds": 102,
-   "uploaded": "2026-09"
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
+   "id": "DmrHw_aolMA",
+   "title": "Run It Forward | Seattle Seahawks 2026 Season Trailer",
+   "source": "Seahawks",
+   "seconds": 79,
+   "uploaded": "2026-10"
   },
   {
    "type": "youtube",
@@ -166,7 +182,7 @@
    "title": "2026 Season Trailer, Featuring Chris Godwin Jr. | Tampa Bay Buccaneers",
    "source": "Buccaneers",
    "seconds": 151,
-   "uploaded": "2026-09"
+   "uploaded": "2026-10"
   },
   {
    "type": "youtube",
@@ -174,7 +190,7 @@
    "title": "Iron's Hot, Time To Strike | Washington Commanders 2026 Season Trailer | NFL",
    "source": "Commanders",
    "seconds": 123,
-   "uploaded": "2026-09"
+   "uploaded": "2026-10"
   },
   {
    "type": "youtube",
@@ -182,7 +198,7 @@
    "title": "MINDSET 😤 | Kansas City Chiefs 2026 Preseason HYPE Video 🔥",
    "source": "Chiefs",
    "seconds": 67,
-   "uploaded": "2026-08"
+   "uploaded": "2026-09"
   },
   {
    "type": "youtube",
@@ -210,10 +226,10 @@
   },
   {
    "type": "youtube",
-   "id": "BSkiDbY6XYc",
-   "title": "Playoff trailer | Packers 2025 postseason",
-   "source": "Packers",
-   "seconds": 58,
+   "id": "-RXstH6NjhA",
+   "title": "The Broncos’ 2025 AFC Championship Game hype video narrated by Peyton Manning | Climb Higher",
+   "source": "Broncos",
+   "seconds": 74,
    "uploaded": "2026-02"
   },
   {
@@ -242,10 +258,10 @@
   },
   {
    "type": "youtube",
-   "id": "T7LUwLZHfbo",
-   "title": "\"MNF Loading…\" #KCvsJAX Hype Video | Jacksonville Jaguars",
-   "source": "Jaguars",
-   "seconds": 59,
+   "id": "M8I3QnmQook",
+   "title": "Welcome back | Packers 2025 season trailer",
+   "source": "Packers",
+   "seconds": 93,
    "uploaded": "2025-10"
   },
   {
@@ -258,10 +274,10 @@
   },
   {
    "type": "youtube",
-   "id": "Y6l6SEqzELY",
-   "title": "'Protect Our House' | Commanders vs. Bucs Wild Card Round Hype Video | Tampa Bay Buccaneers",
+   "id": "uGQcYEDQoe8",
+   "title": "It's About Legacy | 2025 Tampa Bay Buccaneers Season Trailer",
    "source": "Buccaneers",
-   "seconds": 60,
+   "seconds": 119,
    "uploaded": "2025-10"
   },
   {
@@ -318,7 +334,7 @@
    "title": "Game Trailer: Arizona Cardinals vs. New England Patriots | Week 14",
    "source": "Cardinals",
    "seconds": 64,
-   "uploaded": "2023-10"
+   "uploaded": "2023-11"
   },
   {
    "type": "youtube",
@@ -326,7 +342,7 @@
    "title": "Can't Stop Now, We're Better Than Ever | Week 15 Hype Video",
    "source": "Bengals",
    "seconds": 61,
-   "uploaded": "2023-10"
+   "uploaded": "2023-11"
   },
   {
    "type": "youtube",
@@ -334,7 +350,7 @@
    "title": "WEEK 9 HYPE TAPE: MIAMI DOLPHINS AT CHICAGO BEARS",
    "source": "Dolphins",
    "seconds": 53,
-   "uploaded": "2023-10"
+   "uploaded": "2023-11"
   },
   {
    "type": "youtube",
@@ -342,7 +358,7 @@
    "title": "WEEK 17 HYPE TAPE | DOLPHINS AT PATRIOTS",
    "source": "Dolphins",
    "seconds": 71,
-   "uploaded": "2023-10"
+   "uploaded": "2023-11"
   },
   {
    "type": "youtube",
@@ -350,7 +366,7 @@
    "title": "Minnesota Vikings 2022 Winter Whiteout Hype Video",
    "source": "Vikings",
    "seconds": 56,
-   "uploaded": "2023-10"
+   "uploaded": "2023-11"
   },
   {
    "type": "youtube",
@@ -358,15 +374,7 @@
    "title": "IT IS US: AFC Championship Game Hype | Cincinnati Bengals",
    "source": "Bengals",
    "seconds": 106,
-   "uploaded": "2022-10"
-  },
-  {
-   "type": "youtube",
-   "id": "w3EE68SDp9c",
-   "title": "Browns vs. Lions Game Day Hype Video | Cleveland Browns",
-   "source": "Browns",
-   "seconds": 42,
-   "uploaded": "2022-10"
+   "uploaded": "2022-11"
   },
   {
    "type": "youtube",
@@ -374,7 +382,7 @@
    "title": "This Is What It Feels Like To Bring It Home | Super Bowl LVI Hype Video",
    "source": "Rams",
    "seconds": 61,
-   "uploaded": "2022-10"
+   "uploaded": "2022-11"
   },
   {
    "type": "youtube",
@@ -382,7 +390,7 @@
    "title": "Bryant Young Narrates 49ers Playoff Hype Video | 49ers",
    "source": "49ers",
    "seconds": 87,
-   "uploaded": "2022-10"
+   "uploaded": "2022-11"
   },
   {
    "type": "youtube",
@@ -390,7 +398,7 @@
    "title": "It's GAME DAY Atlanta! | Falcons vs. Giants Hype",
    "source": "Falcons",
    "seconds": 63,
-   "uploaded": "2021-10"
+   "uploaded": "2021-11"
   },
   {
    "type": "youtube",
@@ -398,7 +406,7 @@
    "title": "Browns vs. Steelers Hype Video (Week 17) | Cleveland Browns",
    "source": "Browns",
    "seconds": 42,
-   "uploaded": "2021-10"
+   "uploaded": "2021-11"
   },
   {
    "type": "youtube",
@@ -406,15 +414,7 @@
    "title": "Tennessee Titans at Seattle Seahawks | Hype Videos",
    "source": "Titans",
    "seconds": 59,
-   "uploaded": "2021-10"
-  },
-  {
-   "type": "youtube",
-   "id": "oxf-01ebf_8",
-   "title": "'You've trained your entire life for this moment': Shannon Sharpe narrates season hype video",
-   "source": "Broncos",
-   "seconds": 96,
-   "uploaded": "2020-10"
+   "uploaded": "2021-11"
   },
   {
    "type": "youtube",
@@ -422,8 +422,8 @@
    "title": "Choppa & Louisiana Philharmonic Orchestra - Choppa Style | Saints-Vikings Hype",
    "source": "Saints",
    "seconds": 109,
-   "uploaded": "2020-10"
+   "uploaded": "2020-11"
   }
  ],
- "updated": "2026-10-30T16:00:19Z"
+ "updated": "2026-10-31T15:24:17Z"
 }
