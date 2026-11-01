@@ -2,6 +2,14 @@
  "items": [
   {
    "type": "youtube",
+   "id": "2_xOU70peos",
+   "title": "Bears-Seahawks Monday Night Football hype trailer | Bears Buzz | Chicago Bears",
+   "source": "Bears",
+   "seconds": 134,
+   "uploaded": "2026-11"
+  },
+  {
+   "type": "youtube",
    "id": "YXEbFsRqg_s",
    "title": "The Perfect Storm. | Week 1 Game Day Trailer",
    "source": "Cardinals",
@@ -46,14 +54,6 @@
    "title": "2026 Chicago Bears Season Hype",
    "source": "Bears",
    "seconds": 100,
-   "uploaded": "2026-10"
-  },
-  {
-   "type": "youtube",
-   "id": "jbqt3OaOrQI",
-   "title": "Bears-Packers hype trailer | Bears Buzz | Chicago Bears",
-   "source": "Bears",
-   "seconds": 131,
    "uploaded": "2026-10"
   },
   {
@@ -138,6 +138,14 @@
   },
   {
    "type": "youtube",
+   "id": "yxujdKUhqwc",
+   "title": "Rams vs. Eagles: Revenge Tour | Game Trailer",
+   "source": "Rams",
+   "seconds": 35,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
    "id": "0fbKm66MxLU",
    "title": "PATRIOTS 2026 SEASON HYPE SET TO DREAM ON BY AEROSMITH 🔥",
    "source": "Patriots",
@@ -218,14 +226,6 @@
   },
   {
    "type": "youtube",
-   "id": "oIAg7QvdIjs",
-   "title": "Climb Higher: The Broncos’ 2025 playoff hype video narrated by Aqib Talib",
-   "source": "Broncos",
-   "seconds": 65,
-   "uploaded": "2026-02"
-  },
-  {
-   "type": "youtube",
    "id": "-RXstH6NjhA",
    "title": "The Broncos’ 2025 AFC Championship Game hype video narrated by Peyton Manning | Climb Higher",
    "source": "Broncos",
@@ -258,11 +258,27 @@
   },
   {
    "type": "youtube",
+   "id": "tMCMrft1pCY",
+   "title": "Atlanta Falcons x JID 'Glory' | 2025 Season Kickoff Hype ft. Michael Vick",
+   "source": "Falcons",
+   "seconds": 130,
+   "uploaded": "2025-11"
+  },
+  {
+   "type": "youtube",
+   "id": "l0xd523i4qQ",
+   "title": "The Climb Continues: The Denver Broncos’ 2024 playoff hype video",
+   "source": "Broncos",
+   "seconds": 64,
+   "uploaded": "2025-11"
+  },
+  {
+   "type": "youtube",
    "id": "M8I3QnmQook",
    "title": "Welcome back | Packers 2025 season trailer",
    "source": "Packers",
    "seconds": 93,
-   "uploaded": "2025-10"
+   "uploaded": "2025-11"
   },
   {
    "type": "youtube",
@@ -270,7 +286,7 @@
    "title": "2025 Eagles Hype Video",
    "source": "Eagles",
    "seconds": 344,
-   "uploaded": "2025-10"
+   "uploaded": "2025-11"
   },
   {
    "type": "youtube",
@@ -278,7 +294,7 @@
    "title": "It's About Legacy | 2025 Tampa Bay Buccaneers Season Trailer",
    "source": "Buccaneers",
    "seconds": 119,
-   "uploaded": "2025-10"
+   "uploaded": "2025-11"
   },
   {
    "type": "youtube",
@@ -286,7 +302,7 @@
    "title": "Find a Way | Commanders vs. Lions Trailer | NFL Divisional Round",
    "source": "Commanders",
    "seconds": 88,
-   "uploaded": "2025-10"
+   "uploaded": "2025-11"
   },
   {
    "type": "youtube",
@@ -294,7 +310,7 @@
    "title": "Time to get HYPED | Detroit Lions team introduction video: Wild Card Round vs. Los Angeles Rams",
    "source": "Lions",
    "seconds": 82,
-   "uploaded": "2024-10"
+   "uploaded": "2024-11"
   },
   {
    "type": "youtube",
@@ -302,7 +318,7 @@
    "title": "Detroit Lions Week 18 Hype Video | Ford Field scoreboard version",
    "source": "Lions",
    "seconds": 83,
-   "uploaded": "2024-10"
+   "uploaded": "2024-11"
   },
   {
    "type": "youtube",
@@ -310,7 +326,7 @@
    "title": "Vikings Aura | Hype Video",
    "source": "Vikings",
    "seconds": 85,
-   "uploaded": "2024-10"
+   "uploaded": "2024-11"
   },
   {
    "type": "youtube",
@@ -318,7 +334,7 @@
    "title": "New York Jets 2024 Season Hype Video",
    "source": "Jets",
    "seconds": 110,
-   "uploaded": "2024-10"
+   "uploaded": "2024-11"
   },
   {
    "type": "youtube",
@@ -326,7 +342,7 @@
    "title": "Netflix Releases 'Receiver' Official Trailer | Premieres July 10",
    "source": "49ers",
    "seconds": 156,
-   "uploaded": "2024-10"
+   "uploaded": "2024-11"
   },
   {
    "type": "youtube",
@@ -378,10 +394,10 @@
   },
   {
    "type": "youtube",
-   "id": "weerRdCbCVo",
-   "title": "This Is What It Feels Like To Bring It Home | Super Bowl LVI Hype Video",
-   "source": "Rams",
-   "seconds": 61,
+   "id": "w3EE68SDp9c",
+   "title": "Browns vs. Lions Game Day Hype Video | Cleveland Browns",
+   "source": "Browns",
+   "seconds": 42,
    "uploaded": "2022-11"
   },
   {
@@ -391,14 +407,6 @@
    "source": "49ers",
    "seconds": 87,
    "uploaded": "2022-11"
-  },
-  {
-   "type": "youtube",
-   "id": "vj-1lljMrVw",
-   "title": "It's GAME DAY Atlanta! | Falcons vs. Giants Hype",
-   "source": "Falcons",
-   "seconds": 63,
-   "uploaded": "2021-11"
   },
   {
    "type": "youtube",
@@ -415,15 +423,7 @@
    "source": "Titans",
    "seconds": 59,
    "uploaded": "2021-11"
-  },
-  {
-   "type": "youtube",
-   "id": "04LIbAlGjhI",
-   "title": "Choppa & Louisiana Philharmonic Orchestra - Choppa Style | Saints-Vikings Hype",
-   "source": "Saints",
-   "seconds": 109,
-   "uploaded": "2020-11"
   }
  ],
- "updated": "2026-10-31T15:24:17Z"
+ "updated": "2026-11-01T16:06:59Z"
 }
