@@ -42,14 +42,6 @@
   },
   {
    "type": "youtube",
-   "id": "5ook1Opv7M0",
-   "title": "2026 Season Trailer | Carolina Panthers",
-   "source": "Panthers",
-   "seconds": 78,
-   "uploaded": "2026-10"
-  },
-  {
-   "type": "youtube",
    "id": "Pd3euunJiRo",
    "title": "2026 Chicago Bears Season Hype",
    "source": "Bears",
@@ -94,22 +86,6 @@
    "title": "Week 5 Game Trailer vs the Pittsburgh Steelers",
    "source": "Colts",
    "seconds": 49,
-   "uploaded": "2026-10"
-  },
-  {
-   "type": "youtube",
-   "id": "bBOMaQb913Q",
-   "title": "#INDvsJAX Rivalries Hype Video | Jacksonville Jaguars",
-   "source": "Jaguars",
-   "seconds": 81,
-   "uploaded": "2026-10"
-  },
-  {
-   "type": "youtube",
-   "id": "pP6hgP5k_gs",
-   "title": "Still About Us. #CLEvsJAX Hype Video | Jacksonville Jaguars",
-   "source": "Jaguars",
-   "seconds": 67,
    "uploaded": "2026-10"
   },
   {
@@ -226,10 +202,26 @@
   },
   {
    "type": "youtube",
-   "id": "-RXstH6NjhA",
-   "title": "The Broncos’ 2025 AFC Championship Game hype video narrated by Peyton Manning | Climb Higher",
+   "id": "oIAg7QvdIjs",
+   "title": "Climb Higher: The Broncos’ 2025 playoff hype video narrated by Aqib Talib",
    "source": "Broncos",
-   "seconds": 74,
+   "seconds": 65,
+   "uploaded": "2026-02"
+  },
+  {
+   "type": "youtube",
+   "id": "DTFSRbNPLvM",
+   "title": "QB Bo Nix narrates Broncos' #NEvsDEN hype video | Climb Higher",
+   "source": "Broncos",
+   "seconds": 96,
+   "uploaded": "2026-02"
+  },
+  {
+   "type": "youtube",
+   "id": "BSkiDbY6XYc",
+   "title": "Playoff trailer | Packers 2025 postseason",
+   "source": "Packers",
+   "seconds": 58,
    "uploaded": "2026-02"
   },
   {
@@ -255,30 +247,6 @@
    "source": "Titans",
    "seconds": 25,
    "uploaded": "2025-12"
-  },
-  {
-   "type": "youtube",
-   "id": "tMCMrft1pCY",
-   "title": "Atlanta Falcons x JID 'Glory' | 2025 Season Kickoff Hype ft. Michael Vick",
-   "source": "Falcons",
-   "seconds": 130,
-   "uploaded": "2025-11"
-  },
-  {
-   "type": "youtube",
-   "id": "l0xd523i4qQ",
-   "title": "The Climb Continues: The Denver Broncos’ 2024 playoff hype video",
-   "source": "Broncos",
-   "seconds": 64,
-   "uploaded": "2025-11"
-  },
-  {
-   "type": "youtube",
-   "id": "M8I3QnmQook",
-   "title": "Welcome back | Packers 2025 season trailer",
-   "source": "Packers",
-   "seconds": 93,
-   "uploaded": "2025-11"
   },
   {
    "type": "youtube",
@@ -362,6 +330,22 @@
   },
   {
    "type": "youtube",
+   "id": "5261QOWVxOI",
+   "title": "Sights and sounds from Week 13 | Sounds of the Game | vs. Lions",
+   "source": "Jaguars",
+   "seconds": 508,
+   "uploaded": "2023-11"
+  },
+  {
+   "type": "youtube",
+   "id": "P2MPblSDcXM",
+   "title": "Sights and sounds from week 10 | Sounds of the Game | vs. Chiefs",
+   "source": "Jaguars",
+   "seconds": 565,
+   "uploaded": "2023-11"
+  },
+  {
+   "type": "youtube",
    "id": "9ZAUG2U5ZzQ",
    "title": "WEEK 9 HYPE TAPE: MIAMI DOLPHINS AT CHICAGO BEARS",
    "source": "Dolphins",
@@ -386,10 +370,10 @@
   },
   {
    "type": "youtube",
-   "id": "OGCYzQ5bxAg",
-   "title": "IT IS US: AFC Championship Game Hype | Cincinnati Bengals",
+   "id": "11is_ndJ2eI",
+   "title": "Are You Afraid of the Dark? | Week 8 Hype Video",
    "source": "Bengals",
-   "seconds": 106,
+   "seconds": 82,
    "uploaded": "2022-11"
   },
   {
@@ -410,6 +394,14 @@
   },
   {
    "type": "youtube",
+   "id": "vj-1lljMrVw",
+   "title": "It's GAME DAY Atlanta! | Falcons vs. Giants Hype",
+   "source": "Falcons",
+   "seconds": 63,
+   "uploaded": "2021-11"
+  },
+  {
+   "type": "youtube",
    "id": "wbn2OZ3OawE",
    "title": "Browns vs. Steelers Hype Video (Week 17) | Cleveland Browns",
    "source": "Browns",
@@ -423,7 +415,15 @@
    "source": "Titans",
    "seconds": 59,
    "uploaded": "2021-11"
+  },
+  {
+   "type": "youtube",
+   "id": "5FLvLJ5iC80",
+   "title": "BACK IN BLACK || Carolina Panthers NFL Hype Video",
+   "source": "Panthers",
+   "seconds": 71,
+   "uploaded": "2020-11"
   }
  ],
- "updated": "2026-11-01T16:06:59Z"
+ "updated": "2026-11-02T19:35:01Z"
 }
