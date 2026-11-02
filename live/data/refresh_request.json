@@ -1,0 +1,19 @@
+{
+ "reasons": [
+  "Window finished: Sunday 8:20 PM ET game (1 final)",
+  "Jawaan Taylor: ACTIVE \u2192 UNKNOWN (Hamstring)",
+  "Dexter Lawrence: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Jaxon Smith-Njigba: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_08_ATL_TB",
+  "2026_08_CHI_SEA",
+  "2026_08_TEN_CIN"
+ ],
+ "event_ids": [
+  "ev_1793597513_baa69557",
+  "ev_1793597513_a562a489",
+  "ev_1793597513_daa1446d"
+ ],
+ "requested_at": "2026-11-02T05:31:56Z"
+}
