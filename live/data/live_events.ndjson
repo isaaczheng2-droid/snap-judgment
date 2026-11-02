@@ -34277,3 +34277,22 @@
 {"event_id":"ev_1793583368_ce0a3bc5","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_08_CHI_SEA","player_id":"00-0038543","team_id":"SEA","severity":"HIGH","previous_value":"ACTIVE","new_value":"UNKNOWN","detail":"Jaxon Smith-Njigba: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)","source":"nflverse:injuries","occurred_at":"2026-11-02T01:36:08Z","received_at":"2026-11-02T01:36:08Z","processed":false,"prediction_recalculated":false,"impact_tier":"HIGH","impact_reasons":["starter (depth chart rank 1)","36% of team targets/carries"],"player_name":"Jaxon Smith-Njigba","system_received_at":"2026-11-02T01:36:11Z"}
 {"event_id":"ev_1793583368_7651d8f0","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_08_PHI_WAS","player_id":"00-0039910","team_id":"WAS","severity":"HIGH","previous_value":"ACTIVE","new_value":"UNKNOWN","detail":"Jayden Daniels: ACTIVE \u2192 UNKNOWN (Elbow)","source":"nflverse:injuries","occurred_at":"2026-11-02T01:36:08Z","received_at":"2026-11-02T01:36:08Z","processed":false,"prediction_recalculated":false,"impact_tier":"CRITICAL","impact_reasons":["starter (projected starter in the game model)"],"player_name":"Jayden Daniels","system_received_at":"2026-11-02T01:36:11Z"}
 {"event_id":"ev_1793583368_559b6bf3","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_08_ARI_DAL","player_id":"00-0039737","team_id":"ARI","severity":"LOW","previous_value":"OUT","new_value":"IR","detail":"Tip Reiman: OUT \u2192 IR","source":"nflverse:rosters","occurred_at":"2026-11-02T01:36:08Z","received_at":"2026-11-02T01:36:08Z","processed":false,"prediction_recalculated":false,"impact_tier":"LOW","impact_reasons":["depth rank 5"],"player_name":"Tip Reiman","system_received_at":"2026-11-02T01:36:11Z"}
+{"event_id":"ev_1793583368_f318030d","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-11-02T01:43:39Z"}
+{"event_id":"ev_1793583368_c7a3e5d4","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-11-02T01:43:39Z"}
+{"event_id":"ev_1793583368_ce0a3bc5","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-11-02T01:43:39Z"}
+{"event_id":"ev_1793583368_5e7a615d","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-02T01:43:39Z"}
+{"event_id":"ev_1793583368_8fea1c0c","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-02T01:43:39Z"}
+{"event_id":"ev_1793583368_b848a0f3","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-02T01:43:39Z"}
+{"event_id":"ev_1793583368_f8839d3b","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-02T01:43:39Z"}
+{"event_id":"ev_1793583368_559b6bf3","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-02T01:43:39Z"}
+{"event_id":"ev_1793583368_2664436d","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-02T01:43:39Z"}
+{"event_id":"ev_1793583368_42ed64d7","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-02T01:43:39Z"}
+{"event_id":"ev_1793583368_69635fb3","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-02T01:43:39Z"}
+{"event_id":"ev_1793583368_a251478b","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-02T01:43:39Z"}
+{"event_id":"ev_1793583368_98781a20","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-02T01:43:39Z"}
+{"event_id":"ev_1793583368_3def6e28","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-02T01:43:39Z"}
+{"event_id":"ev_1793583368_1fbdf0d3","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-02T01:43:39Z"}
+{"event_id":"ev_1793583368_bea433d6","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-02T01:43:39Z"}
+{"event_id":"ev_1793583368_60868e63","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-02T01:43:39Z"}
+{"event_id":"ev_1793583368_620d94d4","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-02T01:43:39Z"}
+{"event_id":"ev_1793583368_7651d8f0","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-02T01:43:39Z"}
