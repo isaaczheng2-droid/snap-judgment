@@ -1175,3 +1175,9 @@
 {"kind":"unknown_player","detail":"Brandon Aiyuk (SF) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-03T18:04:56Z"}
 {"kind":"unknown_player","detail":"Greg Desrosiers Jr. (NYG) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-03T18:04:56Z"}
 {"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-03T18:04:56Z"}
+{"kind":"impossible_transition","detail":"00-0039072: IR -> ACTIVE","player_id":"00-0039072","source":"espn","system_received_at":"2026-11-03T23:43:42Z"}
+{"kind":"impossible_transition","detail":"00-0040226: IR -> ACTIVE","player_id":"00-0040226","source":"espn","system_received_at":"2026-11-03T23:43:42Z"}
+{"kind":"team_mismatch","detail":"00-0036695: report says HOU, roster says SF","player_id":"00-0036695","source":"espn","system_received_at":"2026-11-03T23:43:42Z"}
+{"kind":"unknown_player","detail":"Brandon Aiyuk (SF) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-03T23:43:42Z"}
+{"kind":"unknown_player","detail":"Greg Desrosiers Jr. (NYG) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-03T23:43:42Z"}
+{"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-03T23:43:42Z"}
