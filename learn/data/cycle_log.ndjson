@@ -52,3 +52,10 @@
 {"at": "2026-10-27T15:15:25Z", "event": "measure", "graded_rows": 1694, "mae": 6.151, "vs_naive": 0.0606}
 {"at": "2026-10-27T15:21:31Z", "event": "candidate_skipped", "candidate": "script_volume", "reason": "play-by-play not on file; script features cannot be built"}
 {"at": "2026-10-27T15:21:31Z", "event": "experiment", "id": "exp-2026-10-27-9f297a", "candidates": 4, "accepted": 0, "promoted": "none", "current_mae": 5.505, "naive_mae": 5.65}
+{"at": "2026-11-03T16:56:00Z", "event": "fetch", "reason": "data directory empty; downloading sources"}
+{"at": "2026-11-03T16:56:16Z", "event": "collect", "data_version": "11133dedafe1", "sources": 9}
+{"at": "2026-11-03T16:56:16Z", "event": "forecasts", "recorded": 0, "skipped_after_kickoff": 0, "week": 9}
+{"at": "2026-11-03T16:56:17Z", "event": "actuals", "graded": 0, "corrections": 0, "pending": 246}
+{"at": "2026-11-03T16:56:17Z", "event": "measure", "graded_rows": 1940, "mae": 6.191, "vs_naive": 0.0593}
+{"at": "2026-11-03T17:02:10Z", "event": "candidate_skipped", "candidate": "script_volume", "reason": "play-by-play not on file; script features cannot be built"}
+{"at": "2026-11-03T17:02:10Z", "event": "experiment", "id": "exp-2026-11-03-27e175", "candidates": 4, "accepted": 0, "promoted": "none", "current_mae": 5.505, "naive_mae": 5.651}
