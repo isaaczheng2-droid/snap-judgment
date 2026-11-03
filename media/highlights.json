@@ -26,18 +26,18 @@
   },
   {
    "type": "youtube",
-   "id": "5FUYpeuUsm0",
-   "title": "2026 Buffalo Bills Season Hype Video With Ryan Fitzpatrick and Josh Allen!",
-   "source": "Bills",
-   "seconds": 141,
+   "id": "K5xNiaX4ZCA",
+   "title": "Week 4 Trailer: Ravens vs. Titans at The Bank | Baltimore Ravens",
+   "source": "Ravens",
+   "seconds": 100,
    "uploaded": "2026-10"
   },
   {
    "type": "youtube",
-   "id": "7zoXqKuoAfQ",
-   "title": "Bills vs. Rams HYPE Video for Monday Night Football",
+   "id": "5FUYpeuUsm0",
+   "title": "2026 Buffalo Bills Season Hype Video With Ryan Fitzpatrick and Josh Allen!",
    "source": "Bills",
-   "seconds": 65,
+   "seconds": 141,
    "uploaded": "2026-10"
   },
   {
@@ -90,6 +90,22 @@
   },
   {
    "type": "youtube",
+   "id": "bBOMaQb913Q",
+   "title": "#INDvsJAX Rivalries Hype Video | Jacksonville Jaguars",
+   "source": "Jaguars",
+   "seconds": 81,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
+   "id": "pP6hgP5k_gs",
+   "title": "Still About Us. #CLEvsJAX Hype Video | Jacksonville Jaguars",
+   "source": "Jaguars",
+   "seconds": 67,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
    "id": "s1gZBVxrrvc",
    "title": "2026 Chiefs Season Hype Video",
    "source": "Chiefs",
@@ -114,10 +130,10 @@
   },
   {
    "type": "youtube",
-   "id": "yxujdKUhqwc",
-   "title": "Rams vs. Eagles: Revenge Tour | Game Trailer",
+   "id": "Y2t6_QskxX4",
+   "title": "Rams vs. Bills: The Stage Is Set | Game Trailer",
    "source": "Rams",
-   "seconds": 35,
+   "seconds": 76,
    "uploaded": "2026-10"
   },
   {
@@ -150,14 +166,6 @@
    "title": "Philadelphia Eagles 2026 Season Hype Video",
    "source": "Eagles",
    "seconds": 102,
-   "uploaded": "2026-10"
-  },
-  {
-   "type": "youtube",
-   "id": "DmrHw_aolMA",
-   "title": "Run It Forward | Seattle Seahawks 2026 Season Trailer",
-   "source": "Seahawks",
-   "seconds": 79,
    "uploaded": "2026-10"
   },
   {
@@ -210,14 +218,6 @@
   },
   {
    "type": "youtube",
-   "id": "DTFSRbNPLvM",
-   "title": "QB Bo Nix narrates Broncos' #NEvsDEN hype video | Climb Higher",
-   "source": "Broncos",
-   "seconds": 96,
-   "uploaded": "2026-02"
-  },
-  {
-   "type": "youtube",
    "id": "BSkiDbY6XYc",
    "title": "Playoff trailer | Packers 2025 postseason",
    "source": "Packers",
@@ -247,6 +247,22 @@
    "source": "Titans",
    "seconds": 25,
    "uploaded": "2025-12"
+  },
+  {
+   "type": "youtube",
+   "id": "-JR-OPtJ75s",
+   "title": "2025 Buffalo Bills Season Hype Video With Jim Kelly, Thurman Thomas, Andre Reed, and Steve Tasker!",
+   "source": "Bills",
+   "seconds": 121,
+   "uploaded": "2025-11"
+  },
+  {
+   "type": "youtube",
+   "id": "l0xd523i4qQ",
+   "title": "The Climb Continues: The Denver Broncos’ 2024 playoff hype video",
+   "source": "Broncos",
+   "seconds": 64,
+   "uploaded": "2025-11"
   },
   {
    "type": "youtube",
@@ -330,22 +346,6 @@
   },
   {
    "type": "youtube",
-   "id": "5261QOWVxOI",
-   "title": "Sights and sounds from Week 13 | Sounds of the Game | vs. Lions",
-   "source": "Jaguars",
-   "seconds": 508,
-   "uploaded": "2023-11"
-  },
-  {
-   "type": "youtube",
-   "id": "P2MPblSDcXM",
-   "title": "Sights and sounds from week 10 | Sounds of the Game | vs. Chiefs",
-   "source": "Jaguars",
-   "seconds": 565,
-   "uploaded": "2023-11"
-  },
-  {
-   "type": "youtube",
    "id": "9ZAUG2U5ZzQ",
    "title": "WEEK 9 HYPE TAPE: MIAMI DOLPHINS AT CHICAGO BEARS",
    "source": "Dolphins",
@@ -425,5 +425,5 @@
    "uploaded": "2020-11"
   }
  ],
- "updated": "2026-11-02T19:35:01Z"
+ "updated": "2026-11-03T17:09:07Z"
 }
