@@ -1,0 +1,33 @@
+{
+ "reasons": [
+  "Window finished: Monday 8:15 PM ET game (1 final)",
+  "Grady Jarrett: no report \u2192 DOUBTFUL (Groin)",
+  "Leonard Williams: ACTIVE \u2192 QUESTIONABLE (Shoulder)",
+  "Jawaan Taylor: ACTIVE \u2192 UNKNOWN (Hamstring)",
+  "C.J. Henderson: ACTIVE \u2192 UNKNOWN (Groin)",
+  "Cameron Thomas: ACTIVE \u2192 UNKNOWN (Groin)",
+  "Ronnie Stanley: ACTIVE \u2192 UNKNOWN (Toe)",
+  "Dexter Lawrence: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Montaric Brown: ACTIVE \u2192 UNKNOWN (Hamstring)",
+  "Jaxon Smith-Njigba: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_08_ATL_TB",
+  "2026_08_BAL_BUF",
+  "2026_08_CHI_SEA",
+  "2026_08_IND_JAX",
+  "2026_08_TEN_CIN"
+ ],
+ "event_ids": [
+  "ev_1793680706_7c49df99",
+  "ev_1793680706_ec413e98",
+  "ev_1793680706_b0aab537",
+  "ev_1793680706_87ef29ad",
+  "ev_1793680706_fae7efd2",
+  "ev_1793680706_1df68d17",
+  "ev_1793680706_41a40872",
+  "ev_1793680706_cdcf2eff",
+  "ev_1793680706_facaf9d9"
+ ],
+ "requested_at": "2026-11-03T04:38:27Z"
+}
