@@ -1,0 +1,44 @@
+{
+ "reasons": [
+  "Box scores updated: player results and the paper test can be graded",
+  "Nate Wiggins: QUESTIONABLE \u2192 ACTIVE",
+  "Bhayshul Tuten: ACTIVE \u2192 QUESTIONABLE (Ankle)",
+  "Case Keenum: ACTIVE \u2192 INACTIVE",
+  "Beau Stephens: ACTIVE \u2192 INACTIVE",
+  "Jayden Loving: ACTIVE \u2192 INACTIVE",
+  "Jordan van den Berg: no report \u2192 INACTIVE",
+  "Jordan McFadden: ACTIVE \u2192 INACTIVE",
+  "Matthew Stafford: ACTIVE \u2192 QUESTIONABLE (Arm)",
+  "Desjuan Johnson: INACTIVE \u2192 ACTIVE (Hip)",
+  "Malik Benson: INACTIVE \u2192 ACTIVE",
+  "Zachariah Branch: QUESTIONABLE \u2192 OUT (Hamstring)"
+ ],
+ "game_ids": [
+  "2026_08_ATL_TB",
+  "2026_08_BAL_BUF",
+  "2026_08_CHI_SEA",
+  "2026_08_IND_JAX",
+  "2026_08_LAC_LA",
+  "2026_08_LV_NYJ",
+  "2026_08_TEN_CIN"
+ ],
+ "event_ids": [
+  "ev_1793670639_8b49cf55",
+  "ev_1793670639_a06be4f9",
+  "ev_1793670639_053faec9",
+  "ev_1793670639_832620a9",
+  "ev_1793670639_d99d68e7",
+  "ev_1793670639_3e281799",
+  "ev_1793670639_6336caf0",
+  "ev_1793670639_40d5a70b",
+  "ev_1793670639_037669ae",
+  "ev_1793670639_cc0f1f06",
+  "ev_1793670639_19bf16bb",
+  "ev_1793670639_ac707bc0",
+  "ev_1793670639_2939b63b",
+  "ev_1793670639_5cd07b42",
+  "ev_1793670639_75e46a7f",
+  "ev_1793670639_6afb7a0c"
+ ],
+ "requested_at": "2026-11-03T01:50:40Z"
+}
