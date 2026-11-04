@@ -1,0 +1,21 @@
+{
+ "reasons": [
+  "Garrett Wilson: ACTIVE \u2192 QUESTIONABLE (Concussion)",
+  "Deshaun Watson: ACTIVE \u2192 QUESTIONABLE (Concussion)",
+  "Billy Bowman Jr.: QUESTIONABLE \u2192 ACTIVE",
+  "Tyler Huntley: DOUBTFUL \u2192 OUT (Toe)"
+ ],
+ "game_ids": [
+  "2026_09_CIN_ATL",
+  "2026_09_CLE_NO",
+  "2026_09_JAX_BAL",
+  "2026_09_NYJ_KC"
+ ],
+ "event_ids": [
+  "ev_1793818397_034d3eee",
+  "ev_1793818397_eab7228b",
+  "ev_1793818397_0efd8893",
+  "ev_1793818397_2d10fd22"
+ ],
+ "requested_at": "2026-11-04T18:53:28Z"
+}
