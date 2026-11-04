@@ -26,6 +26,14 @@
   },
   {
    "type": "youtube",
+   "id": "Iumv8hVy_uE",
+   "title": "Shaboozey - \"Let 'Em Know\" | HYPE | Atlanta Falcons",
+   "source": "Falcons",
+   "seconds": 65,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
    "id": "K5xNiaX4ZCA",
    "title": "Week 4 Trailer: Ravens vs. Titans at The Bank | Baltimore Ravens",
    "source": "Ravens",
@@ -42,6 +50,14 @@
   },
   {
    "type": "youtube",
+   "id": "7zoXqKuoAfQ",
+   "title": "Bills vs. Rams HYPE Video for Monday Night Football",
+   "source": "Bills",
+   "seconds": 65,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
    "id": "Pd3euunJiRo",
    "title": "2026 Chicago Bears Season Hype",
    "source": "Bears",
@@ -54,14 +70,6 @@
    "title": "The Mission Begins | 2026 Dallas Cowboys Hype Video",
    "source": "Cowboys",
    "seconds": 65,
-   "uploaded": "2026-10"
-  },
-  {
-   "type": "youtube",
-   "id": "xh0Zh4Ve-Ng",
-   "title": "Trailer: Packers vs. Cowboys",
-   "source": "Packers",
-   "seconds": 75,
    "uploaded": "2026-10"
   },
   {
@@ -250,18 +258,26 @@
   },
   {
    "type": "youtube",
-   "id": "-JR-OPtJ75s",
-   "title": "2025 Buffalo Bills Season Hype Video With Jim Kelly, Thurman Thomas, Andre Reed, and Steve Tasker!",
-   "source": "Bills",
-   "seconds": 121,
-   "uploaded": "2025-11"
-  },
-  {
-   "type": "youtube",
    "id": "l0xd523i4qQ",
    "title": "The Climb Continues: The Denver Broncos’ 2024 playoff hype video",
    "source": "Broncos",
    "seconds": 64,
+   "uploaded": "2025-11"
+  },
+  {
+   "type": "youtube",
+   "id": "M8I3QnmQook",
+   "title": "Welcome back | Packers 2025 season trailer",
+   "source": "Packers",
+   "seconds": 93,
+   "uploaded": "2025-11"
+  },
+  {
+   "type": "youtube",
+   "id": "YBuiOqHkcPc",
+   "title": "\"WE ALL WE GOT! WE ALL WE NEED!\" Get READY for WEEK 12 l Game Trailer l Miami Dolphins",
+   "source": "Dolphins",
+   "seconds": 53,
    "uploaded": "2025-11"
   },
   {
@@ -306,6 +322,14 @@
   },
   {
    "type": "youtube",
+   "id": "kb1aZc3CGDQ",
+   "title": "Sights and Sounds of the Season Part Two | Miami Dolphins",
+   "source": "Dolphins",
+   "seconds": 501,
+   "uploaded": "2024-11"
+  },
+  {
+   "type": "youtube",
    "id": "6xsKy9xsx8U",
    "title": "Vikings Aura | Hype Video",
    "source": "Vikings",
@@ -346,22 +370,6 @@
   },
   {
    "type": "youtube",
-   "id": "9ZAUG2U5ZzQ",
-   "title": "WEEK 9 HYPE TAPE: MIAMI DOLPHINS AT CHICAGO BEARS",
-   "source": "Dolphins",
-   "seconds": 53,
-   "uploaded": "2023-11"
-  },
-  {
-   "type": "youtube",
-   "id": "jfVypnms8Lo",
-   "title": "WEEK 17 HYPE TAPE | DOLPHINS AT PATRIOTS",
-   "source": "Dolphins",
-   "seconds": 71,
-   "uploaded": "2023-11"
-  },
-  {
-   "type": "youtube",
    "id": "IMAGtvbMMPE",
    "title": "Minnesota Vikings 2022 Winter Whiteout Hype Video",
    "source": "Vikings",
@@ -394,14 +402,6 @@
   },
   {
    "type": "youtube",
-   "id": "vj-1lljMrVw",
-   "title": "It's GAME DAY Atlanta! | Falcons vs. Giants Hype",
-   "source": "Falcons",
-   "seconds": 63,
-   "uploaded": "2021-11"
-  },
-  {
-   "type": "youtube",
    "id": "wbn2OZ3OawE",
    "title": "Browns vs. Steelers Hype Video (Week 17) | Cleveland Browns",
    "source": "Browns",
@@ -423,7 +423,15 @@
    "source": "Panthers",
    "seconds": 71,
    "uploaded": "2020-11"
+  },
+  {
+   "type": "youtube",
+   "id": "TmSsqs1ImjQ",
+   "title": "Cam Jordan Birthday HYPE | Happy 31st! | New Orleans Saints",
+   "source": "Saints",
+   "seconds": 28,
+   "uploaded": "2020-11"
   }
  ],
- "updated": "2026-11-03T17:09:07Z"
+ "updated": "2026-11-04T17:20:54Z"
 }
