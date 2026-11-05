@@ -1,0 +1,36 @@
+{
+ "reasons": [
+  "Darius Alexander: no report \u2192 QUESTIONABLE (Foot)",
+  "Dee Alford: QUESTIONABLE \u2192 ACTIVE",
+  "Marcus Jones: ACTIVE \u2192 QUESTIONABLE (Foot)",
+  "Christian Barmore: QUESTIONABLE \u2192 ACTIVE (Illness)",
+  "Rashee Rice: QUESTIONABLE \u2192 ACTIVE (Hamstring)",
+  "Myles Harden: QUESTIONABLE \u2192 ACTIVE (Hamstring)",
+  "Jared Verse: QUESTIONABLE \u2192 ACTIVE (Knee)",
+  "Malik Nabers: ACTIVE \u2192 QUESTIONABLE (Knee)",
+  "Emeka Egbuka: QUESTIONABLE \u2192 ACTIVE (Foot)",
+  "DJ Turner II: QUESTIONABLE \u2192 ACTIVE (Heel)"
+ ],
+ "game_ids": [
+  "2026_09_BUF_MIN",
+  "2026_09_CIN_ATL",
+  "2026_09_CLE_NO",
+  "2026_09_GB_NE",
+  "2026_09_NYG_PHI",
+  "2026_09_NYJ_KC",
+  "2026_09_TB_CHI"
+ ],
+ "event_ids": [
+  "ev_1793917365_f547f217",
+  "ev_1793917365_e56992a9",
+  "ev_1793917365_fded45e8",
+  "ev_1793917365_3d84f102",
+  "ev_1793917365_21fb02f6",
+  "ev_1793917365_5a2306fd",
+  "ev_1793917365_051e0f94",
+  "ev_1793917365_105b243a",
+  "ev_1793917365_aa9f60cb",
+  "ev_1793917365_6bf796eb"
+ ],
+ "requested_at": "2026-11-05T22:22:53Z"
+}
