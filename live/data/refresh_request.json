@@ -1,0 +1,30 @@
+{
+ "reasons": [
+  "Box scores updated: player results and the paper test can be graded",
+  "A.J. Brown: QUESTIONABLE \u2192 OUT (Knee)",
+  "Justin Walley: QUESTIONABLE \u2192 OUT (Knee)",
+  "Emeka Egbuka: ACTIVE \u2192 QUESTIONABLE (Foot)",
+  "Garrett Wilson: QUESTIONABLE \u2192 OUT (Concussion)",
+  "Brian Robinson Jr.: QUESTIONABLE \u2192 OUT (Hamstring)",
+  "Ed Oliver: ACTIVE \u2192 UNKNOWN (Knee)",
+  "T.J. Sanders: ACTIVE \u2192 UNKNOWN (Shoulder)"
+ ],
+ "game_ids": [
+  "2026_09_BUF_MIN",
+  "2026_09_CIN_ATL",
+  "2026_09_DAL_IND",
+  "2026_09_GB_NE",
+  "2026_09_NYJ_KC",
+  "2026_09_TB_CHI"
+ ],
+ "event_ids": [
+  "ev_1793989908_cf90dff1",
+  "ev_1793989908_cf77ccc9",
+  "ev_1793989908_04dd3ad2",
+  "ev_1793989908_0d8b07a1",
+  "ev_1793989908_9ef72b60",
+  "ev_1793989908_7e57506c",
+  "ev_1793989908_2b512c0d"
+ ],
+ "requested_at": "2026-11-06T18:32:00Z"
+}
