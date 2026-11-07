@@ -2,10 +2,34 @@
  "items": [
   {
    "type": "youtube",
+   "id": "TtKlFfVpsJI",
+   "title": "SUNDAY SCARIES | Hype | Atlanta Falcons",
+   "source": "Falcons",
+   "seconds": 45,
+   "uploaded": "2026-11"
+  },
+  {
+   "type": "youtube",
+   "id": "_WjPx2Thtt8",
+   "title": "Bears-Buccaneers Sunday Night Football hype trailer | Bears Buzz | Chicago Bears",
+   "source": "Bears",
+   "seconds": 62,
+   "uploaded": "2026-11"
+  },
+  {
+   "type": "youtube",
    "id": "2_xOU70peos",
    "title": "Bears-Seahawks Monday Night Football hype trailer | Bears Buzz | Chicago Bears",
    "source": "Bears",
    "seconds": 134,
+   "uploaded": "2026-11"
+  },
+  {
+   "type": "youtube",
+   "id": "Lzp1df1Tzrk",
+   "title": "Rams vs. Commanders: One Game At a Time | Game Trailer",
+   "source": "Rams",
+   "seconds": 52,
    "uploaded": "2026-11"
   },
   {
@@ -18,10 +42,10 @@
   },
   {
    "type": "youtube",
-   "id": "TtKlFfVpsJI",
-   "title": "SUNDAY SCARIES | Hype | Atlanta Falcons",
+   "id": "CXVvfw9vooA",
+   "title": "Back at Home | HYPE | Atlanta Falcons",
    "source": "Falcons",
-   "seconds": 45,
+   "seconds": 54,
    "uploaded": "2026-10"
   },
   {
@@ -46,14 +70,6 @@
    "title": "Bills vs. Rams HYPE Video for Monday Night Football",
    "source": "Bills",
    "seconds": 65,
-   "uploaded": "2026-10"
-  },
-  {
-   "type": "youtube",
-   "id": "Pd3euunJiRo",
-   "title": "2026 Chicago Bears Season Hype",
-   "source": "Bears",
-   "seconds": 100,
    "uploaded": "2026-10"
   },
   {
@@ -90,18 +106,18 @@
   },
   {
    "type": "youtube",
-   "id": "bBOMaQb913Q",
-   "title": "#INDvsJAX Rivalries Hype Video | Jacksonville Jaguars",
-   "source": "Jaguars",
-   "seconds": 81,
-   "uploaded": "2026-10"
-  },
-  {
-   "type": "youtube",
    "id": "pP6hgP5k_gs",
    "title": "Still About Us. #CLEvsJAX Hype Video | Jacksonville Jaguars",
    "source": "Jaguars",
    "seconds": 67,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
+   "id": "bBOMaQb913Q",
+   "title": "#INDvsJAX Rivalries Hype Video | Jacksonville Jaguars",
+   "source": "Jaguars",
+   "seconds": 81,
    "uploaded": "2026-10"
   },
   {
@@ -126,22 +142,6 @@
    "title": "Rams vs. 49ers: Melbourne, You're In For A Treat | Game Trailer",
    "source": "Rams",
    "seconds": 81,
-   "uploaded": "2026-10"
-  },
-  {
-   "type": "youtube",
-   "id": "Y2t6_QskxX4",
-   "title": "Rams vs. Bills: The Stage Is Set | Game Trailer",
-   "source": "Rams",
-   "seconds": 76,
-   "uploaded": "2026-10"
-  },
-  {
-   "type": "youtube",
-   "id": "0fbKm66MxLU",
-   "title": "PATRIOTS 2026 SEASON HYPE SET TO DREAM ON BY AEROSMITH 🔥",
-   "source": "Patriots",
-   "seconds": 117,
    "uploaded": "2026-10"
   },
   {
@@ -190,6 +190,14 @@
    "title": "MINDSET 😤 | Kansas City Chiefs 2026 Preseason HYPE Video 🔥",
    "source": "Chiefs",
    "seconds": 67,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
+   "id": "0fbKm66MxLU",
+   "title": "PATRIOTS 2026 SEASON HYPE SET TO DREAM ON BY AEROSMITH 🔥",
+   "source": "Patriots",
+   "seconds": 117,
    "uploaded": "2026-09"
   },
   {
@@ -247,14 +255,6 @@
    "source": "Titans",
    "seconds": 25,
    "uploaded": "2025-12"
-  },
-  {
-   "type": "youtube",
-   "id": "tMCMrft1pCY",
-   "title": "Atlanta Falcons x JID 'Glory' | 2025 Season Kickoff Hype ft. Michael Vick",
-   "source": "Falcons",
-   "seconds": 130,
-   "uploaded": "2025-11"
   },
   {
    "type": "youtube",
@@ -417,5 +417,5 @@
    "uploaded": "2020-11"
   }
  ],
- "updated": "2026-11-06T16:50:03Z"
+ "updated": "2026-11-07T15:44:41Z"
 }
