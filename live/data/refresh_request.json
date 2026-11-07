@@ -1,0 +1,22 @@
+{
+ "reasons": [
+  "Box scores updated: player results and the paper test can be graded",
+  "Jacoby Brissett: ACTIVE \u2192 UNKNOWN (Not injury related - other)",
+  "Ed Oliver: ACTIVE \u2192 UNKNOWN (Knee)",
+  "T.J. Sanders: ACTIVE \u2192 UNKNOWN (Shoulder)",
+  "ARI LT: Jayden Williams \u2192 Josh Fryar as the starter",
+  "SEA LT: Charles Cross \u2192 Josh Jones as the starter"
+ ],
+ "game_ids": [
+  "2026_09_ARI_SEA",
+  "2026_09_BUF_MIN"
+ ],
+ "event_ids": [
+  "ev_1794069544_1737f63d",
+  "ev_1794069544_a5dd2c2e",
+  "ev_1794069544_b7a1c007",
+  "ev_1794069544_52e8ee77",
+  "ev_1794069544_d18ef8e2"
+ ],
+ "requested_at": "2026-11-07T16:39:04Z"
+}
