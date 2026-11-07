@@ -1,0 +1,21 @@
+{
+ "reasons": [
+  "Kyler Murray: QUESTIONABLE \u2192 OUT (Hamstring)",
+  "DJ Moore: QUESTIONABLE \u2192 ACTIVE (Shoulder)",
+  "Jacoby Brissett: ACTIVE \u2192 UNKNOWN (Not injury related - other)",
+  "Ed Oliver: ACTIVE \u2192 UNKNOWN (Knee)",
+  "T.J. Sanders: ACTIVE \u2192 UNKNOWN (Shoulder)"
+ ],
+ "game_ids": [
+  "2026_09_ARI_SEA",
+  "2026_09_BUF_MIN"
+ ],
+ "event_ids": [
+  "ev_1794083571_2720bf19",
+  "ev_1794083571_09e0fc57",
+  "ev_1794083571_76e921e8",
+  "ev_1794083571_118fc80c",
+  "ev_1794083571_d6eb2152"
+ ],
+ "requested_at": "2026-11-07T20:33:00Z"
+}
