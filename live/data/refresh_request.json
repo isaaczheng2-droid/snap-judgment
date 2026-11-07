@@ -1,0 +1,17 @@
+{
+ "reasons": [
+  "Nikko Remigio: ACTIVE \u2192 QUESTIONABLE (Hip)",
+  "Ed Oliver: ACTIVE \u2192 UNKNOWN (Knee)",
+  "T.J. Sanders: ACTIVE \u2192 UNKNOWN (Shoulder)"
+ ],
+ "game_ids": [
+  "2026_09_BUF_MIN",
+  "2026_09_NYJ_KC"
+ ],
+ "event_ids": [
+  "ev_1794021340_9f46471b",
+  "ev_1794021340_48daece7",
+  "ev_1794021340_6e6fc2de"
+ ],
+ "requested_at": "2026-11-07T03:15:50Z"
+}
