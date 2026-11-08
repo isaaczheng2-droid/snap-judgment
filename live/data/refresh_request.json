@@ -1,0 +1,41 @@
+{
+ "reasons": [
+  "Billy Bowman Jr.: ACTIVE \u2192 INACTIVE (Hamstring)",
+  "Andy Dalton: ACTIVE \u2192 INACTIVE",
+  "Jack Strand: ACTIVE \u2192 INACTIVE",
+  "Drake Jackson: ACTIVE \u2192 INACTIVE",
+  "Robert Longerbeam: ACTIVE \u2192 INACTIVE",
+  "Connor Lew: ACTIVE \u2192 INACTIVE",
+  "Myles Hinton: ACTIVE \u2192 INACTIVE",
+  "Landon Robinson: ACTIVE \u2192 INACTIVE",
+  "Jacoby Brissett: ACTIVE \u2192 UNKNOWN (Not injury related - other)",
+  "Roger Rosengarten: ACTIVE \u2192 UNKNOWN (Ankle)",
+  "Ed Oliver: ACTIVE \u2192 UNKNOWN (Knee)",
+  "T.J. Sanders: ACTIVE \u2192 UNKNOWN (Shoulder)"
+ ],
+ "game_ids": [
+  "2026_09_ARI_SEA",
+  "2026_09_BUF_MIN",
+  "2026_09_CIN_ATL",
+  "2026_09_DAL_IND",
+  "2026_09_JAX_BAL"
+ ],
+ "event_ids": [
+  "ev_1794146097_15ebf7e7",
+  "ev_1794146097_0eda7594",
+  "ev_1794146097_bd73b9a6",
+  "ev_1794146097_f9d91cf3",
+  "ev_1794146097_fb5c7a2a",
+  "ev_1794146097_c2e0d367",
+  "ev_1794146097_22c97317",
+  "ev_1794146097_5aaf86e5",
+  "ev_1794146097_df319ad0",
+  "ev_1794146097_91ff49ee",
+  "ev_1794146097_57f6ebad",
+  "ev_1794146097_8157d674",
+  "ev_1794146097_75c6f5a9",
+  "ev_1794146097_2c36a71b",
+  "ev_1794146097_d4524ec8"
+ ],
+ "requested_at": "2026-11-08T13:55:09Z"
+}
