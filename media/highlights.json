@@ -2,14 +2,6 @@
  "items": [
   {
    "type": "youtube",
-   "id": "TtKlFfVpsJI",
-   "title": "SUNDAY SCARIES | Hype | Atlanta Falcons",
-   "source": "Falcons",
-   "seconds": 45,
-   "uploaded": "2026-11"
-  },
-  {
-   "type": "youtube",
    "id": "_WjPx2Thtt8",
    "title": "Bears-Buccaneers Sunday Night Football hype trailer | Bears Buzz | Chicago Bears",
    "source": "Bears",
@@ -18,10 +10,10 @@
   },
   {
    "type": "youtube",
-   "id": "2_xOU70peos",
-   "title": "Bears-Seahawks Monday Night Football hype trailer | Bears Buzz | Chicago Bears",
-   "source": "Bears",
-   "seconds": 134,
+   "id": "nrjoZ2gCoqY",
+   "title": "Sights and Sounds: A cinematic recap of the Broncos' division win vs. the Chiefs",
+   "source": "Broncos",
+   "seconds": 790,
    "uploaded": "2026-11"
   },
   {
@@ -50,6 +42,14 @@
   },
   {
    "type": "youtube",
+   "id": "TtKlFfVpsJI",
+   "title": "SUNDAY SCARIES | Hype | Atlanta Falcons",
+   "source": "Falcons",
+   "seconds": 45,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
    "id": "K5xNiaX4ZCA",
    "title": "Week 4 Trailer: Ravens vs. Titans at The Bank | Baltimore Ravens",
    "source": "Ravens",
@@ -74,10 +74,18 @@
   },
   {
    "type": "youtube",
-   "id": "1VdsHPILlaM",
-   "title": "The Mission Begins | 2026 Dallas Cowboys Hype Video",
-   "source": "Cowboys",
-   "seconds": 65,
+   "id": "Pd3euunJiRo",
+   "title": "2026 Chicago Bears Season Hype",
+   "source": "Bears",
+   "seconds": 100,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
+   "id": "yGqk62tbBbI",
+   "title": "A cinematic recap of the Broncos’ Week 7 win over the Arizona Cardinals | Sights and Sounds",
+   "source": "Broncos",
+   "seconds": 482,
    "uploaded": "2026-10"
   },
   {
@@ -170,10 +178,10 @@
   },
   {
    "type": "youtube",
-   "id": "RuJbHATlLXg",
-   "title": "2026 Season Trailer, Featuring Chris Godwin Jr. | Tampa Bay Buccaneers",
-   "source": "Buccaneers",
-   "seconds": 151,
+   "id": "DmrHw_aolMA",
+   "title": "Run It Forward | Seattle Seahawks 2026 Season Trailer",
+   "source": "Seahawks",
+   "seconds": 79,
    "uploaded": "2026-10"
   },
   {
@@ -202,26 +210,10 @@
   },
   {
    "type": "youtube",
-   "id": "gsx5OLZhoQ0",
-   "title": "Building A Monster | Dallas Cowboys 2026 Hype Video",
-   "source": "Cowboys",
-   "seconds": 144,
-   "uploaded": "2026-04"
-  },
-  {
-   "type": "youtube",
    "id": "XHejZ8pBKyI",
    "title": "Sound the Drum | Panthers Wild Card Trailer ft. Stephen Curry",
    "source": "Panthers",
    "seconds": 99,
-   "uploaded": "2026-02"
-  },
-  {
-   "type": "youtube",
-   "id": "oIAg7QvdIjs",
-   "title": "Climb Higher: The Broncos’ 2025 playoff hype video narrated by Aqib Talib",
-   "source": "Broncos",
-   "seconds": 65,
    "uploaded": "2026-02"
   },
   {
@@ -258,18 +250,18 @@
   },
   {
    "type": "youtube",
-   "id": "l0xd523i4qQ",
-   "title": "The Climb Continues: The Denver Broncos’ 2024 playoff hype video",
-   "source": "Broncos",
-   "seconds": 64,
-   "uploaded": "2025-11"
-  },
-  {
-   "type": "youtube",
    "id": "M8I3QnmQook",
    "title": "Welcome back | Packers 2025 season trailer",
    "source": "Packers",
    "seconds": 93,
+   "uploaded": "2025-11"
+  },
+  {
+   "type": "youtube",
+   "id": "Y6l6SEqzELY",
+   "title": "'Protect Our House' | Commanders vs. Bucs Wild Card Round Hype Video | Tampa Bay Buccaneers",
+   "source": "Buccaneers",
+   "seconds": 60,
    "uploaded": "2025-11"
   },
   {
@@ -402,6 +394,22 @@
   },
   {
    "type": "youtube",
+   "id": "_pBK-xmOzzo",
+   "title": "#DALvsNE Pepsi Hype Video | Dallas Cowboys 2021",
+   "source": "Cowboys",
+   "seconds": 28,
+   "uploaded": "2021-11"
+  },
+  {
+   "type": "youtube",
+   "id": "kYhr3oZB1rc",
+   "title": "Pepsi Hype Video: #DALvsLAC | Dallas Cowboys 2021",
+   "source": "Cowboys",
+   "seconds": 30,
+   "uploaded": "2021-11"
+  },
+  {
+   "type": "youtube",
    "id": "N-z9XYvekIk",
    "title": "Tennessee Titans at Seattle Seahawks | Hype Videos",
    "source": "Titans",
@@ -415,7 +423,15 @@
    "source": "Panthers",
    "seconds": 71,
    "uploaded": "2020-11"
+  },
+  {
+   "type": "youtube",
+   "id": "TmSsqs1ImjQ",
+   "title": "Cam Jordan Birthday HYPE | Happy 31st! | New Orleans Saints",
+   "source": "Saints",
+   "seconds": 28,
+   "uploaded": "2020-11"
   }
  ],
- "updated": "2026-11-07T15:44:41Z"
+ "updated": "2026-11-08T16:02:54Z"
 }
