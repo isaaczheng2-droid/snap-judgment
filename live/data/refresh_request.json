@@ -1,0 +1,23 @@
+{
+ "reasons": [
+  "Jacoby Brissett: ACTIVE \u2192 UNKNOWN (Not injury related - other)",
+  "Roger Rosengarten: ACTIVE \u2192 UNKNOWN (Ankle)",
+  "Ed Oliver: ACTIVE \u2192 UNKNOWN (Knee)",
+  "T.J. Sanders: ACTIVE \u2192 UNKNOWN (Shoulder)",
+  "Kenny Clark: ACTIVE \u2192 UNKNOWN (Back)"
+ ],
+ "game_ids": [
+  "2026_09_ARI_SEA",
+  "2026_09_BUF_MIN",
+  "2026_09_DAL_IND",
+  "2026_09_JAX_BAL"
+ ],
+ "event_ids": [
+  "ev_1794120286_36d8ff22",
+  "ev_1794120286_1a9d44a7",
+  "ev_1794120286_175e1456",
+  "ev_1794120286_5fa3a45c",
+  "ev_1794120286_ca29e84e"
+ ],
+ "requested_at": "2026-11-08T06:44:53Z"
+}
