@@ -2102,3 +2102,10 @@
 {"kind":"unknown_player","detail":"Brandon Aiyuk (SF) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-09T14:25:35Z"}
 {"kind":"unknown_player","detail":"Greg Desrosiers Jr. (NYG) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-09T14:25:35Z"}
 {"kind":"team_mismatch","detail":"00-0033119: report says BAL, roster says ARI","player_id":"00-0033119","source":"espn","system_received_at":"2026-11-09T14:25:35Z"}
+{"kind":"unknown_player","detail":"Brandon Aiyuk (SF) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-09T22:44:45Z"}
+{"kind":"team_mismatch","detail":"00-0036941: report says DET, roster says NYJ","player_id":"00-0036941","source":"espn","system_received_at":"2026-11-09T22:44:45Z"}
+{"kind":"team_mismatch","detail":"00-0033860: report says JAX, roster says NO","player_id":"00-0033860","source":"espn","system_received_at":"2026-11-09T22:44:45Z"}
+{"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-09T22:44:45Z"}
+{"kind":"impossible_transition","detail":"00-0040503: IR -> ACTIVE","player_id":"00-0040503","source":"espn","system_received_at":"2026-11-09T22:44:45Z"}
+{"kind":"team_mismatch","detail":"00-0033119: report says BAL, roster says ARI","player_id":"00-0033119","source":"espn","system_received_at":"2026-11-09T22:44:45Z"}
+{"kind":"unknown_player","detail":"Greg Desrosiers Jr. (NYG) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-09T22:44:45Z"}
