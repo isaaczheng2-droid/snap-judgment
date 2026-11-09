@@ -39742,3 +39742,34 @@
 {"event_id":"ev_1794234335_e2c75150","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_09_NYJ_KC","player_id":"00-0036885","team_id":"NYJ","severity":"MEDIUM","previous_value":"QUESTIONABLE","new_value":"IR","detail":"Tre Brown: QUESTIONABLE \u2192 IR","source":"nflverse:rosters","occurred_at":"2026-11-09T14:25:35Z","received_at":"2026-11-09T14:25:35Z","processed":false,"prediction_recalculated":false,"impact_tier":"MODERATE","impact_reasons":["depth chart position unknown"],"player_name":"Tre Brown","system_received_at":"2026-11-09T14:25:35Z"}
 {"event_id":"ev_1794234335_9c64d4ec","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_09_DET_MIA","player_id":"00-0037549","team_id":"MIA","severity":"LOW","previous_value":"OUT","new_value":"IR","detail":"Darrell Baker Jr.: OUT \u2192 IR","source":"nflverse:rosters","occurred_at":"2026-11-09T14:25:35Z","received_at":"2026-11-09T14:25:35Z","processed":false,"prediction_recalculated":false,"impact_tier":"LOW","impact_reasons":["depth rank 3"],"player_name":"Darrell Baker Jr.","system_received_at":"2026-11-09T14:25:35Z"}
 {"event_id":"ev_1794234335_40e8f990","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_09_CIN_ATL","player_id":"00-0041484","team_id":"ATL","severity":"LOW","previous_value":"OUT","new_value":"IR","detail":"Anterio Thompson: OUT \u2192 IR","source":"nflverse:rosters","occurred_at":"2026-11-09T14:25:35Z","received_at":"2026-11-09T14:25:35Z","processed":false,"prediction_recalculated":false,"impact_tier":"LOW","impact_reasons":["depth rank 2"],"player_name":"Anterio Thompson","system_received_at":"2026-11-09T14:25:35Z"}
+{"event_id":"ev_1794234335_e7bfa986","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_4d18c87b","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_0c56e3cc","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_1ae9cb7c","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_79086e9c","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_2b34d9d5","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_871f815f","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_40e8f990","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_9978cff9","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_22002c67","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_6beaf200","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_5aa39569","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_e2c75150","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_0d8aa926","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_9c64d4ec","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_2f86d653","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_1766c2c4","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_7e195302","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_fd2341e4","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_2d355938","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_9e323b58","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_2ed16509","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_224273bf","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_b8bb014d","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_5d389d1c","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_5d22ff56","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_be2adcce","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_6c044a40","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_31f4ec47","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_6998428f","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
+{"event_id":"ev_1794234335_612c3405","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-09T14:31:48Z"}
