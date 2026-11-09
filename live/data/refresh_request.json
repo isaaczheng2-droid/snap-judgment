@@ -1,0 +1,27 @@
+{
+ "reasons": [
+  "Box scores updated: player results and the paper test can be graded",
+  "Malik Willis: ACTIVE \u2192 QUESTIONABLE (Groin)",
+  "Jacoby Brissett: ACTIVE \u2192 UNKNOWN (Not injury related - other)",
+  "Roger Rosengarten: ACTIVE \u2192 UNKNOWN (Ankle)",
+  "Ed Oliver: ACTIVE \u2192 UNKNOWN (Knee)",
+  "T.J. Sanders: ACTIVE \u2192 UNKNOWN (Shoulder)",
+  "Kenny Clark: ACTIVE \u2192 UNKNOWN (Back)"
+ ],
+ "game_ids": [
+  "2026_09_ARI_SEA",
+  "2026_09_BUF_MIN",
+  "2026_09_DAL_IND",
+  "2026_09_DET_MIA",
+  "2026_09_JAX_BAL"
+ ],
+ "event_ids": [
+  "ev_1794234335_2f86d653",
+  "ev_1794234335_fd2341e4",
+  "ev_1794234335_1ae9cb7c",
+  "ev_1794234335_be2adcce",
+  "ev_1794234335_31f4ec47",
+  "ev_1794234335_9978cff9"
+ ],
+ "requested_at": "2026-11-09T14:25:36Z"
+}
