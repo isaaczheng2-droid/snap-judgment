@@ -1,0 +1,49 @@
+{
+ "reasons": [
+  "Window finished: Sunday 8:20 PM ET game (1 final)",
+  "Box scores updated: player results and the paper test can be graded",
+  "Jacoby Brissett: ACTIVE \u2192 UNKNOWN (Not injury related - other)",
+  "Michael Wilson: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Lamar Jackson: IR \u2192 OUT (Thumb)",
+  "Joe Fagnano: ACTIVE \u2192 UNKNOWN (Ankle)",
+  "Bryce Young: ACTIVE \u2192 UNKNOWN (Ankle)",
+  "Deshaun Watson: OUT \u2192 QUESTIONABLE (Concussion)",
+  "Amon-Ra St. Brown: ACTIVE \u2192 QUESTIONABLE (Rib)",
+  "Patrick Mahomes: QUESTIONABLE \u2192 UNKNOWN (Knee)",
+  "Matthew Stafford: ACTIVE \u2192 UNKNOWN (Elbow)",
+  "Puka Nacua: QUESTIONABLE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_09_ARI_SEA",
+  "2026_09_CLE_NO",
+  "2026_09_DEN_CAR",
+  "2026_09_DET_MIA",
+  "2026_09_GB_NE",
+  "2026_09_JAX_BAL",
+  "2026_09_LA_WAS",
+  "2026_09_NYG_PHI",
+  "2026_09_NYJ_KC",
+  "2026_09_TB_CHI"
+ ],
+ "event_ids": [
+  "ev_1794203171_b938ed46",
+  "ev_1794203171_606b1fd3",
+  "ev_1794203171_f9d33cab",
+  "ev_1794203171_ec39a981",
+  "ev_1794203171_13618ac0",
+  "ev_1794203171_41a7e649",
+  "ev_1794203171_676acff0",
+  "ev_1794203171_28c39df4",
+  "ev_1794203171_33dcb09b",
+  "ev_1794203171_63905bb5",
+  "ev_1794203171_25664c72",
+  "ev_1794203171_c8c62107",
+  "ev_1794203171_7c2a1647",
+  "ev_1794203171_5c9ec180",
+  "ev_1794203171_28527ef1",
+  "ev_1794203171_86a955b2",
+  "ev_1794203171_0a9a7cd3",
+  "ev_1794203171_e4798fd5"
+ ],
+ "requested_at": "2026-11-09T05:46:23Z"
+}
