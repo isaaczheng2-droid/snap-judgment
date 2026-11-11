@@ -1,0 +1,27 @@
+{
+ "reasons": [
+  "Zach Sieler: OUT \u2192 IR (Biceps)",
+  "Shy Tuttle: QUESTIONABLE \u2192 ACTIVE",
+  "Charlie Jones: QUESTIONABLE \u2192 ACTIVE",
+  "Gardner Minshew II: DOUBTFUL \u2192 IR (Elbow)",
+  "Cam Skattebo: QUESTIONABLE \u2192 OUT",
+  "Jordan Whittington: QUESTIONABLE \u2192 IR (Back)",
+  "Kyler Murray: OUT \u2192 DOUBTFUL (Hamstring)"
+ ],
+ "game_ids": [
+  "2026_10_LA_ARI",
+  "2026_10_MIA_IND",
+  "2026_10_MIN_GB",
+  "2026_10_WAS_NYG"
+ ],
+ "event_ids": [
+  "ev_1794358524_7dbd006b",
+  "ev_1794358524_c6d52214",
+  "ev_1794358524_7ee3c34b",
+  "ev_1794358524_a12e2df8",
+  "ev_1794358524_750456da",
+  "ev_1794358524_9ddf4414",
+  "ev_1794358524_815cc664"
+ ],
+ "requested_at": "2026-11-11T00:55:25Z"
+}
