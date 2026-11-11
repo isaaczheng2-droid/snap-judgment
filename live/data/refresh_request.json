@@ -1,0 +1,22 @@
+{
+ "reasons": [
+  "Malik Willis: QUESTIONABLE \u2192 IR (Groin)",
+  "ARI QB: Gardner Minshew II \u2192 Carson Beck as the starter",
+  "IND WR: Josh Downs \u2192 Laquon Treadwell as the starter",
+  "LV QB: Kirk Cousins \u2192 Fernando Mendoza as the starter",
+  "MIA QB: Malik Willis \u2192 Kyle McCord as the starter",
+  "MIN QB: Kyler Murray \u2192 Kirk Cousins as the starter"
+ ],
+ "game_ids": [
+  "2026_10_MIA_IND"
+ ],
+ "event_ids": [
+  "ev_1794385589_cf1b3846",
+  "ev_1794385589_cd7a9bc9",
+  "ev_1794385589_19a54b93",
+  "ev_1794385589_a9a798f0",
+  "ev_1794385589_8297a7d3",
+  "ev_1794385589_f2dc21a9"
+ ],
+ "requested_at": "2026-11-11T08:26:30Z"
+}
