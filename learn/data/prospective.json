@@ -69,9 +69,9 @@
   },
   "TE": {
    "n": 331,
-   "mae": 5.251,
+   "mae": 5.252,
    "bias": 0.452,
-   "naive_mae": 5.564,
+   "naive_mae": 5.565,
    "vs_naive": 0.0562,
    "vs_naive_ci95_pts": [
     0.134,
@@ -188,9 +188,9 @@
   },
   "2026-09": {
    "n": 274,
-   "mae": 6.143,
+   "mae": 6.144,
    "bias": 2.835,
-   "naive_mae": 6.302,
+   "naive_mae": 6.303,
    "vs_naive": 0.0252,
    "vs_naive_ci95_pts": [
     -0.028,
@@ -271,7 +271,7 @@
    "coverage_n": 68
   }
  },
- "corrections": 0,
+ "corrections": 2,
  "by_model_version": {
   "v1-f67fc4d5fd6d": {
    "n": 2214,
