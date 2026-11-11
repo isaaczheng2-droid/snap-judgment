@@ -40581,3 +40581,22 @@
 {"event_id":"ev_1794358524_9f724869","event_type":"RETURN_DATE_CHANGE","game_id":"2026_10_LA_ARI","player_id":"00-0039751","team_id":"LA","severity":"LOW","previous_value":"2026-11-15","new_value":"2026-12-20","detail":"Jordan Whittington: estimated return 2026-11-15 \u2192 2026-12-20","source":"espn","occurred_at":"2026-11-10T21:29:00Z","received_at":"2026-11-11T00:55:24Z","processed":false,"prediction_recalculated":false,"player_name":"Jordan Whittington","system_received_at":"2026-11-11T00:55:24Z"}
 {"event_id":"ev_1794358524_815cc664","event_type":"STARTING_QB_CHANGE","game_id":"2026_10_MIN_GB","player_id":"00-0035228","team_id":"MIN","severity":"CRITICAL","previous_value":"OUT","new_value":"DOUBTFUL","detail":"Kyler Murray: OUT \u2192 DOUBTFUL (Hamstring)","source":"espn","occurred_at":"2026-11-10T20:55:00Z","received_at":"2026-11-11T00:55:24Z","processed":false,"prediction_recalculated":false,"impact_tier":"CRITICAL","impact_reasons":["starter (projected starter in the game model)"],"player_name":"Kyler Murray","system_received_at":"2026-11-11T00:55:24Z"}
 {"event_id":"ev_1794358524_7d9cf79a","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_10_MIA_IND","player_id":"00-0037549","team_id":"MIA","severity":"LOW","previous_value":"OUT","new_value":"IR","detail":"Darrell Baker Jr.: OUT \u2192 IR","source":"nflverse:rosters","occurred_at":"2026-11-11T00:55:24Z","received_at":"2026-11-11T00:55:24Z","processed":false,"prediction_recalculated":false,"impact_tier":"LOW","impact_reasons":["depth rank 3"],"player_name":"Darrell Baker Jr.","system_received_at":"2026-11-11T00:55:24Z"}
+{"event_id":"ev_1794358524_7d9cf79a","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-11-11T00:59:52Z"}
+{"event_id":"ev_1794358524_7dbd006b","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-11-11T00:59:52Z"}
+{"event_id":"ev_1794358524_d28db45d","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-11-11T00:59:52Z"}
+{"event_id":"ev_1794358524_4f2f2768","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-11-11T00:59:52Z"}
+{"event_id":"ev_1794358524_2e67b0ac","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-11-11T00:59:52Z"}
+{"event_id":"ev_1794358524_a12e2df8","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-11-11T00:59:52Z"}
+{"event_id":"ev_1794358524_f427f0a7","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-11-11T00:59:52Z"}
+{"event_id":"ev_1794358524_9ddf4414","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-11-11T00:59:52Z"}
+{"event_id":"ev_1794358524_9f724869","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-11-11T00:59:52Z"}
+{"event_id":"ev_1794358524_220e3d13","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-11T00:59:52Z"}
+{"event_id":"ev_1794358524_592cff28","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-11T00:59:52Z"}
+{"event_id":"ev_1794358524_1d883751","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-11T00:59:52Z"}
+{"event_id":"ev_1794358524_c6d52214","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-11T00:59:52Z"}
+{"event_id":"ev_1794358524_7ee3c34b","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-11T00:59:52Z"}
+{"event_id":"ev_1794358524_69448abb","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-11T00:59:52Z"}
+{"event_id":"ev_1794358524_d5f0f649","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-11T00:59:52Z"}
+{"event_id":"ev_1794358524_750456da","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-11T00:59:52Z"}
+{"event_id":"ev_1794358524_815cc664","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-11T00:59:52Z"}
+{"event_id":"ev_1794358524_52528c43","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-11T00:59:52Z"}
