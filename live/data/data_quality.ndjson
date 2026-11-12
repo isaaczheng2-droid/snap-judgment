@@ -2186,3 +2186,7 @@
 {"kind":"unknown_player","detail":"Joey Aguilar (ARI) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-12T04:21:47Z"}
 {"kind":"team_mismatch","detail":"00-0026300: report says ARI, roster says CIN","player_id":"00-0026300","source":"espn","system_received_at":"2026-11-12T04:21:47Z"}
 {"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-12T04:21:47Z"}
+{"kind":"unknown_player","detail":"Greg Desrosiers Jr. (NYG) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-12T13:18:32Z"}
+{"kind":"team_mismatch","detail":"00-0038553: report says DEN, roster says LAC","player_id":"00-0038553","source":"espn","system_received_at":"2026-11-12T13:18:32Z"}
+{"kind":"team_mismatch","detail":"00-0026300: report says ARI, roster says CIN","player_id":"00-0026300","source":"espn","system_received_at":"2026-11-12T13:18:32Z"}
+{"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-12T13:18:32Z"}
