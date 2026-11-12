@@ -106,14 +106,6 @@
   },
   {
    "type": "youtube",
-   "id": "wOY1kvSKCmE",
-   "title": "Philadelphia Eagles 2026 Season Hype Video",
-   "source": "Eagles",
-   "seconds": 102,
-   "uploaded": "2026-10"
-  },
-  {
-   "type": "youtube",
    "id": "5FUYpeuUsm0",
    "title": "2026 Buffalo Bills Season Hype Video With Ryan Fitzpatrick and Josh Allen!",
    "source": "Bills",
@@ -154,10 +146,26 @@
   },
   {
    "type": "youtube",
+   "id": "aChK-tugNBQ",
+   "title": "Rams vs. 49ers: Melbourne, You're In For A Treat | Game Trailer",
+   "source": "Rams",
+   "seconds": 81,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
    "id": "0fbKm66MxLU",
    "title": "PATRIOTS 2026 SEASON HYPE SET TO DREAM ON BY AEROSMITH 🔥",
    "source": "Patriots",
    "seconds": 117,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
+   "id": "wOY1kvSKCmE",
+   "title": "Philadelphia Eagles 2026 Season Hype Video",
+   "source": "Eagles",
+   "seconds": 102,
    "uploaded": "2026-09"
   },
   {
@@ -182,7 +190,7 @@
    "title": "Building A Monster | Dallas Cowboys 2026 Hype Video",
    "source": "Cowboys",
    "seconds": 144,
-   "uploaded": "2026-04"
+   "uploaded": "2026-03"
   },
   {
    "type": "youtube",
@@ -246,6 +254,14 @@
    "title": "Welcome back | Packers 2025 season trailer",
    "source": "Packers",
    "seconds": 93,
+   "uploaded": "2025-11"
+  },
+  {
+   "type": "youtube",
+   "id": "THohdR9TUr0",
+   "title": "Not Done Yet. | Los Angeles Rams 2024 Playoff Trailer",
+   "source": "Rams",
+   "seconds": 113,
    "uploaded": "2025-11"
   },
   {
@@ -322,14 +338,6 @@
   },
   {
    "type": "youtube",
-   "id": "FpY4WMWDgrw",
-   "title": "“The Sky Ain’t Even The Limit!” Best Sights & Sounds From Rams' 2022 Season",
-   "source": "Rams",
-   "seconds": 456,
-   "uploaded": "2023-11"
-  },
-  {
-   "type": "youtube",
    "id": "jfVypnms8Lo",
    "title": "WEEK 17 HYPE TAPE | DOLPHINS AT PATRIOTS",
    "source": "Dolphins",
@@ -386,14 +394,6 @@
   },
   {
    "type": "youtube",
-   "id": "_cMpzp8qJFg",
-   "title": "Rams Face Patriots in Primetime Thursday Night Football Matchup! | Week 14 Game Trailer",
-   "source": "Rams",
-   "seconds": 53,
-   "uploaded": "2021-11"
-  },
-  {
-   "type": "youtube",
    "id": "N-z9XYvekIk",
    "title": "Tennessee Titans at Seattle Seahawks | Hype Videos",
    "source": "Titans",
@@ -409,5 +409,5 @@
    "uploaded": "2020-11"
   }
  ],
- "updated": "2026-11-11T17:15:11Z"
+ "updated": "2026-11-12T17:39:05Z"
 }
