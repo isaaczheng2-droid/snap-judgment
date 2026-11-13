@@ -1,0 +1,22 @@
+{
+ "reasons": [
+  "Roy Lopez: QUESTIONABLE \u2192 UNKNOWN (Toe)",
+  "Matthew Stafford: ACTIVE \u2192 UNKNOWN (Elbow)",
+  "Jermaine Eluemunor: ACTIVE \u2192 UNKNOWN (Calf)",
+  "Andrew Thomas: ACTIVE \u2192 UNKNOWN (Groin)",
+  "Christian McCaffrey: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_10_LA_ARI",
+  "2026_10_SF_DAL",
+  "2026_10_WAS_NYG"
+ ],
+ "event_ids": [
+  "ev_1794543037_5d6f337a",
+  "ev_1794543037_570879f0",
+  "ev_1794543037_7003fa63",
+  "ev_1794543037_c4872c57",
+  "ev_1794543037_97a6bd11"
+ ],
+ "requested_at": "2026-11-13T04:10:43Z"
+}
