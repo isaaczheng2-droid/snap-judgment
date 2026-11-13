@@ -2208,3 +2208,6 @@
 {"kind":"unknown_player","detail":"Greg Desrosiers Jr. (NYG) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-13T04:10:37Z"}
 {"kind":"team_mismatch","detail":"00-0026300: report says ARI, roster says CIN","player_id":"00-0026300","source":"espn","system_received_at":"2026-11-13T04:10:37Z"}
 {"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-13T04:10:37Z"}
+{"kind":"team_mismatch","detail":"00-0036816: report says BAL, roster says MIA","player_id":"00-0036816","source":"espn","system_received_at":"2026-11-13T10:04:03Z"}
+{"kind":"unknown_player","detail":"Greg Desrosiers Jr. (NYG) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-13T10:04:03Z"}
+{"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-13T10:04:03Z"}

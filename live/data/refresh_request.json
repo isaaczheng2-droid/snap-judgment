@@ -1,0 +1,28 @@
+{
+ "reasons": [
+  "Window finished: Thursday 8:15 PM ET game (1 final)",
+  "Box scores updated: player results and the paper test can be graded",
+  "Roy Lopez: QUESTIONABLE \u2192 UNKNOWN (Toe)",
+  "Matthew Stafford: ACTIVE \u2192 UNKNOWN (Elbow)",
+  "Jermaine Eluemunor: ACTIVE \u2192 UNKNOWN (Calf)",
+  "Andrew Thomas: ACTIVE \u2192 UNKNOWN (Groin)",
+  "Christian McCaffrey: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "IND RT: Jalen Travis \u2192 Luke Tenuta as the starter",
+  "LA WR: Puka Nacua \u2192 Konata Mumpfield as the starter"
+ ],
+ "game_ids": [
+  "2026_10_LA_ARI",
+  "2026_10_SF_DAL",
+  "2026_10_WAS_NYG"
+ ],
+ "event_ids": [
+  "ev_1794564243_dd0fe425",
+  "ev_1794564243_354ea4a7",
+  "ev_1794564243_e18b4654",
+  "ev_1794564243_fa9c5030",
+  "ev_1794564243_b6f961d2",
+  "ev_1794564243_5f83bcb4",
+  "ev_1794564243_2f6e46a8"
+ ],
+ "requested_at": "2026-11-13T10:07:05Z"
+}
