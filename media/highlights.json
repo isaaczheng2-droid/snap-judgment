@@ -18,11 +18,11 @@
   },
   {
    "type": "youtube",
-   "id": "YXEbFsRqg_s",
-   "title": "The Perfect Storm. | Week 1 Game Day Trailer",
-   "source": "Cardinals",
-   "seconds": 56,
-   "uploaded": "2026-10"
+   "id": "Lzp1df1Tzrk",
+   "title": "Rams vs. Commanders: One Game At a Time | Game Trailer",
+   "source": "Rams",
+   "seconds": 52,
+   "uploaded": "2026-11"
   },
   {
    "type": "youtube",
@@ -42,10 +42,10 @@
   },
   {
    "type": "youtube",
-   "id": "1VdsHPILlaM",
-   "title": "The Mission Begins | 2026 Dallas Cowboys Hype Video",
-   "source": "Cowboys",
-   "seconds": 65,
+   "id": "jbqt3OaOrQI",
+   "title": "Bears-Packers hype trailer | Bears Buzz | Chicago Bears",
+   "source": "Bears",
+   "seconds": 131,
    "uploaded": "2026-10"
   },
   {
@@ -82,27 +82,11 @@
   },
   {
    "type": "youtube",
-   "id": "6Vg8fpuiLkI",
-   "title": "Let It Rip | Trailer | Raiders vs. Rams",
-   "source": "Raiders",
-   "seconds": 38,
-   "uploaded": "2026-10"
-  },
-  {
-   "type": "youtube",
-   "id": "sTNvDhrN60Y",
-   "title": "2026 Season Hype Video  | New York Giants",
-   "source": "Giants",
-   "seconds": 77,
-   "uploaded": "2026-10"
-  },
-  {
-   "type": "youtube",
-   "id": "CgA_b5CzuPI",
-   "title": "BUILT FOR THIS | 2026 New York Jets Official Hype Video",
-   "source": "Jets",
-   "seconds": 116,
-   "uploaded": "2026-10"
+   "id": "YXEbFsRqg_s",
+   "title": "The Perfect Storm. | Week 1 Game Day Trailer",
+   "source": "Cardinals",
+   "seconds": 56,
+   "uploaded": "2026-09"
   },
   {
    "type": "youtube",
@@ -114,10 +98,10 @@
   },
   {
    "type": "youtube",
-   "id": "Pd3euunJiRo",
-   "title": "2026 Chicago Bears Season Hype",
-   "source": "Bears",
-   "seconds": 100,
+   "id": "1VdsHPILlaM",
+   "title": "The Mission Begins | 2026 Dallas Cowboys Hype Video",
+   "source": "Cowboys",
+   "seconds": 65,
    "uploaded": "2026-09"
   },
   {
@@ -158,6 +142,22 @@
    "title": "PATRIOTS 2026 SEASON HYPE SET TO DREAM ON BY AEROSMITH 🔥",
    "source": "Patriots",
    "seconds": 117,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
+   "id": "sTNvDhrN60Y",
+   "title": "2026 Season Hype Video  | New York Giants",
+   "source": "Giants",
+   "seconds": 77,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
+   "id": "CgA_b5CzuPI",
+   "title": "BUILT FOR THIS | 2026 New York Jets Official Hype Video",
+   "source": "Jets",
+   "seconds": 116,
    "uploaded": "2026-09"
   },
   {
@@ -254,14 +254,6 @@
    "title": "Welcome back | Packers 2025 season trailer",
    "source": "Packers",
    "seconds": 93,
-   "uploaded": "2025-11"
-  },
-  {
-   "type": "youtube",
-   "id": "THohdR9TUr0",
-   "title": "Not Done Yet. | Los Angeles Rams 2024 Playoff Trailer",
-   "source": "Rams",
-   "seconds": 113,
    "uploaded": "2025-11"
   },
   {
@@ -409,5 +401,5 @@
    "uploaded": "2020-11"
   }
  ],
- "updated": "2026-11-12T17:39:05Z"
+ "updated": "2026-11-13T17:16:41Z"
 }
