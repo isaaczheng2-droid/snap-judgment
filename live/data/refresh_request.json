@@ -1,0 +1,51 @@
+{
+ "reasons": [
+  "Danielle Hunter: QUESTIONABLE \u2192 OUT (Hamstring)",
+  "Mansoor Delane: ACTIVE \u2192 QUESTIONABLE (Shoulder)",
+  "DaRon Bland: no report \u2192 QUESTIONABLE (Ankle)",
+  "Leonard Williams: QUESTIONABLE \u2192 OUT (Shoulder)",
+  "Dante Stills: QUESTIONABLE \u2192 ACTIVE (Shoulder)",
+  "Deebo Samuel Sr.: QUESTIONABLE \u2192 ACTIVE (Hamstring)",
+  "Mike Evans: QUESTIONABLE \u2192 OUT (Achilles)",
+  "Cameron Thomas: QUESTIONABLE \u2192 ACTIVE (Groin)",
+  "Bhayshul Tuten: QUESTIONABLE \u2192 ACTIVE (Ankle)",
+  "Travon Walker: QUESTIONABLE \u2192 ACTIVE (Rib)",
+  "Maliek Collins: QUESTIONABLE \u2192 ACTIVE (Elbow)",
+  "Denzel Ward: QUESTIONABLE \u2192 ACTIVE (Quadricep)"
+ ],
+ "game_ids": [
+  "2026_10_BUF_NYJ",
+  "2026_10_HOU_CLE",
+  "2026_10_JAX_TEN",
+  "2026_10_KC_ATL",
+  "2026_10_LA_ARI",
+  "2026_10_SEA_LV",
+  "2026_10_SF_DAL",
+  "2026_10_WAS_NYG"
+ ],
+ "event_ids": [
+  "ev_1794614150_ab870c5c",
+  "ev_1794614150_6974f600",
+  "ev_1794614150_bde1edc7",
+  "ev_1794614150_81fae8a5",
+  "ev_1794614150_2b67fe7c",
+  "ev_1794614150_074bf412",
+  "ev_1794614150_df111b9a",
+  "ev_1794614150_911c7258",
+  "ev_1794614150_8fe4ca26",
+  "ev_1794614150_9af1139a",
+  "ev_1794614150_ecddfb19",
+  "ev_1794614150_d4e4863b",
+  "ev_1794614150_4bccb5c0",
+  "ev_1794614150_6c4f807f",
+  "ev_1794614150_8d99b7b2",
+  "ev_1794614150_2bc777db",
+  "ev_1794614150_33a8f8e3",
+  "ev_1794614150_d4c54bb5",
+  "ev_1794614150_cceb0170",
+  "ev_1794614150_47e91546",
+  "ev_1794614150_6cdd730a",
+  "ev_1794614150_c767f38f"
+ ],
+ "requested_at": "2026-11-13T23:57:46Z"
+}
