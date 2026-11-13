@@ -41993,3 +41993,22 @@
 {"event_id":"ev_1794536436_ddecfaf1","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_10_SF_DAL","player_id":"00-0033280","team_id":"SF","severity":"HIGH","previous_value":"ACTIVE","new_value":"UNKNOWN","detail":"Christian McCaffrey: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)","source":"nflverse:injuries","occurred_at":"2026-11-13T02:20:36Z","received_at":"2026-11-13T02:20:36Z","processed":false,"prediction_recalculated":false,"impact_tier":"HIGH","impact_reasons":["starter (depth chart rank 1)"],"player_name":"Christian McCaffrey","system_received_at":"2026-11-13T02:20:36Z"}
 {"event_id":"ev_1794536436_5a82589f","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_10_SF_DAL","player_id":"00-0036871","team_id":"SF","severity":"LOW","previous_value":"IR","new_value":"UNKNOWN","detail":"Nate Hobbs: IR \u2192 UNKNOWN (Groin)","source":"nflverse:injuries","occurred_at":"2026-11-13T02:20:36Z","received_at":"2026-11-13T02:20:36Z","processed":false,"prediction_recalculated":false,"impact_tier":"LOW","impact_reasons":["depth rank 3"],"player_name":"Nate Hobbs","system_received_at":"2026-11-13T02:20:36Z"}
 {"event_id":"ev_1794536436_4b4cec1e","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_10_KC_ATL","player_id":"00-0041484","team_id":"ATL","severity":"LOW","previous_value":"OUT","new_value":"IR","detail":"Anterio Thompson: OUT \u2192 IR","source":"nflverse:rosters","occurred_at":"2026-11-13T02:20:36Z","received_at":"2026-11-13T02:20:36Z","processed":false,"prediction_recalculated":false,"impact_tier":"LOW","impact_reasons":["depth rank 2"],"player_name":"Anterio Thompson","system_received_at":"2026-11-13T02:20:36Z"}
+{"event_id":"ev_1794536436_722760fb","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-13T02:27:11Z"}
+{"event_id":"ev_1794536436_4c21163d","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-13T02:27:11Z"}
+{"event_id":"ev_1794536436_4d2add3d","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-13T02:27:11Z"}
+{"event_id":"ev_1794536436_8337d343","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-13T02:27:11Z"}
+{"event_id":"ev_1794536436_9574af85","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-13T02:27:11Z"}
+{"event_id":"ev_1794536436_b0c06836","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-13T02:27:11Z"}
+{"event_id":"ev_1794536436_4b4cec1e","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-13T02:27:11Z"}
+{"event_id":"ev_1794536436_37c1eb6c","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-13T02:27:11Z"}
+{"event_id":"ev_1794536436_2172fc89","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-13T02:27:11Z"}
+{"event_id":"ev_1794536436_854ff1e5","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-13T02:27:11Z"}
+{"event_id":"ev_1794536436_522a68cf","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-13T02:27:11Z"}
+{"event_id":"ev_1794536436_cf030fea","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-13T02:27:11Z"}
+{"event_id":"ev_1794536436_365feabe","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-13T02:27:11Z"}
+{"event_id":"ev_1794536436_712d2c55","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-13T02:27:11Z"}
+{"event_id":"ev_1794536436_413b5910","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-13T02:27:11Z"}
+{"event_id":"ev_1794536436_32f84598","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-13T02:27:11Z"}
+{"event_id":"ev_1794536436_223a0033","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-13T02:27:11Z"}
+{"event_id":"ev_1794536436_ddecfaf1","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-13T02:27:11Z"}
+{"event_id":"ev_1794536436_5a82589f","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-13T02:27:11Z"}
