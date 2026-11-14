@@ -10,22 +10,6 @@
   },
   {
    "type": "youtube",
-   "id": "_WjPx2Thtt8",
-   "title": "Bears-Buccaneers Sunday Night Football hype trailer | Bears Buzz | Chicago Bears",
-   "source": "Bears",
-   "seconds": 62,
-   "uploaded": "2026-11"
-  },
-  {
-   "type": "youtube",
-   "id": "Lzp1df1Tzrk",
-   "title": "Rams vs. Commanders: One Game At a Time | Game Trailer",
-   "source": "Rams",
-   "seconds": 52,
-   "uploaded": "2026-11"
-  },
-  {
-   "type": "youtube",
    "id": "CXVvfw9vooA",
    "title": "Back at Home | HYPE | Atlanta Falcons",
    "source": "Falcons",
@@ -34,10 +18,10 @@
   },
   {
    "type": "youtube",
-   "id": "ooE9182VYiI",
-   "title": "Outkast - \"ATLiens\" | HYPE | Atlanta Falcons | NFL",
+   "id": "Iumv8hVy_uE",
+   "title": "Shaboozey - \"Let 'Em Know\" | HYPE | Atlanta Falcons",
    "source": "Falcons",
-   "seconds": 94,
+   "seconds": 65,
    "uploaded": "2026-10"
   },
   {
@@ -82,6 +66,14 @@
   },
   {
    "type": "youtube",
+   "id": "6Vg8fpuiLkI",
+   "title": "Let It Rip | Trailer | Raiders vs. Rams",
+   "source": "Raiders",
+   "seconds": 38,
+   "uploaded": "2026-10"
+  },
+  {
+   "type": "youtube",
    "id": "YXEbFsRqg_s",
    "title": "The Perfect Storm. | Week 1 Game Day Trailer",
    "source": "Cardinals",
@@ -94,6 +86,14 @@
    "title": "2026 Buffalo Bills Season Hype Video With Ryan Fitzpatrick and Josh Allen!",
    "source": "Bills",
    "seconds": 141,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
+   "id": "Pd3euunJiRo",
+   "title": "2026 Chicago Bears Season Hype",
+   "source": "Bears",
+   "seconds": 100,
    "uploaded": "2026-09"
   },
   {
@@ -362,6 +362,14 @@
   },
   {
    "type": "youtube",
+   "id": "weerRdCbCVo",
+   "title": "This Is What It Feels Like To Bring It Home | Super Bowl LVI Hype Video",
+   "source": "Rams",
+   "seconds": 61,
+   "uploaded": "2022-11"
+  },
+  {
+   "type": "youtube",
    "id": "9ZAUG2U5ZzQ",
    "title": "WEEK 9 HYPE TAPE: MIAMI DOLPHINS AT CHICAGO BEARS",
    "source": "Dolphins",
@@ -401,5 +409,5 @@
    "uploaded": "2020-11"
   }
  ],
- "updated": "2026-11-13T17:16:41Z"
+ "updated": "2026-11-14T15:52:55Z"
 }
