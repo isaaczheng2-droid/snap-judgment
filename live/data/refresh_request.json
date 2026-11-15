@@ -1,0 +1,31 @@
+{
+ "reasons": [
+  "Matthew Stafford: ACTIVE \u2192 UNKNOWN (Elbow)",
+  "Christian Darrisaw: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Asim Richards: ACTIVE \u2192 UNKNOWN (Thumb)",
+  "Jermaine Eluemunor: ACTIVE \u2192 UNKNOWN (Calf)",
+  "Andrew Thomas: ACTIVE \u2192 UNKNOWN (Groin)",
+  "Charlie Jones: ACTIVE \u2192 UNKNOWN (Thumb)",
+  "Christian McCaffrey: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "John Franklin-Myers: ACTIVE \u2192 UNKNOWN (Back)"
+ ],
+ "game_ids": [
+  "2026_10_CAR_NO",
+  "2026_10_JAX_TEN",
+  "2026_10_LA_ARI",
+  "2026_10_MIN_GB",
+  "2026_10_SF_DAL",
+  "2026_10_WAS_NYG"
+ ],
+ "event_ids": [
+  "ev_1794712111_6d625f5a",
+  "ev_1794712111_c21c40e3",
+  "ev_1794712111_22a91e8e",
+  "ev_1794712111_596088fd",
+  "ev_1794712111_4483f7fc",
+  "ev_1794712111_61a62911",
+  "ev_1794712111_36525a12",
+  "ev_1794712111_5680227e"
+ ],
+ "requested_at": "2026-11-15T03:08:37Z"
+}
