@@ -2,10 +2,26 @@
  "items": [
   {
    "type": "youtube",
+   "id": "TtKlFfVpsJI",
+   "title": "SUNDAY SCARIES | Hype | Atlanta Falcons",
+   "source": "Falcons",
+   "seconds": 45,
+   "uploaded": "2026-11"
+  },
+  {
+   "type": "youtube",
    "id": "1CrWWMo7qlY",
    "title": "Buffalo Bills vs Minnesota Vikings OFFICIAL Hype Video! | NFL Week 9 Monday Night Football Trailer",
    "source": "Bills",
    "seconds": 84,
+   "uploaded": "2026-11"
+  },
+  {
+   "type": "youtube",
+   "id": "2_xOU70peos",
+   "title": "Bears-Seahawks Monday Night Football hype trailer | Bears Buzz | Chicago Bears",
+   "source": "Bears",
+   "seconds": 134,
    "uploaded": "2026-11"
   },
   {
@@ -18,26 +34,18 @@
   },
   {
    "type": "youtube",
+   "id": "Lzp1df1Tzrk",
+   "title": "Rams vs. Commanders: One Game At a Time | Game Trailer",
+   "source": "Rams",
+   "seconds": 52,
+   "uploaded": "2026-11"
+  },
+  {
+   "type": "youtube",
    "id": "CXVvfw9vooA",
    "title": "Back at Home | HYPE | Atlanta Falcons",
    "source": "Falcons",
    "seconds": 54,
-   "uploaded": "2026-10"
-  },
-  {
-   "type": "youtube",
-   "id": "ooE9182VYiI",
-   "title": "Outkast - \"ATLiens\" | HYPE | Atlanta Falcons | NFL",
-   "source": "Falcons",
-   "seconds": 94,
-   "uploaded": "2026-10"
-  },
-  {
-   "type": "youtube",
-   "id": "jbqt3OaOrQI",
-   "title": "Bears-Packers hype trailer | Bears Buzz | Chicago Bears",
-   "source": "Bears",
-   "seconds": 131,
    "uploaded": "2026-10"
   },
   {
@@ -78,6 +86,14 @@
    "title": "2026 Buffalo Bills Season Hype Video With Ryan Fitzpatrick and Josh Allen!",
    "source": "Bills",
    "seconds": 141,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
+   "id": "5ook1Opv7M0",
+   "title": "2026 Season Trailer | Carolina Panthers",
+   "source": "Panthers",
+   "seconds": 78,
    "uploaded": "2026-09"
   },
   {
@@ -162,22 +178,6 @@
   },
   {
    "type": "youtube",
-   "id": "DmrHw_aolMA",
-   "title": "Run It Forward | Seattle Seahawks 2026 Season Trailer",
-   "source": "Seahawks",
-   "seconds": 79,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
-   "id": "RuJbHATlLXg",
-   "title": "2026 Season Trailer, Featuring Chris Godwin Jr. | Tampa Bay Buccaneers",
-   "source": "Buccaneers",
-   "seconds": 151,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
    "id": "3_IQxSdEajc",
    "title": "Iron's Hot, Time To Strike | Washington Commanders 2026 Season Trailer | NFL",
    "source": "Commanders",
@@ -199,14 +199,6 @@
    "source": "Cowboys",
    "seconds": 144,
    "uploaded": "2026-03"
-  },
-  {
-   "type": "youtube",
-   "id": "XHejZ8pBKyI",
-   "title": "Sound the Drum | Panthers Wild Card Trailer ft. Stephen Curry",
-   "source": "Panthers",
-   "seconds": 99,
-   "uploaded": "2026-01"
   },
   {
    "type": "youtube",
@@ -242,6 +234,14 @@
   },
   {
    "type": "youtube",
+   "id": "Opam9vbrGlg",
+   "title": "Seahawks vs Titans Week 12 | Hype Video",
+   "source": "Titans",
+   "seconds": 25,
+   "uploaded": "2025-12"
+  },
+  {
+   "type": "youtube",
    "id": "l0xd523i4qQ",
    "title": "The Climb Continues: The Denver Broncos’ 2024 playoff hype video",
    "source": "Broncos",
@@ -258,18 +258,18 @@
   },
   {
    "type": "youtube",
-   "id": "IvJX0jczYD0",
-   "title": "2025 Eagles Hype Video",
-   "source": "Eagles",
-   "seconds": 344,
-   "uploaded": "2025-11"
-  },
-  {
-   "type": "youtube",
    "id": "uGQcYEDQoe8",
    "title": "It's About Legacy | 2025 Tampa Bay Buccaneers Season Trailer",
    "source": "Buccaneers",
    "seconds": 119,
+   "uploaded": "2025-11"
+  },
+  {
+   "type": "youtube",
+   "id": "Y6l6SEqzELY",
+   "title": "'Protect Our House' | Commanders vs. Bucs Wild Card Round Hype Video | Tampa Bay Buccaneers",
+   "source": "Buccaneers",
+   "seconds": 60,
    "uploaded": "2025-11"
   },
   {
@@ -282,18 +282,18 @@
   },
   {
    "type": "youtube",
-   "id": "d8lD2VHxIcg",
-   "title": "Detroit Lions Week 18 Hype Video | Ford Field scoreboard version",
-   "source": "Lions",
-   "seconds": 83,
-   "uploaded": "2024-11"
-  },
-  {
-   "type": "youtube",
    "id": "MCLJLbIdZQ0",
    "title": "Time to get HYPED | Detroit Lions team introduction video: Wild Card Round vs. Los Angeles Rams",
    "source": "Lions",
    "seconds": 82,
+   "uploaded": "2024-11"
+  },
+  {
+   "type": "youtube",
+   "id": "d8lD2VHxIcg",
+   "title": "Detroit Lions Week 18 Hype Video | Ford Field scoreboard version",
+   "source": "Lions",
+   "seconds": 83,
    "uploaded": "2024-11"
   },
   {
@@ -370,14 +370,6 @@
   },
   {
    "type": "youtube",
-   "id": "weerRdCbCVo",
-   "title": "This Is What It Feels Like To Bring It Home | Super Bowl LVI Hype Video",
-   "source": "Rams",
-   "seconds": 61,
-   "uploaded": "2022-11"
-  },
-  {
-   "type": "youtube",
    "id": "9ZAUG2U5ZzQ",
    "title": "WEEK 9 HYPE TAPE: MIAMI DOLPHINS AT CHICAGO BEARS",
    "source": "Dolphins",
@@ -394,26 +386,18 @@
   },
   {
    "type": "youtube",
-   "id": "rbko_htN8yA",
-   "title": "New York Giants vs. Tennessee Titans | Hype Video",
-   "source": "Titans",
-   "seconds": 66,
-   "uploaded": "2022-11"
-  },
-  {
-   "type": "youtube",
-   "id": "SMS463ZOyec",
-   "title": "Playoff Divisional Round vs Bengals | Hype Video",
-   "source": "Titans",
-   "seconds": 82,
-   "uploaded": "2022-11"
-  },
-  {
-   "type": "youtube",
    "id": "wbn2OZ3OawE",
    "title": "Browns vs. Steelers Hype Video (Week 17) | Cleveland Browns",
    "source": "Browns",
    "seconds": 42,
+   "uploaded": "2021-11"
+  },
+  {
+   "type": "youtube",
+   "id": "N-z9XYvekIk",
+   "title": "Tennessee Titans at Seattle Seahawks | Hype Videos",
+   "source": "Titans",
+   "seconds": 59,
    "uploaded": "2021-11"
   },
   {
@@ -425,5 +409,5 @@
    "uploaded": "2020-11"
   }
  ],
- "updated": "2026-11-15T16:26:30Z"
+ "updated": "2026-11-16T19:41:18Z"
 }
