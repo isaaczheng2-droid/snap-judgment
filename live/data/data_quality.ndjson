@@ -2247,3 +2247,4 @@
 {"kind":"unknown_player","detail":"Greg Desrosiers Jr. (NYG) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-16T12:06:14Z"}
 {"kind":"impossible_transition","detail":"00-0033885: IR -> ACTIVE","player_id":"00-0033885","source":"espn","system_received_at":"2026-11-16T22:33:51Z"}
 {"kind":"unknown_player","detail":"Greg Desrosiers Jr. (NYG) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-16T22:33:51Z"}
+{"kind":"unknown_player","detail":"Greg Desrosiers Jr. (NYG) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-17T04:18:09Z"}
