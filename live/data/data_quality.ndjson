@@ -2250,3 +2250,5 @@
 {"kind":"unknown_player","detail":"Greg Desrosiers Jr. (NYG) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-17T04:18:09Z"}
 {"kind":"team_mismatch","detail":"00-0038496: report says NYG, roster says PHI","player_id":"00-0038496","source":"espn","system_received_at":"2026-11-17T04:48:45Z"}
 {"kind":"unknown_player","detail":"Greg Desrosiers Jr. (NYG) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-17T04:48:45Z"}
+{"kind":"team_mismatch","detail":"00-0038496: report says NYG, roster says PHI","player_id":"00-0038496","source":"espn","system_received_at":"2026-11-17T05:46:07Z"}
+{"kind":"unknown_player","detail":"Greg Desrosiers Jr. (NYG) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-17T05:46:07Z"}
