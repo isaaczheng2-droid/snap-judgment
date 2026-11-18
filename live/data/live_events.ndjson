@@ -45272,3 +45272,4 @@
 {"event_id":"ev_1794957098_98980b71","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-17T23:20:20Z"}
 {"event_id":"ev_1794957098_09b6d9b8","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-17T23:20:20Z"}
 {"event_id":"ev_1794957286_f2643776","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-17T23:20:20Z"}
+{"event_id":"ev_1794977073_fd0a14c5","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_11_MIA_BUF","player_id":"00-0037549","team_id":"MIA","severity":"LOW","previous_value":"OUT","new_value":"IR","detail":"Darrell Baker Jr.: OUT \u2192 IR","source":"nflverse:rosters","occurred_at":"2026-11-18T04:44:33Z","received_at":"2026-11-18T04:44:33Z","processed":false,"prediction_recalculated":false,"impact_tier":"LOW","impact_reasons":["depth rank 3"],"player_name":"Darrell Baker Jr.","system_received_at":"2026-11-18T04:44:33Z"}
