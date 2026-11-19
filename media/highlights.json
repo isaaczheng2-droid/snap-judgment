@@ -10,27 +10,11 @@
   },
   {
    "type": "youtube",
-   "id": "2_xOU70peos",
-   "title": "Bears-Seahawks Monday Night Football hype trailer | Bears Buzz | Chicago Bears",
-   "source": "Bears",
-   "seconds": 134,
-   "uploaded": "2026-11"
-  },
-  {
-   "type": "youtube",
    "id": "bBOMaQb913Q",
    "title": "#INDvsJAX Rivalries Hype Video | Jacksonville Jaguars",
    "source": "Jaguars",
    "seconds": 81,
    "uploaded": "2026-11"
-  },
-  {
-   "type": "youtube",
-   "id": "CXVvfw9vooA",
-   "title": "Back at Home | HYPE | Atlanta Falcons",
-   "source": "Falcons",
-   "seconds": 54,
-   "uploaded": "2026-10"
   },
   {
    "type": "youtube",
@@ -82,10 +66,26 @@
   },
   {
    "type": "youtube",
+   "id": "CXVvfw9vooA",
+   "title": "Back at Home | HYPE | Atlanta Falcons",
+   "source": "Falcons",
+   "seconds": 54,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
    "id": "5FUYpeuUsm0",
    "title": "2026 Buffalo Bills Season Hype Video With Ryan Fitzpatrick and Josh Allen!",
    "source": "Bills",
    "seconds": 141,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
+   "id": "Pd3euunJiRo",
+   "title": "2026 Chicago Bears Season Hype",
+   "source": "Bears",
+   "seconds": 100,
    "uploaded": "2026-09"
   },
   {
@@ -146,10 +146,26 @@
   },
   {
    "type": "youtube",
+   "id": "CgA_b5CzuPI",
+   "title": "BUILT FOR THIS | 2026 New York Jets Official Hype Video",
+   "source": "Jets",
+   "seconds": 116,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
    "id": "wOY1kvSKCmE",
    "title": "Philadelphia Eagles 2026 Season Hype Video",
    "source": "Eagles",
    "seconds": 102,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
+   "id": "RuJbHATlLXg",
+   "title": "2026 Season Trailer, Featuring Chris Godwin Jr. | Tampa Bay Buccaneers",
+   "source": "Buccaneers",
+   "seconds": 151,
    "uploaded": "2026-09"
   },
   {
@@ -218,14 +234,6 @@
   },
   {
    "type": "youtube",
-   "id": "x3GuCtK1yG8",
-   "title": "Chiefs vs Titans Week 16 | Hype Video",
-   "source": "Titans",
-   "seconds": 33,
-   "uploaded": "2026-01"
-  },
-  {
-   "type": "youtube",
    "id": "Opam9vbrGlg",
    "title": "Seahawks vs Titans Week 12 | Hype Video",
    "source": "Titans",
@@ -250,26 +258,10 @@
   },
   {
    "type": "youtube",
-   "id": "THohdR9TUr0",
-   "title": "Not Done Yet. | Los Angeles Rams 2024 Playoff Trailer",
-   "source": "Rams",
-   "seconds": 113,
-   "uploaded": "2025-11"
-  },
-  {
-   "type": "youtube",
    "id": "uGQcYEDQoe8",
    "title": "It's About Legacy | 2025 Tampa Bay Buccaneers Season Trailer",
    "source": "Buccaneers",
    "seconds": 119,
-   "uploaded": "2025-11"
-  },
-  {
-   "type": "youtube",
-   "id": "Y6l6SEqzELY",
-   "title": "'Protect Our House' | Commanders vs. Bucs Wild Card Round Hype Video | Tampa Bay Buccaneers",
-   "source": "Buccaneers",
-   "seconds": 60,
    "uploaded": "2025-11"
   },
   {
@@ -370,18 +362,18 @@
   },
   {
    "type": "youtube",
-   "id": "9ZAUG2U5ZzQ",
-   "title": "WEEK 9 HYPE TAPE: MIAMI DOLPHINS AT CHICAGO BEARS",
-   "source": "Dolphins",
-   "seconds": 53,
+   "id": "weerRdCbCVo",
+   "title": "This Is What It Feels Like To Bring It Home | Super Bowl LVI Hype Video",
+   "source": "Rams",
+   "seconds": 61,
    "uploaded": "2022-11"
   },
   {
    "type": "youtube",
-   "id": "KC-XpcmctLI",
-   "title": "THE NEW YORK I KNOW... Narrated by Jadakiss | New York Jets 2022 Season Hype Video",
-   "source": "Jets",
-   "seconds": 111,
+   "id": "9ZAUG2U5ZzQ",
+   "title": "WEEK 9 HYPE TAPE: MIAMI DOLPHINS AT CHICAGO BEARS",
+   "source": "Dolphins",
+   "seconds": 53,
    "uploaded": "2022-11"
   },
   {
@@ -402,6 +394,14 @@
   },
   {
    "type": "youtube",
+   "id": "N-z9XYvekIk",
+   "title": "Tennessee Titans at Seattle Seahawks | Hype Videos",
+   "source": "Titans",
+   "seconds": 59,
+   "uploaded": "2021-11"
+  },
+  {
+   "type": "youtube",
    "id": "5FLvLJ5iC80",
    "title": "BACK IN BLACK || Carolina Panthers NFL Hype Video",
    "source": "Panthers",
@@ -409,5 +409,5 @@
    "uploaded": "2020-11"
   }
  ],
- "updated": "2026-11-18T18:10:54Z"
+ "updated": "2026-11-19T18:22:21Z"
 }
