@@ -1,0 +1,33 @@
+{
+ "reasons": [
+  "Box scores updated: player results and the paper test can be graded",
+  "Isaiah Likely: ACTIVE \u2192 QUESTIONABLE (Undisclosed)",
+  "Isaiah Williams: QUESTIONABLE \u2192 OUT (Ribs)",
+  "Christian Benford: QUESTIONABLE \u2192 OUT (Groin)",
+  "Nnamdi Madubuike: QUESTIONABLE \u2192 OUT (Hamstring)",
+  "Jalen Ramsey: ACTIVE \u2192 UNKNOWN (Not injury related - personal matter)",
+  "Trent Williams: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Christian McCaffrey: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Tristan Wirfs: ACTIVE \u2192 UNKNOWN (Toe)"
+ ],
+ "game_ids": [
+  "2026_11_BAL_CAR",
+  "2026_11_JAX_NYG",
+  "2026_11_MIA_BUF",
+  "2026_11_MIN_SF",
+  "2026_11_NYJ_LAC",
+  "2026_11_PIT_PHI",
+  "2026_11_TB_DET"
+ ],
+ "event_ids": [
+  "ev_1795200759_ef2cd2d4",
+  "ev_1795200759_0d48b7ed",
+  "ev_1795200759_ac328533",
+  "ev_1795200759_44761926",
+  "ev_1795200759_c0d52c5f",
+  "ev_1795200759_17877d20",
+  "ev_1795200759_881e4ec7",
+  "ev_1795200759_6eedb6f8"
+ ],
+ "requested_at": "2026-11-20T18:52:39Z"
+}
