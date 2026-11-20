@@ -1,0 +1,20 @@
+{
+ "reasons": [
+  "Jalen Ramsey: ACTIVE \u2192 UNKNOWN (Not injury related - personal matter)",
+  "Trent Williams: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Christian McCaffrey: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Tristan Wirfs: ACTIVE \u2192 UNKNOWN (Toe)"
+ ],
+ "game_ids": [
+  "2026_11_MIN_SF",
+  "2026_11_PIT_PHI",
+  "2026_11_TB_DET"
+ ],
+ "event_ids": [
+  "ev_1795142891_5b06d4bb",
+  "ev_1795142891_b785c005",
+  "ev_1795142891_453f390d",
+  "ev_1795142891_3b934003"
+ ],
+ "requested_at": "2026-11-20T02:48:12Z"
+}
