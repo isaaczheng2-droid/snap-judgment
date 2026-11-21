@@ -1,0 +1,37 @@
+{
+ "reasons": [
+  "Amik Robertson: no report \u2192 QUESTIONABLE (Ankle)",
+  "Kyren Williams: ACTIVE \u2192 QUESTIONABLE (Toe)",
+  "Carson Beck: QUESTIONABLE \u2192 OUT (Back)",
+  "DaRon Bland: OUT \u2192 IR (Ankle)",
+  "Ed Oliver: no report \u2192 QUESTIONABLE (Oblique)",
+  "Kamari Lassiter: ACTIVE \u2192 UNKNOWN (Wrist)",
+  "Jalen Ramsey: ACTIVE \u2192 UNKNOWN (Not injury related - personal matter)",
+  "Trent Williams: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Christian McCaffrey: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Tristan Wirfs: ACTIVE \u2192 UNKNOWN (Toe)"
+ ],
+ "game_ids": [
+  "2026_11_ARI_KC",
+  "2026_11_CIN_WAS",
+  "2026_11_IND_HOU",
+  "2026_11_MIA_BUF",
+  "2026_11_MIN_SF",
+  "2026_11_PIT_PHI",
+  "2026_11_TB_DET",
+  "2026_11_TEN_DAL"
+ ],
+ "event_ids": [
+  "ev_1795300029_197f3943",
+  "ev_1795300029_15f81666",
+  "ev_1795300029_2f3ef8c5",
+  "ev_1795300029_9e0fc42e",
+  "ev_1795300029_983fa76f",
+  "ev_1795300029_641d729b",
+  "ev_1795300029_4d04fb5b",
+  "ev_1795300029_037c5403",
+  "ev_1795300029_18fdd7fe",
+  "ev_1795300029_0e140fa3"
+ ],
+ "requested_at": "2026-11-21T22:27:18Z"
+}
