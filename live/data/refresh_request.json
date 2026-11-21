@@ -1,0 +1,29 @@
+{
+ "reasons": [
+  "Kamari Lassiter: ACTIVE \u2192 UNKNOWN (Wrist)",
+  "Jalen Ramsey: ACTIVE \u2192 UNKNOWN (Not injury related - personal matter)",
+  "Trent Williams: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Christian McCaffrey: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Tristan Wirfs: ACTIVE \u2192 UNKNOWN (Toe)",
+  "IND QB: 00-0035710 \u2192 Anthony Richardson Sr. as the starter",
+  "KC RT: Jaylon Moore \u2192 Joshua Ezeudu as the starter",
+  "NO RT: Taliese Fuaga \u2192 Mason Murphy as the starter"
+ ],
+ "game_ids": [
+  "2026_11_IND_HOU",
+  "2026_11_MIN_SF",
+  "2026_11_PIT_PHI",
+  "2026_11_TB_DET"
+ ],
+ "event_ids": [
+  "ev_1795251009_a1f8c885",
+  "ev_1795251009_50b8d92c",
+  "ev_1795251009_05c67159",
+  "ev_1795251009_fc7eeeed",
+  "ev_1795251009_57bbc363",
+  "ev_1795251009_c8c95bdd",
+  "ev_1795251009_6fe6ef0f",
+  "ev_1795251009_069b146b"
+ ],
+ "requested_at": "2026-11-21T08:50:16Z"
+}
