@@ -2,6 +2,14 @@
  "items": [
   {
    "type": "youtube",
+   "id": "TtKlFfVpsJI",
+   "title": "SUNDAY SCARIES | Hype | Atlanta Falcons",
+   "source": "Falcons",
+   "seconds": 45,
+   "uploaded": "2026-11"
+  },
+  {
+   "type": "youtube",
    "id": "1CrWWMo7qlY",
    "title": "Buffalo Bills vs Minnesota Vikings OFFICIAL Hype Video! | NFL Week 9 Monday Night Football Trailer",
    "source": "Bills",
@@ -15,22 +23,6 @@
    "source": "Colts",
    "seconds": 57,
    "uploaded": "2026-11"
-  },
-  {
-   "type": "youtube",
-   "id": "TtKlFfVpsJI",
-   "title": "SUNDAY SCARIES | Hype | Atlanta Falcons",
-   "source": "Falcons",
-   "seconds": 45,
-   "uploaded": "2026-10"
-  },
-  {
-   "type": "youtube",
-   "id": "jbqt3OaOrQI",
-   "title": "Bears-Packers hype trailer | Bears Buzz | Chicago Bears",
-   "source": "Bears",
-   "seconds": 131,
-   "uploaded": "2026-10"
   },
   {
    "type": "youtube",
@@ -94,6 +86,14 @@
    "title": "2026 Texans Season Hype Video | ONE CITY. ONE FAMILY. ONE SWARM.",
    "source": "Texans",
    "seconds": 121,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
+   "id": "s1gZBVxrrvc",
+   "title": "2026 Chiefs Season Hype Video",
+   "source": "Chiefs",
+   "seconds": 75,
    "uploaded": "2026-09"
   },
   {
@@ -210,14 +210,6 @@
   },
   {
    "type": "youtube",
-   "id": "Opam9vbrGlg",
-   "title": "Seahawks vs Titans Week 12 | Hype Video",
-   "source": "Titans",
-   "seconds": 25,
-   "uploaded": "2025-12"
-  },
-  {
-   "type": "youtube",
    "id": "l0xd523i4qQ",
    "title": "The Climb Continues: The Denver Broncos’ 2024 playoff hype video",
    "source": "Broncos",
@@ -234,14 +226,6 @@
   },
   {
    "type": "youtube",
-   "id": "eskllONh3pA",
-   "title": "NOISE 🗣️ 2025 Home HYPE Video | Kansas City Chiefs 🔴🟡",
-   "source": "Chiefs",
-   "seconds": 83,
-   "uploaded": "2025-11"
-  },
-  {
-   "type": "youtube",
    "id": "THohdR9TUr0",
    "title": "Not Done Yet. | Los Angeles Rams 2024 Playoff Trailer",
    "source": "Rams",
@@ -250,26 +234,26 @@
   },
   {
    "type": "youtube",
-   "id": "IvJX0jczYD0",
-   "title": "2025 Eagles Hype Video",
-   "source": "Eagles",
-   "seconds": 344,
-   "uploaded": "2025-11"
-  },
-  {
-   "type": "youtube",
-   "id": "uGQcYEDQoe8",
-   "title": "It's About Legacy | 2025 Tampa Bay Buccaneers Season Trailer",
+   "id": "Y6l6SEqzELY",
+   "title": "'Protect Our House' | Commanders vs. Bucs Wild Card Round Hype Video | Tampa Bay Buccaneers",
    "source": "Buccaneers",
-   "seconds": 119,
+   "seconds": 60,
    "uploaded": "2025-11"
   },
   {
    "type": "youtube",
-   "id": "WHIqZhL0apI",
-   "title": "Find a Way | Commanders vs. Lions Trailer | NFL Divisional Round",
+   "id": "Opam9vbrGlg",
+   "title": "Seahawks vs Titans Week 12 | Hype Video",
+   "source": "Titans",
+   "seconds": 25,
+   "uploaded": "2025-11"
+  },
+  {
+   "type": "youtube",
+   "id": "moH5SX6OixY",
+   "title": "Foot on the Gas | Commanders vs. Eagles Trailer | NFC Championship",
    "source": "Commanders",
-   "seconds": 88,
+   "seconds": 89,
    "uploaded": "2025-11"
   },
   {
@@ -354,6 +338,14 @@
   },
   {
    "type": "youtube",
+   "id": "yKhnC1fyFRc",
+   "title": "Chicago Bears 2022 Official Season Hype Video",
+   "source": "Bears",
+   "seconds": 66,
+   "uploaded": "2022-11"
+  },
+  {
+   "type": "youtube",
    "id": "11is_ndJ2eI",
    "title": "Are You Afraid of the Dark? | Week 8 Hype Video",
    "source": "Bengals",
@@ -362,10 +354,10 @@
   },
   {
    "type": "youtube",
-   "id": "599XO3WrG0o",
-   "title": "Sights and sounds from week 6 | Sounds of the Game | vs. Colts",
+   "id": "yk3VKnKNs8A",
+   "title": "Sights and sounds from week 7 | Sounds of the Game | vs. Giants",
    "source": "Jaguars",
-   "seconds": 562,
+   "seconds": 504,
    "uploaded": "2022-11"
   },
   {
@@ -386,6 +378,22 @@
   },
   {
    "type": "youtube",
+   "id": "w3EE68SDp9c",
+   "title": "Browns vs. Lions Game Day Hype Video | Cleveland Browns",
+   "source": "Browns",
+   "seconds": 42,
+   "uploaded": "2021-11"
+  },
+  {
+   "type": "youtube",
+   "id": "wbn2OZ3OawE",
+   "title": "Browns vs. Steelers Hype Video (Week 17) | Cleveland Browns",
+   "source": "Browns",
+   "seconds": 42,
+   "uploaded": "2021-11"
+  },
+  {
+   "type": "youtube",
    "id": "N-z9XYvekIk",
    "title": "Tennessee Titans at Seattle Seahawks | Hype Videos",
    "source": "Titans",
@@ -401,5 +409,5 @@
    "uploaded": "2020-11"
   }
  ],
- "updated": "2026-11-21T16:50:51Z"
+ "updated": "2026-11-22T17:13:55Z"
 }
