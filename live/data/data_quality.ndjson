@@ -2269,3 +2269,4 @@
 {"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-21T16:58:22Z"}
 {"kind":"impossible_transition","detail":"00-0040711: IR -> ACTIVE","player_id":"00-0040711","source":"espn","system_received_at":"2026-11-21T22:27:09Z"}
 {"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-21T22:27:09Z"}
+{"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-22T02:40:54Z"}

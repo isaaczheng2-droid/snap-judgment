@@ -1,0 +1,32 @@
+{
+ "reasons": [
+  "Kamari Lassiter: ACTIVE \u2192 UNKNOWN (Wrist)",
+  "Mansoor Delane: ACTIVE \u2192 UNKNOWN (Shoulder)",
+  "Cam Skattebo: ACTIVE \u2192 UNKNOWN (Hamstring)",
+  "Jalen Ramsey: ACTIVE \u2192 UNKNOWN (Not injury related - personal matter)",
+  "Trent Williams: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Christian McCaffrey: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Tristan Wirfs: ACTIVE \u2192 UNKNOWN (Toe)",
+  "Tony Pollard: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_11_ARI_KC",
+  "2026_11_IND_HOU",
+  "2026_11_JAX_NYG",
+  "2026_11_MIN_SF",
+  "2026_11_PIT_PHI",
+  "2026_11_TB_DET",
+  "2026_11_TEN_DAL"
+ ],
+ "event_ids": [
+  "ev_1795315254_2455550d",
+  "ev_1795315254_a6734238",
+  "ev_1795315254_475015e5",
+  "ev_1795315254_bc5dd2b7",
+  "ev_1795315254_3c9378dd",
+  "ev_1795315254_aadef13f",
+  "ev_1795315254_8d62e6a3",
+  "ev_1795315254_e3c050b6"
+ ],
+ "requested_at": "2026-11-22T02:41:02Z"
+}
