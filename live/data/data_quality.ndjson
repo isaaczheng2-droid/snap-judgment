@@ -2275,3 +2275,6 @@
 {"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-22T18:04:32Z"}
 {"kind":"unknown_player","detail":"Gabriel Rubio (PIT) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-22T20:13:37Z"}
 {"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-22T20:13:37Z"}
+{"kind":"unknown_player","detail":"Greg Desrosiers Jr. (NYG) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-22T23:53:00Z"}
+{"kind":"unknown_player","detail":"Gabriel Rubio (PIT) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-22T23:53:00Z"}
+{"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-22T23:53:00Z"}
