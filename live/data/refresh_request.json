@@ -1,0 +1,46 @@
+{
+ "reasons": [
+  "Box scores updated: player results and the paper test can be graded",
+  "Seth McGowan: QUESTIONABLE \u2192 OUT (Hamstring)",
+  "Deommodore Lenoir: ACTIVE \u2192 QUESTIONABLE (Foot)",
+  "Bhayshul Tuten: ACTIVE \u2192 QUESTIONABLE (Ankle)",
+  "Malik Benson: INACTIVE \u2192 ACTIVE",
+  "Marco Wilson: INACTIVE \u2192 ACTIVE",
+  "Otito Ogbonnia: ACTIVE \u2192 UNKNOWN (Finger)",
+  "Joey Porter Jr.: ACTIVE \u2192 UNKNOWN (Ankle)",
+  "Kamari Lassiter: ACTIVE \u2192 UNKNOWN (Wrist)",
+  "Mansoor Delane: ACTIVE \u2192 UNKNOWN (Shoulder)",
+  "Jalen Ramsey: ACTIVE \u2192 UNKNOWN (Not injury related - personal matter)",
+  "Trent Williams: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)"
+ ],
+ "game_ids": [
+  "2026_11_ARI_KC",
+  "2026_11_BAL_CAR",
+  "2026_11_IND_HOU",
+  "2026_11_JAX_NYG",
+  "2026_11_LV_DEN",
+  "2026_11_MIN_SF",
+  "2026_11_PIT_PHI",
+  "2026_11_TB_DET",
+  "2026_11_TEN_DAL"
+ ],
+ "event_ids": [
+  "ev_1795466213_2a29ca41",
+  "ev_1795466213_f24f479b",
+  "ev_1795466213_12b9f992",
+  "ev_1795466213_af26d5b7",
+  "ev_1795466213_e032abc8",
+  "ev_1795466213_62206097",
+  "ev_1795466213_712c6b58",
+  "ev_1795466213_23e4698c",
+  "ev_1795466213_62fc9134",
+  "ev_1795466213_117d474a",
+  "ev_1795466213_c35ce8d6",
+  "ev_1795466213_91eab060",
+  "ev_1795466213_787a948a",
+  "ev_1795466213_41459e2f",
+  "ev_1795466213_7fc09297",
+  "ev_1795466213_63b1b1e1"
+ ],
+ "requested_at": "2026-11-23T20:36:54Z"
+}
