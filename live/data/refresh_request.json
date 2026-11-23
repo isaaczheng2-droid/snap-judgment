@@ -1,0 +1,44 @@
+{
+ "reasons": [
+  "Justin Herbert: ACTIVE \u2192 QUESTIONABLE (Concussion)",
+  "Myles Garrett: ACTIVE \u2192 QUESTIONABLE (Knee)",
+  "Demarcus Robinson: ACTIVE \u2192 INACTIVE",
+  "Isaiah Rodgers: QUESTIONABLE \u2192 OUT (Quadriceps)",
+  "Max Brosmer: ACTIVE \u2192 INACTIVE",
+  "Kurtis Rourke: ACTIVE \u2192 INACTIVE",
+  "Enrique Cruz Jr.: ACTIVE \u2192 INACTIVE",
+  "Joey Porter Jr.: ACTIVE \u2192 UNKNOWN (Ankle)",
+  "Kamari Lassiter: ACTIVE \u2192 UNKNOWN (Wrist)",
+  "Mansoor Delane: ACTIVE \u2192 UNKNOWN (Shoulder)",
+  "Cam Skattebo: ACTIVE \u2192 UNKNOWN (Hamstring)",
+  "Jalen Ramsey: ACTIVE \u2192 UNKNOWN (Not injury related - personal matter)"
+ ],
+ "game_ids": [
+  "2026_11_ARI_KC",
+  "2026_11_IND_HOU",
+  "2026_11_JAX_NYG",
+  "2026_11_MIN_SF",
+  "2026_11_NYJ_LAC",
+  "2026_11_PIT_PHI",
+  "2026_11_TB_DET",
+  "2026_11_TEN_DAL"
+ ],
+ "event_ids": [
+  "ev_1795395465_fc20232b",
+  "ev_1795395465_467de651",
+  "ev_1795395465_7cdb0138",
+  "ev_1795395465_5cca1c69",
+  "ev_1795395465_1dccef0c",
+  "ev_1795395465_c71f227b",
+  "ev_1795395465_37d8a7b4",
+  "ev_1795395465_628bf702",
+  "ev_1795395465_3fefabe5",
+  "ev_1795395465_93b0092c",
+  "ev_1795395465_12d3c9d0",
+  "ev_1795395465_2a65cf7c",
+  "ev_1795395465_32eb07a6",
+  "ev_1795395465_9723961e",
+  "ev_1795395465_55520fa4"
+ ],
+ "requested_at": "2026-11-23T00:57:48Z"
+}
