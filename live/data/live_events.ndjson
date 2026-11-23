@@ -48363,3 +48363,26 @@
 {"event_id":"ev_1795417324_000b71a7","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_11_MIN_SF","player_id":"00-0027857","team_id":"SF","severity":"HIGH","previous_value":"ACTIVE","new_value":"UNKNOWN","detail":"Trent Williams: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)","source":"nflverse:injuries","occurred_at":"2026-11-23T07:02:04Z","received_at":"2026-11-23T07:02:04Z","processed":false,"prediction_recalculated":false,"impact_tier":"HIGH","impact_reasons":["starter (depth chart rank 1)"],"player_name":"Trent Williams","system_received_at":"2026-11-23T07:02:05Z"}
 {"event_id":"ev_1795417324_8f861348","event_type":"PLAYER_STATUS_CHANGE","game_id":"2026_11_TB_DET","player_id":"00-0036406","team_id":"TB","severity":"HIGH","previous_value":"ACTIVE","new_value":"UNKNOWN","detail":"Tristan Wirfs: ACTIVE \u2192 UNKNOWN (Toe)","source":"nflverse:injuries","occurred_at":"2026-11-23T07:02:04Z","received_at":"2026-11-23T07:02:04Z","processed":false,"prediction_recalculated":false,"impact_tier":"HIGH","impact_reasons":["starter (depth chart rank 1)"],"player_name":"Tristan Wirfs","system_received_at":"2026-11-23T07:02:05Z"}
 {"event_id":"ev_1795417325_5bd0eab5","event_type":"WEATHER_CHANGE_EVENT","game_id":"2026_11_CIN_WAS","player_id":null,"team_id":null,"severity":"MEDIUM","previous_value":"MODERATE","new_value":"LOW","detail":"Weather impact MODERATE \u2192 LOW (improving)","source":"openmeteo","occurred_at":"2026-11-23T07:02:05Z","received_at":"2026-11-23T07:02:05Z","processed":false,"prediction_recalculated":false,"field":"impact","system_received_at":"2026-11-23T07:02:05Z"}
+{"event_id":"ev_1795417325_5bd0eab5","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-11-23T07:11:12Z"}
+{"event_id":"ev_1795417324_90493656","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-11-23T07:11:12Z"}
+{"event_id":"ev_1795417324_408482e1","marker":true,"processed":true,"prediction_recalculated":true,"system_received_at":"2026-11-23T07:11:12Z"}
+{"event_id":"ev_1795417324_80ca109f","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-23T07:11:12Z"}
+{"event_id":"ev_1795417324_cf5d5271","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-23T07:11:12Z"}
+{"event_id":"ev_1795417324_e4ddea27","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-23T07:11:12Z"}
+{"event_id":"ev_1795417324_2427b329","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-23T07:11:12Z"}
+{"event_id":"ev_1795417324_ae108122","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-23T07:11:12Z"}
+{"event_id":"ev_1795417324_04e998b5","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-23T07:11:12Z"}
+{"event_id":"ev_1795417324_580984ef","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-23T07:11:12Z"}
+{"event_id":"ev_1795417324_8f861348","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-23T07:11:12Z"}
+{"event_id":"ev_1795417324_1f2675ee","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-23T07:11:12Z"}
+{"event_id":"ev_1795417324_82f3479b","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-23T07:11:12Z"}
+{"event_id":"ev_1795417324_32f50961","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-23T07:11:12Z"}
+{"event_id":"ev_1795417324_459c9998","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-23T07:11:12Z"}
+{"event_id":"ev_1795417324_d8f69728","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-23T07:11:12Z"}
+{"event_id":"ev_1795417324_ea8e6069","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-23T07:11:12Z"}
+{"event_id":"ev_1795417324_20d89b92","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-23T07:11:12Z"}
+{"event_id":"ev_1795417324_42f54bac","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-23T07:11:12Z"}
+{"event_id":"ev_1795417324_fb404b37","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-23T07:11:12Z"}
+{"event_id":"ev_1795417324_000b71a7","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-23T07:11:12Z"}
+{"event_id":"ev_1795417324_5106267e","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-23T07:11:12Z"}
+{"event_id":"ev_1795417324_52c1ce8a","marker":true,"processed":true,"prediction_recalculated":false,"system_received_at":"2026-11-23T07:11:12Z"}
