@@ -106,6 +106,14 @@
   },
   {
    "type": "youtube",
+   "id": "s1gZBVxrrvc",
+   "title": "2026 Chiefs Season Hype Video",
+   "source": "Chiefs",
+   "seconds": 75,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
    "id": "aChK-tugNBQ",
    "title": "Rams vs. 49ers: Melbourne, You're In For A Treat | Game Trailer",
    "source": "Rams",
@@ -126,14 +134,6 @@
    "title": "2026 Season Hype Video  | New York Giants",
    "source": "Giants",
    "seconds": 77,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
-   "id": "CgA_b5CzuPI",
-   "title": "BUILT FOR THIS | 2026 New York Jets Official Hype Video",
-   "source": "Jets",
-   "seconds": 116,
    "uploaded": "2026-09"
   },
   {
@@ -178,26 +178,18 @@
   },
   {
    "type": "youtube",
-   "id": "-RXstH6NjhA",
-   "title": "The Broncos’ 2025 AFC Championship Game hype video narrated by Peyton Manning | Climb Higher",
-   "source": "Broncos",
-   "seconds": 74,
-   "uploaded": "2026-02"
-  },
-  {
-   "type": "youtube",
-   "id": "DTFSRbNPLvM",
-   "title": "QB Bo Nix narrates Broncos' #NEvsDEN hype video | Climb Higher",
-   "source": "Broncos",
-   "seconds": 96,
-   "uploaded": "2026-02"
-  },
-  {
-   "type": "youtube",
    "id": "XHejZ8pBKyI",
    "title": "Sound the Drum | Panthers Wild Card Trailer ft. Stephen Curry",
    "source": "Panthers",
    "seconds": 99,
+   "uploaded": "2026-01"
+  },
+  {
+   "type": "youtube",
+   "id": "oIAg7QvdIjs",
+   "title": "Climb Higher: The Broncos’ 2025 playoff hype video narrated by Aqib Talib",
+   "source": "Broncos",
+   "seconds": 65,
    "uploaded": "2026-01"
   },
   {
@@ -218,6 +210,14 @@
   },
   {
    "type": "youtube",
+   "id": "l0xd523i4qQ",
+   "title": "The Climb Continues: The Denver Broncos’ 2024 playoff hype video",
+   "source": "Broncos",
+   "seconds": 64,
+   "uploaded": "2025-11"
+  },
+  {
+   "type": "youtube",
    "id": "M8I3QnmQook",
    "title": "Welcome back | Packers 2025 season trailer",
    "source": "Packers",
@@ -226,18 +226,18 @@
   },
   {
    "type": "youtube",
-   "id": "eskllONh3pA",
-   "title": "NOISE 🗣️ 2025 Home HYPE Video | Kansas City Chiefs 🔴🟡",
-   "source": "Chiefs",
-   "seconds": 83,
+   "id": "EpPnNNxEDD0",
+   "title": "IF THEY AIN'T WITH HOUSTON... 👀 | Lecrae's EPIC playoff hype",
+   "source": "Texans",
+   "seconds": 132,
    "uploaded": "2025-11"
   },
   {
    "type": "youtube",
-   "id": "IvJX0jczYD0",
-   "title": "2025 Eagles Hype Video",
-   "source": "Eagles",
-   "seconds": 344,
+   "id": "THohdR9TUr0",
+   "title": "Not Done Yet. | Los Angeles Rams 2024 Playoff Trailer",
+   "source": "Rams",
+   "seconds": 113,
    "uploaded": "2025-11"
   },
   {
@@ -266,14 +266,6 @@
   },
   {
    "type": "youtube",
-   "id": "MCLJLbIdZQ0",
-   "title": "Time to get HYPED | Detroit Lions team introduction video: Wild Card Round vs. Los Angeles Rams",
-   "source": "Lions",
-   "seconds": 82,
-   "uploaded": "2024-11"
-  },
-  {
-   "type": "youtube",
    "id": "d8lD2VHxIcg",
    "title": "Detroit Lions Week 18 Hype Video | Ford Field scoreboard version",
    "source": "Lions",
@@ -282,10 +274,10 @@
   },
   {
    "type": "youtube",
-   "id": "nDHVm6qxSsI",
-   "title": "H-Town READY for playoffs 🔥 | Texans Hype",
-   "source": "Texans",
-   "seconds": 120,
+   "id": "MCLJLbIdZQ0",
+   "title": "Time to get HYPED | Detroit Lions team introduction video: Wild Card Round vs. Los Angeles Rams",
+   "source": "Lions",
+   "seconds": 82,
    "uploaded": "2024-11"
   },
   {
@@ -294,14 +286,6 @@
    "title": "Vikings Aura | Hype Video",
    "source": "Vikings",
    "seconds": 85,
-   "uploaded": "2024-11"
-  },
-  {
-   "type": "youtube",
-   "id": "iWFPuehwxDM",
-   "title": "New York Jets 2024 Season Hype Video",
-   "source": "Jets",
-   "seconds": 110,
    "uploaded": "2024-11"
   },
   {
@@ -346,6 +330,14 @@
   },
   {
    "type": "youtube",
+   "id": "VOAsR7ATkuI",
+   "title": "Philadelphia Eagles vs Tennessee Titans Hype Video",
+   "source": "Eagles",
+   "seconds": 55,
+   "uploaded": "2023-11"
+  },
+  {
+   "type": "youtube",
    "id": "yKhnC1fyFRc",
    "title": "Chicago Bears 2022 Official Season Hype Video",
    "source": "Bears",
@@ -362,18 +354,18 @@
   },
   {
    "type": "youtube",
-   "id": "weerRdCbCVo",
-   "title": "This Is What It Feels Like To Bring It Home | Super Bowl LVI Hype Video",
-   "source": "Rams",
-   "seconds": 61,
-   "uploaded": "2022-11"
-  },
-  {
-   "type": "youtube",
    "id": "9ZAUG2U5ZzQ",
    "title": "WEEK 9 HYPE TAPE: MIAMI DOLPHINS AT CHICAGO BEARS",
    "source": "Dolphins",
    "seconds": 53,
+   "uploaded": "2022-11"
+  },
+  {
+   "type": "youtube",
+   "id": "eOZVrQk90p0",
+   "title": "📽️ Sights & Sounds From The Flight 2022 Premiere 📽️ | The New York Jets | NFL",
+   "source": "Jets",
+   "seconds": 27,
    "uploaded": "2022-11"
   },
   {
@@ -410,6 +402,14 @@
   },
   {
    "type": "youtube",
+   "id": "R72ivt62j9I",
+   "title": "Everything From Jets vs. Titans In 99 Seconds | Sights & Sounds | New York Jets",
+   "source": "Jets",
+   "seconds": 99,
+   "uploaded": "2021-11"
+  },
+  {
+   "type": "youtube",
    "id": "N-z9XYvekIk",
    "title": "Tennessee Titans at Seattle Seahawks | Hype Videos",
    "source": "Titans",
@@ -425,5 +425,5 @@
    "uploaded": "2020-11"
   }
  ],
- "updated": "2026-11-23T21:31:28Z"
+ "updated": "2026-11-24T20:13:46Z"
 }
