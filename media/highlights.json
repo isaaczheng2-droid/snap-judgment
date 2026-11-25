@@ -2,18 +2,18 @@
  "items": [
   {
    "type": "youtube",
-   "id": "TtKlFfVpsJI",
-   "title": "SUNDAY SCARIES | Hype | Atlanta Falcons",
-   "source": "Falcons",
-   "seconds": 45,
-   "uploaded": "2026-11"
-  },
-  {
-   "type": "youtube",
    "id": "1CrWWMo7qlY",
    "title": "Buffalo Bills vs Minnesota Vikings OFFICIAL Hype Video! | NFL Week 9 Monday Night Football Trailer",
    "source": "Bills",
    "seconds": 84,
+   "uploaded": "2026-11"
+  },
+  {
+   "type": "youtube",
+   "id": "nmwiyWTy6uA",
+   "title": "Bears-Lions Thanksgiving Day hype trailer | Bears Buzz | Chicago Bears",
+   "source": "Bears",
+   "seconds": 138,
    "uploaded": "2026-11"
   },
   {
@@ -31,6 +31,22 @@
    "source": "Jaguars",
    "seconds": 81,
    "uploaded": "2026-11"
+  },
+  {
+   "type": "youtube",
+   "id": "Lzp1df1Tzrk",
+   "title": "Rams vs. Commanders: One Game At a Time | Game Trailer",
+   "source": "Rams",
+   "seconds": 52,
+   "uploaded": "2026-11"
+  },
+  {
+   "type": "youtube",
+   "id": "K5xNiaX4ZCA",
+   "title": "Week 4 Trailer: Ravens vs. Titans at The Bank | Baltimore Ravens",
+   "source": "Ravens",
+   "seconds": 100,
+   "uploaded": "2026-10"
   },
   {
    "type": "youtube",
@@ -74,26 +90,10 @@
   },
   {
    "type": "youtube",
-   "id": "Pd3euunJiRo",
-   "title": "2026 Chicago Bears Season Hype",
-   "source": "Bears",
-   "seconds": 100,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
    "id": "1VdsHPILlaM",
    "title": "The Mission Begins | 2026 Dallas Cowboys Hype Video",
    "source": "Cowboys",
    "seconds": 65,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
-   "id": "OT05-kPXi78",
-   "title": "2026 Texans Season Hype Video | ONE CITY. ONE FAMILY. ONE SWARM.",
-   "source": "Texans",
-   "seconds": 121,
    "uploaded": "2026-09"
   },
   {
@@ -114,14 +114,6 @@
   },
   {
    "type": "youtube",
-   "id": "aChK-tugNBQ",
-   "title": "Rams vs. 49ers: Melbourne, You're In For A Treat | Game Trailer",
-   "source": "Rams",
-   "seconds": 81,
-   "uploaded": "2026-09"
-  },
-  {
-   "type": "youtube",
    "id": "0fbKm66MxLU",
    "title": "PATRIOTS 2026 SEASON HYPE SET TO DREAM ON BY AEROSMITH 🔥",
    "source": "Patriots",
@@ -134,6 +126,14 @@
    "title": "2026 Season Hype Video  | New York Giants",
    "source": "Giants",
    "seconds": 77,
+   "uploaded": "2026-09"
+  },
+  {
+   "type": "youtube",
+   "id": "CgA_b5CzuPI",
+   "title": "BUILT FOR THIS | 2026 New York Jets Official Hype Video",
+   "source": "Jets",
+   "seconds": 116,
    "uploaded": "2026-09"
   },
   {
@@ -202,6 +202,14 @@
   },
   {
    "type": "youtube",
+   "id": "P2RfuapthN8",
+   "title": "J.J. Watt's EPIC playoff message to H-Town 🔥 | Texans Hype",
+   "source": "Texans",
+   "seconds": 138,
+   "uploaded": "2026-01"
+  },
+  {
+   "type": "youtube",
    "id": "iiWP---sSTo",
    "title": "PATRIOTS 2025 PLAYOFF HYPE 🔥 | WE ALL WE GOT WE ALL WE NEED",
    "source": "Patriots",
@@ -234,10 +242,10 @@
   },
   {
    "type": "youtube",
-   "id": "THohdR9TUr0",
-   "title": "Not Done Yet. | Los Angeles Rams 2024 Playoff Trailer",
-   "source": "Rams",
-   "seconds": 113,
+   "id": "IvJX0jczYD0",
+   "title": "2025 Eagles Hype Video",
+   "source": "Eagles",
+   "seconds": 344,
    "uploaded": "2025-11"
   },
   {
@@ -258,19 +266,11 @@
   },
   {
    "type": "youtube",
-   "id": "WHIqZhL0apI",
-   "title": "Find a Way | Commanders vs. Lions Trailer | NFL Divisional Round",
+   "id": "moH5SX6OixY",
+   "title": "Foot on the Gas | Commanders vs. Eagles Trailer | NFC Championship",
    "source": "Commanders",
-   "seconds": 88,
+   "seconds": 89,
    "uploaded": "2025-11"
-  },
-  {
-   "type": "youtube",
-   "id": "d8lD2VHxIcg",
-   "title": "Detroit Lions Week 18 Hype Video | Ford Field scoreboard version",
-   "source": "Lions",
-   "seconds": 83,
-   "uploaded": "2024-11"
   },
   {
    "type": "youtube",
@@ -282,10 +282,26 @@
   },
   {
    "type": "youtube",
+   "id": "d8lD2VHxIcg",
+   "title": "Detroit Lions Week 18 Hype Video | Ford Field scoreboard version",
+   "source": "Lions",
+   "seconds": 83,
+   "uploaded": "2024-11"
+  },
+  {
+   "type": "youtube",
    "id": "6xsKy9xsx8U",
    "title": "Vikings Aura | Hype Video",
    "source": "Vikings",
    "seconds": 85,
+   "uploaded": "2024-11"
+  },
+  {
+   "type": "youtube",
+   "id": "iWFPuehwxDM",
+   "title": "New York Jets 2024 Season Hype Video",
+   "source": "Jets",
+   "seconds": 110,
    "uploaded": "2024-11"
   },
   {
@@ -330,14 +346,6 @@
   },
   {
    "type": "youtube",
-   "id": "VOAsR7ATkuI",
-   "title": "Philadelphia Eagles vs Tennessee Titans Hype Video",
-   "source": "Eagles",
-   "seconds": 55,
-   "uploaded": "2023-11"
-  },
-  {
-   "type": "youtube",
    "id": "yKhnC1fyFRc",
    "title": "Chicago Bears 2022 Official Season Hype Video",
    "source": "Bears",
@@ -354,18 +362,18 @@
   },
   {
    "type": "youtube",
-   "id": "9ZAUG2U5ZzQ",
-   "title": "WEEK 9 HYPE TAPE: MIAMI DOLPHINS AT CHICAGO BEARS",
-   "source": "Dolphins",
-   "seconds": 53,
+   "id": "weerRdCbCVo",
+   "title": "This Is What It Feels Like To Bring It Home | Super Bowl LVI Hype Video",
+   "source": "Rams",
+   "seconds": 61,
    "uploaded": "2022-11"
   },
   {
    "type": "youtube",
-   "id": "eOZVrQk90p0",
-   "title": "📽️ Sights & Sounds From The Flight 2022 Premiere 📽️ | The New York Jets | NFL",
-   "source": "Jets",
-   "seconds": 27,
+   "id": "9ZAUG2U5ZzQ",
+   "title": "WEEK 9 HYPE TAPE: MIAMI DOLPHINS AT CHICAGO BEARS",
+   "source": "Dolphins",
+   "seconds": 53,
    "uploaded": "2022-11"
   },
   {
@@ -378,18 +386,18 @@
   },
   {
    "type": "youtube",
-   "id": "TojYld6opXU",
-   "title": "Baltimore Ravens Introduction, Hype Video vs. Chiefs | 2021 Week 2",
-   "source": "Ravens",
-   "seconds": 155,
+   "id": "vj-1lljMrVw",
+   "title": "It's GAME DAY Atlanta! | Falcons vs. Giants Hype",
+   "source": "Falcons",
+   "seconds": 63,
    "uploaded": "2021-11"
   },
   {
    "type": "youtube",
-   "id": "w3EE68SDp9c",
-   "title": "Browns vs. Lions Game Day Hype Video | Cleveland Browns",
-   "source": "Browns",
-   "seconds": 42,
+   "id": "TojYld6opXU",
+   "title": "Baltimore Ravens Introduction, Hype Video vs. Chiefs | 2021 Week 2",
+   "source": "Ravens",
+   "seconds": 155,
    "uploaded": "2021-11"
   },
   {
@@ -402,10 +410,10 @@
   },
   {
    "type": "youtube",
-   "id": "R72ivt62j9I",
-   "title": "Everything From Jets vs. Titans In 99 Seconds | Sights & Sounds | New York Jets",
-   "source": "Jets",
-   "seconds": 99,
+   "id": "w3EE68SDp9c",
+   "title": "Browns vs. Lions Game Day Hype Video | Cleveland Browns",
+   "source": "Browns",
+   "seconds": 42,
    "uploaded": "2021-11"
   },
   {
@@ -425,5 +433,5 @@
    "uploaded": "2020-11"
   }
  ],
- "updated": "2026-11-24T20:13:46Z"
+ "updated": "2026-11-25T19:23:41Z"
 }
