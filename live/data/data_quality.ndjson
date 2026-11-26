@@ -2315,3 +2315,10 @@
 {"kind":"unknown_player","detail":"Gabriel Rubio (PIT) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-25T20:14:20Z"}
 {"kind":"unknown_player","detail":"Greg Desrosiers Jr. (NYG) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-25T20:14:20Z"}
 {"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-25T20:14:20Z"}
+{"kind":"impossible_transition","detail":"00-0039784: IR -> ACTIVE","player_id":"00-0039784","source":"espn","system_received_at":"2026-11-26T03:12:06Z"}
+{"kind":"impossible_transition","detail":"00-0039138: IR -> ACTIVE","player_id":"00-0039138","source":"espn","system_received_at":"2026-11-26T03:12:06Z"}
+{"kind":"team_mismatch","detail":"00-0039577: report says ARI, roster says BAL","player_id":"00-0039577","source":"espn","system_received_at":"2026-11-26T03:12:06Z"}
+{"kind":"team_mismatch","detail":"00-0040296: report says TEN, roster says CAR","player_id":"00-0040296","source":"espn","system_received_at":"2026-11-26T03:12:06Z"}
+{"kind":"unknown_player","detail":"Gabriel Rubio (PIT) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-26T03:12:06Z"}
+{"kind":"unknown_player","detail":"Greg Desrosiers Jr. (NYG) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-26T03:12:06Z"}
+{"kind":"unknown_player","detail":"Nate Thomas (HOU) could not be resolved to an id","player_id":null,"source":"espn","system_received_at":"2026-11-26T03:12:06Z"}
