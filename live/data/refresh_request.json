@@ -1,0 +1,27 @@
+{
+ "reasons": [
+  "Window finished: Wednesday 8:00 PM ET game (1 final)",
+  "Box scores updated: player results and the paper test can be graded",
+  "Matthew Stafford: UNKNOWN \u2192 ACTIVE (Elbow)",
+  "Trent Brown: ACTIVE \u2192 UNKNOWN (Wrist)",
+  "Walker Little: QUESTIONABLE \u2192 UNKNOWN (Knee)",
+  "Aaron Rodgers: ACTIVE \u2192 UNKNOWN (Not injury related - personal matter)",
+  "JAX LT: Wyatt Milum \u2192 Walker Little as the starter",
+  "KC RT: Jaylon Moore \u2192 Joshua Ezeudu as the starter"
+ ],
+ "game_ids": [
+  "2026_12_BAL_HOU",
+  "2026_12_DEN_PIT",
+  "2026_12_GB_LA",
+  "2026_12_TEN_JAX"
+ ],
+ "event_ids": [
+  "ev_1795698832_f1f51ad7",
+  "ev_1795698832_9350d317",
+  "ev_1795698832_9a57e574",
+  "ev_1795698832_325f8bb0",
+  "ev_1795698832_b2001992",
+  "ev_1795698832_18df8687"
+ ],
+ "requested_at": "2026-11-26T13:14:00Z"
+}
