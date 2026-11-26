@@ -1,0 +1,50 @@
+{
+ "reasons": [
+  "Window finished: Thursday 1:00 PM ET game (1 final)",
+  "Box scores updated: player results and the paper test can be graded",
+  "Cooper DeJean: no report \u2192 QUESTIONABLE (Concussion)",
+  "Zay Flowers: QUESTIONABLE \u2192 ACTIVE (Ankle)",
+  "Caleb Williams: ACTIVE \u2192 QUESTIONABLE (Undisclosed)",
+  "Isaiah Williams: QUESTIONABLE \u2192 ACTIVE (Ribs)",
+  "Stefon Diggs: QUESTIONABLE \u2192 ACTIVE (Not injury related - personal matter)",
+  "Parker Washington: ACTIVE \u2192 QUESTIONABLE (Shoulder)",
+  "Cole Payton: ACTIVE \u2192 INACTIVE",
+  "Grant Calcaterra: no report \u2192 INACTIVE",
+  "Ajani Cornelius: ACTIVE \u2192 INACTIVE",
+  "AJ Epenesa: no report \u2192 INACTIVE"
+ ],
+ "game_ids": [
+  "2026_12_ATL_MIN",
+  "2026_12_BAL_HOU",
+  "2026_12_CHI_DET",
+  "2026_12_DEN_PIT",
+  "2026_12_NYJ_MIA",
+  "2026_12_PHI_DAL",
+  "2026_12_SEA_SF",
+  "2026_12_TEN_JAX",
+  "2026_12_WAS_ARI"
+ ],
+ "event_ids": [
+  "ev_1795732709_951828ab",
+  "ev_1795732709_87e92da3",
+  "ev_1795732709_974fc274",
+  "ev_1795732709_97c34188",
+  "ev_1795732709_57e0ba53",
+  "ev_1795732709_0e869f78",
+  "ev_1795732709_c23751c6",
+  "ev_1795732709_aec55cba",
+  "ev_1795732709_485cda46",
+  "ev_1795732709_8a570800",
+  "ev_1795732709_1109e06c",
+  "ev_1795732709_07606d78",
+  "ev_1795732709_c24b9461",
+  "ev_1795732709_eb7fd80c",
+  "ev_1795732709_2e12af2e",
+  "ev_1795732709_b1b073fe",
+  "ev_1795732709_b952708f",
+  "ev_1795732709_73ad3dbd",
+  "ev_1795732709_936a801a",
+  "ev_1795732709_5ff625b6"
+ ],
+ "requested_at": "2026-11-26T22:38:37Z"
+}
