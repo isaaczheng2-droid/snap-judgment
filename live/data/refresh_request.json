@@ -1,0 +1,48 @@
+{
+ "reasons": [
+  "Window finished: Thursday 4:30 PM ET game (1 final)",
+  "Quinnen Williams: ACTIVE \u2192 QUESTIONABLE (Back)",
+  "DeVonta Smith: ACTIVE \u2192 QUESTIONABLE (Back)",
+  "Garrett Nussmeier: ACTIVE \u2192 INACTIVE",
+  "Marcus Harris: no report \u2192 INACTIVE",
+  "Diego Pounds: no report \u2192 INACTIVE",
+  "Melvin Smith Jr.: ACTIVE \u2192 INACTIVE",
+  "Christian Benford: QUESTIONABLE \u2192 OUT (Groin)",
+  "Mike Danna: ACTIVE \u2192 INACTIVE",
+  "Skyler Bell: no report \u2192 INACTIVE",
+  "Greg Gaines: no report \u2192 INACTIVE",
+  "Jude Bowry: ACTIVE \u2192 INACTIVE"
+ ],
+ "game_ids": [
+  "2026_12_BAL_HOU",
+  "2026_12_DEN_PIT",
+  "2026_12_KC_BUF",
+  "2026_12_PHI_DAL",
+  "2026_12_SEA_SF",
+  "2026_12_TEN_JAX"
+ ],
+ "event_ids": [
+  "ev_1795751710_2d1c9f17",
+  "ev_1795751710_f033db0d",
+  "ev_1795751710_7d21c8fd",
+  "ev_1795751710_8fc63530",
+  "ev_1795751710_4a822a42",
+  "ev_1795751710_67b639f5",
+  "ev_1795751710_aa1efc79",
+  "ev_1795751710_f7673262",
+  "ev_1795751710_9148bc17",
+  "ev_1795751710_dde341e8",
+  "ev_1795751710_e60aaf18",
+  "ev_1795751710_b27df364",
+  "ev_1795751710_11a7663e",
+  "ev_1795751710_7d746e8a",
+  "ev_1795751710_ba5c19e0",
+  "ev_1795751710_2fe0259d",
+  "ev_1795751710_b8f3b457",
+  "ev_1795751710_f8bc9451",
+  "ev_1795751710_02f1bd9b",
+  "ev_1795751710_e269215c",
+  "ev_1795751710_7ace8f4b"
+ ],
+ "requested_at": "2026-11-27T03:55:12Z"
+}
