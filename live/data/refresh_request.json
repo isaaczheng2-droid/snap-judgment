@@ -1,0 +1,30 @@
+{
+ "reasons": [
+  "Box scores updated: player results and the paper test can be graded",
+  "Ed Oliver: ACTIVE \u2192 UNKNOWN (Oblique)",
+  "Trent Brown: ACTIVE \u2192 UNKNOWN (Wrist)",
+  "Walker Little: QUESTIONABLE \u2192 UNKNOWN (Knee)",
+  "Jalen Carter: ACTIVE \u2192 UNKNOWN (Quadricep)",
+  "Aaron Rodgers: ACTIVE \u2192 UNKNOWN (Not injury related - personal matter)",
+  "Christian McCaffrey: ACTIVE \u2192 UNKNOWN (Not injury related - resting player)",
+  "Dan Moore Jr.: QUESTIONABLE \u2192 UNKNOWN (Knee)"
+ ],
+ "game_ids": [
+  "2026_12_BAL_HOU",
+  "2026_12_DEN_PIT",
+  "2026_12_KC_BUF",
+  "2026_12_PHI_DAL",
+  "2026_12_SEA_SF",
+  "2026_12_TEN_JAX"
+ ],
+ "event_ids": [
+  "ev_1795758823_395d9975",
+  "ev_1795758823_d46de04e",
+  "ev_1795758823_0a5dd2d8",
+  "ev_1795758823_7dd22e9f",
+  "ev_1795758823_542de113",
+  "ev_1795758823_d1a096f9",
+  "ev_1795758823_7bc73a37"
+ ],
+ "requested_at": "2026-11-27T05:53:49Z"
+}
